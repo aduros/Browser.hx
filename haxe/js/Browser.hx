@@ -47,21 +47,29 @@ extern class Event {
 	function new( type : String, ?eventInitDict : EventInit ) : Void;
 
 	var type(default,null) : String;
-	var target(default,null) : EventTarget;
-	var currentTarget(default,null) : EventTarget;
+	var target(default,null) : Null<EventTarget>;
+	var currentTarget(default,null) : Null<EventTarget>;
 	static inline var CAPTURING_PHASE : Int = 1;
 	static inline var AT_TARGET : Int = 2;
 	static inline var BUBBLING_PHASE : Int = 3;
 	var eventPhase(default,null) : Int;
 	@:overload( function(  ) : Void {})
 	@:overload( function(  ) : Void {})
+	function stopPropagation() : Void;
+	@:overload( function(  ) : Void {})
+	@:overload( function(  ) : Void {})
+	function stopImmediatePropagation() : Void;
 	var bubbles(default,null) : Bool;
 	var cancelable(default,null) : Bool;
 	@:overload( function(  ) : Void {})
+	@:overload( function(  ) : Void {})
+	function preventDefault() : Void;
 	var defaultPrevented(default,null) : Bool;
 	var isTrusted(default,null) : Bool;
 	var timeStamp(default,null) : Float;
-	@:overload( function( type : String, bubbles : Bool, cancelable : Bool ) : Void {})
+	@:overload( function( eventTypeArg : String, canBubbleArg : Bool, cancelableArg : Bool ) : Void {})
+	@:overload( function( eventTypeArg : String, canBubbleArg : Bool, cancelableArg : Bool ) : Void {})
+	function initEvent( type : String, bubbles : Bool, cancelable : Bool ) : Void;
 
 
 
@@ -83,6 +91,7 @@ extern class CustomEvent extends Event {
 	var detail(default,null) : Dynamic;
 
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, detailArg : Dynamic ) : Void {})
+	function initCustomEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, detailArg : Dynamic ) : Void;
 
 }
 
@@ -93,9 +102,15 @@ extern class CustomEventInit extends EventInit {
 
 /** From http://www.w3.org/TR/dom/ */
 extern class EventTarget {
-	@:overload( function( type : String, callback_ : Event -> Void, ?capture : Bool ) : Void {})
-	@:overload( function( type : String, callback_ : Event -> Void, ?capture : Bool ) : Void {})
-	@:overload( function( event : Event ) : Bool {})
+	@:overload( function( type : String, listener : Event -> Void, ?useCapture : Bool ) : Void {})
+	@:overload( function( type : String, listener : Event -> Void, useCapture : Bool ) : Void {})
+	function addEventListener( type : String, callback_ : Null<Event -> Void>, ?capture : Bool ) : Void;
+	@:overload( function( type : String, listener : Event -> Void, ?useCapture : Bool ) : Void {})
+	@:overload( function( type : String, listener : Event -> Void, useCapture : Bool ) : Void {})
+	function removeEventListener( type : String, callback_ : Null<Event -> Void>, ?capture : Bool ) : Void;
+	@:overload( function( evt : Event ) : Bool {})
+	@:overload( function( evt : Event ) : Bool {})
+	function dispatchEvent( event : Event ) : Bool;
 
 
 
@@ -107,7 +122,7 @@ extern class MutationObserver {
 	function new( callback_ : Array<MutationRecord> -> MutationObserver -> Void ) : Void;
 
 	function observe( target : Node, options : MutationObserverInit ) : Void;
-	function disconnect(  ) : Void;
+	function disconnect() : Void;
 }
 
 /** From http://www.w3.org/TR/dom/ */
@@ -125,13 +140,13 @@ extern class MutationObserverInit {
 extern class MutationRecord {
 	var type(default,null) : String;
 	var target(default,null) : Node;
-	var addedNodes(default,null) : NodeList;
-	var removedNodes(default,null) : NodeList;
-	var previousSibling(default,null) : Node;
-	var nextSibling(default,null) : Node;
-	var attributeName(default,null) : String;
-	var attributeNamespace(default,null) : String;
-	var oldValue(default,null) : String;
+	var addedNodes(default,null) : Null<NodeList>;
+	var removedNodes(default,null) : Null<NodeList>;
+	var previousSibling(default,null) : Null<Node>;
+	var nextSibling(default,null) : Null<Node>;
+	var attributeName(default,null) : Null<String>;
+	var attributeNamespace(default,null) : Null<String>;
+	var oldValue(default,null) : Null<String>;
 }
 
 /** From http://www.w3.org/TR/dom/ */
@@ -155,16 +170,16 @@ extern class Node extends EventTarget {
 
 	var nodeType(default,null) : Int;
 	var nodeName(default,null) : String;
-	var baseURI(default,null) : String;
-	var ownerDocument(default,null) : Document;
-	var parentNode(default,null) : Node;
-	var parentElement(default,null) : Element;
-	function hasChildNodes(  ) : Bool;
+	var baseURI(default,null) : Null<String>;
+	var ownerDocument(default,null) : Null<Document>;
+	var parentNode(default,null) : Null<Node>;
+	var parentElement(default,null) : Null<Element>;
+	function hasChildNodes() : Bool;
 	var childNodes(default,null) : NodeList;
-	var firstChild(default,null) : Node;
-	var lastChild(default,null) : Node;
-	var previousSibling(default,null) : Node;
-	var nextSibling(default,null) : Node;
+	var firstChild(default,null) : Null<Node>;
+	var lastChild(default,null) : Null<Node>;
+	var previousSibling(default,null) : Null<Node>;
+	var nextSibling(default,null) : Null<Node>;
 	static inline var DOCUMENT_POSITION_DISCONNECTED : Int = 0x01;
 	static inline var DOCUMENT_POSITION_PRECEDING : Int = 0x02;
 	static inline var DOCUMENT_POSITION_FOLLOWING : Int = 0x04;
@@ -173,19 +188,19 @@ extern class Node extends EventTarget {
 	static inline var DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC : Int = 0x20;
 
 	function compareDocumentPosition( other : Node ) : Int;
-	function contains( other : Node ) : Bool;
-	var nodeValue : String;
-	var textContent : String;
-	function insertBefore( node : Node, child : Node ) : Node;
+	function contains( other : Null<Node> ) : Bool;
+	var nodeValue : Null<String>;
+	var textContent : Null<String>;
+	function insertBefore( node : Node, child : Null<Node> ) : Node;
 	function appendChild( node : Node ) : Node;
 	function replaceChild( node : Node, child : Node ) : Node;
 	function removeChild( child : Node ) : Node;
-	function normalize(  ) : Void;
+	function normalize() : Void;
 	function cloneNode( ?deep : Bool ) : Node;
-	function isEqualNode( node : Node ) : Bool;
-	function lookupPrefix( namespace : String ) : String;
-	function lookupNamespaceURI( prefix : String ) : String;
-	function isDefaultNamespace( namespace : String ) : Bool;
+	function isEqualNode( node : Null<Node> ) : Bool;
+	function lookupPrefix( namespace : Null<String> ) : String;
+	function lookupNamespaceURI( prefix : Null<String> ) : String;
+	function isDefaultNamespace( namespace : Null<String> ) : Bool;
 }
 
 /** From http://www.w3.org/TR/dom/ */
@@ -196,29 +211,31 @@ extern class Document extends Node {
 	var compatMode(default,null) : String;
 	var characterSet(default,null) : String;
 	var contentType(default,null) : String;
-	var doctype(default,null) : DocumentType;
-	var documentElement(default,null) : Element;
+	var doctype(default,null) : Null<DocumentType>;
+	var documentElement(default,null) : Null<Element>;
 	function getElementsByTagName( localName : String ) : HTMLCollection;
-	function getElementsByTagNameNS( namespace : String, localName : String ) : HTMLCollection;
+	function getElementsByTagNameNS( namespace : Null<String>, localName : String ) : HTMLCollection;
 	function getElementsByClassName( classNames : String ) : HTMLCollection;
-	function getElementById( elementId : String ) : Element;
+	function getElementById( elementId : String ) : Null<Element>;
 	function createElement( localName : String ) : Element;
-	function createElementNS( namespace : String, qualifiedName : String ) : Element;
-	function createDocumentFragment(  ) : DocumentFragment;
+	function createElementNS( namespace : Null<String>, qualifiedName : String ) : Element;
+	function createDocumentFragment() : DocumentFragment;
 	function createTextNode( data : String ) : Text;
 	function createComment( data : String ) : Comment;
 	function createProcessingInstruction( target : String, data : String ) : ProcessingInstruction;
 	function importNode( node : Node, ?deep : Bool ) : Node;
 	function adoptNode( node : Node ) : Node;
-	@:overload( function( eventInterfaceName : String ) : Event {})
-	function createRange(  ) : Range;
-	function createNodeIterator( root : Node, ?whatToShow : Int, ?filter : NodeFilter ) : NodeIterator;
-	function createTreeWalker( root : Node, ?whatToShow : Int, ?filter : NodeFilter ) : TreeWalker;
+	@:overload( function( eventInterface : String ) : Event {})
+	@:overload( function( eventInterface : String ) : Event {})
+	function createEvent( eventInterfaceName : String ) : Event;
+	function createRange() : Range;
+	function createNodeIterator( root : Node, ?whatToShow : Int, ?filter : Null<NodeFilter> ) : NodeIterator;
+	function createTreeWalker( root : Node, ?whatToShow : Int, ?filter : Null<NodeFilter> ) : TreeWalker;
 
-	@:overload( function( nodes : Node ) : Void {})
-	function prepend( nodes : String ) : Void;
-	@:overload( function( nodes : Node ) : Void {})
-	function append( nodes : String ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function prepend( nodes : Node ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function append( nodes : Node ) : Void;
 
 
 
@@ -227,18 +244,18 @@ extern class Document extends Node {
 
 
 	var styleSheets(default,null) : Array<StyleSheet>;
-	var selectedStyleSheetSet : String;
-	var lastStyleSheetSet(default,null) : String;
-	var preferredStyleSheetSet(default,null) : String;
+	var selectedStyleSheetSet : Null<String>;
+	var lastStyleSheetSet(default,null) : Null<String>;
+	var preferredStyleSheetSet(default,null) : Null<String>;
 	var styleSheetSets(default,null) : DOMStringList;
-	function enableStyleSheetsForSet( name : String ) : Void;
+	function enableStyleSheetsForSet( name : Null<String> ) : Void;
 
-	function elementFromPoint( x : Float, y : Float ) : Element;
-	function caretPositionFromPoint( x : Float, y : Float ) : CaretPosition;
+	function elementFromPoint( x : Float, y : Float ) : Null<Element>;
+	function caretPositionFromPoint( x : Float, y : Float ) : Null<CaretPosition>;
 
 	function createTouch( view : AbstractView, target : EventTarget, identifier : Int, pageX : Int, pageY : Int, screenX : Int, screenY : Int ) : Touch;
-	@:overload( function( touches : Array<Touch> ) : TouchList {})
-	function createTouchList( touch : Touch ) : TouchList;
+	@:overload( function( touch : Touch ) : TouchList {})
+	function createTouchList( touches : Array<Touch> ) : TouchList;
 
 
 
@@ -254,7 +271,7 @@ extern class XMLDocument extends Document {
 /** From http://www.w3.org/TR/dom/ */
 extern class DOMImplementation {
 	function createDocumentType( qualifiedName : String, publicId : String, systemId : String ) : DocumentType;
-	function createDocument( namespace : String, qualifiedName : String, doctype : DocumentType ) : XMLDocument;
+	function createDocument( namespace : Null<String>, qualifiedName : String, doctype : Null<DocumentType> ) : XMLDocument;
 	function createHTMLDocument( title : String ) : Document;
 	function hasFeature( feature : String, version : String ) : Bool;
 }
@@ -262,10 +279,10 @@ extern class DOMImplementation {
 /** From http://www.w3.org/TR/dom/ */
 extern class DocumentFragment extends Node {
 
-	@:overload( function( nodes : Node ) : Void {})
-	function prepend( nodes : String ) : Void;
-	@:overload( function( nodes : Node ) : Void {})
-	function append( nodes : String ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function prepend( nodes : Node ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function append( nodes : Node ) : Void;
 
 
 
@@ -279,57 +296,57 @@ extern class DocumentType extends Node {
 	var publicId(default,null) : String;
 	var systemId(default,null) : String;
 
-	@:overload( function( nodes : Node ) : Void {})
-	function before( nodes : String ) : Void;
-	@:overload( function( nodes : Node ) : Void {})
-	function after( nodes : String ) : Void;
-	@:overload( function( nodes : Node ) : Void {})
-	function replace( nodes : String ) : Void;
-	function remove(  ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function before( nodes : Node ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function after( nodes : Node ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function replace( nodes : Node ) : Void;
+	function remove() : Void;
 }
 
 /** From http://www.w3.org/TR/dom/ */
 extern class Element extends Node {
-	var namespaceURI(default,null) : String;
-	var prefix(default,null) : String;
+	var namespaceURI(default,null) : Null<String>;
+	var prefix(default,null) : Null<String>;
 	var localName(default,null) : String;
 	var tagName(default,null) : String;
 	var id : String;
 	var className : String;
 	var classList(default,null) : DOMTokenList;
 	var attributes(default,null) : Array<Attr>;
-	function getAttribute( name : String ) : String;
-	function getAttributeNS( namespace : String, localName : String ) : String;
+	function getAttribute( name : String ) : Null<String>;
+	function getAttributeNS( namespace : Null<String>, localName : String ) : Null<String>;
 	function setAttribute( name : String, value : String ) : Void;
-	function setAttributeNS( namespace : String, name : String, value : String ) : Void;
+	function setAttributeNS( namespace : Null<String>, name : String, value : String ) : Void;
 	function removeAttribute( name : String ) : Void;
-	function removeAttributeNS( namespace : String, localName : String ) : Void;
+	function removeAttributeNS( namespace : Null<String>, localName : String ) : Void;
 	function hasAttribute( name : String ) : Bool;
-	function hasAttributeNS( namespace : String, localName : String ) : Bool;
+	function hasAttributeNS( namespace : Null<String>, localName : String ) : Bool;
 	function getElementsByTagName( localName : String ) : HTMLCollection;
-	function getElementsByTagNameNS( namespace : String, localName : String ) : HTMLCollection;
+	function getElementsByTagNameNS( namespace : Null<String>, localName : String ) : HTMLCollection;
 	function getElementsByClassName( classNames : String ) : HTMLCollection;
 	var children(default,null) : HTMLCollection;
-	var firstElementChild(default,null) : Element;
-	var lastElementChild(default,null) : Element;
-	var previousElementSibling(default,null) : Element;
-	var nextElementSibling(default,null) : Element;
+	var firstElementChild(default,null) : Null<Element>;
+	var lastElementChild(default,null) : Null<Element>;
+	var previousElementSibling(default,null) : Null<Element>;
+	var nextElementSibling(default,null) : Null<Element>;
 	var childElementCount(default,null) : Int;
 
-	@:overload( function( nodes : Node ) : Void {})
-	function prepend( nodes : String ) : Void;
-	@:overload( function( nodes : Node ) : Void {})
-	function append( nodes : String ) : Void;
-	@:overload( function( nodes : Node ) : Void {})
-	function before( nodes : String ) : Void;
-	@:overload( function( nodes : Node ) : Void {})
-	function after( nodes : String ) : Void;
-	@:overload( function( nodes : Node ) : Void {})
-	function replace( nodes : String ) : Void;
-	function remove(  ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function prepend( nodes : Node ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function append( nodes : Node ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function before( nodes : Node ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function after( nodes : Node ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function replace( nodes : Node ) : Void;
+	function remove() : Void;
 
-	function getClientRects(  ) : ClientRectList;
-	function getBoundingClientRect(  ) : ClientRect;
+	function getClientRects() : ClientRectList;
+	function getBoundingClientRect() : ClientRect;
 
 	function scrollIntoView( ?top : Bool ) : Void;
 	var scrollTop : Int;
@@ -357,8 +374,8 @@ extern class Element extends Node {
 extern class Attr {
 	var name(default,null) : String;
 	var value : String;
-	var namespaceURI(default,null) : String;
-	var prefix(default,null) : String;
+	var namespaceURI(default,null) : Null<String>;
+	var prefix(default,null) : Null<String>;
 	var localName(default,null) : String;
 }
 
@@ -372,13 +389,13 @@ extern class CharacterData extends Node {
 	function deleteData( offset : Int, count : Int ) : Void;
 	function replaceData( offset : Int, count : Int, data : String ) : Void;
 
-	@:overload( function( nodes : Node ) : Void {})
-	function before( nodes : String ) : Void;
-	@:overload( function( nodes : Node ) : Void {})
-	function after( nodes : String ) : Void;
-	@:overload( function( nodes : Node ) : Void {})
-	function replace( nodes : String ) : Void;
-	function remove(  ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function before( nodes : Node ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function after( nodes : Node ) : Void;
+	@:overload( function( nodes : String ) : Void {})
+	function replace( nodes : Node ) : Void;
+	function remove() : Void;
 }
 
 /** From http://www.w3.org/TR/dom/ */
@@ -424,19 +441,19 @@ extern class Range {
 	static inline var END_TO_END : Int = 2;
 	static inline var END_TO_START : Int = 3;
 	function compareBoundaryPoints( how : Int, sourceRange : Range ) : Int;
-	function deleteContents(  ) : Void;
-	function extractContents(  ) : DocumentFragment;
-	function cloneContents(  ) : DocumentFragment;
+	function deleteContents() : Void;
+	function extractContents() : DocumentFragment;
+	function cloneContents() : DocumentFragment;
 	function insertNode( node : Node ) : Void;
 	function surroundContents( newParent : Node ) : Void;
-	function cloneRange(  ) : Range;
-	function detach(  ) : Void;
+	function cloneRange() : Range;
+	function detach() : Void;
 	function isPointInRange( node : Node, offset : Int ) : Bool;
 	function comparePoint( node : Node, offset : Int ) : Int;
 	function intersectsNode( node : Node ) : Bool;
 
-	function getClientRects(  ) : ClientRectList;
-	function getBoundingClientRect(  ) : ClientRect;
+	function getClientRects() : ClientRectList;
+	function getBoundingClientRect() : ClientRect;
 
 	function createContextualFragment( fragment : String ) : DocumentFragment;
 }
@@ -444,28 +461,28 @@ extern class Range {
 /** From http://www.w3.org/TR/dom/ */
 extern class NodeIterator {
 	var root(default,null) : Node;
-	var referenceNode(default,null) : Node;
+	var referenceNode(default,null) : Null<Node>;
 	var pointerBeforeReferenceNode(default,null) : Bool;
 	var whatToShow(default,null) : Int;
-	var filter(default,null) : NodeFilter;
-	function nextNode(  ) : Node;
-	function previousNode(  ) : Node;
-	function detach(  ) : Void;
+	var filter(default,null) : Null<NodeFilter>;
+	function nextNode() : Null<Node>;
+	function previousNode() : Null<Node>;
+	function detach() : Void;
 }
 
 /** From http://www.w3.org/TR/dom/ */
 extern class TreeWalker {
 	var root(default,null) : Node;
 	var whatToShow(default,null) : Int;
-	var filter(default,null) : NodeFilter;
+	var filter(default,null) : Null<NodeFilter>;
 	var currentNode : Node;
-	function parentNode(  ) : Node;
-	function firstChild(  ) : Node;
-	function lastChild(  ) : Node;
-	function previousSibling(  ) : Node;
-	function nextSibling(  ) : Node;
-	function previousNode(  ) : Node;
-	function nextNode(  ) : Node;
+	function parentNode() : Null<Node>;
+	function firstChild() : Null<Node>;
+	function lastChild() : Null<Node>;
+	function previousSibling() : Null<Node>;
+	function nextSibling() : Null<Node>;
+	function previousNode() : Null<Node>;
+	function nextNode() : Null<Node>;
 }
 
 /** From http://www.w3.org/TR/dom/ */
@@ -498,24 +515,24 @@ extern class NodeFilter {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class NodeList implements ArrayAccess<Node> {
+extern class NodeList implements ArrayAccess<Null<Node>> {
 	var length(default,null) : Int;
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class HTMLCollection implements ArrayAccess<Dynamic> {
+extern class HTMLCollection implements ArrayAccess<Null<Dynamic>> {
 	var length(default,null) : Int;
 
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class DOMStringList implements ArrayAccess<String> {
+extern class DOMStringList implements ArrayAccess<Null<String>> {
 	var length(default,null) : Int;
 	function contains( string : String ) : Bool;
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class DOMTokenList implements ArrayAccess<String> {
+extern class DOMTokenList implements ArrayAccess<Null<String>> {
 	var length(default,null) : Int;
 	function contains( token : String ) : Bool;
 	function add( token : String ) : Void;
@@ -555,6 +572,7 @@ extern class EventException {
 extern class DocumentEvent {
 
 	@:overload( function( eventInterface : String ) : Event {})
+	function createEvent( eventInterface : String ) : Event;
 
 
 }
@@ -564,6 +582,7 @@ extern class UIEvent extends Event {
 	var view(default,null) : AbstractView;
 	var detail(default,null) : Int;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int ) : Void {})
+	function initUIEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int ) : Void;
 
 }
 
@@ -571,6 +590,7 @@ extern class UIEvent extends Event {
 extern class FocusEvent extends UIEvent {
 	var relatedTarget(default,null) : EventTarget;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int, relatedTargetArg : EventTarget ) : Void {})
+	function initFocusEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int, relatedTargetArg : EventTarget ) : Void;
 
 }
 
@@ -588,8 +608,10 @@ extern class MouseEvent extends UIEvent {
 	var buttons(default,null) : Int;
 	var relatedTarget(default,null) : EventTarget;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int, screenXArg : Int, screenYArg : Int, clientXArg : Int, clientYArg : Int, ctrlKeyArg : Bool, altKeyArg : Bool, shiftKeyArg : Bool, metaKeyArg : Bool, buttonArg : Int, relatedTargetArg : EventTarget ) : Void {})
+	function initMouseEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int, screenXArg : Int, screenYArg : Int, clientXArg : Int, clientYArg : Int, ctrlKeyArg : Bool, altKeyArg : Bool, shiftKeyArg : Bool, metaKeyArg : Bool, buttonArg : Int, relatedTargetArg : EventTarget ) : Void;
 
 	@:overload( function( keyArg : String ) : Bool {})
+	function getModifierState( keyArg : String ) : Bool;
 
 
 
@@ -612,6 +634,7 @@ extern class WheelEvent extends MouseEvent {
 	var deltaZ(default,null) : Float;
 	var deltaMode(default,null) : Int;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int, screenXArg : Int, screenYArg : Int, clientXArg : Int, clientYArg : Int, buttonArg : Int, relatedTargetArg : EventTarget, modifiersListArg : String, deltaXArg : Float, deltaYArg : Float, deltaZArg : Float, deltaMode : Int ) : Void {})
+	function initWheelEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int, screenXArg : Int, screenYArg : Int, clientXArg : Int, clientYArg : Int, buttonArg : Int, relatedTargetArg : EventTarget, modifiersListArg : String, deltaXArg : Float, deltaYArg : Float, deltaZArg : Float, deltaMode : Int ) : Void;
 
 
 }
@@ -633,6 +656,7 @@ extern class TextEvent extends UIEvent {
 	var inputMethod(default,null) : Int;
 	var locale(default,null) : String;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, dataArg : String, inputMethod : Int, localeArg : String ) : Void {})
+	function initTextEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, dataArg : String, inputMethod : Int, localeArg : String ) : Void;
 
 
 }
@@ -656,7 +680,9 @@ extern class KeyboardEvent extends UIEvent {
 	var repeat(default,null) : Bool;
 	var locale(default,null) : String;
 	@:overload( function( keyArg : String ) : Bool {})
+	function getModifierState( keyArg : String ) : Bool;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, charArg : String, keyArg : String, locationArg : Int, modifiersListArg : String, repeat : Bool, localeArg : String ) : Void {})
+	function initKeyboardEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, charArg : String, keyArg : String, locationArg : Int, modifiersListArg : String, repeat : Bool, localeArg : String ) : Void;
 
 	var charCode(default,null) : Int;
 	var keyCode(default,null) : Int;
@@ -670,6 +696,7 @@ extern class CompositionEvent extends UIEvent {
 	var data(default,null) : String;
 	var locale(default,null) : String;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, dataArg : String, localeArg : String ) : Void {})
+	function initCompositionEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, dataArg : String, localeArg : String ) : Void;
 
 }
 
@@ -685,6 +712,7 @@ extern class MutationEvent extends Event {
 	var attrName(default,null) : String;
 	var attrChange(default,null) : Int;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, relatedNodeArg : Node, prevValueArg : String, newValueArg : String, attrNameArg : String, attrChangeArg : Int ) : Void {})
+	function initMutationEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, relatedNodeArg : Node, prevValueArg : String, newValueArg : String, attrNameArg : String, attrChangeArg : Int ) : Void;
 
 
 }
@@ -695,6 +723,7 @@ extern class MutationNameEvent extends MutationEvent {
 	var prevNodeName(default,null) : String;
 
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, relatedNodeArg : Node, prevNamespaceURIArg : String, prevNodeNameArg : String ) : Void {})
+	function initMutationNameEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, relatedNodeArg : Node, prevNamespaceURIArg : String, prevNodeNameArg : String ) : Void;
 
 
 }
@@ -710,13 +739,13 @@ extern class MouseEventInit extends UIEventInit {
 /** From http://www.w3.org/TR/XMLHttpRequest/ */
 extern class XMLHttpRequestEventTarget extends EventTarget {
 
-	var onloadstart : Event -> Void;
-	var onprogress : Event -> Void;
-	var onabort : Event -> Void;
-	var onerror : Event -> Void;
-	var onload : Event -> Void;
-	var ontimeout : Event -> Void;
-	var onloadend : Event -> Void;
+	var onloadstart : Null<Event -> Void>;
+	var onprogress : Null<Event -> Void>;
+	var onabort : Null<Event -> Void>;
+	var onerror : Null<Event -> Void>;
+	var onload : Null<Event -> Void>;
+	var ontimeout : Null<Event -> Void>;
+	var onloadend : Null<Event -> Void>;
 }
 
 /** From http://www.w3.org/TR/XMLHttpRequest/ */
@@ -725,10 +754,10 @@ extern class XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
 
 /** From http://www.w3.org/TR/XMLHttpRequest/ */
 extern class XMLHttpRequest extends XMLHttpRequestEventTarget {
-	function new(  ) : Void;
+	function new() : Void;
 
 
-	var onreadystatechange : Event -> Void;
+	var onreadystatechange : Null<Event -> Void>;
 
 	static inline var UNSENT : Int = 0;
 	static inline var OPENED : Int = 1;
@@ -737,23 +766,23 @@ extern class XMLHttpRequest extends XMLHttpRequestEventTarget {
 	static inline var DONE : Int = 4;
 	var readyState(default,null) : Int;
 
-	function open( method : String, url : String, ?async : Bool, ?user : String, ?password : String ) : Void;
+	function open( method : String, url : String, ?async : Bool, ?user : Null<String>, ?password : Null<String> ) : Void;
 	function setRequestHeader( header : String, value : String ) : Void;
 	var timeout : Int;
 	var withCredentials : Bool;
 	var upload(default,null) : XMLHttpRequestUpload;
-	@:overload( function(  ) : Void {})
-	@:overload( function( data : ArrayBuffer ) : Void {})
-	@:overload( function( data : Blob ) : Void {})
+	@:overload( function( data : FormData ) : Void {})
+	@:overload( function( data : Null<String> ) : Void {})
 	@:overload( function( data : Document ) : Void {})
-	@:overload( function( data : String ) : Void {})
-	function send( data : FormData ) : Void;
-	function abort(  ) : Void;
+	@:overload( function( data : Blob ) : Void {})
+	@:overload( function( data : ArrayBuffer ) : Void {})
+	function send() : Void;
+	function abort() : Void;
 
 	var status(default,null) : Int;
 	var statusText(default,null) : String;
 	function getResponseHeader( header : String ) : String;
-	function getAllResponseHeaders(  ) : String;
+	function getAllResponseHeaders() : String;
 	function overrideMimeType( mime : String ) : Void;
 	var responseType : String;
 	var response(default,null) : Dynamic;
@@ -763,16 +792,16 @@ extern class XMLHttpRequest extends XMLHttpRequestEventTarget {
 
 /** From http://www.w3.org/TR/XMLHttpRequest/ */
 extern class AnonXMLHttpRequest extends XMLHttpRequest {
-	function new(  ) : Void;
+	function new() : Void;
 }
 
 /** From http://www.w3.org/TR/XMLHttpRequest/ */
 extern class FormData {
-	@:overload( function(  ) : Void {})
-	function new( form : HTMLFormElement ) : Void;
+	@:overload( function( form : HTMLFormElement ) : Void {})
+	function new() : Void;
 
-	@:overload( function( name : String, value : Blob, ?filename : String ) : Void {})
-	function append( name : String, value : String ) : Void;
+	@:overload( function( name : String, value : String ) : Void {})
+	function append( name : String, value : Blob, ?filename : String ) : Void;
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
@@ -859,7 +888,7 @@ extern class CSSPageRule extends CSSRule {
 /** From http://dev.w3.org/csswg/cssom/ */
 extern class CSSNamespaceRule extends CSSRule {
 	var namespaceURI(default,null) : String;
-	var prefix(default,null) : String;
+	var prefix(default,null) : Null<String>;
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
@@ -1003,8 +1032,8 @@ extern class ElementCSSInlineStyle {
 
 /** From http://dev.w3.org/csswg/cssom/ */
 extern class Window extends EventTarget, implements ArrayAccess<Dynamic> {
-	@:overload( function( elt : Element ) : CSSStyleDeclaration {})
-	function getComputedStyle( elt : Element, pseudoElt : String ) : CSSStyleDeclaration;
+	@:overload( function( elt : Element, pseudoElt : String ) : CSSStyleDeclaration {})
+	function getComputedStyle( elt : Element ) : CSSStyleDeclaration;
 
 	function matchMedia( media_query_list : String ) : MediaQueryList;
 	var screen(default,null) : Screen;
@@ -1039,17 +1068,17 @@ extern class Window extends EventTarget, implements ArrayAccess<Dynamic> {
 	var statusbar(default,null) : BarProp;
 	var toolbar(default,null) : BarProp;
 	var status : String;
-	function close(  ) : Void;
-	function stop(  ) : Void;
-	function focus(  ) : Void;
-	function blur(  ) : Void;
+	function close() : Void;
+	function stop() : Void;
+	function focus() : Void;
+	function blur() : Void;
 
 	var frames(default,null) : Window;
 	var length(default,null) : Int;
 	var top(default,null) : Window;
-	var opener : Window;
+	var opener : Null<Window>;
 	var parent(default,null) : Window;
-	var frameElement(default,null) : Element;
+	var frameElement(default,null) : Null<Element>;
 	function open( ?url : String, ?target : String, ?features : String, ?replace : Bool ) : Window;
 
 	var navigator(default,null) : Navigator;
@@ -1058,76 +1087,76 @@ extern class Window extends EventTarget, implements ArrayAccess<Dynamic> {
 
 	function alert( message : String ) : Void;
 	function confirm( message : String ) : Bool;
-	function prompt( message : String, ?default_ : String ) : String;
-	function print(  ) : Void;
+	function prompt( message : String, ?default_ : String ) : Null<String>;
+	function print() : Void;
 	function showModalDialog( url : String, ?argument : Dynamic ) : Dynamic;
 
-	var onabort : Event -> Void;
-	var onafterprint : Event -> Void;
-	var onbeforeprint : Event -> Void;
-	var onbeforeunload : Event -> Void;
-	var onblur : Event -> Void;
-	var oncanplay : Event -> Void;
-	var oncanplaythrough : Event -> Void;
-	var onchange : Event -> Void;
-	var onclick : Event -> Void;
-	var oncontextmenu : Event -> Void;
-	var oncuechange : Event -> Void;
-	var ondblclick : Event -> Void;
-	var ondrag : Event -> Void;
-	var ondragend : Event -> Void;
-	var ondragenter : Event -> Void;
-	var ondragleave : Event -> Void;
-	var ondragover : Event -> Void;
-	var ondragstart : Event -> Void;
-	var ondrop : Event -> Void;
-	var ondurationchange : Event -> Void;
-	var onemptied : Event -> Void;
-	var onended : Event -> Void;
-	var onerror : Event -> Void;
-	var onfocus : Event -> Void;
-	var onhashchange : Event -> Void;
-	var oninput : Event -> Void;
-	var oninvalid : Event -> Void;
-	var onkeydown : Event -> Void;
-	var onkeypress : Event -> Void;
-	var onkeyup : Event -> Void;
-	var onload : Event -> Void;
-	var onloadeddata : Event -> Void;
-	var onloadedmetadata : Event -> Void;
-	var onloadstart : Event -> Void;
-	var onmessage : Event -> Void;
-	var onmousedown : Event -> Void;
-	var onmousemove : Event -> Void;
-	var onmouseout : Event -> Void;
-	var onmouseover : Event -> Void;
-	var onmouseup : Event -> Void;
-	var onmousewheel : Event -> Void;
-	var onoffline : Event -> Void;
-	var ononline : Event -> Void;
-	var onpause : Event -> Void;
-	var onplay : Event -> Void;
-	var onplaying : Event -> Void;
-	var onpagehide : Event -> Void;
-	var onpageshow : Event -> Void;
-	var onpopstate : Event -> Void;
-	var onprogress : Event -> Void;
-	var onratechange : Event -> Void;
-	var onreset : Event -> Void;
-	var onresize : Event -> Void;
-	var onscroll : Event -> Void;
-	var onseeked : Event -> Void;
-	var onseeking : Event -> Void;
-	var onselect : Event -> Void;
-	var onshow : Event -> Void;
-	var onstalled : Event -> Void;
-	var onstorage : Event -> Void;
-	var onsubmit : Event -> Void;
-	var onsuspend : Event -> Void;
-	var ontimeupdate : Event -> Void;
-	var onunload : Event -> Void;
-	var onvolumechange : Event -> Void;
-	var onwaiting : Event -> Void;
+	var onabort : Null<Event -> Void>;
+	var onafterprint : Null<Event -> Void>;
+	var onbeforeprint : Null<Event -> Void>;
+	var onbeforeunload : Null<Event -> Void>;
+	var onblur : Null<Event -> Void>;
+	var oncanplay : Null<Event -> Void>;
+	var oncanplaythrough : Null<Event -> Void>;
+	var onchange : Null<Event -> Void>;
+	var onclick : Null<Event -> Void>;
+	var oncontextmenu : Null<Event -> Void>;
+	var oncuechange : Null<Event -> Void>;
+	var ondblclick : Null<Event -> Void>;
+	var ondrag : Null<Event -> Void>;
+	var ondragend : Null<Event -> Void>;
+	var ondragenter : Null<Event -> Void>;
+	var ondragleave : Null<Event -> Void>;
+	var ondragover : Null<Event -> Void>;
+	var ondragstart : Null<Event -> Void>;
+	var ondrop : Null<Event -> Void>;
+	var ondurationchange : Null<Event -> Void>;
+	var onemptied : Null<Event -> Void>;
+	var onended : Null<Event -> Void>;
+	var onerror : Null<Event -> Void>;
+	var onfocus : Null<Event -> Void>;
+	var onhashchange : Null<Event -> Void>;
+	var oninput : Null<Event -> Void>;
+	var oninvalid : Null<Event -> Void>;
+	var onkeydown : Null<Event -> Void>;
+	var onkeypress : Null<Event -> Void>;
+	var onkeyup : Null<Event -> Void>;
+	var onload : Null<Event -> Void>;
+	var onloadeddata : Null<Event -> Void>;
+	var onloadedmetadata : Null<Event -> Void>;
+	var onloadstart : Null<Event -> Void>;
+	var onmessage : Null<Event -> Void>;
+	var onmousedown : Null<Event -> Void>;
+	var onmousemove : Null<Event -> Void>;
+	var onmouseout : Null<Event -> Void>;
+	var onmouseover : Null<Event -> Void>;
+	var onmouseup : Null<Event -> Void>;
+	var onmousewheel : Null<Event -> Void>;
+	var onoffline : Null<Event -> Void>;
+	var ononline : Null<Event -> Void>;
+	var onpause : Null<Event -> Void>;
+	var onplay : Null<Event -> Void>;
+	var onplaying : Null<Event -> Void>;
+	var onpagehide : Null<Event -> Void>;
+	var onpageshow : Null<Event -> Void>;
+	var onpopstate : Null<Event -> Void>;
+	var onprogress : Null<Event -> Void>;
+	var onratechange : Null<Event -> Void>;
+	var onreset : Null<Event -> Void>;
+	var onresize : Null<Event -> Void>;
+	var onscroll : Null<Event -> Void>;
+	var onseeked : Null<Event -> Void>;
+	var onseeking : Null<Event -> Void>;
+	var onselect : Null<Event -> Void>;
+	var onshow : Null<Event -> Void>;
+	var onstalled : Null<Event -> Void>;
+	var onstorage : Null<Event -> Void>;
+	var onsubmit : Null<Event -> Void>;
+	var onsuspend : Null<Event -> Void>;
+	var ontimeupdate : Null<Event -> Void>;
+	var onunload : Null<Event -> Void>;
+	var onvolumechange : Null<Event -> Void>;
+	var onwaiting : Null<Event -> Void>;
 
 
 
@@ -1188,81 +1217,81 @@ extern class HTMLElement extends Element {
 	var dataset(default,null) : DOMStringMap;
 
 	var hidden : Bool;
-	function click(  ) : Void;
+	function click() : Void;
 	var tabIndex : Int;
-	function focus(  ) : Void;
-	function blur(  ) : Void;
+	function focus() : Void;
+	function blur() : Void;
 	var accessKey : String;
 	var accessKeyLabel(default,null) : String;
 	var draggable : Bool;
 	var dropzone(default,null) : DOMSettableTokenList;
 	var contentEditable : String;
 	var isContentEditable(default,null) : Bool;
-	var contextMenu : HTMLMenuElement;
+	var contextMenu : Null<HTMLMenuElement>;
 	var spellcheck : Bool;
 
-	var commandType(default,null) : String;
-	var commandLabel(default,null) : String;
-	var commandIcon(default,null) : String;
-	var commandHidden(default,null) : Bool;
-	var commandDisabled(default,null) : Bool;
-	var commandChecked(default,null) : Bool;
+	var commandType(default,null) : Null<String>;
+	var commandLabel(default,null) : Null<String>;
+	var commandIcon(default,null) : Null<String>;
+	var commandHidden(default,null) : Null<Bool>;
+	var commandDisabled(default,null) : Null<Bool>;
+	var commandChecked(default,null) : Null<Bool>;
 
 	var style(default,null) : CSSStyleDeclaration;
 
-	var onabort : Event -> Void;
-	var onblur : Event -> Void;
-	var oncanplay : Event -> Void;
-	var oncanplaythrough : Event -> Void;
-	var onchange : Event -> Void;
-	var onclick : Event -> Void;
-	var oncontextmenu : Event -> Void;
-	var oncuechange : Event -> Void;
-	var ondblclick : Event -> Void;
-	var ondrag : Event -> Void;
-	var ondragend : Event -> Void;
-	var ondragenter : Event -> Void;
-	var ondragleave : Event -> Void;
-	var ondragover : Event -> Void;
-	var ondragstart : Event -> Void;
-	var ondrop : Event -> Void;
-	var ondurationchange : Event -> Void;
-	var onemptied : Event -> Void;
-	var onended : Event -> Void;
-	var onerror : Event -> Void;
-	var onfocus : Event -> Void;
-	var oninput : Event -> Void;
-	var oninvalid : Event -> Void;
-	var onkeydown : Event -> Void;
-	var onkeypress : Event -> Void;
-	var onkeyup : Event -> Void;
-	var onload : Event -> Void;
-	var onloadeddata : Event -> Void;
-	var onloadedmetadata : Event -> Void;
-	var onloadstart : Event -> Void;
-	var onmousedown : Event -> Void;
-	var onmousemove : Event -> Void;
-	var onmouseout : Event -> Void;
-	var onmouseover : Event -> Void;
-	var onmouseup : Event -> Void;
-	var onmousewheel : Event -> Void;
-	var onpause : Event -> Void;
-	var onplay : Event -> Void;
-	var onplaying : Event -> Void;
-	var onprogress : Event -> Void;
-	var onratechange : Event -> Void;
-	var onreset : Event -> Void;
-	var onscroll : Event -> Void;
-	var onseeked : Event -> Void;
-	var onseeking : Event -> Void;
-	var onselect : Event -> Void;
-	var onshow : Event -> Void;
-	var onstalled : Event -> Void;
-	var onsubmit : Event -> Void;
-	var onsuspend : Event -> Void;
-	var ontimeupdate : Event -> Void;
-	var onvolumechange : Event -> Void;
-	var onwaiting : Event -> Void;
+	var onabort : Null<Event -> Void>;
+	var onblur : Null<Event -> Void>;
+	var oncanplay : Null<Event -> Void>;
+	var oncanplaythrough : Null<Event -> Void>;
+	var onchange : Null<Event -> Void>;
+	var onclick : Null<Event -> Void>;
+	var oncontextmenu : Null<Event -> Void>;
+	var oncuechange : Null<Event -> Void>;
+	var ondblclick : Null<Event -> Void>;
+	var ondrag : Null<Event -> Void>;
+	var ondragend : Null<Event -> Void>;
+	var ondragenter : Null<Event -> Void>;
+	var ondragleave : Null<Event -> Void>;
+	var ondragover : Null<Event -> Void>;
+	var ondragstart : Null<Event -> Void>;
+	var ondrop : Null<Event -> Void>;
+	var ondurationchange : Null<Event -> Void>;
+	var onemptied : Null<Event -> Void>;
+	var onended : Null<Event -> Void>;
+	var onerror : Null<Event -> Void>;
+	var onfocus : Null<Event -> Void>;
+	var oninput : Null<Event -> Void>;
+	var oninvalid : Null<Event -> Void>;
+	var onkeydown : Null<Event -> Void>;
+	var onkeypress : Null<Event -> Void>;
+	var onkeyup : Null<Event -> Void>;
+	var onload : Null<Event -> Void>;
+	var onloadeddata : Null<Event -> Void>;
+	var onloadedmetadata : Null<Event -> Void>;
+	var onloadstart : Null<Event -> Void>;
+	var onmousedown : Null<Event -> Void>;
+	var onmousemove : Null<Event -> Void>;
+	var onmouseout : Null<Event -> Void>;
+	var onmouseover : Null<Event -> Void>;
+	var onmouseup : Null<Event -> Void>;
+	var onmousewheel : Null<Event -> Void>;
+	var onpause : Null<Event -> Void>;
+	var onplay : Null<Event -> Void>;
+	var onplaying : Null<Event -> Void>;
+	var onprogress : Null<Event -> Void>;
+	var onratechange : Null<Event -> Void>;
+	var onreset : Null<Event -> Void>;
+	var onscroll : Null<Event -> Void>;
+	var onseeked : Null<Event -> Void>;
+	var onseeking : Null<Event -> Void>;
+	var onselect : Null<Event -> Void>;
+	var onshow : Null<Event -> Void>;
+	var onstalled : Null<Event -> Void>;
+	var onsubmit : Null<Event -> Void>;
+	var onsuspend : Null<Event -> Void>;
+	var ontimeupdate : Null<Event -> Void>;
+	var onvolumechange : Null<Event -> Void>;
+	var onwaiting : Null<Event -> Void>;
 }
 
 /** From http://dev.w3.org/csswg/cssom-view/ */
@@ -1281,14 +1310,14 @@ extern class ClientRect {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLAllCollection extends HTMLCollection, implements ArrayAccess<Dynamic> {
+extern class HTMLAllCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
 
 
 	function tags( tagName : String ) : HTMLAllCollection;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLFormControlsCollection extends HTMLCollection, implements ArrayAccess<Dynamic> {
+extern class HTMLFormControlsCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
 
 
 }
@@ -1299,14 +1328,14 @@ extern class RadioNodeList extends NodeList {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLOptionsCollection extends HTMLCollection, implements ArrayAccess<Dynamic> {
+extern class HTMLOptionsCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
 
 
 
-	@:overload( function( element : HTMLOptionElement, ?before : HTMLElement ) : Void {})
-	@:overload( function( element : HTMLOptionElement, ?before : Int ) : Void {})
+	@:overload( function( element : HTMLOptGroupElement, ?before : Int ) : Void {})
 	@:overload( function( element : HTMLOptGroupElement, ?before : HTMLElement ) : Void {})
-	function add( element : HTMLOptGroupElement, ?before : Int ) : Void;
+	@:overload( function( element : HTMLOptionElement, ?before : Int ) : Void {})
+	function add( element : HTMLOptionElement, ?before : HTMLElement ) : Void;
 	function remove( index : Int ) : Void;
 	var selectedIndex : Int;
 }
@@ -1322,7 +1351,7 @@ extern class Transferable {
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class HTMLDocument extends Document, implements ArrayAccess<Dynamic> {
 
-	var location(default,null) : Location;
+	var location(default,null) : Null<Location>;
 	var domain : String;
 	var referrer(default,null) : String;
 	var cookie : String;
@@ -1331,8 +1360,8 @@ extern class HTMLDocument extends Document, implements ArrayAccess<Dynamic> {
 
 	var title : String;
 	var dir : String;
-	var body : HTMLElement;
-	var head(default,null) : HTMLHeadElement;
+	var body : Null<HTMLElement>;
+	var head(default,null) : Null<HTMLHeadElement>;
 	var images(default,null) : HTMLCollection;
 	var embeds(default,null) : HTMLCollection;
 	var plugins(default,null) : HTMLCollection;
@@ -1341,19 +1370,19 @@ extern class HTMLDocument extends Document, implements ArrayAccess<Dynamic> {
 	var scripts(default,null) : HTMLCollection;
 	function getElementsByName( elementName : String ) : NodeList;
 
-	@:overload( function( ?type : String, ?replace : String ) : HTMLDocument {})
-	function open( url : String, name : String, features : String, ?replace : Bool ) : Window;
-	function close(  ) : Void;
+	@:overload( function( url : String, name : String, features : String, ?replace : Bool ) : Window {})
+	function open( ?type : String, ?replace : String ) : HTMLDocument;
+	function close() : Void;
 	function write( text : String ) : Void;
 	function writeln( text : String ) : Void;
 
-	var defaultView(default,null) : Window;
-	var activeElement(default,null) : Element;
-	function hasFocus(  ) : Bool;
+	var defaultView(default,null) : Null<Window>;
+	var activeElement(default,null) : Null<Element>;
+	function hasFocus() : Bool;
 	var designMode : String;
-	@:overload( function( commandId : String ) : Bool {})
+	@:overload( function( commandId : String, showUI : Bool, value : String ) : Bool {})
 	@:overload( function( commandId : String, showUI : Bool ) : Bool {})
-	function execCommand( commandId : String, showUI : Bool, value : String ) : Bool;
+	function execCommand( commandId : String ) : Bool;
 	function queryCommandEnabled( commandId : String ) : Bool;
 	function queryCommandIndeterm( commandId : String ) : Bool;
 	function queryCommandState( commandId : String ) : Bool;
@@ -1361,61 +1390,61 @@ extern class HTMLDocument extends Document, implements ArrayAccess<Dynamic> {
 	function queryCommandValue( commandId : String ) : String;
 	var commands(default,null) : HTMLCollection;
 
-	var onabort : Event -> Void;
-	var onblur : Event -> Void;
-	var oncanplay : Event -> Void;
-	var oncanplaythrough : Event -> Void;
-	var onchange : Event -> Void;
-	var onclick : Event -> Void;
-	var oncontextmenu : Event -> Void;
-	var oncuechange : Event -> Void;
-	var ondblclick : Event -> Void;
-	var ondrag : Event -> Void;
-	var ondragend : Event -> Void;
-	var ondragenter : Event -> Void;
-	var ondragleave : Event -> Void;
-	var ondragover : Event -> Void;
-	var ondragstart : Event -> Void;
-	var ondrop : Event -> Void;
-	var ondurationchange : Event -> Void;
-	var onemptied : Event -> Void;
-	var onended : Event -> Void;
-	var onerror : Event -> Void;
-	var onfocus : Event -> Void;
-	var oninput : Event -> Void;
-	var oninvalid : Event -> Void;
-	var onkeydown : Event -> Void;
-	var onkeypress : Event -> Void;
-	var onkeyup : Event -> Void;
-	var onload : Event -> Void;
-	var onloadeddata : Event -> Void;
-	var onloadedmetadata : Event -> Void;
-	var onloadstart : Event -> Void;
-	var onmousedown : Event -> Void;
-	var onmousemove : Event -> Void;
-	var onmouseout : Event -> Void;
-	var onmouseover : Event -> Void;
-	var onmouseup : Event -> Void;
-	var onmousewheel : Event -> Void;
-	var onpause : Event -> Void;
-	var onplay : Event -> Void;
-	var onplaying : Event -> Void;
-	var onprogress : Event -> Void;
-	var onratechange : Event -> Void;
-	var onreset : Event -> Void;
-	var onscroll : Event -> Void;
-	var onseeked : Event -> Void;
-	var onseeking : Event -> Void;
-	var onselect : Event -> Void;
-	var onshow : Event -> Void;
-	var onstalled : Event -> Void;
-	var onsubmit : Event -> Void;
-	var onsuspend : Event -> Void;
-	var ontimeupdate : Event -> Void;
-	var onvolumechange : Event -> Void;
-	var onwaiting : Event -> Void;
+	var onabort : Null<Event -> Void>;
+	var onblur : Null<Event -> Void>;
+	var oncanplay : Null<Event -> Void>;
+	var oncanplaythrough : Null<Event -> Void>;
+	var onchange : Null<Event -> Void>;
+	var onclick : Null<Event -> Void>;
+	var oncontextmenu : Null<Event -> Void>;
+	var oncuechange : Null<Event -> Void>;
+	var ondblclick : Null<Event -> Void>;
+	var ondrag : Null<Event -> Void>;
+	var ondragend : Null<Event -> Void>;
+	var ondragenter : Null<Event -> Void>;
+	var ondragleave : Null<Event -> Void>;
+	var ondragover : Null<Event -> Void>;
+	var ondragstart : Null<Event -> Void>;
+	var ondrop : Null<Event -> Void>;
+	var ondurationchange : Null<Event -> Void>;
+	var onemptied : Null<Event -> Void>;
+	var onended : Null<Event -> Void>;
+	var onerror : Null<Event -> Void>;
+	var onfocus : Null<Event -> Void>;
+	var oninput : Null<Event -> Void>;
+	var oninvalid : Null<Event -> Void>;
+	var onkeydown : Null<Event -> Void>;
+	var onkeypress : Null<Event -> Void>;
+	var onkeyup : Null<Event -> Void>;
+	var onload : Null<Event -> Void>;
+	var onloadeddata : Null<Event -> Void>;
+	var onloadedmetadata : Null<Event -> Void>;
+	var onloadstart : Null<Event -> Void>;
+	var onmousedown : Null<Event -> Void>;
+	var onmousemove : Null<Event -> Void>;
+	var onmouseout : Null<Event -> Void>;
+	var onmouseover : Null<Event -> Void>;
+	var onmouseup : Null<Event -> Void>;
+	var onmousewheel : Null<Event -> Void>;
+	var onpause : Null<Event -> Void>;
+	var onplay : Null<Event -> Void>;
+	var onplaying : Null<Event -> Void>;
+	var onprogress : Null<Event -> Void>;
+	var onratechange : Null<Event -> Void>;
+	var onreset : Null<Event -> Void>;
+	var onscroll : Null<Event -> Void>;
+	var onseeked : Null<Event -> Void>;
+	var onseeking : Null<Event -> Void>;
+	var onselect : Null<Event -> Void>;
+	var onshow : Null<Event -> Void>;
+	var onstalled : Null<Event -> Void>;
+	var onsubmit : Null<Event -> Void>;
+	var onsuspend : Null<Event -> Void>;
+	var ontimeupdate : Null<Event -> Void>;
+	var onvolumechange : Null<Event -> Void>;
+	var onwaiting : Null<Event -> Void>;
 
-	var onreadystatechange : Event -> Void;
+	var onreadystatechange : Null<Event -> Void>;
 
 	var fgColor : String;
 	var linkColor : String;
@@ -1424,7 +1453,7 @@ extern class HTMLDocument extends Document, implements ArrayAccess<Dynamic> {
 	var bgColor : String;
 	var anchors(default,null) : HTMLCollection;
 	var applets(default,null) : HTMLCollection;
-	function clear(  ) : Void;
+	function clear() : Void;
 	var all(default,null) : HTMLAllCollection;
 }
 
@@ -1508,19 +1537,19 @@ extern class HTMLScriptElement extends HTMLElement {
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class HTMLBodyElement extends HTMLElement {
-	var onafterprint : Event -> Void;
-	var onbeforeprint : Event -> Void;
-	var onbeforeunload : Event -> Void;
-	var onhashchange : Event -> Void;
-	var onmessage : Event -> Void;
-	var onoffline : Event -> Void;
-	var ononline : Event -> Void;
-	var onpopstate : Event -> Void;
-	var onpagehide : Event -> Void;
-	var onpageshow : Event -> Void;
-	var onresize : Event -> Void;
-	var onstorage : Event -> Void;
-	var onunload : Event -> Void;
+	var onafterprint : Null<Event -> Void>;
+	var onbeforeprint : Null<Event -> Void>;
+	var onbeforeunload : Null<Event -> Void>;
+	var onhashchange : Null<Event -> Void>;
+	var onmessage : Null<Event -> Void>;
+	var onoffline : Null<Event -> Void>;
+	var ononline : Null<Event -> Void>;
+	var onpopstate : Null<Event -> Void>;
+	var onpagehide : Null<Event -> Void>;
+	var onpageshow : Null<Event -> Void>;
+	var onresize : Null<Event -> Void>;
+	var onstorage : Null<Event -> Void>;
+	var onunload : Null<Event -> Void>;
 
 	var text : String;
 	var link : String;
@@ -1667,8 +1696,8 @@ extern class HTMLIFrameElement extends HTMLElement {
 	var seamless : Bool;
 	var width : String;
 	var height : String;
-	var contentDocument(default,null) : HTMLDocument;
-	var contentWindow(default,null) : Window;
+	var contentDocument(default,null) : Null<HTMLDocument>;
+	var contentWindow(default,null) : Null<Window>;
 
 	var align : String;
 	var scrolling : String;
@@ -1696,15 +1725,15 @@ extern class HTMLObjectElement extends HTMLElement {
 	var typeMustMatch : Bool;
 	var name : String;
 	var useMap : String;
-	var form(default,null) : HTMLFormElement;
+	var form(default,null) : Null<HTMLFormElement>;
 	var width : String;
 	var height : String;
-	var contentDocument(default,null) : HTMLDocument;
-	var contentWindow(default,null) : Window;
+	var contentDocument(default,null) : Null<HTMLDocument>;
+	var contentWindow(default,null) : Null<Window>;
 	var willValidate(default,null) : Bool;
 	var validity(default,null) : ValidityState;
 	var validationMessage(default,null) : String;
-	function checkValidity(  ) : Bool;
+	function checkValidity() : Bool;
 	function setCustomValidity( error : String ) : Void;
 
 	var align : String;
@@ -1766,7 +1795,7 @@ extern class HTMLTrackElement extends HTMLElement {
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class HTMLMediaElement extends HTMLElement {
 
-	var error(default,null) : MediaError;
+	var error(default,null) : Null<MediaError>;
 
 	var src : String;
 	var currentSrc(default,null) : String;
@@ -1778,7 +1807,7 @@ extern class HTMLMediaElement extends HTMLElement {
 	var networkState(default,null) : Int;
 	var preload : String;
 	var buffered(default,null) : TimeRanges;
-	function load(  ) : Void;
+	function load() : Void;
 	function canPlayType( type : String ) : String;
 
 	static inline var HAVE_NOTHING : Int = 0;
@@ -1801,11 +1830,11 @@ extern class HTMLMediaElement extends HTMLElement {
 	var ended(default,null) : Bool;
 	var autoplay : Bool;
 	var loop : Bool;
-	function play(  ) : Void;
-	function pause(  ) : Void;
+	function play() : Void;
+	function pause() : Void;
 
 	var mediaGroup : String;
-	var controller : MediaController;
+	var controller : Null<MediaController>;
 
 	var controls : Bool;
 	var volume : Float;
@@ -1830,9 +1859,9 @@ extern class MediaError {
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class AudioTrackList extends EventTarget, implements ArrayAccess<AudioTrack> {
 	var length(default,null) : Int;
-	function getTrackById( id : String ) : AudioTrack;
-	var onchange : Event -> Void;
-	var onaddtrack : Event -> Void;
+	function getTrackById( id : String ) : Null<AudioTrack>;
+	var onchange : Null<Event -> Void>;
+	var onaddtrack : Null<Event -> Void>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -1847,10 +1876,10 @@ extern class AudioTrack {
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class VideoTrackList extends EventTarget, implements ArrayAccess<VideoTrack> {
 	var length(default,null) : Int;
-	function getTrackById( id : String ) : VideoTrack;
+	function getTrackById( id : String ) : Null<VideoTrack>;
 	var selectedIndex(default,null) : Int;
-	var onchange : Event -> Void;
-	var onaddtrack : Event -> Void;
+	var onchange : Null<Event -> Void>;
+	var onaddtrack : Null<Event -> Void>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -1864,7 +1893,7 @@ extern class VideoTrack {
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class MediaController {
-	function new(  ) : Void;
+	function new() : Void;
 
 	var buffered(default,null) : TimeRanges;
 	var seekable(default,null) : TimeRanges;
@@ -1872,32 +1901,32 @@ extern class MediaController {
 	var currentTime : Float;
 	var paused(default,null) : Bool;
 	var played(default,null) : TimeRanges;
-	function play(  ) : Void;
-	function pause(  ) : Void;
+	function play() : Void;
+	function pause() : Void;
 	var defaultPlaybackRate : Float;
 	var playbackRate : Float;
 	var volume : Float;
 	var muted : Bool;
-	var onemptied : Event -> Void;
-	var onloadedmetadata : Event -> Void;
-	var onloadeddata : Event -> Void;
-	var oncanplay : Event -> Void;
-	var oncanplaythrough : Event -> Void;
-	var onplaying : Event -> Void;
-	var onended : Event -> Void;
-	var onwaiting : Event -> Void;
-	var ondurationchange : Event -> Void;
-	var ontimeupdate : Event -> Void;
-	var onplay : Event -> Void;
-	var onpause : Event -> Void;
-	var onratechange : Event -> Void;
-	var onvolumechange : Event -> Void;
+	var onemptied : Null<Event -> Void>;
+	var onloadedmetadata : Null<Event -> Void>;
+	var onloadeddata : Null<Event -> Void>;
+	var oncanplay : Null<Event -> Void>;
+	var oncanplaythrough : Null<Event -> Void>;
+	var onplaying : Null<Event -> Void>;
+	var onended : Null<Event -> Void>;
+	var onwaiting : Null<Event -> Void>;
+	var ondurationchange : Null<Event -> Void>;
+	var ontimeupdate : Null<Event -> Void>;
+	var onplay : Null<Event -> Void>;
+	var onpause : Null<Event -> Void>;
+	var onratechange : Null<Event -> Void>;
+	var onvolumechange : Null<Event -> Void>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class TextTrackList extends EventTarget, implements ArrayAccess<TextTrack> {
 	var length(default,null) : Int;
-	var onaddtrack : Event -> Void;
+	var onaddtrack : Null<Event -> Void>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -1909,24 +1938,24 @@ extern class TextTrack extends EventTarget {
 	static inline var HIDDEN : Int = 1;
 	static inline var SHOWING : Int = 2;
 	var mode : Int;
-	var cues(default,null) : TextTrackCueList;
-	var activeCues(default,null) : TextTrackCueList;
+	var cues(default,null) : Null<TextTrackCueList>;
+	var activeCues(default,null) : Null<TextTrackCueList>;
 	function addCue( cue : TextTrackCue ) : Void;
 	function removeCue( cue : TextTrackCue ) : Void;
-	var oncuechange : Event -> Void;
+	var oncuechange : Null<Event -> Void>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class TextTrackCueList implements ArrayAccess<TextTrackCue> {
 	var length(default,null) : Int;
-	function getCueById( id : String ) : TextTrackCue;
+	function getCueById( id : String ) : Null<TextTrackCue>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class TextTrackCue extends EventTarget {
 	function new( id : String, startTime : Float, endTime : Float, text : String, ?settings : String, ?pauseOnExit : Bool ) : Void;
 
-	var track(default,null) : TextTrack;
+	var track(default,null) : Null<TextTrack>;
 	var id : String;
 	var startTime : Float;
 	var endTime : Float;
@@ -1938,9 +1967,9 @@ extern class TextTrackCue extends EventTarget {
 	var size : Int;
 	var align : String;
 	var text : String;
-	function getCueAsHTML(  ) : DocumentFragment;
-	var onenter : Event -> Void;
-	var onexit : Event -> Void;
+	function getCueAsHTML() : DocumentFragment;
+	var onenter : Null<Event -> Void>;
+	var onexit : Null<Event -> Void>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -1954,12 +1983,12 @@ extern class TimeRanges {
 extern class TrackEvent extends Event {
 	function new( type : String, ?eventInitDict : TrackEventInit ) : Void;
 
-	var track(default,null) : Dynamic;
+	var track(default,null) : Null<Dynamic>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class TrackEventInit extends EventInit {
-	var track : Dynamic;
+	var track : Null<Dynamic>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -1967,8 +1996,8 @@ extern class HTMLCanvasElement extends HTMLElement {
 	var width : Int;
 	var height : Int;
 	function toDataURL( ?type : String, args : Dynamic ) : String;
-	function toBlob( _callback : File -> Void, ?type : String, args : Dynamic ) : Void;
-	function getContext( contextId : String, args : Dynamic ) : Dynamic;
+	function toBlob( _callback : Null<File -> Void>, ?type : String, args : Dynamic ) : Void;
+	function getContext( contextId : String, args : Dynamic ) : Null<Dynamic>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -2004,17 +2033,17 @@ extern class HTMLAreaElement extends HTMLElement {
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class HTMLTableElement extends HTMLElement {
-	var caption : HTMLTableCaptionElement;
-	function createCaption(  ) : HTMLElement;
-	function deleteCaption(  ) : Void;
-	var tHead : HTMLTableSectionElement;
-	function createTHead(  ) : HTMLElement;
-	function deleteTHead(  ) : Void;
-	var tFoot : HTMLTableSectionElement;
-	function createTFoot(  ) : HTMLElement;
-	function deleteTFoot(  ) : Void;
+	var caption : Null<HTMLTableCaptionElement>;
+	function createCaption() : HTMLElement;
+	function deleteCaption() : Void;
+	var tHead : Null<HTMLTableSectionElement>;
+	function createTHead() : HTMLElement;
+	function deleteTHead() : Void;
+	var tFoot : Null<HTMLTableSectionElement>;
+	function createTFoot() : HTMLElement;
+	function deleteTFoot() : Void;
 	var tBodies(default,null) : HTMLCollection;
-	function createTBody(  ) : HTMLElement;
+	function createTBody() : HTMLElement;
 	var rows(default,null) : HTMLCollection;
 	function insertRow( ?index : Int ) : HTMLElement;
 	function deleteRow( index : Int ) : Void;
@@ -2114,37 +2143,37 @@ extern class HTMLFormElement extends HTMLElement, implements ArrayAccess<Dynamic
 	var target : String;
 	var elements(default,null) : HTMLFormControlsCollection;
 	var length(default,null) : Int;
-	function submit(  ) : Void;
-	function reset(  ) : Void;
-	function checkValidity(  ) : Bool;
+	function submit() : Void;
+	function reset() : Void;
+	function checkValidity() : Bool;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class HTMLFieldSetElement extends HTMLElement {
 	var disabled : Bool;
-	var form(default,null) : HTMLFormElement;
+	var form(default,null) : Null<HTMLFormElement>;
 	var name : String;
 	var type(default,null) : String;
 	var elements(default,null) : HTMLFormControlsCollection;
 	var willValidate(default,null) : Bool;
 	var validity(default,null) : ValidityState;
 	var validationMessage(default,null) : String;
-	function checkValidity(  ) : Bool;
+	function checkValidity() : Bool;
 	function setCustomValidity( error : String ) : Void;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class HTMLLegendElement extends HTMLElement {
-	var form(default,null) : HTMLFormElement;
+	var form(default,null) : Null<HTMLFormElement>;
 
 	var align : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class HTMLLabelElement extends HTMLElement {
-	var form(default,null) : HTMLFormElement;
+	var form(default,null) : Null<HTMLFormElement>;
 	var htmlFor : String;
-	var control(default,null) : HTMLElement;
+	var control(default,null) : Null<HTMLElement>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -2157,8 +2186,8 @@ extern class HTMLInputElement extends HTMLElement {
 	var checked : Bool;
 	var dirName : String;
 	var disabled : Bool;
-	var form(default,null) : HTMLFormElement;
-	var files(default,null) : FileList;
+	var form(default,null) : Null<HTMLFormElement>;
+	var files(default,null) : Null<FileList>;
 	var formAction : String;
 	var formEnctype : String;
 	var formMethod : String;
@@ -2166,7 +2195,7 @@ extern class HTMLInputElement extends HTMLElement {
 	var formTarget : String;
 	var height : Int;
 	var indeterminate : Bool;
-	var list(default,null) : HTMLElement;
+	var list(default,null) : Null<HTMLElement>;
 	var max : String;
 	var maxLength : Int;
 	var min : String;
@@ -2182,7 +2211,7 @@ extern class HTMLInputElement extends HTMLElement {
 	var type : String;
 	var defaultValue : String;
 	var value : String;
-	var valueAsDate : Date;
+	var valueAsDate : Null<Date>;
 	var valueAsNumber : Float;
 	var width : Int;
 	function stepUp( ?n : Int ) : Void;
@@ -2190,10 +2219,10 @@ extern class HTMLInputElement extends HTMLElement {
 	var willValidate(default,null) : Bool;
 	var validity(default,null) : ValidityState;
 	var validationMessage(default,null) : String;
-	function checkValidity(  ) : Bool;
+	function checkValidity() : Bool;
 	function setCustomValidity( error : String ) : Void;
 	var labels(default,null) : NodeList;
-	function select(  ) : Void;
+	function select() : Void;
 	var selectionStart : Int;
 	var selectionEnd : Int;
 	var selectionDirection : String;
@@ -2207,7 +2236,7 @@ extern class HTMLInputElement extends HTMLElement {
 extern class HTMLButtonElement extends HTMLElement {
 	var autofocus : Bool;
 	var disabled : Bool;
-	var form(default,null) : HTMLFormElement;
+	var form(default,null) : Null<HTMLFormElement>;
 	var formAction : String;
 	var formEnctype : String;
 	var formMethod : String;
@@ -2219,7 +2248,7 @@ extern class HTMLButtonElement extends HTMLElement {
 	var willValidate(default,null) : Bool;
 	var validity(default,null) : ValidityState;
 	var validationMessage(default,null) : String;
-	function checkValidity(  ) : Bool;
+	function checkValidity() : Bool;
 	function setCustomValidity( error : String ) : Void;
 	var labels(default,null) : NodeList;
 }
@@ -2228,7 +2257,7 @@ extern class HTMLButtonElement extends HTMLElement {
 extern class HTMLSelectElement extends HTMLElement, implements ArrayAccess<Element>, implements Dynamic<Dynamic> {
 	var autofocus : Bool;
 	var disabled : Bool;
-	var form(default,null) : HTMLFormElement;
+	var form(default,null) : Null<HTMLFormElement>;
 	var multiple : Bool;
 	var name : String;
 	var required : Bool;
@@ -2236,17 +2265,17 @@ extern class HTMLSelectElement extends HTMLElement, implements ArrayAccess<Eleme
 	var type(default,null) : String;
 	var options(default,null) : HTMLOptionsCollection;
 	var length : Int;
-	@:overload( function( element : HTMLOptionElement, ?before : HTMLElement ) : Void {})
-	@:overload( function( element : HTMLOptionElement, ?before : Int ) : Void {})
+	@:overload( function( element : HTMLOptGroupElement, ?before : Int ) : Void {})
 	@:overload( function( element : HTMLOptGroupElement, ?before : HTMLElement ) : Void {})
-	function add( element : HTMLOptGroupElement, ?before : Int ) : Void;
+	@:overload( function( element : HTMLOptionElement, ?before : Int ) : Void {})
+	function add( element : HTMLOptionElement, ?before : HTMLElement ) : Void;
 	var selectedOptions(default,null) : HTMLCollection;
 	var selectedIndex : Int;
 	var value : String;
 	var willValidate(default,null) : Bool;
 	var validity(default,null) : ValidityState;
 	var validationMessage(default,null) : String;
-	function checkValidity(  ) : Bool;
+	function checkValidity() : Bool;
 	function setCustomValidity( error : String ) : Void;
 	var labels(default,null) : NodeList;
 }
@@ -2265,7 +2294,7 @@ extern class HTMLOptGroupElement extends HTMLElement {
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class HTMLOptionElement extends HTMLElement {
 	var disabled : Bool;
-	var form(default,null) : HTMLFormElement;
+	var form(default,null) : Null<HTMLFormElement>;
 	var label : String;
 	var defaultSelected : Bool;
 	var selected : Bool;
@@ -2280,7 +2309,7 @@ extern class HTMLTextAreaElement extends HTMLElement {
 	var cols : Int;
 	var dirName : String;
 	var disabled : Bool;
-	var form(default,null) : HTMLFormElement;
+	var form(default,null) : Null<HTMLFormElement>;
 	var maxLength : Int;
 	var name : String;
 	var placeholder : String;
@@ -2295,10 +2324,10 @@ extern class HTMLTextAreaElement extends HTMLElement {
 	var willValidate(default,null) : Bool;
 	var validity(default,null) : ValidityState;
 	var validationMessage(default,null) : String;
-	function checkValidity(  ) : Bool;
+	function checkValidity() : Bool;
 	function setCustomValidity( error : String ) : Void;
 	var labels(default,null) : NodeList;
-	function select(  ) : Void;
+	function select() : Void;
 	var selectionStart : Int;
 	var selectionEnd : Int;
 	var selectionDirection : String;
@@ -2310,14 +2339,14 @@ extern class HTMLKeygenElement extends HTMLElement {
 	var autofocus : Bool;
 	var challenge : String;
 	var disabled : Bool;
-	var form(default,null) : HTMLFormElement;
+	var form(default,null) : Null<HTMLFormElement>;
 	var keytype : String;
 	var name : String;
 	var type(default,null) : String;
 	var willValidate(default,null) : Bool;
 	var validity(default,null) : ValidityState;
 	var validationMessage(default,null) : String;
-	function checkValidity(  ) : Bool;
+	function checkValidity() : Bool;
 	function setCustomValidity( error : String ) : Void;
 	var labels(default,null) : NodeList;
 }
@@ -2325,7 +2354,7 @@ extern class HTMLKeygenElement extends HTMLElement {
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class HTMLOutputElement extends HTMLElement {
 	var htmlFor(default,null) : DOMSettableTokenList;
-	var form(default,null) : HTMLFormElement;
+	var form(default,null) : Null<HTMLFormElement>;
 	var name : String;
 	var type(default,null) : String;
 	var defaultValue : String;
@@ -2333,7 +2362,7 @@ extern class HTMLOutputElement extends HTMLElement {
 	var willValidate(default,null) : Bool;
 	var validity(default,null) : ValidityState;
 	var validationMessage(default,null) : String;
-	function checkValidity(  ) : Bool;
+	function checkValidity() : Bool;
 	function setCustomValidity( error : String ) : Void;
 	var labels(default,null) : NodeList;
 }
@@ -2383,7 +2412,7 @@ extern class HTMLCommandElement extends HTMLElement {
 	var disabled : Bool;
 	var checked : Bool;
 	var radiogroup : String;
-	var command(default,null) : HTMLElement;
+	var command(default,null) : Null<HTMLElement>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -2404,8 +2433,8 @@ extern class History {
 	var length(default,null) : Int;
 	var state(default,null) : Dynamic;
 	function go( ?delta : Int ) : Void;
-	function back(  ) : Void;
-	function forward(  ) : Void;
+	function back() : Void;
+	function forward() : Void;
 	function pushState( data : Dynamic, title : String, ?url : String ) : Void;
 	function replaceState( data : Dynamic, title : String, ?url : String ) : Void;
 }
@@ -2415,7 +2444,7 @@ extern class Location {
 	var href : String;
 	function assign( url : String ) : Void;
 	function replace( url : String ) : Void;
-	function reload(  ) : Void;
+	function reload() : Void;
 
 	var protocol : String;
 	var host : String;
@@ -2480,18 +2509,18 @@ extern class ApplicationCache extends EventTarget {
 	static inline var OBSOLETE : Int = 5;
 	var status(default,null) : Int;
 
-	function update(  ) : Void;
-	function abort(  ) : Void;
-	function swapCache(  ) : Void;
+	function update() : Void;
+	function abort() : Void;
+	function swapCache() : Void;
 
-	var onchecking : Event -> Void;
-	var onerror : Event -> Void;
-	var onnoupdate : Event -> Void;
-	var ondownloading : Event -> Void;
-	var onprogress : Event -> Void;
-	var onupdateready : Event -> Void;
-	var oncached : Event -> Void;
-	var onobsolete : Event -> Void;
+	var onchecking : Null<Event -> Void>;
+	var onerror : Null<Event -> Void>;
+	var onnoupdate : Null<Event -> Void>;
+	var ondownloading : Null<Event -> Void>;
+	var onprogress : Null<Event -> Void>;
+	var onupdateready : Null<Event -> Void>;
+	var oncached : Null<Event -> Void>;
+	var onobsolete : Null<Event -> Void>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -2538,7 +2567,7 @@ extern class Navigator {
 
 
 
-	function yieldForStorageUpdates(  ) : Void;
+	function yieldForStorageUpdates() : Void;
 
 
 
@@ -2566,7 +2595,7 @@ extern class NavigatorContentUtils {
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class NavigatorStorageUtils {
-	function yieldForStorageUpdates(  ) : Void;
+	function yieldForStorageUpdates() : Void;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -2593,17 +2622,17 @@ extern class DataTransfer {
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class DataTransferItemList implements ArrayAccess<DataTransferItem> {
 	var length(default,null) : Int;
-	function clear(  ) : Void;
-	@:overload( function( data : String, type : String ) : DataTransferItem {})
-	function add( data : File ) : DataTransferItem;
+	function clear() : Void;
+	@:overload( function( data : File ) : Null<DataTransferItem> {})
+	function add( data : String, type : String ) : Null<DataTransferItem>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class DataTransferItem {
 	var kind(default,null) : String;
 	var type(default,null) : String;
-	function getAsString( _callback : FunctionStringCallback ) : Void;
-	function getAsFile(  ) : File;
+	function getAsString( _callback : Null<FunctionStringCallback> ) : Void;
+	function getAsFile() : Null<File>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -2615,12 +2644,12 @@ extern class FunctionStringCallback {
 extern class DragEvent extends MouseEvent {
 	function new( type : String, ?eventInitDict : DragEventInit ) : Void;
 
-	var dataTransfer(default,null) : DataTransfer;
+	var dataTransfer(default,null) : Null<DataTransfer>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class DragEventInit extends MouseEventInit {
-	var dataTransfer : DataTransfer;
+	var dataTransfer : Null<DataTransfer>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -2652,30 +2681,30 @@ extern class HTMLMarqueeElement extends HTMLElement {
 	var trueSpeed : Bool;
 	var vspace : Int;
 	var width : String;
-	var onbounce : Event -> Void;
-	var onfinish : Event -> Void;
-	var onstart : Event -> Void;
-	function start(  ) : Void;
-	function stop(  ) : Void;
+	var onbounce : Null<Event -> Void>;
+	var onfinish : Null<Event -> Void>;
+	var onstart : Null<Event -> Void>;
+	function start() : Void;
+	function stop() : Void;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 extern class HTMLFrameSetElement extends HTMLElement {
 	var cols : String;
 	var rows : String;
-	var onafterprint : Event -> Void;
-	var onbeforeprint : Event -> Void;
-	var onbeforeunload : Event -> Void;
-	var onhashchange : Event -> Void;
-	var onmessage : Event -> Void;
-	var onoffline : Event -> Void;
-	var ononline : Event -> Void;
-	var onpagehide : Event -> Void;
-	var onpageshow : Event -> Void;
-	var onpopstate : Event -> Void;
-	var onresize : Event -> Void;
-	var onstorage : Event -> Void;
-	var onunload : Event -> Void;
+	var onafterprint : Null<Event -> Void>;
+	var onbeforeprint : Null<Event -> Void>;
+	var onbeforeunload : Null<Event -> Void>;
+	var onhashchange : Null<Event -> Void>;
+	var onmessage : Null<Event -> Void>;
+	var onoffline : Null<Event -> Void>;
+	var ononline : Null<Event -> Void>;
+	var onpagehide : Null<Event -> Void>;
+	var onpageshow : Null<Event -> Void>;
+	var onpopstate : Null<Event -> Void>;
+	var onresize : Null<Event -> Void>;
+	var onstorage : Null<Event -> Void>;
+	var onunload : Null<Event -> Void>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -2686,8 +2715,8 @@ extern class HTMLFrameElement extends HTMLElement {
 	var frameBorder : String;
 	var longDesc : String;
 	var noResize : Bool;
-	var contentDocument(default,null) : HTMLDocument;
-	var contentWindow(default,null) : Window;
+	var contentDocument(default,null) : Null<HTMLDocument>;
+	var contentWindow(default,null) : Null<Window>;
 	var marginHeight : String;
 	var marginWidth : String;
 }
@@ -2712,7 +2741,7 @@ extern class HTMLFontElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/FileAPI/ */
-extern class FileList implements ArrayAccess<File> {
+extern class FileList implements ArrayAccess<Null<File>> {
 	var length(default,null) : Int;
 }
 
@@ -2733,14 +2762,14 @@ extern class File extends Blob {
 
 /** From http://www.w3.org/TR/FileAPI/ */
 extern class FileReader extends EventTarget {
-	function new(  ) : Void;
+	function new() : Void;
 
 
 	function readAsArrayBuffer( blob : Blob ) : Void;
 	function readAsBinaryString( blob : Blob ) : Void;
 	function readAsText( blob : Blob, ?encoding : String ) : Void;
 	function readAsDataURL( blob : Blob ) : Void;
-	function abort(  ) : Void;
+	function abort() : Void;
 
 	static inline var EMPTY : Int = 0;
 	static inline var LOADING : Int = 1;
@@ -2750,17 +2779,17 @@ extern class FileReader extends EventTarget {
 	var result(default,null) : Dynamic;
 	var error(default,null) : DOMError;
 
-	var onloadstart : Event -> Void;
-	var onprogress : Event -> Void;
-	var onload : Event -> Void;
-	var onabort : Event -> Void;
-	var onerror : Event -> Void;
-	var onloadend : Event -> Void;
+	var onloadstart : Null<Event -> Void>;
+	var onprogress : Null<Event -> Void>;
+	var onload : Null<Event -> Void>;
+	var onabort : Null<Event -> Void>;
+	var onerror : Null<Event -> Void>;
+	var onloadend : Null<Event -> Void>;
 }
 
 /** From http://www.w3.org/TR/FileAPI/ */
 extern class FileReaderSync {
-	function new(  ) : Void;
+	function new() : Void;
 
 
 
@@ -2801,8 +2830,8 @@ extern class TouchEvent extends UIEvent {
 
 /** From http://dev.w3.org/html5/websockets/ */
 extern class WebSocket extends EventTarget {
-	@:overload( function( url : String, ?protocols : String ) : Void {})
-	function new( url : String, ?protocols : Array<String> ) : Void;
+	@:overload( function( url : String, ?protocols : Array<String> ) : Void {})
+	function new( url : String, ?protocols : String ) : Void;
 
 	var url(default,null) : String;
 
@@ -2813,18 +2842,18 @@ extern class WebSocket extends EventTarget {
 	var readyState(default,null) : Int;
 	var bufferedAmount(default,null) : Int;
 
-	var onopen : Event -> Void;
-	var onerror : Event -> Void;
-	var onclose : Event -> Void;
+	var onopen : Null<Event -> Void>;
+	var onerror : Null<Event -> Void>;
+	var onclose : Null<Event -> Void>;
 	var extensions(default,null) : String;
 	var protocol(default,null) : String;
 	function close( ?code : Int, ?reason : String ) : Void;
 
-	var onmessage : Event -> Void;
+	var onmessage : Null<Event -> Void>;
 	var binaryType : String;
-	@:overload( function( data : String ) : Void {})
+	@:overload( function( data : Blob ) : Void {})
 	@:overload( function( data : ArrayBufferView ) : Void {})
-	function send( data : Blob ) : Void;
+	function send( data : String ) : Void;
 }
 
 /** From http://dev.w3.org/html5/websockets/ */
@@ -2876,33 +2905,33 @@ extern class PositionOptions {
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
 extern class Position {
-	var coords(default,null) : Coordinates;
-	var address(default,null) : Address;
+	var coords(default,null) : Null<Coordinates>;
+	var address(default,null) : Null<Address>;
 	var timestamp(default,null) : Float;
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
 extern class Coordinates {
-	var latitude(default,null) : Float;
-	var longitude(default,null) : Float;
-	var altitude(default,null) : Float;
-	var accuracy(default,null) : Float;
-	var altitudeAccuracy(default,null) : Float;
-	var heading(default,null) : Float;
-	var speed(default,null) : Float;
-	var verticalSpeed(default,null) : Float;
+	var latitude(default,null) : Null<Float>;
+	var longitude(default,null) : Null<Float>;
+	var altitude(default,null) : Null<Float>;
+	var accuracy(default,null) : Null<Float>;
+	var altitudeAccuracy(default,null) : Null<Float>;
+	var heading(default,null) : Null<Float>;
+	var speed(default,null) : Null<Float>;
+	var verticalSpeed(default,null) : Null<Float>;
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
 extern class Address {
-	var country(default,null) : String;
-	var region(default,null) : String;
-	var county(default,null) : String;
-	var city(default,null) : String;
-	var street(default,null) : String;
-	var streetNumber(default,null) : String;
-	var premises(default,null) : String;
-	var postalCode(default,null) : String;
+	var country(default,null) : Null<String>;
+	var region(default,null) : Null<String>;
+	var county(default,null) : Null<String>;
+	var city(default,null) : Null<String>;
+	var street(default,null) : Null<String>;
+	var streetNumber(default,null) : Null<String>;
+	var premises(default,null) : Null<String>;
+	var postalCode(default,null) : Null<String>;
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
@@ -2917,12 +2946,12 @@ extern class PositionError {
 /** From http://dev.w3.org/html5/webstorage/ */
 extern class Storage implements ArrayAccess<String> {
 	var length(default,null) : Int;
-	function key( index : Int ) : String;
+	function key( index : Int ) : Null<String>;
 
 	function setItem( key : String, value : String ) : Void;
 
 	function removeItem( key : String ) : Void;
-	function clear(  ) : Void;
+	function clear() : Void;
 }
 
 /** From http://dev.w3.org/html5/webstorage/ */
@@ -2939,20 +2968,20 @@ extern class WindowLocalStorage {
 extern class StorageEvent extends Event {
 	function new( type : String, ?eventInitDict : StorageEventInit ) : Void;
 
-	var key(default,null) : String;
-	var oldValue(default,null) : String;
-	var newValue(default,null) : String;
+	var key(default,null) : Null<String>;
+	var oldValue(default,null) : Null<String>;
+	var newValue(default,null) : Null<String>;
 	var url(default,null) : String;
-	var storageArea(default,null) : Storage;
+	var storageArea(default,null) : Null<Storage>;
 }
 
 /** From http://dev.w3.org/html5/webstorage/ */
 extern class StorageEventInit extends EventInit {
-	var key : String;
-	var oldValue : String;
-	var newValue : String;
+	var key : Null<String>;
+	var oldValue : Null<String>;
+	var newValue : Null<String>;
 	var url : String;
-	var storageArea : Storage;
+	var storageArea : Null<Storage>;
 }
 
 /** From http://www.w3.org/TR/selectors-api/ */
@@ -2963,14 +2992,14 @@ extern class NodeSelector {
 
 /** From http://html5.org/specs/dom-parsing.html */
 extern class DOMParser {
-	function new(  ) : Void;
+	function new() : Void;
 
 	function parseFromString( str : String, type : String ) : HTMLDocument;
 }
 
 /** From http://html5.org/specs/dom-parsing.html */
 extern class XMLSerializer {
-	function new(  ) : Void;
+	function new() : Void;
 
 	function serializeToString( root : Node ) : String;
 }
@@ -2994,140 +3023,140 @@ extern class ArrayBufferView {
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
 extern class Int8Array extends ArrayBufferView, implements ArrayAccess<Int> {
-	@:overload( function( length : Int ) : Void {})
-	@:overload( function( array : Int8Array ) : Void {})
+	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
-	function new( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void;
+	@:overload( function( array : Int8Array ) : Void {})
+	function new( length : Int ) : Void;
 
 	static inline var BYTES_PER_ELEMENT : Int = 1;
 	var length(default,null) : Int;
 
-	@:overload( function( index : Int, value : Int ) : Void {})
+	@:overload( function( array : Array<Int>, ?offset : Int ) : Void {})
 	@:overload( function( array : Int8Array, ?offset : Int ) : Void {})
-	function set( array : Array<Int>, ?offset : Int ) : Void;
+	function set( index : Int, value : Int ) : Void;
 	function subarray( start : Int, end : Int ) : Int8Array;
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
 extern class Uint8Array extends ArrayBufferView, implements ArrayAccess<Int> {
-	@:overload( function( length : Int ) : Void {})
-	@:overload( function( array : Uint8Array ) : Void {})
+	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
-	function new( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void;
+	@:overload( function( array : Uint8Array ) : Void {})
+	function new( length : Int ) : Void;
 
 	static inline var BYTES_PER_ELEMENT : Int = 1;
 	var length(default,null) : Int;
 
-	@:overload( function( index : Int, value : Int ) : Void {})
+	@:overload( function( array : Array<Int>, ?offset : Int ) : Void {})
 	@:overload( function( array : Uint8Array, ?offset : Int ) : Void {})
-	function set( array : Array<Int>, ?offset : Int ) : Void;
+	function set( index : Int, value : Int ) : Void;
 	function subarray( start : Int, end : Int ) : Uint8Array;
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
 extern class Uint8ClampedArray extends Uint8Array {
-	@:overload( function( length : Int ) : Void {})
-	@:overload( function( array : Uint8ClampedArray ) : Void {})
-	@:overload( function( array : Uint8Array ) : Void {})
+	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
-	function new( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void;
+	@:overload( function( array : Uint8Array ) : Void {})
+	@:overload( function( array : Uint8ClampedArray ) : Void {})
+	function new( length : Int ) : Void;
 
 
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
 extern class Int16Array extends ArrayBufferView, implements ArrayAccess<Int> {
-	@:overload( function( length : Int ) : Void {})
-	@:overload( function( array : Int16Array ) : Void {})
+	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
-	function new( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void;
+	@:overload( function( array : Int16Array ) : Void {})
+	function new( length : Int ) : Void;
 
 	static inline var BYTES_PER_ELEMENT : Int = 2;
 	var length(default,null) : Int;
 
-	@:overload( function( index : Int, value : Int ) : Void {})
+	@:overload( function( array : Array<Int>, ?offset : Int ) : Void {})
 	@:overload( function( array : Int16Array, ?offset : Int ) : Void {})
-	function set( array : Array<Int>, ?offset : Int ) : Void;
+	function set( index : Int, value : Int ) : Void;
 	function subarray( start : Int, end : Int ) : Int16Array;
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
 extern class Uint16Array extends ArrayBufferView, implements ArrayAccess<Int> {
-	@:overload( function( length : Int ) : Void {})
-	@:overload( function( array : Uint16Array ) : Void {})
+	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
-	function new( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void;
+	@:overload( function( array : Uint16Array ) : Void {})
+	function new( length : Int ) : Void;
 
 	static inline var BYTES_PER_ELEMENT : Int = 2;
 	var length(default,null) : Int;
 
-	@:overload( function( index : Int, value : Int ) : Void {})
+	@:overload( function( array : Array<Int>, ?offset : Int ) : Void {})
 	@:overload( function( array : Uint16Array, ?offset : Int ) : Void {})
-	function set( array : Array<Int>, ?offset : Int ) : Void;
+	function set( index : Int, value : Int ) : Void;
 	function subarray( start : Int, end : Int ) : Uint16Array;
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
 extern class Int32Array extends ArrayBufferView, implements ArrayAccess<Int> {
-	@:overload( function( length : Int ) : Void {})
-	@:overload( function( array : Int32Array ) : Void {})
+	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
-	function new( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void;
+	@:overload( function( array : Int32Array ) : Void {})
+	function new( length : Int ) : Void;
 
 	static inline var BYTES_PER_ELEMENT : Int = 4;
 	var length(default,null) : Int;
 
-	@:overload( function( index : Int, value : Int ) : Void {})
+	@:overload( function( array : Array<Int>, ?offset : Int ) : Void {})
 	@:overload( function( array : Int32Array, ?offset : Int ) : Void {})
-	function set( array : Array<Int>, ?offset : Int ) : Void;
+	function set( index : Int, value : Int ) : Void;
 	function subarray( start : Int, end : Int ) : Int32Array;
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
 extern class Uint32Array extends ArrayBufferView, implements ArrayAccess<Int> {
-	@:overload( function( length : Int ) : Void {})
-	@:overload( function( array : Uint32Array ) : Void {})
+	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
-	function new( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void;
+	@:overload( function( array : Uint32Array ) : Void {})
+	function new( length : Int ) : Void;
 
 	static inline var BYTES_PER_ELEMENT : Int = 4;
 	var length(default,null) : Int;
 
-	@:overload( function( index : Int, value : Int ) : Void {})
+	@:overload( function( array : Array<Int>, ?offset : Int ) : Void {})
 	@:overload( function( array : Uint32Array, ?offset : Int ) : Void {})
-	function set( array : Array<Int>, ?offset : Int ) : Void;
+	function set( index : Int, value : Int ) : Void;
 	function subarray( start : Int, end : Int ) : Uint32Array;
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
 extern class Float32Array extends ArrayBufferView, implements ArrayAccess<Float> {
-	@:overload( function( length : Int ) : Void {})
-	@:overload( function( array : Float32Array ) : Void {})
+	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Float> ) : Void {})
-	function new( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void;
+	@:overload( function( array : Float32Array ) : Void {})
+	function new( length : Int ) : Void;
 
 	static inline var BYTES_PER_ELEMENT : Int = 4;
 	var length(default,null) : Int;
 
-	@:overload( function( index : Int, value : Float ) : Void {})
+	@:overload( function( array : Array<Float>, ?offset : Int ) : Void {})
 	@:overload( function( array : Float32Array, ?offset : Int ) : Void {})
-	function set( array : Array<Float>, ?offset : Int ) : Void;
+	function set( index : Int, value : Float ) : Void;
 	function subarray( start : Int, end : Int ) : Float32Array;
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
 extern class Float64Array extends ArrayBufferView, implements ArrayAccess<Float> {
-	@:overload( function( length : Int ) : Void {})
-	@:overload( function( array : Float64Array ) : Void {})
+	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Float> ) : Void {})
-	function new( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void;
+	@:overload( function( array : Float64Array ) : Void {})
+	function new( length : Int ) : Void;
 
 	static inline var BYTES_PER_ELEMENT : Int = 8;
 	var length(default,null) : Int;
 
-	@:overload( function( index : Int, value : Float ) : Void {})
+	@:overload( function( array : Array<Float>, ?offset : Int ) : Void {})
 	@:overload( function( array : Float64Array, ?offset : Int ) : Void {})
-	function set( array : Array<Float>, ?offset : Int ) : Void;
+	function set( index : Int, value : Float ) : Void;
 	function subarray( start : Int, end : Int ) : Float64Array;
 }
 
@@ -3179,9 +3208,9 @@ extern class CanvasRenderingContext2D {
 
 	var canvas(default,null) : HTMLCanvasElement;
 
-	function save(  ) : Void;
+	function save() : Void;
 
-	function restore(  ) : Void;
+	function restore() : Void;
 
 
 
@@ -3197,9 +3226,9 @@ extern class CanvasRenderingContext2D {
 
 	function createLinearGradient( x0 : Float, y0 : Float, x1 : Float, y1 : Float ) : CanvasGradient;
 	function createRadialGradient( x0 : Float, y0 : Float, r0 : Float, x1 : Float, y1 : Float, r1 : Float ) : CanvasGradient;
-	@:overload( function( image : HTMLImageElement, repetition : String ) : CanvasPattern {})
+	@:overload( function( image : HTMLVideoElement, repetition : String ) : CanvasPattern {})
 	@:overload( function( image : HTMLCanvasElement, repetition : String ) : CanvasPattern {})
-	function createPattern( image : HTMLVideoElement, repetition : String ) : CanvasPattern;
+	function createPattern( image : HTMLImageElement, repetition : String ) : CanvasPattern;
 
 	var shadowOffsetX : Float;
 
@@ -3215,34 +3244,34 @@ extern class CanvasRenderingContext2D {
 	function fillRect( x : Float, y : Float, w : Float, h : Float ) : Void;
 	function strokeRect( x : Float, y : Float, w : Float, h : Float ) : Void;
 
-	function beginPath(  ) : Void;
-	function fill(  ) : Void;
-	function stroke(  ) : Void;
+	function beginPath() : Void;
+	function fill() : Void;
+	function stroke() : Void;
 	function drawSystemFocusRing( element : Element ) : Void;
 	function drawCustomFocusRing( element : Element ) : Bool;
-	function scrollPathIntoView(  ) : Void;
-	function clip(  ) : Void;
+	function scrollPathIntoView() : Void;
+	function clip() : Void;
 	function isPointInPath( x : Float, y : Float ) : Bool;
 
 	function fillText( text : String, x : Float, y : Float, ?maxWidth : Float ) : Void;
 	function strokeText( text : String, x : Float, y : Float, ?maxWidth : Float ) : Void;
 	function measureText( text : String ) : TextMetrics;
 
-	@:overload( function( image : HTMLImageElement, dx : Float, dy : Float ) : Void {})
-	@:overload( function( image : HTMLCanvasElement, dx : Float, dy : Float ) : Void {})
-	@:overload( function( image : HTMLVideoElement, dx : Float, dy : Float ) : Void {})
-	@:overload( function( image : HTMLImageElement, dx : Float, dy : Float, dw : Float, dh : Float ) : Void {})
-	@:overload( function( image : HTMLCanvasElement, dx : Float, dy : Float, dw : Float, dh : Float ) : Void {})
-	@:overload( function( image : HTMLVideoElement, dx : Float, dy : Float, dw : Float, dh : Float ) : Void {})
-	@:overload( function( image : HTMLImageElement, sx : Float, sy : Float, sw : Float, sh : Float, dx : Float, dy : Float, dw : Float, dh : Float ) : Void {})
+	@:overload( function( image : HTMLVideoElement, sx : Float, sy : Float, sw : Float, sh : Float, dx : Float, dy : Float, dw : Float, dh : Float ) : Void {})
 	@:overload( function( image : HTMLCanvasElement, sx : Float, sy : Float, sw : Float, sh : Float, dx : Float, dy : Float, dw : Float, dh : Float ) : Void {})
-	function drawImage( image : HTMLVideoElement, sx : Float, sy : Float, sw : Float, sh : Float, dx : Float, dy : Float, dw : Float, dh : Float ) : Void;
+	@:overload( function( image : HTMLImageElement, sx : Float, sy : Float, sw : Float, sh : Float, dx : Float, dy : Float, dw : Float, dh : Float ) : Void {})
+	@:overload( function( image : HTMLVideoElement, dx : Float, dy : Float, dw : Float, dh : Float ) : Void {})
+	@:overload( function( image : HTMLCanvasElement, dx : Float, dy : Float, dw : Float, dh : Float ) : Void {})
+	@:overload( function( image : HTMLImageElement, dx : Float, dy : Float, dw : Float, dh : Float ) : Void {})
+	@:overload( function( image : HTMLVideoElement, dx : Float, dy : Float ) : Void {})
+	@:overload( function( image : HTMLCanvasElement, dx : Float, dy : Float ) : Void {})
+	function drawImage( image : HTMLImageElement, dx : Float, dy : Float ) : Void;
 
-	@:overload( function( sw : Float, sh : Float ) : ImageData {})
-	function createImageData( imagedata : ImageData ) : ImageData;
+	@:overload( function( imagedata : ImageData ) : ImageData {})
+	function createImageData( sw : Float, sh : Float ) : ImageData;
 	function getImageData( sx : Float, sy : Float, sw : Float, sh : Float ) : ImageData;
-	@:overload( function( imagedata : ImageData, dx : Float, dy : Float ) : Void {})
-	function putImageData( imagedata : ImageData, dx : Float, dy : Float, dirtyX : Float, dirtyY : Float, dirtyWidth : Float, dirtyHeight : Float ) : Void;
+	@:overload( function( imagedata : ImageData, dx : Float, dy : Float, dirtyX : Float, dirtyY : Float, dirtyWidth : Float, dirtyHeight : Float ) : Void {})
+	function putImageData( imagedata : ImageData, dx : Float, dy : Float ) : Void;
 
 
 
@@ -3268,7 +3297,7 @@ extern class CanvasRenderingContext2D {
 
 
 
-	function closePath(  ) : Void;
+	function closePath() : Void;
 	function moveTo( x : Float, y : Float ) : Void;
 	function lineTo( x : Float, y : Float ) : Void;
 	function quadraticCurveTo( cpx : Float, cpy : Float, x : Float, y : Float ) : Void;
@@ -3325,7 +3354,7 @@ extern class CanvasText {
 /** From http://dev.w3.org/html5/2dcontext/ */
 extern class CanvasPathMethods {
 
-	function closePath(  ) : Void;
+	function closePath() : Void;
 	function moveTo( x : Float, y : Float ) : Void;
 	function lineTo( x : Float, y : Float ) : Void;
 	function quadraticCurveTo( cpx : Float, cpy : Float, x : Float, y : Float ) : Void;
@@ -3789,174 +3818,174 @@ extern class WebGLRenderingContext {
 	var canvas(default,null) : HTMLCanvasElement;
 	var drawingBufferWidth(default,null) : Int;
 	var drawingBufferHeight(default,null) : Int;
-	function getContextAttributes(  ) : WebGLContextAttributes;
-	function isContextLost(  ) : Bool;
-	function getSupportedExtensions(  ) : Array<String>;
-	function getExtension( name : String ) : Dynamic;
+	function getContextAttributes() : WebGLContextAttributes;
+	function isContextLost() : Bool;
+	function getSupportedExtensions() : Array<Null<String>>;
+	function getExtension( name : String ) : Null<Dynamic>;
 	function activeTexture( texture : Int ) : Void;
-	function attachShader( program : WebGLProgram, shader : WebGLShader ) : Void;
-	function bindAttribLocation( program : WebGLProgram, index : Int, name : String ) : Void;
-	function bindBuffer( target : Int, buffer : WebGLBuffer ) : Void;
-	function bindFramebuffer( target : Int, framebuffer : WebGLFramebuffer ) : Void;
-	function bindRenderbuffer( target : Int, renderbuffer : WebGLRenderbuffer ) : Void;
-	function bindTexture( target : Int, texture : WebGLTexture ) : Void;
+	function attachShader( program : Null<WebGLProgram>, shader : Null<WebGLShader> ) : Void;
+	function bindAttribLocation( program : Null<WebGLProgram>, index : Int, name : String ) : Void;
+	function bindBuffer( target : Int, buffer : Null<WebGLBuffer> ) : Void;
+	function bindFramebuffer( target : Int, framebuffer : Null<WebGLFramebuffer> ) : Void;
+	function bindRenderbuffer( target : Int, renderbuffer : Null<WebGLRenderbuffer> ) : Void;
+	function bindTexture( target : Int, texture : Null<WebGLTexture> ) : Void;
 	function blendColor( red : Float, green : Float, blue : Float, alpha : Float ) : Void;
 	function blendEquation( mode : Int ) : Void;
 	function blendEquationSeparate( modeRGB : Int, modeAlpha : Int ) : Void;
 	function blendFunc( sfactor : Int, dfactor : Int ) : Void;
 	function blendFuncSeparate( srcRGB : Int, dstRGB : Int, srcAlpha : Int, dstAlpha : Int ) : Void;
-	@:overload( function( target : Int, size : Float, usage : Int ) : Void {})
+	@:overload( function( target : Int, data : Null<ArrayBuffer>, usage : Int ) : Void {})
 	@:overload( function( target : Int, data : ArrayBufferView, usage : Int ) : Void {})
-	function bufferData( target : Int, data : ArrayBuffer, usage : Int ) : Void;
-	@:overload( function( target : Int, offset : Float, data : ArrayBufferView ) : Void {})
-	function bufferSubData( target : Int, offset : Float, data : ArrayBuffer ) : Void;
+	function bufferData( target : Int, size : Float, usage : Int ) : Void;
+	@:overload( function( target : Int, offset : Float, data : Null<ArrayBuffer> ) : Void {})
+	function bufferSubData( target : Int, offset : Float, data : ArrayBufferView ) : Void;
 	function checkFramebufferStatus( target : Int ) : Int;
 	function clear( mask : Int ) : Void;
 	function clearColor( red : Float, green : Float, blue : Float, alpha : Float ) : Void;
 	function clearDepth( depth : Float ) : Void;
 	function clearStencil( s : Int ) : Void;
 	function colorMask( red : Bool, green : Bool, blue : Bool, alpha : Bool ) : Void;
-	function compileShader( shader : WebGLShader ) : Void;
+	function compileShader( shader : Null<WebGLShader> ) : Void;
 	function compressedTexImage2D( target : Int, level : Int, internalformat : Int, width : Int, height : Int, border : Int, data : ArrayBufferView ) : Void;
 	function compressedTexSubImage2D( target : Int, level : Int, xoffset : Int, yoffset : Int, width : Int, height : Int, format : Int, data : ArrayBufferView ) : Void;
 	function copyTexImage2D( target : Int, level : Int, internalformat : Int, x : Int, y : Int, width : Int, height : Int, border : Int ) : Void;
 	function copyTexSubImage2D( target : Int, level : Int, xoffset : Int, yoffset : Int, x : Int, y : Int, width : Int, height : Int ) : Void;
-	function createBuffer(  ) : WebGLBuffer;
-	function createFramebuffer(  ) : WebGLFramebuffer;
-	function createProgram(  ) : WebGLProgram;
-	function createRenderbuffer(  ) : WebGLRenderbuffer;
-	function createShader( type : Int ) : WebGLShader;
-	function createTexture(  ) : WebGLTexture;
+	function createBuffer() : Null<WebGLBuffer>;
+	function createFramebuffer() : Null<WebGLFramebuffer>;
+	function createProgram() : Null<WebGLProgram>;
+	function createRenderbuffer() : Null<WebGLRenderbuffer>;
+	function createShader( type : Int ) : Null<WebGLShader>;
+	function createTexture() : Null<WebGLTexture>;
 	function cullFace( mode : Int ) : Void;
-	function deleteBuffer( buffer : WebGLBuffer ) : Void;
-	function deleteFramebuffer( framebuffer : WebGLFramebuffer ) : Void;
-	function deleteProgram( program : WebGLProgram ) : Void;
-	function deleteRenderbuffer( renderbuffer : WebGLRenderbuffer ) : Void;
-	function deleteShader( shader : WebGLShader ) : Void;
-	function deleteTexture( texture : WebGLTexture ) : Void;
+	function deleteBuffer( buffer : Null<WebGLBuffer> ) : Void;
+	function deleteFramebuffer( framebuffer : Null<WebGLFramebuffer> ) : Void;
+	function deleteProgram( program : Null<WebGLProgram> ) : Void;
+	function deleteRenderbuffer( renderbuffer : Null<WebGLRenderbuffer> ) : Void;
+	function deleteShader( shader : Null<WebGLShader> ) : Void;
+	function deleteTexture( texture : Null<WebGLTexture> ) : Void;
 	function depthFunc( func : Int ) : Void;
 	function depthMask( flag : Bool ) : Void;
 	function depthRange( zNear : Float, zFar : Float ) : Void;
-	function detachShader( program : WebGLProgram, shader : WebGLShader ) : Void;
+	function detachShader( program : Null<WebGLProgram>, shader : Null<WebGLShader> ) : Void;
 	function disable( cap : Int ) : Void;
 	function disableVertexAttribArray( index : Int ) : Void;
 	function drawArrays( mode : Int, first : Int, count : Int ) : Void;
 	function drawElements( mode : Int, count : Int, type : Int, offset : Float ) : Void;
 	function enable( cap : Int ) : Void;
 	function enableVertexAttribArray( index : Int ) : Void;
-	function finish(  ) : Void;
-	function flush(  ) : Void;
-	function framebufferRenderbuffer( target : Int, attachment : Int, renderbuffertarget : Int, renderbuffer : WebGLRenderbuffer ) : Void;
-	function framebufferTexture2D( target : Int, attachment : Int, textarget : Int, texture : WebGLTexture, level : Int ) : Void;
+	function finish() : Void;
+	function flush() : Void;
+	function framebufferRenderbuffer( target : Int, attachment : Int, renderbuffertarget : Int, renderbuffer : Null<WebGLRenderbuffer> ) : Void;
+	function framebufferTexture2D( target : Int, attachment : Int, textarget : Int, texture : Null<WebGLTexture>, level : Int ) : Void;
 	function frontFace( mode : Int ) : Void;
 	function generateMipmap( target : Int ) : Void;
-	function getActiveAttrib( program : WebGLProgram, index : Int ) : WebGLActiveInfo;
-	function getActiveUniform( program : WebGLProgram, index : Int ) : WebGLActiveInfo;
-	function getAttachedShaders( program : WebGLProgram ) : Array<WebGLShader>;
-	function getAttribLocation( program : WebGLProgram, name : String ) : Int;
+	function getActiveAttrib( program : Null<WebGLProgram>, index : Int ) : Null<WebGLActiveInfo>;
+	function getActiveUniform( program : Null<WebGLProgram>, index : Int ) : Null<WebGLActiveInfo>;
+	function getAttachedShaders( program : Null<WebGLProgram> ) : Array<Null<WebGLShader>>;
+	function getAttribLocation( program : Null<WebGLProgram>, name : String ) : Int;
 	function getBufferParameter( target : Int, pname : Int ) : Dynamic;
 	function getParameter( pname : Int ) : Dynamic;
-	function getError(  ) : Int;
+	function getError() : Int;
 	function getFramebufferAttachmentParameter( target : Int, attachment : Int, pname : Int ) : Dynamic;
-	function getProgramParameter( program : WebGLProgram, pname : Int ) : Dynamic;
-	function getProgramInfoLog( program : WebGLProgram ) : String;
+	function getProgramParameter( program : Null<WebGLProgram>, pname : Int ) : Dynamic;
+	function getProgramInfoLog( program : Null<WebGLProgram> ) : Null<String>;
 	function getRenderbufferParameter( target : Int, pname : Int ) : Dynamic;
-	function getShaderParameter( shader : WebGLShader, pname : Int ) : Dynamic;
-	function getShaderPrecisionFormat( shadertype : Int, precisiontype : Int ) : WebGLShaderPrecisionFormat;
-	function getShaderInfoLog( shader : WebGLShader ) : String;
-	function getShaderSource( shader : WebGLShader ) : String;
+	function getShaderParameter( shader : Null<WebGLShader>, pname : Int ) : Dynamic;
+	function getShaderPrecisionFormat( shadertype : Int, precisiontype : Int ) : Null<WebGLShaderPrecisionFormat>;
+	function getShaderInfoLog( shader : Null<WebGLShader> ) : Null<String>;
+	function getShaderSource( shader : Null<WebGLShader> ) : Null<String>;
 	function getTexParameter( target : Int, pname : Int ) : Dynamic;
-	function getUniform( program : WebGLProgram, location : WebGLUniformLocation ) : Dynamic;
-	function getUniformLocation( program : WebGLProgram, name : String ) : WebGLUniformLocation;
+	function getUniform( program : Null<WebGLProgram>, location : Null<WebGLUniformLocation> ) : Dynamic;
+	function getUniformLocation( program : Null<WebGLProgram>, name : String ) : Null<WebGLUniformLocation>;
 	function getVertexAttrib( index : Int, pname : Int ) : Dynamic;
 	function getVertexAttribOffset( index : Int, pname : Int ) : Float;
 	function hint( target : Int, mode : Int ) : Void;
-	function isBuffer( buffer : WebGLBuffer ) : Bool;
+	function isBuffer( buffer : Null<WebGLBuffer> ) : Bool;
 	function isEnabled( cap : Int ) : Bool;
-	function isFramebuffer( framebuffer : WebGLFramebuffer ) : Bool;
-	function isProgram( program : WebGLProgram ) : Bool;
-	function isRenderbuffer( renderbuffer : WebGLRenderbuffer ) : Bool;
-	function isShader( shader : WebGLShader ) : Bool;
-	function isTexture( texture : WebGLTexture ) : Bool;
+	function isFramebuffer( framebuffer : Null<WebGLFramebuffer> ) : Bool;
+	function isProgram( program : Null<WebGLProgram> ) : Bool;
+	function isRenderbuffer( renderbuffer : Null<WebGLRenderbuffer> ) : Bool;
+	function isShader( shader : Null<WebGLShader> ) : Bool;
+	function isTexture( texture : Null<WebGLTexture> ) : Bool;
 	function lineWidth( width : Float ) : Void;
-	function linkProgram( program : WebGLProgram ) : Void;
+	function linkProgram( program : Null<WebGLProgram> ) : Void;
 	function pixelStorei( pname : Int, param : Int ) : Void;
 	function polygonOffset( factor : Float, units : Float ) : Void;
-	function readPixels( x : Int, y : Int, width : Int, height : Int, format : Int, type : Int, pixels : ArrayBufferView ) : Void;
+	function readPixels( x : Int, y : Int, width : Int, height : Int, format : Int, type : Int, pixels : Null<ArrayBufferView> ) : Void;
 	function renderbufferStorage( target : Int, internalformat : Int, width : Int, height : Int ) : Void;
 	function sampleCoverage( value : Float, invert : Bool ) : Void;
 	function scissor( x : Int, y : Int, width : Int, height : Int ) : Void;
-	function shaderSource( shader : WebGLShader, source : String ) : Void;
+	function shaderSource( shader : Null<WebGLShader>, source : String ) : Void;
 	function stencilFunc( func : Int, ref : Int, mask : Int ) : Void;
 	function stencilFuncSeparate( face : Int, func : Int, ref : Int, mask : Int ) : Void;
 	function stencilMask( mask : Int ) : Void;
 	function stencilMaskSeparate( face : Int, mask : Int ) : Void;
 	function stencilOp( fail : Int, zfail : Int, zpass : Int ) : Void;
 	function stencilOpSeparate( face : Int, fail : Int, zfail : Int, zpass : Int ) : Void;
-	@:overload( function( target : Int, level : Int, internalformat : Int, width : Int, height : Int, border : Int, format : Int, type : Int, pixels : ArrayBufferView ) : Void {})
-	@:overload( function( target : Int, level : Int, internalformat : Int, format : Int, type : Int, pixels : ImageData ) : Void {})
-	@:overload( function( target : Int, level : Int, internalformat : Int, format : Int, type : Int, image : HTMLImageElement ) : Void {})
-
+	@:overload( function( target : Int, level : Int, internalformat : Int, format : Int, type : Int, video : HTMLVideoElement ) : Void {})
 	@:overload( function( target : Int, level : Int, internalformat : Int, format : Int, type : Int, canvas : HTMLCanvasElement ) : Void {})
+	@:overload( function( target : Int, level : Int, internalformat : Int, format : Int, type : Int, image : HTMLImageElement ) : Void {})
+	@:overload( function( target : Int, level : Int, internalformat : Int, format : Int, type : Int, pixels : Null<ImageData> ) : Void {})
+	function texImage2D( target : Int, level : Int, internalformat : Int, width : Int, height : Int, border : Int, format : Int, type : Int, pixels : Null<ArrayBufferView> ) : Void;
 
-	function texImage2D( target : Int, level : Int, internalformat : Int, format : Int, type : Int, video : HTMLVideoElement ) : Void;
+
 
 
 	function texParameterf( target : Int, pname : Int, param : Float ) : Void;
 	function texParameteri( target : Int, pname : Int, param : Int ) : Void;
-	@:overload( function( target : Int, level : Int, xoffset : Int, yoffset : Int, width : Int, height : Int, format : Int, type : Int, pixels : ArrayBufferView ) : Void {})
-	@:overload( function( target : Int, level : Int, xoffset : Int, yoffset : Int, format : Int, type : Int, pixels : ImageData ) : Void {})
-	@:overload( function( target : Int, level : Int, xoffset : Int, yoffset : Int, format : Int, type : Int, image : HTMLImageElement ) : Void {})
-
+	@:overload( function( target : Int, level : Int, xoffset : Int, yoffset : Int, format : Int, type : Int, video : HTMLVideoElement ) : Void {})
 	@:overload( function( target : Int, level : Int, xoffset : Int, yoffset : Int, format : Int, type : Int, canvas : HTMLCanvasElement ) : Void {})
+	@:overload( function( target : Int, level : Int, xoffset : Int, yoffset : Int, format : Int, type : Int, image : HTMLImageElement ) : Void {})
+	@:overload( function( target : Int, level : Int, xoffset : Int, yoffset : Int, format : Int, type : Int, pixels : Null<ImageData> ) : Void {})
+	function texSubImage2D( target : Int, level : Int, xoffset : Int, yoffset : Int, width : Int, height : Int, format : Int, type : Int, pixels : Null<ArrayBufferView> ) : Void;
 
-	function texSubImage2D( target : Int, level : Int, xoffset : Int, yoffset : Int, format : Int, type : Int, video : HTMLVideoElement ) : Void;
 
 
-	function uniform1f( location : WebGLUniformLocation, x : Float ) : Void;
-	@:overload( function( location : WebGLUniformLocation, v : Float32Array ) : Void {})
-	function uniform1fv( location : WebGLUniformLocation, v : Array<Float> ) : Void;
-	function uniform1i( location : WebGLUniformLocation, x : Int ) : Void;
-	@:overload( function( location : WebGLUniformLocation, v : Int32Array ) : Void {})
-	function uniform1iv( location : WebGLUniformLocation, v : Array<Int> ) : Void;
-	function uniform2f( location : WebGLUniformLocation, x : Float, y : Float ) : Void;
-	@:overload( function( location : WebGLUniformLocation, v : Float32Array ) : Void {})
-	function uniform2fv( location : WebGLUniformLocation, v : Array<Float> ) : Void;
-	function uniform2i( location : WebGLUniformLocation, x : Int, y : Int ) : Void;
-	@:overload( function( location : WebGLUniformLocation, v : Int32Array ) : Void {})
-	function uniform2iv( location : WebGLUniformLocation, v : Array<Int> ) : Void;
-	function uniform3f( location : WebGLUniformLocation, x : Float, y : Float, z : Float ) : Void;
-	@:overload( function( location : WebGLUniformLocation, v : Float32Array ) : Void {})
-	function uniform3fv( location : WebGLUniformLocation, v : Array<Float> ) : Void;
-	function uniform3i( location : WebGLUniformLocation, x : Int, y : Int, z : Int ) : Void;
-	@:overload( function( location : WebGLUniformLocation, v : Int32Array ) : Void {})
-	function uniform3iv( location : WebGLUniformLocation, v : Array<Int> ) : Void;
-	function uniform4f( location : WebGLUniformLocation, x : Float, y : Float, z : Float, w : Float ) : Void;
-	@:overload( function( location : WebGLUniformLocation, v : Float32Array ) : Void {})
-	function uniform4fv( location : WebGLUniformLocation, v : Array<Float> ) : Void;
-	function uniform4i( location : WebGLUniformLocation, x : Int, y : Int, z : Int, w : Int ) : Void;
-	@:overload( function( location : WebGLUniformLocation, v : Int32Array ) : Void {})
-	function uniform4iv( location : WebGLUniformLocation, v : Array<Int> ) : Void;
-	@:overload( function( location : WebGLUniformLocation, transpose : Bool, value : Float32Array ) : Void {})
-	function uniformMatrix2fv( location : WebGLUniformLocation, transpose : Bool, value : Array<Float> ) : Void;
-	@:overload( function( location : WebGLUniformLocation, transpose : Bool, value : Float32Array ) : Void {})
-	function uniformMatrix3fv( location : WebGLUniformLocation, transpose : Bool, value : Array<Float> ) : Void;
-	@:overload( function( location : WebGLUniformLocation, transpose : Bool, value : Float32Array ) : Void {})
-	function uniformMatrix4fv( location : WebGLUniformLocation, transpose : Bool, value : Array<Float> ) : Void;
-	function useProgram( program : WebGLProgram ) : Void;
-	function validateProgram( program : WebGLProgram ) : Void;
+
+	function uniform1f( location : Null<WebGLUniformLocation>, x : Float ) : Void;
+	@:overload( function( location : Null<WebGLUniformLocation>, v : Array<Float> ) : Void {})
+	function uniform1fv( location : Null<WebGLUniformLocation>, v : Float32Array ) : Void;
+	function uniform1i( location : Null<WebGLUniformLocation>, x : Int ) : Void;
+	@:overload( function( location : Null<WebGLUniformLocation>, v : Array<Int> ) : Void {})
+	function uniform1iv( location : Null<WebGLUniformLocation>, v : Int32Array ) : Void;
+	function uniform2f( location : Null<WebGLUniformLocation>, x : Float, y : Float ) : Void;
+	@:overload( function( location : Null<WebGLUniformLocation>, v : Array<Float> ) : Void {})
+	function uniform2fv( location : Null<WebGLUniformLocation>, v : Float32Array ) : Void;
+	function uniform2i( location : Null<WebGLUniformLocation>, x : Int, y : Int ) : Void;
+	@:overload( function( location : Null<WebGLUniformLocation>, v : Array<Int> ) : Void {})
+	function uniform2iv( location : Null<WebGLUniformLocation>, v : Int32Array ) : Void;
+	function uniform3f( location : Null<WebGLUniformLocation>, x : Float, y : Float, z : Float ) : Void;
+	@:overload( function( location : Null<WebGLUniformLocation>, v : Array<Float> ) : Void {})
+	function uniform3fv( location : Null<WebGLUniformLocation>, v : Float32Array ) : Void;
+	function uniform3i( location : Null<WebGLUniformLocation>, x : Int, y : Int, z : Int ) : Void;
+	@:overload( function( location : Null<WebGLUniformLocation>, v : Array<Int> ) : Void {})
+	function uniform3iv( location : Null<WebGLUniformLocation>, v : Int32Array ) : Void;
+	function uniform4f( location : Null<WebGLUniformLocation>, x : Float, y : Float, z : Float, w : Float ) : Void;
+	@:overload( function( location : Null<WebGLUniformLocation>, v : Array<Float> ) : Void {})
+	function uniform4fv( location : Null<WebGLUniformLocation>, v : Float32Array ) : Void;
+	function uniform4i( location : Null<WebGLUniformLocation>, x : Int, y : Int, z : Int, w : Int ) : Void;
+	@:overload( function( location : Null<WebGLUniformLocation>, v : Array<Int> ) : Void {})
+	function uniform4iv( location : Null<WebGLUniformLocation>, v : Int32Array ) : Void;
+	@:overload( function( location : Null<WebGLUniformLocation>, transpose : Bool, value : Array<Float> ) : Void {})
+	function uniformMatrix2fv( location : Null<WebGLUniformLocation>, transpose : Bool, value : Float32Array ) : Void;
+	@:overload( function( location : Null<WebGLUniformLocation>, transpose : Bool, value : Array<Float> ) : Void {})
+	function uniformMatrix3fv( location : Null<WebGLUniformLocation>, transpose : Bool, value : Float32Array ) : Void;
+	@:overload( function( location : Null<WebGLUniformLocation>, transpose : Bool, value : Array<Float> ) : Void {})
+	function uniformMatrix4fv( location : Null<WebGLUniformLocation>, transpose : Bool, value : Float32Array ) : Void;
+	function useProgram( program : Null<WebGLProgram> ) : Void;
+	function validateProgram( program : Null<WebGLProgram> ) : Void;
 	function vertexAttrib1f( indx : Int, x : Float ) : Void;
-	@:overload( function( indx : Int, values : Float32Array ) : Void {})
-	function vertexAttrib1fv( indx : Int, values : Array<Float> ) : Void;
+	@:overload( function( indx : Int, values : Array<Float> ) : Void {})
+	function vertexAttrib1fv( indx : Int, values : Float32Array ) : Void;
 	function vertexAttrib2f( indx : Int, x : Float, y : Float ) : Void;
-	@:overload( function( indx : Int, values : Float32Array ) : Void {})
-	function vertexAttrib2fv( indx : Int, values : Array<Float> ) : Void;
+	@:overload( function( indx : Int, values : Array<Float> ) : Void {})
+	function vertexAttrib2fv( indx : Int, values : Float32Array ) : Void;
 	function vertexAttrib3f( indx : Int, x : Float, y : Float, z : Float ) : Void;
-	@:overload( function( indx : Int, values : Float32Array ) : Void {})
-	function vertexAttrib3fv( indx : Int, values : Array<Float> ) : Void;
+	@:overload( function( indx : Int, values : Array<Float> ) : Void {})
+	function vertexAttrib3fv( indx : Int, values : Float32Array ) : Void;
 	function vertexAttrib4f( indx : Int, x : Float, y : Float, z : Float, w : Float ) : Void;
-	@:overload( function( indx : Int, values : Float32Array ) : Void {})
-	function vertexAttrib4fv( indx : Int, values : Array<Float> ) : Void;
+	@:overload( function( indx : Int, values : Array<Float> ) : Void {})
+	function vertexAttrib4fv( indx : Int, values : Float32Array ) : Void;
 	function vertexAttribPointer( indx : Int, size : Int, type : Int, normalized : Bool, stride : Int, offset : Float ) : Void;
 	function viewport( x : Int, y : Int, width : Int, height : Int ) : Void;
 }
