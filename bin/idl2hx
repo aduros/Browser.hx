@@ -687,7 +687,11 @@ sub make_functions {
                 "$_->{name} : $_->{hx_type}"
             } @{$params_ref};
 
-            my $f = "function $name( $p )$ret_type_decl;";
+            my $f = "function $name(";
+            if ($p) {
+                $f .= " $p ";
+            }
+            $f .= ")$ret_type_decl;";
             if($static) {
                 $f = "static $f";
             }
