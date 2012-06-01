@@ -497,7 +497,7 @@ foreach my $def(values %classdef) {
 
     my %seen;
 
-    my $classdecl = "extern class $def->{name}";
+    my $classdecl = "\@:native(\"$def->{name}\") extern class $def->{name}";
 
     my @interfaces = ();
     if($def->{base}) {

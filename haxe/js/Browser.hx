@@ -4,7 +4,7 @@
 package js;
 
 /** From http://www.w3.org/TR/dom/ */
-extern class DOMException {
+@:native("DOMException") extern class DOMException {
 	static inline var INDEX_SIZE_ERR : Int = 1;
 	static inline var DOMSTRING_SIZE_ERR : Int = 2;
 
@@ -38,12 +38,12 @@ extern class DOMException {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class DOMError {
+@:native("DOMError") extern class DOMError {
 	var name(default,null) : String;
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class Event {
+@:native("Event") extern class Event {
 	function new( type : String, ?eventInitDict : EventInit ) : Void;
 
 	var type(default,null) : String;
@@ -79,13 +79,13 @@ extern class Event {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class EventInit {
+@:native("EventInit") extern class EventInit {
 	var bubbles : Bool;
 	var cancelable : Bool;
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class CustomEvent extends Event {
+@:native("CustomEvent") extern class CustomEvent extends Event {
 	function new( type : String, ?eventInitDict : CustomEventInit ) : Void;
 
 	var detail(default,null) : Dynamic;
@@ -96,12 +96,12 @@ extern class CustomEvent extends Event {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class CustomEventInit extends EventInit {
+@:native("CustomEventInit") extern class CustomEventInit extends EventInit {
 	var detail : Dynamic;
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class EventTarget {
+@:native("EventTarget") extern class EventTarget {
 	@:overload( function( type : String, listener : Event -> Void, ?useCapture : Bool ) : Void {})
 	@:overload( function( type : String, listener : Event -> Void, useCapture : Bool ) : Void {})
 	function addEventListener( type : String, callback_ : Null<Event -> Void>, ?capture : Bool ) : Void;
@@ -118,7 +118,7 @@ extern class EventTarget {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class MutationObserver {
+@:native("MutationObserver") extern class MutationObserver {
 	function new( callback_ : Array<MutationRecord> -> MutationObserver -> Void ) : Void;
 
 	function observe( target : Node, options : MutationObserverInit ) : Void;
@@ -126,7 +126,7 @@ extern class MutationObserver {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class MutationObserverInit {
+@:native("MutationObserverInit") extern class MutationObserverInit {
 	var childList : Bool;
 	var attributes : Bool;
 	var characterData : Bool;
@@ -137,7 +137,7 @@ extern class MutationObserverInit {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class MutationRecord {
+@:native("MutationRecord") extern class MutationRecord {
 	var type(default,null) : String;
 	var target(default,null) : Node;
 	var addedNodes(default,null) : Null<NodeList>;
@@ -150,7 +150,7 @@ extern class MutationRecord {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class Node extends EventTarget {
+@:native("Node") extern class Node extends EventTarget {
 	static inline var ELEMENT_NODE : Int = 1;
 	static inline var ATTRIBUTE_NODE : Int = 2;
 
@@ -204,7 +204,7 @@ extern class Node extends EventTarget {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class Document extends Node {
+@:native("Document") extern class Document extends Node {
 	var implementation(default,null) : DOMImplementation;
 	var URL(default,null) : String;
 	var documentURI(default,null) : String;
@@ -264,12 +264,12 @@ extern class Document extends Node {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class XMLDocument extends Document {
+@:native("XMLDocument") extern class XMLDocument extends Document {
 	function load( url : String ) : Bool;
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class DOMImplementation {
+@:native("DOMImplementation") extern class DOMImplementation {
 	function createDocumentType( qualifiedName : String, publicId : String, systemId : String ) : DocumentType;
 	function createDocument( namespace : Null<String>, qualifiedName : String, doctype : Null<DocumentType> ) : XMLDocument;
 	function createHTMLDocument( title : String ) : Document;
@@ -277,7 +277,7 @@ extern class DOMImplementation {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class DocumentFragment extends Node {
+@:native("DocumentFragment") extern class DocumentFragment extends Node {
 
 	@:overload( function( nodes : String ) : Void {})
 	function prepend( nodes : Node ) : Void;
@@ -291,7 +291,7 @@ extern class DocumentFragment extends Node {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class DocumentType extends Node {
+@:native("DocumentType") extern class DocumentType extends Node {
 	var name(default,null) : String;
 	var publicId(default,null) : String;
 	var systemId(default,null) : String;
@@ -306,7 +306,7 @@ extern class DocumentType extends Node {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class Element extends Node {
+@:native("Element") extern class Element extends Node {
 	var namespaceURI(default,null) : Null<String>;
 	var prefix(default,null) : Null<String>;
 	var localName(default,null) : String;
@@ -371,7 +371,7 @@ extern class Element extends Node {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class Attr {
+@:native("Attr") extern class Attr {
 	var name(default,null) : String;
 	var value : String;
 	var namespaceURI(default,null) : Null<String>;
@@ -380,7 +380,7 @@ extern class Attr {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class CharacterData extends Node {
+@:native("CharacterData") extern class CharacterData extends Node {
 	var data : String;
 	var length(default,null) : Int;
 	function substringData( offset : Int, count : Int ) : String;
@@ -399,7 +399,7 @@ extern class CharacterData extends Node {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class Text extends CharacterData {
+@:native("Text") extern class Text extends CharacterData {
 	function splitText( offset : Int ) : Text;
 	var wholeText(default,null) : String;
 
@@ -407,7 +407,7 @@ extern class Text extends CharacterData {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class ProcessingInstruction extends CharacterData {
+@:native("ProcessingInstruction") extern class ProcessingInstruction extends CharacterData {
 	var target(default,null) : String;
 
 
@@ -416,11 +416,11 @@ extern class ProcessingInstruction extends CharacterData {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class Comment extends CharacterData {
+@:native("Comment") extern class Comment extends CharacterData {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class Range {
+@:native("Range") extern class Range {
 	var startContainer(default,null) : Node;
 	var startOffset(default,null) : Int;
 	var endContainer(default,null) : Node;
@@ -459,7 +459,7 @@ extern class Range {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class NodeIterator {
+@:native("NodeIterator") extern class NodeIterator {
 	var root(default,null) : Node;
 	var referenceNode(default,null) : Null<Node>;
 	var pointerBeforeReferenceNode(default,null) : Bool;
@@ -471,7 +471,7 @@ extern class NodeIterator {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class TreeWalker {
+@:native("TreeWalker") extern class TreeWalker {
 	var root(default,null) : Node;
 	var whatToShow(default,null) : Int;
 	var filter(default,null) : Null<NodeFilter>;
@@ -486,7 +486,7 @@ extern class TreeWalker {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class NodeFilter {
+@:native("NodeFilter") extern class NodeFilter {
 
 	static inline var FILTER_ACCEPT : Int = 1;
 	static inline var FILTER_REJECT : Int = 2;
@@ -515,24 +515,24 @@ extern class NodeFilter {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class NodeList implements ArrayAccess<Null<Node>> {
+@:native("NodeList") extern class NodeList implements ArrayAccess<Null<Node>> {
 	var length(default,null) : Int;
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class HTMLCollection implements ArrayAccess<Null<Dynamic>> {
+@:native("HTMLCollection") extern class HTMLCollection implements ArrayAccess<Null<Dynamic>> {
 	var length(default,null) : Int;
 
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class DOMStringList implements ArrayAccess<Null<String>> {
+@:native("DOMStringList") extern class DOMStringList implements ArrayAccess<Null<String>> {
 	var length(default,null) : Int;
 	function contains( string : String ) : Bool;
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class DOMTokenList implements ArrayAccess<Null<String>> {
+@:native("DOMTokenList") extern class DOMTokenList implements ArrayAccess<Null<String>> {
 	var length(default,null) : Int;
 	function contains( token : String ) : Bool;
 	function add( token : String ) : Void;
@@ -541,22 +541,22 @@ extern class DOMTokenList implements ArrayAccess<Null<String>> {
 }
 
 /** From http://www.w3.org/TR/dom/ */
-extern class DOMSettableTokenList extends DOMTokenList {
+@:native("DOMSettableTokenList") extern class DOMSettableTokenList extends DOMTokenList {
 	var value : String;
 }
 
 /** From http://www.w3.org/TR/DOM-Level-2-Views/idl/views.idl */
-extern class AbstractView {
+@:native("AbstractView") extern class AbstractView {
 	var document(default,null) : DocumentView;
 }
 
 /** From http://www.w3.org/TR/DOM-Level-2-Views/idl/views.idl */
-extern class DocumentView {
+@:native("DocumentView") extern class DocumentView {
 	var defaultView(default,null) : AbstractView;
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
-extern class EventException {
+@:native("EventException") extern class EventException {
 
 	static inline var UNSPECIFIED_EVENT_TYPE_ERR : Int = 0;
 
@@ -569,7 +569,7 @@ extern class EventException {
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
-extern class DocumentEvent {
+@:native("DocumentEvent") extern class DocumentEvent {
 
 	@:overload( function( eventInterface : String ) : Event {})
 	function createEvent( eventInterface : String ) : Event;
@@ -578,7 +578,7 @@ extern class DocumentEvent {
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
-extern class UIEvent extends Event {
+@:native("UIEvent") extern class UIEvent extends Event {
 	var view(default,null) : AbstractView;
 	var detail(default,null) : Int;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int ) : Void {})
@@ -587,7 +587,7 @@ extern class UIEvent extends Event {
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
-extern class FocusEvent extends UIEvent {
+@:native("FocusEvent") extern class FocusEvent extends UIEvent {
 	var relatedTarget(default,null) : EventTarget;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int, relatedTargetArg : EventTarget ) : Void {})
 	function initFocusEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int, relatedTargetArg : EventTarget ) : Void;
@@ -595,7 +595,7 @@ extern class FocusEvent extends UIEvent {
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
-extern class MouseEvent extends UIEvent {
+@:native("MouseEvent") extern class MouseEvent extends UIEvent {
 	var screenX(default,null) : Int;
 	var screenY(default,null) : Int;
 	var clientX(default,null) : Int;
@@ -624,7 +624,7 @@ extern class MouseEvent extends UIEvent {
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
-extern class WheelEvent extends MouseEvent {
+@:native("WheelEvent") extern class WheelEvent extends MouseEvent {
 
 	static inline var DOM_DELTA_PIXEL : Int = 0x00;
 	static inline var DOM_DELTA_LINE : Int = 0x01;
@@ -640,7 +640,7 @@ extern class WheelEvent extends MouseEvent {
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
-extern class TextEvent extends UIEvent {
+@:native("TextEvent") extern class TextEvent extends UIEvent {
 
 	static inline var DOM_INPUT_METHOD_UNKNOWN : Int = 0x00;
 	static inline var DOM_INPUT_METHOD_KEYBOARD : Int = 0x01;
@@ -662,7 +662,7 @@ extern class TextEvent extends UIEvent {
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
-extern class KeyboardEvent extends UIEvent {
+@:native("KeyboardEvent") extern class KeyboardEvent extends UIEvent {
 
 	static inline var DOM_KEY_LOCATION_STANDARD : Int = 0x00;
 	static inline var DOM_KEY_LOCATION_LEFT : Int = 0x01;
@@ -692,7 +692,7 @@ extern class KeyboardEvent extends UIEvent {
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
-extern class CompositionEvent extends UIEvent {
+@:native("CompositionEvent") extern class CompositionEvent extends UIEvent {
 	var data(default,null) : String;
 	var locale(default,null) : String;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, dataArg : String, localeArg : String ) : Void {})
@@ -701,7 +701,7 @@ extern class CompositionEvent extends UIEvent {
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
-extern class MutationEvent extends Event {
+@:native("MutationEvent") extern class MutationEvent extends Event {
 
 	static inline var MODIFICATION : Int = 1;
 	static inline var ADDITION : Int = 2;
@@ -718,7 +718,7 @@ extern class MutationEvent extends Event {
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
-extern class MutationNameEvent extends MutationEvent {
+@:native("MutationNameEvent") extern class MutationNameEvent extends MutationEvent {
 	var prevNamespaceURI(default,null) : String;
 	var prevNodeName(default,null) : String;
 
@@ -729,15 +729,15 @@ extern class MutationNameEvent extends MutationEvent {
 }
 
 /** From bin/../idl/events.idl */
-extern class UIEventInit extends EventInit {
+@:native("UIEventInit") extern class UIEventInit extends EventInit {
 }
 
 /** From bin/../idl/events.idl */
-extern class MouseEventInit extends UIEventInit {
+@:native("MouseEventInit") extern class MouseEventInit extends UIEventInit {
 }
 
 /** From http://www.w3.org/TR/XMLHttpRequest/ */
-extern class XMLHttpRequestEventTarget extends EventTarget {
+@:native("XMLHttpRequestEventTarget") extern class XMLHttpRequestEventTarget extends EventTarget {
 
 	var onloadstart : Null<Event -> Void>;
 	var onprogress : Null<Event -> Void>;
@@ -749,11 +749,11 @@ extern class XMLHttpRequestEventTarget extends EventTarget {
 }
 
 /** From http://www.w3.org/TR/XMLHttpRequest/ */
-extern class XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
+@:native("XMLHttpRequestUpload") extern class XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
 }
 
 /** From http://www.w3.org/TR/XMLHttpRequest/ */
-extern class XMLHttpRequest extends XMLHttpRequestEventTarget {
+@:native("XMLHttpRequest") extern class XMLHttpRequest extends XMLHttpRequestEventTarget {
 	function new() : Void;
 
 
@@ -791,12 +791,12 @@ extern class XMLHttpRequest extends XMLHttpRequestEventTarget {
 }
 
 /** From http://www.w3.org/TR/XMLHttpRequest/ */
-extern class AnonXMLHttpRequest extends XMLHttpRequest {
+@:native("AnonXMLHttpRequest") extern class AnonXMLHttpRequest extends XMLHttpRequest {
 	function new() : Void;
 }
 
 /** From http://www.w3.org/TR/XMLHttpRequest/ */
-extern class FormData {
+@:native("FormData") extern class FormData {
 	@:overload( function( form : HTMLFormElement ) : Void {})
 	function new() : Void;
 
@@ -805,7 +805,7 @@ extern class FormData {
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class MediaList implements ArrayAccess<String> {
+@:native("MediaList") extern class MediaList implements ArrayAccess<String> {
 	var mediaText : String;
 	var length(default,null) : Int;
 	function appendMedium( medium : String ) : Void;
@@ -813,7 +813,7 @@ extern class MediaList implements ArrayAccess<String> {
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class StyleSheet {
+@:native("StyleSheet") extern class StyleSheet {
 	var type(default,null) : String;
 	var href(default,null) : String;
 	var ownerNode(default,null) : Node;
@@ -824,7 +824,7 @@ extern class StyleSheet {
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class CSSStyleSheet extends StyleSheet {
+@:native("CSSStyleSheet") extern class CSSStyleSheet extends StyleSheet {
 	var ownerRule(default,null) : CSSRule;
 	var cssRules(default,null) : Array<CSSRule>;
 	function insertRule( rule : String, index : Int ) : Int;
@@ -832,12 +832,12 @@ extern class CSSStyleSheet extends StyleSheet {
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class LinkStyle {
+@:native("LinkStyle") extern class LinkStyle {
 	var sheet(default,null) : StyleSheet;
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class CSSRule {
+@:native("CSSRule") extern class CSSRule {
 
 	static inline var STYLE_RULE : Int = 1;
 	static inline var IMPORT_RULE : Int = 3;
@@ -854,20 +854,20 @@ extern class CSSRule {
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class CSSStyleRule extends CSSRule {
+@:native("CSSStyleRule") extern class CSSStyleRule extends CSSRule {
 	var selectorText : String;
 	var style(default,null) : CSSStyleDeclaration;
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class CSSImportRule extends CSSRule {
+@:native("CSSImportRule") extern class CSSImportRule extends CSSRule {
 	var href(default,null) : String;
 	var media(default,null) : MediaList;
 	var styleSheet(default,null) : CSSStyleSheet;
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class CSSMediaRule extends CSSRule {
+@:native("CSSMediaRule") extern class CSSMediaRule extends CSSRule {
 	var media(default,null) : MediaList;
 	var cssRules(default,null) : Array<CSSRule>;
 	function insertRule( rule : String, index : Int ) : Int;
@@ -875,24 +875,24 @@ extern class CSSMediaRule extends CSSRule {
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class CSSFontFaceRule extends CSSRule {
+@:native("CSSFontFaceRule") extern class CSSFontFaceRule extends CSSRule {
 	var style(default,null) : CSSStyleDeclaration;
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class CSSPageRule extends CSSRule {
+@:native("CSSPageRule") extern class CSSPageRule extends CSSRule {
 	var selectorText : String;
 	var style(default,null) : CSSStyleDeclaration;
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class CSSNamespaceRule extends CSSRule {
+@:native("CSSNamespaceRule") extern class CSSNamespaceRule extends CSSRule {
 	var namespaceURI(default,null) : String;
 	var prefix(default,null) : Null<String>;
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class CSSStyleDeclaration implements ArrayAccess<String> {
+@:native("CSSStyleDeclaration") extern class CSSStyleDeclaration implements ArrayAccess<String> {
 	var cssText : String;
 	var length(default,null) : Int;
 	function getPropertyValue( property : String ) : String;
@@ -1026,12 +1026,12 @@ extern class CSSStyleDeclaration implements ArrayAccess<String> {
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class ElementCSSInlineStyle {
+@:native("ElementCSSInlineStyle") extern class ElementCSSInlineStyle {
 	var style(default,null) : CSSStyleDeclaration;
 }
 
 /** From http://dev.w3.org/csswg/cssom/ */
-extern class Window extends EventTarget, implements ArrayAccess<Dynamic> {
+@:native("Window") extern class Window extends EventTarget, implements ArrayAccess<Dynamic> {
 	@:overload( function( elt : Element, pseudoElt : String ) : CSSStyleDeclaration {})
 	function getComputedStyle( elt : Element ) : CSSStyleDeclaration;
 
@@ -1173,7 +1173,7 @@ extern class Window extends EventTarget, implements ArrayAccess<Dynamic> {
 }
 
 /** From http://dev.w3.org/csswg/cssom-view/ */
-extern class MediaQueryList {
+@:native("MediaQueryList") extern class MediaQueryList {
 	var media(default,null) : String;
 	var matches(default,null) : Bool;
 	function addListener( listener : MediaQueryList -> Void ) : Void;
@@ -1181,12 +1181,12 @@ extern class MediaQueryList {
 }
 
 /** From http://dev.w3.org/csswg/cssom-view/ */
-extern class MediaQueryListListener {
+@:native("MediaQueryListListener") extern class MediaQueryListListener {
 	function handleChange( mql : MediaQueryList ) : Void;
 }
 
 /** From http://dev.w3.org/csswg/cssom-view/ */
-extern class Screen {
+@:native("Screen") extern class Screen {
 	var availWidth(default,null) : Int;
 	var availHeight(default,null) : Int;
 	var width(default,null) : Int;
@@ -1196,13 +1196,13 @@ extern class Screen {
 }
 
 /** From http://dev.w3.org/csswg/cssom-view/ */
-extern class CaretPosition {
+@:native("CaretPosition") extern class CaretPosition {
 	var offsetNode(default,null) : Node;
 	var offset(default,null) : Int;
 }
 
 /** From http://dev.w3.org/csswg/cssom-view/ */
-extern class HTMLElement extends Element {
+@:native("HTMLElement") extern class HTMLElement extends Element {
 	var offsetParent(default,null) : Element;
 	var offsetTop(default,null) : Int;
 	var offsetLeft(default,null) : Int;
@@ -1295,12 +1295,12 @@ extern class HTMLElement extends Element {
 }
 
 /** From http://dev.w3.org/csswg/cssom-view/ */
-extern class ClientRectList implements ArrayAccess<ClientRect> {
+@:native("ClientRectList") extern class ClientRectList implements ArrayAccess<ClientRect> {
 	var length(default,null) : Int;
 }
 
 /** From http://dev.w3.org/csswg/cssom-view/ */
-extern class ClientRect {
+@:native("ClientRect") extern class ClientRect {
 	var top(default,null) : Float;
 	var right(default,null) : Float;
 	var bottom(default,null) : Float;
@@ -1310,25 +1310,25 @@ extern class ClientRect {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLAllCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
+@:native("HTMLAllCollection") extern class HTMLAllCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
 
 
 	function tags( tagName : String ) : HTMLAllCollection;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLFormControlsCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
+@:native("HTMLFormControlsCollection") extern class HTMLFormControlsCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
 
 
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class RadioNodeList extends NodeList {
+@:native("RadioNodeList") extern class RadioNodeList extends NodeList {
 	var value : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLOptionsCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
+@:native("HTMLOptionsCollection") extern class HTMLOptionsCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
 
 
 
@@ -1341,15 +1341,15 @@ extern class HTMLOptionsCollection extends HTMLCollection, implements ArrayAcces
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class DOMStringMap implements ArrayAccess<String> {
+@:native("DOMStringMap") extern class DOMStringMap implements ArrayAccess<String> {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class Transferable {
+@:native("Transferable") extern class Transferable {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLDocument extends Document, implements ArrayAccess<Dynamic> {
+@:native("HTMLDocument") extern class HTMLDocument extends Document, implements ArrayAccess<Dynamic> {
 
 	var location(default,null) : Null<Location>;
 	var domain : String;
@@ -1458,31 +1458,31 @@ extern class HTMLDocument extends Document, implements ArrayAccess<Dynamic> {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLUnknownElement extends HTMLElement {
+@:native("HTMLUnknownElement") extern class HTMLUnknownElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLHtmlElement extends HTMLElement {
+@:native("HTMLHtmlElement") extern class HTMLHtmlElement extends HTMLElement {
 	var version : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLHeadElement extends HTMLElement {
+@:native("HTMLHeadElement") extern class HTMLHeadElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTitleElement extends HTMLElement {
+@:native("HTMLTitleElement") extern class HTMLTitleElement extends HTMLElement {
 	var text : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLBaseElement extends HTMLElement {
+@:native("HTMLBaseElement") extern class HTMLBaseElement extends HTMLElement {
 	var href : String;
 	var target : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLLinkElement extends HTMLElement {
+@:native("HTMLLinkElement") extern class HTMLLinkElement extends HTMLElement {
 	var disabled : Bool;
 	var href : String;
 	var rel : String;
@@ -1502,7 +1502,7 @@ extern class HTMLLinkElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLMetaElement extends HTMLElement {
+@:native("HTMLMetaElement") extern class HTMLMetaElement extends HTMLElement {
 	var name : String;
 	var httpEquiv : String;
 	var content : String;
@@ -1511,7 +1511,7 @@ extern class HTMLMetaElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLStyleElement extends HTMLElement {
+@:native("HTMLStyleElement") extern class HTMLStyleElement extends HTMLElement {
 	var disabled : Bool;
 	var media : String;
 	var type : String;
@@ -1523,7 +1523,7 @@ extern class HTMLStyleElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLScriptElement extends HTMLElement {
+@:native("HTMLScriptElement") extern class HTMLScriptElement extends HTMLElement {
 	var src : String;
 	var async : Bool;
 	var defer : Bool;
@@ -1536,7 +1536,7 @@ extern class HTMLScriptElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLBodyElement extends HTMLElement {
+@:native("HTMLBodyElement") extern class HTMLBodyElement extends HTMLElement {
 	var onafterprint : Null<Event -> Void>;
 	var onbeforeprint : Null<Event -> Void>;
 	var onbeforeunload : Null<Event -> Void>;
@@ -1560,17 +1560,17 @@ extern class HTMLBodyElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLHeadingElement extends HTMLElement {
+@:native("HTMLHeadingElement") extern class HTMLHeadingElement extends HTMLElement {
 	var align : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLParagraphElement extends HTMLElement {
+@:native("HTMLParagraphElement") extern class HTMLParagraphElement extends HTMLElement {
 	var align : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLHRElement extends HTMLElement {
+@:native("HTMLHRElement") extern class HTMLHRElement extends HTMLElement {
 	var align : String;
 	var color : String;
 	var noShade : Bool;
@@ -1579,17 +1579,17 @@ extern class HTMLHRElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLPreElement extends HTMLElement {
+@:native("HTMLPreElement") extern class HTMLPreElement extends HTMLElement {
 	var width : Int;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLQuoteElement extends HTMLElement {
+@:native("HTMLQuoteElement") extern class HTMLQuoteElement extends HTMLElement {
 	var cite : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLOListElement extends HTMLElement {
+@:native("HTMLOListElement") extern class HTMLOListElement extends HTMLElement {
 	var reversed : Bool;
 	var start : Int;
 	var type : String;
@@ -1598,30 +1598,30 @@ extern class HTMLOListElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLUListElement extends HTMLElement {
+@:native("HTMLUListElement") extern class HTMLUListElement extends HTMLElement {
 	var compact : Bool;
 	var type : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLLIElement extends HTMLElement {
+@:native("HTMLLIElement") extern class HTMLLIElement extends HTMLElement {
 	var value : Int;
 
 	var type : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLDListElement extends HTMLElement {
+@:native("HTMLDListElement") extern class HTMLDListElement extends HTMLElement {
 	var compact : Bool;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLDivElement extends HTMLElement {
+@:native("HTMLDivElement") extern class HTMLDivElement extends HTMLElement {
 	var align : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLAnchorElement extends HTMLElement {
+@:native("HTMLAnchorElement") extern class HTMLAnchorElement extends HTMLElement {
 	var href : String;
 	var target : String;
 	var rel : String;
@@ -1647,27 +1647,27 @@ extern class HTMLAnchorElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTimeElement extends HTMLElement {
+@:native("HTMLTimeElement") extern class HTMLTimeElement extends HTMLElement {
 	var datetime : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLSpanElement extends HTMLElement {
+@:native("HTMLSpanElement") extern class HTMLSpanElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLBRElement extends HTMLElement {
+@:native("HTMLBRElement") extern class HTMLBRElement extends HTMLElement {
 	var clear : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLModElement extends HTMLElement {
+@:native("HTMLModElement") extern class HTMLModElement extends HTMLElement {
 	var cite : String;
 	var dateTime : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLImageElement extends HTMLElement {
+@:native("HTMLImageElement") extern class HTMLImageElement extends HTMLElement {
 	var alt : String;
 	var src : String;
 	var crossOrigin : String;
@@ -1688,7 +1688,7 @@ extern class HTMLImageElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLIFrameElement extends HTMLElement {
+@:native("HTMLIFrameElement") extern class HTMLIFrameElement extends HTMLElement {
 	var src : String;
 	var srcdoc : String;
 	var name : String;
@@ -1708,7 +1708,7 @@ extern class HTMLIFrameElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLEmbedElement extends HTMLElement {
+@:native("HTMLEmbedElement") extern class HTMLEmbedElement extends HTMLElement {
 	var src : String;
 	var type : String;
 	var width : String;
@@ -1719,7 +1719,7 @@ extern class HTMLEmbedElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLObjectElement extends HTMLElement {
+@:native("HTMLObjectElement") extern class HTMLObjectElement extends HTMLElement {
 	var data : String;
 	var type : String;
 	var typeMustMatch : Bool;
@@ -1749,7 +1749,7 @@ extern class HTMLObjectElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLParamElement extends HTMLElement {
+@:native("HTMLParamElement") extern class HTMLParamElement extends HTMLElement {
 	var name : String;
 	var value : String;
 
@@ -1758,7 +1758,7 @@ extern class HTMLParamElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLVideoElement extends HTMLMediaElement {
+@:native("HTMLVideoElement") extern class HTMLVideoElement extends HTMLMediaElement {
 	var width : Int;
 	var height : Int;
 	var videoWidth(default,null) : Int;
@@ -1767,18 +1767,18 @@ extern class HTMLVideoElement extends HTMLMediaElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLAudioElement extends HTMLMediaElement {
+@:native("HTMLAudioElement") extern class HTMLAudioElement extends HTMLMediaElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLSourceElement extends HTMLElement {
+@:native("HTMLSourceElement") extern class HTMLSourceElement extends HTMLElement {
 	var src : String;
 	var type : String;
 	var media : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTrackElement extends HTMLElement {
+@:native("HTMLTrackElement") extern class HTMLTrackElement extends HTMLElement {
 	var kind : String;
 	var src : String;
 	var srclang : String;
@@ -1793,7 +1793,7 @@ extern class HTMLTrackElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLMediaElement extends HTMLElement {
+@:native("HTMLMediaElement") extern class HTMLMediaElement extends HTMLElement {
 
 	var error(default,null) : Null<MediaError>;
 
@@ -1848,7 +1848,7 @@ extern class HTMLMediaElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class MediaError {
+@:native("MediaError") extern class MediaError {
 	static inline var MEDIA_ERR_ABORTED : Int = 1;
 	static inline var MEDIA_ERR_NETWORK : Int = 2;
 	static inline var MEDIA_ERR_DECODE : Int = 3;
@@ -1857,7 +1857,7 @@ extern class MediaError {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class AudioTrackList extends EventTarget, implements ArrayAccess<AudioTrack> {
+@:native("AudioTrackList") extern class AudioTrackList extends EventTarget, implements ArrayAccess<AudioTrack> {
 	var length(default,null) : Int;
 	function getTrackById( id : String ) : Null<AudioTrack>;
 	var onchange : Null<Event -> Void>;
@@ -1865,7 +1865,7 @@ extern class AudioTrackList extends EventTarget, implements ArrayAccess<AudioTra
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class AudioTrack {
+@:native("AudioTrack") extern class AudioTrack {
 	var id(default,null) : String;
 	var kind(default,null) : String;
 	var label(default,null) : String;
@@ -1874,7 +1874,7 @@ extern class AudioTrack {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class VideoTrackList extends EventTarget, implements ArrayAccess<VideoTrack> {
+@:native("VideoTrackList") extern class VideoTrackList extends EventTarget, implements ArrayAccess<VideoTrack> {
 	var length(default,null) : Int;
 	function getTrackById( id : String ) : Null<VideoTrack>;
 	var selectedIndex(default,null) : Int;
@@ -1883,7 +1883,7 @@ extern class VideoTrackList extends EventTarget, implements ArrayAccess<VideoTra
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class VideoTrack {
+@:native("VideoTrack") extern class VideoTrack {
 	var id(default,null) : String;
 	var kind(default,null) : String;
 	var label(default,null) : String;
@@ -1892,7 +1892,7 @@ extern class VideoTrack {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class MediaController {
+@:native("MediaController") extern class MediaController {
 	function new() : Void;
 
 	var buffered(default,null) : TimeRanges;
@@ -1924,13 +1924,13 @@ extern class MediaController {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class TextTrackList extends EventTarget, implements ArrayAccess<TextTrack> {
+@:native("TextTrackList") extern class TextTrackList extends EventTarget, implements ArrayAccess<TextTrack> {
 	var length(default,null) : Int;
 	var onaddtrack : Null<Event -> Void>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class TextTrack extends EventTarget {
+@:native("TextTrack") extern class TextTrack extends EventTarget {
 	var kind(default,null) : String;
 	var label(default,null) : String;
 	var language(default,null) : String;
@@ -1946,13 +1946,13 @@ extern class TextTrack extends EventTarget {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class TextTrackCueList implements ArrayAccess<TextTrackCue> {
+@:native("TextTrackCueList") extern class TextTrackCueList implements ArrayAccess<TextTrackCue> {
 	var length(default,null) : Int;
 	function getCueById( id : String ) : Null<TextTrackCue>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class TextTrackCue extends EventTarget {
+@:native("TextTrackCue") extern class TextTrackCue extends EventTarget {
 	function new( id : String, startTime : Float, endTime : Float, text : String, ?settings : String, ?pauseOnExit : Bool ) : Void;
 
 	var track(default,null) : Null<TextTrack>;
@@ -1973,26 +1973,26 @@ extern class TextTrackCue extends EventTarget {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class TimeRanges {
+@:native("TimeRanges") extern class TimeRanges {
 	var length(default,null) : Int;
 	function start( index : Int ) : Float;
 	function end( index : Int ) : Float;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class TrackEvent extends Event {
+@:native("TrackEvent") extern class TrackEvent extends Event {
 	function new( type : String, ?eventInitDict : TrackEventInit ) : Void;
 
 	var track(default,null) : Null<Dynamic>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class TrackEventInit extends EventInit {
+@:native("TrackEventInit") extern class TrackEventInit extends EventInit {
 	var track : Null<Dynamic>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLCanvasElement extends HTMLElement {
+@:native("HTMLCanvasElement") extern class HTMLCanvasElement extends HTMLElement {
 	var width : Int;
 	var height : Int;
 	function toDataURL( ?type : String, args : Dynamic ) : String;
@@ -2001,14 +2001,14 @@ extern class HTMLCanvasElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLMapElement extends HTMLElement {
+@:native("HTMLMapElement") extern class HTMLMapElement extends HTMLElement {
 	var name : String;
 	var areas(default,null) : HTMLCollection;
 	var images(default,null) : HTMLCollection;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLAreaElement extends HTMLElement {
+@:native("HTMLAreaElement") extern class HTMLAreaElement extends HTMLElement {
 	var alt : String;
 	var coords : String;
 	var shape : String;
@@ -2032,7 +2032,7 @@ extern class HTMLAreaElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTableElement extends HTMLElement {
+@:native("HTMLTableElement") extern class HTMLTableElement extends HTMLElement {
 	var caption : Null<HTMLTableCaptionElement>;
 	function createCaption() : HTMLElement;
 	function deleteCaption() : Void;
@@ -2060,12 +2060,12 @@ extern class HTMLTableElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTableCaptionElement extends HTMLElement {
+@:native("HTMLTableCaptionElement") extern class HTMLTableCaptionElement extends HTMLElement {
 	var align : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTableColElement extends HTMLElement {
+@:native("HTMLTableColElement") extern class HTMLTableColElement extends HTMLElement {
 	var span : Int;
 
 	var align : String;
@@ -2076,7 +2076,7 @@ extern class HTMLTableColElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTableSectionElement extends HTMLElement {
+@:native("HTMLTableSectionElement") extern class HTMLTableSectionElement extends HTMLElement {
 	var rows(default,null) : HTMLCollection;
 	function insertRow( ?index : Int ) : HTMLElement;
 	function deleteRow( index : Int ) : Void;
@@ -2088,7 +2088,7 @@ extern class HTMLTableSectionElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTableRowElement extends HTMLElement {
+@:native("HTMLTableRowElement") extern class HTMLTableRowElement extends HTMLElement {
 	var rowIndex(default,null) : Int;
 	var sectionRowIndex(default,null) : Int;
 	var cells(default,null) : HTMLCollection;
@@ -2103,16 +2103,16 @@ extern class HTMLTableRowElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTableDataCellElement extends HTMLTableCellElement {
+@:native("HTMLTableDataCellElement") extern class HTMLTableDataCellElement extends HTMLTableCellElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTableHeaderCellElement extends HTMLTableCellElement {
+@:native("HTMLTableHeaderCellElement") extern class HTMLTableHeaderCellElement extends HTMLTableCellElement {
 	var scope : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTableCellElement extends HTMLElement {
+@:native("HTMLTableCellElement") extern class HTMLTableCellElement extends HTMLElement {
 	var colSpan : Int;
 	var rowSpan : Int;
 	var headers(default,null) : DOMSettableTokenList;
@@ -2131,7 +2131,7 @@ extern class HTMLTableCellElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLFormElement extends HTMLElement, implements ArrayAccess<Dynamic> {
+@:native("HTMLFormElement") extern class HTMLFormElement extends HTMLElement, implements ArrayAccess<Dynamic> {
 	var acceptCharset : String;
 	var action : String;
 	var autocomplete : String;
@@ -2149,7 +2149,7 @@ extern class HTMLFormElement extends HTMLElement, implements ArrayAccess<Dynamic
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLFieldSetElement extends HTMLElement {
+@:native("HTMLFieldSetElement") extern class HTMLFieldSetElement extends HTMLElement {
 	var disabled : Bool;
 	var form(default,null) : Null<HTMLFormElement>;
 	var name : String;
@@ -2163,21 +2163,21 @@ extern class HTMLFieldSetElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLLegendElement extends HTMLElement {
+@:native("HTMLLegendElement") extern class HTMLLegendElement extends HTMLElement {
 	var form(default,null) : Null<HTMLFormElement>;
 
 	var align : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLLabelElement extends HTMLElement {
+@:native("HTMLLabelElement") extern class HTMLLabelElement extends HTMLElement {
 	var form(default,null) : Null<HTMLFormElement>;
 	var htmlFor : String;
 	var control(default,null) : Null<HTMLElement>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLInputElement extends HTMLElement {
+@:native("HTMLInputElement") extern class HTMLInputElement extends HTMLElement {
 	var accept : String;
 	var alt : String;
 	var autocomplete : String;
@@ -2233,7 +2233,7 @@ extern class HTMLInputElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLButtonElement extends HTMLElement {
+@:native("HTMLButtonElement") extern class HTMLButtonElement extends HTMLElement {
 	var autofocus : Bool;
 	var disabled : Bool;
 	var form(default,null) : Null<HTMLFormElement>;
@@ -2254,7 +2254,7 @@ extern class HTMLButtonElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLSelectElement extends HTMLElement, implements ArrayAccess<Element>, implements Dynamic<Dynamic> {
+@:native("HTMLSelectElement") extern class HTMLSelectElement extends HTMLElement, implements ArrayAccess<Element>, implements Dynamic<Dynamic> {
 	var autofocus : Bool;
 	var disabled : Bool;
 	var form(default,null) : Null<HTMLFormElement>;
@@ -2281,18 +2281,18 @@ extern class HTMLSelectElement extends HTMLElement, implements ArrayAccess<Eleme
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLDataListElement extends HTMLElement {
+@:native("HTMLDataListElement") extern class HTMLDataListElement extends HTMLElement {
 	var options(default,null) : HTMLCollection;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLOptGroupElement extends HTMLElement {
+@:native("HTMLOptGroupElement") extern class HTMLOptGroupElement extends HTMLElement {
 	var disabled : Bool;
 	var label : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLOptionElement extends HTMLElement {
+@:native("HTMLOptionElement") extern class HTMLOptionElement extends HTMLElement {
 	var disabled : Bool;
 	var form(default,null) : Null<HTMLFormElement>;
 	var label : String;
@@ -2304,7 +2304,7 @@ extern class HTMLOptionElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLTextAreaElement extends HTMLElement {
+@:native("HTMLTextAreaElement") extern class HTMLTextAreaElement extends HTMLElement {
 	var autofocus : Bool;
 	var cols : Int;
 	var dirName : String;
@@ -2335,7 +2335,7 @@ extern class HTMLTextAreaElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLKeygenElement extends HTMLElement {
+@:native("HTMLKeygenElement") extern class HTMLKeygenElement extends HTMLElement {
 	var autofocus : Bool;
 	var challenge : String;
 	var disabled : Bool;
@@ -2352,7 +2352,7 @@ extern class HTMLKeygenElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLOutputElement extends HTMLElement {
+@:native("HTMLOutputElement") extern class HTMLOutputElement extends HTMLElement {
 	var htmlFor(default,null) : DOMSettableTokenList;
 	var form(default,null) : Null<HTMLFormElement>;
 	var name : String;
@@ -2368,7 +2368,7 @@ extern class HTMLOutputElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLProgressElement extends HTMLElement {
+@:native("HTMLProgressElement") extern class HTMLProgressElement extends HTMLElement {
 	var value : Float;
 	var max : Float;
 	var position(default,null) : Float;
@@ -2376,7 +2376,7 @@ extern class HTMLProgressElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLMeterElement extends HTMLElement {
+@:native("HTMLMeterElement") extern class HTMLMeterElement extends HTMLElement {
 	var value : Float;
 	var min : Float;
 	var max : Float;
@@ -2387,7 +2387,7 @@ extern class HTMLMeterElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class ValidityState {
+@:native("ValidityState") extern class ValidityState {
 	var valueMissing(default,null) : Bool;
 	var typeMismatch(default,null) : Bool;
 	var patternMismatch(default,null) : Bool;
@@ -2400,12 +2400,12 @@ extern class ValidityState {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLDetailsElement extends HTMLElement {
+@:native("HTMLDetailsElement") extern class HTMLDetailsElement extends HTMLElement {
 	var open : Bool;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLCommandElement extends HTMLElement {
+@:native("HTMLCommandElement") extern class HTMLCommandElement extends HTMLElement {
 	var type : String;
 	var label : String;
 	var icon : String;
@@ -2416,7 +2416,7 @@ extern class HTMLCommandElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLMenuElement extends HTMLElement {
+@:native("HTMLMenuElement") extern class HTMLMenuElement extends HTMLElement {
 	var type : String;
 	var label : String;
 
@@ -2424,12 +2424,12 @@ extern class HTMLMenuElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class BarProp {
+@:native("BarProp") extern class BarProp {
 	var visible : Bool;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class History {
+@:native("History") extern class History {
 	var length(default,null) : Int;
 	var state(default,null) : Dynamic;
 	function go( ?delta : Int ) : Void;
@@ -2440,7 +2440,7 @@ extern class History {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class Location {
+@:native("Location") extern class Location {
 	var href : String;
 	function assign( url : String ) : Void;
 	function replace( url : String ) : Void;
@@ -2456,19 +2456,19 @@ extern class Location {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class PopStateEvent extends Event {
+@:native("PopStateEvent") extern class PopStateEvent extends Event {
 	function new( type : String, ?eventInitDict : PopStateEventInit ) : Void;
 
 	var state(default,null) : Dynamic;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class PopStateEventInit extends EventInit {
+@:native("PopStateEventInit") extern class PopStateEventInit extends EventInit {
 	var state : Dynamic;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HashChangeEvent extends Event {
+@:native("HashChangeEvent") extern class HashChangeEvent extends Event {
 	function new( type : String, ?eventInitDict : HashChangeEventInit ) : Void;
 
 	var oldURL(default,null) : String;
@@ -2476,30 +2476,30 @@ extern class HashChangeEvent extends Event {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HashChangeEventInit extends EventInit {
+@:native("HashChangeEventInit") extern class HashChangeEventInit extends EventInit {
 	var oldURL : String;
 	var newURL : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class PageTransitionEvent extends Event {
+@:native("PageTransitionEvent") extern class PageTransitionEvent extends Event {
 	function new( type : String, ?eventInitDict : PageTransitionEventInit ) : Void;
 
 	var persisted(default,null) : Bool;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class PageTransitionEventInit extends EventInit {
+@:native("PageTransitionEventInit") extern class PageTransitionEventInit extends EventInit {
 	var persisted : Bool;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class BeforeUnloadEvent extends Event {
+@:native("BeforeUnloadEvent") extern class BeforeUnloadEvent extends Event {
 	var returnValue : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class ApplicationCache extends EventTarget {
+@:native("ApplicationCache") extern class ApplicationCache extends EventTarget {
 
 	static inline var UNCACHED : Int = 0;
 	static inline var IDLE : Int = 1;
@@ -2524,24 +2524,24 @@ extern class ApplicationCache extends EventTarget {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class NavigatorOnLine {
+@:native("NavigatorOnLine") extern class NavigatorOnLine {
 	var onLine(default,null) : Bool;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class WindowBase64 {
+@:native("WindowBase64") extern class WindowBase64 {
 	function btoa( btoa : String ) : String;
 	function atob( atob : String ) : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class WindowModal {
+@:native("WindowModal") extern class WindowModal {
 	var dialogArguments(default,null) : Dynamic;
 	var returnValue : String;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class Navigator {
+@:native("Navigator") extern class Navigator {
 
 
 
@@ -2575,7 +2575,7 @@ extern class Navigator {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class NavigatorID {
+@:native("NavigatorID") extern class NavigatorID {
 	var appName(default,null) : String;
 	var appVersion(default,null) : String;
 	var platform(default,null) : String;
@@ -2583,7 +2583,7 @@ extern class NavigatorID {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class NavigatorContentUtils {
+@:native("NavigatorContentUtils") extern class NavigatorContentUtils {
 
 	function registerProtocolHandler( scheme : String, url : String, title : String ) : Void;
 	function registerContentHandler( mimeType : String, url : String, title : String ) : Void;
@@ -2594,18 +2594,18 @@ extern class NavigatorContentUtils {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class NavigatorStorageUtils {
+@:native("NavigatorStorageUtils") extern class NavigatorStorageUtils {
 	function yieldForStorageUpdates() : Void;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class External {
+@:native("External") extern class External {
 	function AddSearchProvider( engineURL : String ) : Void;
 	function IsSearchProviderInstalled( engineURL : String ) : Int;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class DataTransfer {
+@:native("DataTransfer") extern class DataTransfer {
 	var dropEffect : String;
 	var effectAllowed : String;
 	var items(default,null) : DataTransferItemList;
@@ -2620,7 +2620,7 @@ extern class DataTransfer {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class DataTransferItemList implements ArrayAccess<DataTransferItem> {
+@:native("DataTransferItemList") extern class DataTransferItemList implements ArrayAccess<DataTransferItem> {
 	var length(default,null) : Int;
 	function clear() : Void;
 	@:overload( function( data : File ) : Null<DataTransferItem> {})
@@ -2628,7 +2628,7 @@ extern class DataTransferItemList implements ArrayAccess<DataTransferItem> {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class DataTransferItem {
+@:native("DataTransferItem") extern class DataTransferItem {
 	var kind(default,null) : String;
 	var type(default,null) : String;
 	function getAsString( _callback : Null<FunctionStringCallback> ) : Void;
@@ -2636,24 +2636,24 @@ extern class DataTransferItem {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class FunctionStringCallback {
+@:native("FunctionStringCallback") extern class FunctionStringCallback {
 	function handleEvent( data : String ) : Void;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class DragEvent extends MouseEvent {
+@:native("DragEvent") extern class DragEvent extends MouseEvent {
 	function new( type : String, ?eventInitDict : DragEventInit ) : Void;
 
 	var dataTransfer(default,null) : Null<DataTransfer>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class DragEventInit extends MouseEventInit {
+@:native("DragEventInit") extern class DragEventInit extends MouseEventInit {
 	var dataTransfer : Null<DataTransfer>;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLAppletElement extends HTMLElement {
+@:native("HTMLAppletElement") extern class HTMLAppletElement extends HTMLElement {
 	var align : String;
 	var alt : String;
 	var archive : String;
@@ -2669,7 +2669,7 @@ extern class HTMLAppletElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLMarqueeElement extends HTMLElement {
+@:native("HTMLMarqueeElement") extern class HTMLMarqueeElement extends HTMLElement {
 	var behavior : String;
 	var bgColor : String;
 	var direction : String;
@@ -2689,7 +2689,7 @@ extern class HTMLMarqueeElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLFrameSetElement extends HTMLElement {
+@:native("HTMLFrameSetElement") extern class HTMLFrameSetElement extends HTMLElement {
 	var cols : String;
 	var rows : String;
 	var onafterprint : Null<Event -> Void>;
@@ -2708,7 +2708,7 @@ extern class HTMLFrameSetElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLFrameElement extends HTMLElement {
+@:native("HTMLFrameElement") extern class HTMLFrameElement extends HTMLElement {
 	var name : String;
 	var scrolling : String;
 	var src : String;
@@ -2722,31 +2722,31 @@ extern class HTMLFrameElement extends HTMLElement {
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLBaseFontElement extends HTMLElement {
+@:native("HTMLBaseFontElement") extern class HTMLBaseFontElement extends HTMLElement {
 	var color : String;
 	var face : String;
 	var size : Int;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLDirectoryElement extends HTMLElement {
+@:native("HTMLDirectoryElement") extern class HTMLDirectoryElement extends HTMLElement {
 	var compact : Bool;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-extern class HTMLFontElement extends HTMLElement {
+@:native("HTMLFontElement") extern class HTMLFontElement extends HTMLElement {
 	var color : String;
 	var face : String;
 	var size : String;
 }
 
 /** From http://www.w3.org/TR/FileAPI/ */
-extern class FileList implements ArrayAccess<Null<File>> {
+@:native("FileList") extern class FileList implements ArrayAccess<Null<File>> {
 	var length(default,null) : Int;
 }
 
 /** From http://www.w3.org/TR/FileAPI/ */
-extern class Blob {
+@:native("Blob") extern class Blob {
 	var size(default,null) : Float;
 	var type(default,null) : String;
 
@@ -2755,13 +2755,13 @@ extern class Blob {
 }
 
 /** From http://www.w3.org/TR/FileAPI/ */
-extern class File extends Blob {
+@:native("File") extern class File extends Blob {
 	var name(default,null) : String;
 	var lastModifiedDate(default,null) : Date;
 }
 
 /** From http://www.w3.org/TR/FileAPI/ */
-extern class FileReader extends EventTarget {
+@:native("FileReader") extern class FileReader extends EventTarget {
 	function new() : Void;
 
 
@@ -2788,7 +2788,7 @@ extern class FileReader extends EventTarget {
 }
 
 /** From http://www.w3.org/TR/FileAPI/ */
-extern class FileReaderSync {
+@:native("FileReaderSync") extern class FileReaderSync {
 	function new() : Void;
 
 
@@ -2800,7 +2800,7 @@ extern class FileReaderSync {
 }
 
 /** From http://www.w3.org/TR/touch-events/ */
-extern class Touch {
+@:native("Touch") extern class Touch {
 	var identifier(default,null) : Int;
 	var target(default,null) : EventTarget;
 	var screenX(default,null) : Int;
@@ -2812,13 +2812,13 @@ extern class Touch {
 }
 
 /** From http://www.w3.org/TR/touch-events/ */
-extern class TouchList implements ArrayAccess<Touch> {
+@:native("TouchList") extern class TouchList implements ArrayAccess<Touch> {
 	var length(default,null) : Int;
 	function identifiedTouch( identifier : Int ) : Touch;
 }
 
 /** From http://www.w3.org/TR/touch-events/ */
-extern class TouchEvent extends UIEvent {
+@:native("TouchEvent") extern class TouchEvent extends UIEvent {
 	var touches(default,null) : TouchList;
 	var targetTouches(default,null) : TouchList;
 	var changedTouches(default,null) : TouchList;
@@ -2829,7 +2829,7 @@ extern class TouchEvent extends UIEvent {
 }
 
 /** From http://dev.w3.org/html5/websockets/ */
-extern class WebSocket extends EventTarget {
+@:native("WebSocket") extern class WebSocket extends EventTarget {
 	@:overload( function( url : String, ?protocols : Array<String> ) : Void {})
 	function new( url : String, ?protocols : String ) : Void;
 
@@ -2857,7 +2857,7 @@ extern class WebSocket extends EventTarget {
 }
 
 /** From http://dev.w3.org/html5/websockets/ */
-extern class CloseEvent extends Event {
+@:native("CloseEvent") extern class CloseEvent extends Event {
 	function new( type : String, ?eventInitDict : CloseEventInit ) : Void;
 
 	var wasClean(default,null) : Bool;
@@ -2866,36 +2866,36 @@ extern class CloseEvent extends Event {
 }
 
 /** From http://dev.w3.org/html5/websockets/ */
-extern class CloseEventInit extends EventInit {
+@:native("CloseEventInit") extern class CloseEventInit extends EventInit {
 	var wasClean : Bool;
 	var code : Int;
 	var reason : String;
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
-extern class NavigatorGeolocation {
+@:native("NavigatorGeolocation") extern class NavigatorGeolocation {
 	var geolocation(default,null) : Geolocation;
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
-extern class Geolocation {
+@:native("Geolocation") extern class Geolocation {
 	function getCurrentPosition( successCallback : PositionCallback, ?errorCallback : PositionErrorCallback, ?options : PositionOptions ) : Void;
 	function watchPosition( successCallback : PositionCallback, ?errorCallback : PositionErrorCallback, ?options : PositionOptions ) : Int;
 	function clearWatch( watchId : Int ) : Void;
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
-extern class PositionCallback {
+@:native("PositionCallback") extern class PositionCallback {
 	function handleEvent( position : Position ) : Void;
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
-extern class PositionErrorCallback {
+@:native("PositionErrorCallback") extern class PositionErrorCallback {
 	function handleEvent( error : PositionError ) : Void;
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
-extern class PositionOptions {
+@:native("PositionOptions") extern class PositionOptions {
 	var enableHighAccuracy : Bool;
 	var timeout : Int;
 	var maximumAge : Int;
@@ -2904,14 +2904,14 @@ extern class PositionOptions {
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
-extern class Position {
+@:native("Position") extern class Position {
 	var coords(default,null) : Null<Coordinates>;
 	var address(default,null) : Null<Address>;
 	var timestamp(default,null) : Float;
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
-extern class Coordinates {
+@:native("Coordinates") extern class Coordinates {
 	var latitude(default,null) : Null<Float>;
 	var longitude(default,null) : Null<Float>;
 	var altitude(default,null) : Null<Float>;
@@ -2923,7 +2923,7 @@ extern class Coordinates {
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
-extern class Address {
+@:native("Address") extern class Address {
 	var country(default,null) : Null<String>;
 	var region(default,null) : Null<String>;
 	var county(default,null) : Null<String>;
@@ -2935,7 +2935,7 @@ extern class Address {
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html */
-extern class PositionError {
+@:native("PositionError") extern class PositionError {
 	static inline var PERMISSION_DENIED : Int = 1;
 	static inline var POSITION_UNAVAILABLE : Int = 2;
 	static inline var TIMEOUT : Int = 3;
@@ -2944,7 +2944,7 @@ extern class PositionError {
 }
 
 /** From http://dev.w3.org/html5/webstorage/ */
-extern class Storage implements ArrayAccess<String> {
+@:native("Storage") extern class Storage implements ArrayAccess<String> {
 	var length(default,null) : Int;
 	function key( index : Int ) : Null<String>;
 
@@ -2955,17 +2955,17 @@ extern class Storage implements ArrayAccess<String> {
 }
 
 /** From http://dev.w3.org/html5/webstorage/ */
-extern class WindowSessionStorage {
+@:native("WindowSessionStorage") extern class WindowSessionStorage {
 	var sessionStorage(default,null) : Storage;
 }
 
 /** From http://dev.w3.org/html5/webstorage/ */
-extern class WindowLocalStorage {
+@:native("WindowLocalStorage") extern class WindowLocalStorage {
 	var localStorage(default,null) : Storage;
 }
 
 /** From http://dev.w3.org/html5/webstorage/ */
-extern class StorageEvent extends Event {
+@:native("StorageEvent") extern class StorageEvent extends Event {
 	function new( type : String, ?eventInitDict : StorageEventInit ) : Void;
 
 	var key(default,null) : Null<String>;
@@ -2976,7 +2976,7 @@ extern class StorageEvent extends Event {
 }
 
 /** From http://dev.w3.org/html5/webstorage/ */
-extern class StorageEventInit extends EventInit {
+@:native("StorageEventInit") extern class StorageEventInit extends EventInit {
 	var key : Null<String>;
 	var oldValue : Null<String>;
 	var newValue : Null<String>;
@@ -2985,27 +2985,27 @@ extern class StorageEventInit extends EventInit {
 }
 
 /** From http://www.w3.org/TR/selectors-api/ */
-extern class NodeSelector {
+@:native("NodeSelector") extern class NodeSelector {
 	function querySelector( selectors : String ) : Element;
 	function querySelectorAll( selectors : String ) : NodeList;
 }
 
 /** From http://html5.org/specs/dom-parsing.html */
-extern class DOMParser {
+@:native("DOMParser") extern class DOMParser {
 	function new() : Void;
 
 	function parseFromString( str : String, type : String ) : HTMLDocument;
 }
 
 /** From http://html5.org/specs/dom-parsing.html */
-extern class XMLSerializer {
+@:native("XMLSerializer") extern class XMLSerializer {
 	function new() : Void;
 
 	function serializeToString( root : Node ) : String;
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class ArrayBuffer {
+@:native("ArrayBuffer") extern class ArrayBuffer {
 	function new( length : Int ) : Void;
 
 	var byteLength(default,null) : Int;
@@ -3015,14 +3015,14 @@ extern class ArrayBuffer {
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class ArrayBufferView {
+@:native("ArrayBufferView") extern class ArrayBufferView {
 	var buffer(default,null) : ArrayBuffer;
 	var byteOffset(default,null) : Int;
 	var byteLength(default,null) : Int;
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class Int8Array extends ArrayBufferView, implements ArrayAccess<Int> {
+@:native("Int8Array") extern class Int8Array extends ArrayBufferView, implements ArrayAccess<Int> {
 	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
 	@:overload( function( array : Int8Array ) : Void {})
@@ -3038,7 +3038,7 @@ extern class Int8Array extends ArrayBufferView, implements ArrayAccess<Int> {
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class Uint8Array extends ArrayBufferView, implements ArrayAccess<Int> {
+@:native("Uint8Array") extern class Uint8Array extends ArrayBufferView, implements ArrayAccess<Int> {
 	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
 	@:overload( function( array : Uint8Array ) : Void {})
@@ -3054,7 +3054,7 @@ extern class Uint8Array extends ArrayBufferView, implements ArrayAccess<Int> {
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class Uint8ClampedArray extends Uint8Array {
+@:native("Uint8ClampedArray") extern class Uint8ClampedArray extends Uint8Array {
 	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
 	@:overload( function( array : Uint8Array ) : Void {})
@@ -3065,7 +3065,7 @@ extern class Uint8ClampedArray extends Uint8Array {
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class Int16Array extends ArrayBufferView, implements ArrayAccess<Int> {
+@:native("Int16Array") extern class Int16Array extends ArrayBufferView, implements ArrayAccess<Int> {
 	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
 	@:overload( function( array : Int16Array ) : Void {})
@@ -3081,7 +3081,7 @@ extern class Int16Array extends ArrayBufferView, implements ArrayAccess<Int> {
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class Uint16Array extends ArrayBufferView, implements ArrayAccess<Int> {
+@:native("Uint16Array") extern class Uint16Array extends ArrayBufferView, implements ArrayAccess<Int> {
 	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
 	@:overload( function( array : Uint16Array ) : Void {})
@@ -3097,7 +3097,7 @@ extern class Uint16Array extends ArrayBufferView, implements ArrayAccess<Int> {
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class Int32Array extends ArrayBufferView, implements ArrayAccess<Int> {
+@:native("Int32Array") extern class Int32Array extends ArrayBufferView, implements ArrayAccess<Int> {
 	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
 	@:overload( function( array : Int32Array ) : Void {})
@@ -3113,7 +3113,7 @@ extern class Int32Array extends ArrayBufferView, implements ArrayAccess<Int> {
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class Uint32Array extends ArrayBufferView, implements ArrayAccess<Int> {
+@:native("Uint32Array") extern class Uint32Array extends ArrayBufferView, implements ArrayAccess<Int> {
 	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Int> ) : Void {})
 	@:overload( function( array : Uint32Array ) : Void {})
@@ -3129,7 +3129,7 @@ extern class Uint32Array extends ArrayBufferView, implements ArrayAccess<Int> {
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class Float32Array extends ArrayBufferView, implements ArrayAccess<Float> {
+@:native("Float32Array") extern class Float32Array extends ArrayBufferView, implements ArrayAccess<Float> {
 	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Float> ) : Void {})
 	@:overload( function( array : Float32Array ) : Void {})
@@ -3145,7 +3145,7 @@ extern class Float32Array extends ArrayBufferView, implements ArrayAccess<Float>
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class Float64Array extends ArrayBufferView, implements ArrayAccess<Float> {
+@:native("Float64Array") extern class Float64Array extends ArrayBufferView, implements ArrayAccess<Float> {
 	@:overload( function( buffer : ArrayBuffer, ?byteOffset : Int, ?length : Int ) : Void {})
 	@:overload( function( array : Array<Float> ) : Void {})
 	@:overload( function( array : Float64Array ) : Void {})
@@ -3161,7 +3161,7 @@ extern class Float64Array extends ArrayBufferView, implements ArrayAccess<Float>
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
-extern class DataView extends ArrayBufferView {
+@:native("DataView") extern class DataView extends ArrayBufferView {
 	function new( buffer : ArrayBuffer, ?byteOffset : Int, ?byteLength : Int ) : Void;
 
 
@@ -3204,7 +3204,7 @@ extern class DataView extends ArrayBufferView {
 }
 
 /** From http://dev.w3.org/html5/2dcontext/ */
-extern class CanvasRenderingContext2D {
+@:native("CanvasRenderingContext2D") extern class CanvasRenderingContext2D {
 
 	var canvas(default,null) : HTMLCanvasElement;
 
@@ -3318,7 +3318,7 @@ extern class CanvasRenderingContext2D {
 }
 
 /** From http://dev.w3.org/html5/2dcontext/ */
-extern class CanvasTransformation {
+@:native("CanvasTransformation") extern class CanvasTransformation {
 
 	function scale( x : Float, y : Float ) : Void;
 	function rotate( angle : Float ) : Void;
@@ -3328,7 +3328,7 @@ extern class CanvasTransformation {
 }
 
 /** From http://dev.w3.org/html5/2dcontext/ */
-extern class CanvasLineStyles {
+@:native("CanvasLineStyles") extern class CanvasLineStyles {
 
 	var lineWidth : Float;
 
@@ -3341,7 +3341,7 @@ extern class CanvasLineStyles {
 }
 
 /** From http://dev.w3.org/html5/2dcontext/ */
-extern class CanvasText {
+@:native("CanvasText") extern class CanvasText {
 
 	var font : String;
 
@@ -3352,7 +3352,7 @@ extern class CanvasText {
 }
 
 /** From http://dev.w3.org/html5/2dcontext/ */
-extern class CanvasPathMethods {
+@:native("CanvasPathMethods") extern class CanvasPathMethods {
 
 	function closePath() : Void;
 	function moveTo( x : Float, y : Float ) : Void;
@@ -3365,30 +3365,30 @@ extern class CanvasPathMethods {
 }
 
 /** From http://dev.w3.org/html5/2dcontext/ */
-extern class CanvasGradient {
+@:native("CanvasGradient") extern class CanvasGradient {
 
 	function addColorStop( offset : Float, color : String ) : Void;
 }
 
 /** From http://dev.w3.org/html5/2dcontext/ */
-extern class CanvasPattern {
+@:native("CanvasPattern") extern class CanvasPattern {
 
 }
 
 /** From http://dev.w3.org/html5/2dcontext/ */
-extern class TextMetrics {
+@:native("TextMetrics") extern class TextMetrics {
 	var width(default,null) : Float;
 }
 
 /** From http://dev.w3.org/html5/2dcontext/ */
-extern class ImageData {
+@:native("ImageData") extern class ImageData {
 	var width(default,null) : Int;
 	var height(default,null) : Int;
 	var data(default,null) : Uint8ClampedArray;
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLContextAttributes {
+@:native("WebGLContextAttributes") extern class WebGLContextAttributes {
 	var alpha : Bool;
 	var depth : Bool;
 	var stencil : Bool;
@@ -3398,53 +3398,53 @@ extern class WebGLContextAttributes {
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLObject {
+@:native("WebGLObject") extern class WebGLObject {
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLBuffer extends WebGLObject {
+@:native("WebGLBuffer") extern class WebGLBuffer extends WebGLObject {
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLFramebuffer extends WebGLObject {
+@:native("WebGLFramebuffer") extern class WebGLFramebuffer extends WebGLObject {
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLProgram extends WebGLObject {
+@:native("WebGLProgram") extern class WebGLProgram extends WebGLObject {
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLRenderbuffer extends WebGLObject {
+@:native("WebGLRenderbuffer") extern class WebGLRenderbuffer extends WebGLObject {
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLShader extends WebGLObject {
+@:native("WebGLShader") extern class WebGLShader extends WebGLObject {
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLTexture extends WebGLObject {
+@:native("WebGLTexture") extern class WebGLTexture extends WebGLObject {
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLUniformLocation {
+@:native("WebGLUniformLocation") extern class WebGLUniformLocation {
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLActiveInfo {
+@:native("WebGLActiveInfo") extern class WebGLActiveInfo {
 	var size(default,null) : Int;
 	var type(default,null) : Int;
 	var name(default,null) : String;
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLShaderPrecisionFormat {
+@:native("WebGLShaderPrecisionFormat") extern class WebGLShaderPrecisionFormat {
 	var rangeMin(default,null) : Int;
 	var rangeMax(default,null) : Int;
 	var precision(default,null) : Int;
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLRenderingContext {
+@:native("WebGLRenderingContext") extern class WebGLRenderingContext {
 
 	static inline var DEPTH_BUFFER_BIT : Int = 0x00000100;
 	static inline var STENCIL_BUFFER_BIT : Int = 0x00000400;
@@ -3991,14 +3991,14 @@ extern class WebGLRenderingContext {
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLContextEvent extends Event {
+@:native("WebGLContextEvent") extern class WebGLContextEvent extends Event {
 	function new( type : String, ?eventInit : WebGLContextEventInit ) : Void;
 
 	var statusMessage(default,null) : String;
 }
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
-extern class WebGLContextEventInit extends EventInit {
+@:native("WebGLContextEventInit") extern class WebGLContextEventInit extends EventInit {
 	var statusMessage : String;
 }
 
