@@ -264,6 +264,7 @@ foreach my $file(@files) {
             members => [],
             decl    => {},
             fake    => $fake{$class},
+            file => $file,
         };
 
         $def->{base} //= $base if $base;
@@ -468,12 +469,6 @@ foreach my $file(@files) {
 
 
 info 'output';
-if(@files) {
-    say "/*";
-    say "automatically generated from:";
-    say "\t", $_ for @files;
-    say "*/";
-}
 foreach my $def(values %classdef) {
     if($def->{skip} or $def->{done}) {
         next;
@@ -502,7 +497,7 @@ foreach my $def(values %classdef) {
     }
     $classdecl .= join(",", @interfaces);
 
-    say $classdecl, " {";
+    say "/** From $def->{file} */\n", $classdecl, " {";
 
     my @members = @{$def->{members}};
 
