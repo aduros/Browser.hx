@@ -452,8 +452,6 @@ foreach my $file(@files) {
                 die "[BUG] cannot parse member: $member\n";
             }
         }
-
-        process_haxe_overloads($def);
     }
 
     # implements interfaces
@@ -483,7 +481,6 @@ foreach my $file(@files) {
         }
     }
 }
-
 
 info 'output';
 foreach my $def(values %classdef) {
@@ -538,29 +535,28 @@ foreach my $def(values %classdef) {
                     next;
                 }
 
+                # FIXME(bruno): If a method *overloads* something in its base class, it won't be
+                # emitted
                 if(my @m = find_member_from_bases($def, $member->{id})) {
                     # Ignore all member/method overrides
                     next;
                 }
 
                 if($is_func) {
-                    # used to remove duplicated things
-                    my $serialized = join ";",
-                        $member->{id}, $member->{ret_type_decl}, @{$member->{param_types}};
-
-                    $serialized =~ s/$rx_comments//xmsg;
-                    $serialized  =~ s/\s+/ /g;
-                    next if $seen{$serialized}++;
-
-                    if ($member->{is_overload}) {
-                        $s = "\@:overload( $member->{anonymous_decl} {})"
+                    next if $seen{$member->{id}}++;
+                    # Look for other methods that this one overloads
+                    foreach my $other(@members) {
+                        if (ref $other and $member != $other and
+                                exists $other->{param_types} and $member->{id} eq $other->{id}) {
+                            ++$seen{$other->{id}};
+                            $s = "\@:overload( $other->{anonymous_decl} {})\n$s";
+                        }
                     }
 
                     # prettify if needed
                     # if(length $s > WIDTH) {
                     #     $s =~ s/ \( (.+) \) /prettify_params($1)/xmse;
                     # }
-
                 }
                 else {
                     # skip if it is already defined
@@ -701,7 +697,6 @@ sub make_functions {
                 id            => $name,
                 decl          => $f,
                 anonymous_decl => "function( $p )$ret_type_decl",
-                is_overload => 0,
                 param_types   => [ map { $_->{hx_type} } @{$params_ref} ],
                 ret_type_decl => $ret_type_decl,
                 static        => $static ? 1 : 0,
@@ -721,23 +716,6 @@ sub make_functions {
     push @{$members_ref},       @funcs;
 
     return;
-}
-
-sub process_haxe_overloads {
-    my($def) = @_;
-    my @members = @{$def->{members}};
-    my $size = @members;
-    my %seen;
-
-    for (my $ii = $size-1; $ii >= 0; --$ii) {
-        my $member = $members[$ii];
-        if (ref $member) { # var or func
-            my $is_func = exists $member->{param_types};
-            if ($is_func && $seen{$member->{id}}++) {
-                $member->{is_overload} = 1;
-            }
-        }
-    }
 }
 
 sub resolve_overload {
