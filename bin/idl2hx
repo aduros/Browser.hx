@@ -553,7 +553,7 @@ foreach my $def(values %classdef) {
                     next if $seen{$serialized}++;
 
                     if ($member->{is_overload}) {
-                        $s = "\@:overload(" . $member->{anonymous_decl} . " {})"
+                        $s = "\@:overload( $member->{anonymous_decl} {})"
                     }
 
                     # prettify if needed

@@ -36,9 +36,7 @@ my $root = dirname(__FILE__) . "/..";
 unlink "$root/bin/.idl2hx.bin";
 
 my @specs = (
-    # ['js.Test' =>
-    #     "$root/idl/domcore.idl",
-    # ],
+    # TODO(bruno): Break these into multiple files?
     ['js.Browser' =>
         # # DOM spec
         # #'http://www.w3.org/TR/DOM-Level-3-Core/idl/dom.idl',
