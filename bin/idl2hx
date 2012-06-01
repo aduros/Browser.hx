@@ -224,7 +224,7 @@ foreach my $file(@files) {
             ;
         }xmsg) {
 
-        ($typemap{$+{new_type}} = to_jsx_type($+{existing_type})) =~ s/$rx_comments//xms;
+        ($typemap{$+{new_type}} = to_hx_type($+{existing_type})) =~ s/$rx_comments//xms;
     }
 
     # class definition
@@ -327,7 +327,7 @@ foreach my $file(@files) {
                 }xms) {
                 my $id = $+{ident};
 
-                my $type = to_jsx_type($+{type});
+                my $type = to_hx_type($+{type});
                 my $value = $+{value};
 
                 # WebIDL's constants are available both as class members
@@ -359,9 +359,9 @@ foreach my $file(@files) {
 
                 my $decl = "var $id";
                 if($+{readonly}) {
-                    $decl .= " (default, null)"
+                    $decl .= "(default,null)"
                 }
-                my $type = to_jsx_type($+{type});
+                my $type = to_hx_type($+{type});
 
                 $decl .= " : $type;";
 
@@ -401,7 +401,7 @@ foreach my $file(@files) {
 
                 # Some getters omit the "getter" keyword, so look for de facto standard names
                 if ($params) {
-                    my $type = to_jsx_type($ret_type, 0);
+                    my $type = to_hx_type($ret_type, 0);
                     if($id eq "item") {
                         $def->{array_access} = $type;
                         next;
@@ -488,23 +488,19 @@ foreach my $def(values %classdef) {
 
     my %seen;
 
-    my $classdecl = "extern";
-    # if($def->{fake}) {
-    #     $classdecl .= " __fake__";
-    # }
-    $classdecl .= " class $def->{name}";
+    my $classdecl = "extern class $def->{name}";
 
     my @interfaces = ();
     if($def->{base}) {
-        push(@interfaces, "extends $def->{base}");
+        push(@interfaces, " extends $def->{base}");
     }
     if(exists $def->{array_access}) {
-        push(@interfaces, "implements ArrayAccess<" . $def->{array_access} . ">");
+        push(@interfaces, " implements ArrayAccess<" . $def->{array_access} . ">");
     }
     if(exists $def->{dynamic_access}) {
-        push(@interfaces, "implements Dynamic<" . $def->{dynamic_access} . ">");
+        push(@interfaces, " implements Dynamic<" . $def->{dynamic_access} . ">");
     }
-    $classdecl .= " " . join(", ", @interfaces);
+    $classdecl .= join(",", @interfaces);
 
     say $classdecl, " {";
 
@@ -516,8 +512,6 @@ foreach my $def(values %classdef) {
 
 
     if(@members) {
-        say "";
-
         foreach my $member(@members) {
             my $s;
 
@@ -528,7 +522,7 @@ foreach my $def(values %classdef) {
 
                 # For fields that use Haxe keywords, the best we can do is emit them commented out
                 if (exists $haxe_keywords{$member->{id}}) {
-                    say "\t", "// $s";
+                    say "\t", "// Excluded: $s";
                     next;
                 }
 
@@ -551,9 +545,9 @@ foreach my $def(values %classdef) {
                     }
 
                     # prettify if needed
-                    if(length $s > WIDTH) {
-                        $s =~ s/ \( (.+) \) /prettify_params($1)/xmse;
-                    }
+                    # if(length $s > WIDTH) {
+                    #     $s =~ s/ \( (.+) \) /prettify_params($1)/xmse;
+                    # }
 
                 }
                 else {
@@ -562,7 +556,8 @@ foreach my $def(values %classdef) {
                 }
             }
             else { # comments, etc.
-                $s = $member;
+                # $s = $member;
+                $s = "";
             }
 
             $s =~ s/^/\t/xmsg;
@@ -570,9 +565,7 @@ foreach my $def(values %classdef) {
             say $s;
         }
 
-        say "";
-
-        say "} // end of $def->{name}";
+        say "}";
     }
     else {
         say "}";
@@ -580,17 +573,11 @@ foreach my $def(values %classdef) {
 
     say "";
 }
-if(@files) {
-    say "/*";
-    say "end of generated files from:";
-    say "\t", $_ for @files;
-    say "*/";
-}
 
 lock_store(\%classdef, $db) if $continuous;
 exit;
 
-sub to_jsx_type {
+sub to_hx_type {
     my($idl_type, $may_be_undefined) = @_;
     $idl_type = trim($idl_type);
 
@@ -627,7 +614,7 @@ sub to_jsx_type {
         if($array) {
             $type = "Array<$type>"
         }
-        $type .= "/*$original*/";
+        # $type .= "/*$original*/";
     }
     else {
         my $t = $idl_type;
@@ -650,7 +637,7 @@ sub make_functions {
     my($decl_ref, $members_ref, $name, $ret_type, $src_params, $ret_type_may_be_undefined, $static) = @_;
 
     my $ret_type_decl = defined($ret_type)
-        ? " : " . to_jsx_type($ret_type, $ret_type_may_be_undefined)
+        ? " : " . to_hx_type($ret_type, $ret_type_may_be_undefined)
         : "";
 
     my @unresolved_params;
@@ -689,10 +676,10 @@ sub make_functions {
         my @f;
         # while(1) {
             my $p = join ", ", map {
-                "$_->{name} : $_->{jsx_type}"
+                "$_->{name} : $_->{hx_type}"
             } @{$params_ref};
 
-            my $f = "function $name($p)$ret_type_decl;";
+            my $f = "function $name( $p )$ret_type_decl;";
             if($static) {
                 $f = "static $f";
             }
@@ -701,9 +688,9 @@ sub make_functions {
             unshift @f, {
                 id            => $name,
                 decl          => $f,
-                anonymous_decl => "function($p)$ret_type_decl",
+                anonymous_decl => "function( $p )$ret_type_decl",
                 is_overload => 0,
-                param_types   => [ map { $_->{jsx_type} } @{$params_ref} ],
+                param_types   => [ map { $_->{hx_type} } @{$params_ref} ],
                 ret_type_decl => $ret_type_decl,
                 static        => $static ? 1 : 0,
             };
@@ -756,7 +743,7 @@ sub resolve_overload {
         my @types = split /\b or \b/xms, $type;
 
         # parameter "int" also accepts "number"
-        # if(grep { to_jsx_type($_) =~ /\A int \[\]/xms } @types) {
+        # if(grep { to_hx_type($_) =~ /\A int \[\]/xms } @types) {
         #     push @types, "number[]";
         # }
 
@@ -764,7 +751,7 @@ sub resolve_overload {
         foreach my $t(@types) {
             my $p = {
                 type     => $t,
-                jsx_type => to_jsx_type($t),
+                hx_type => to_hx_type($t),
                 name     => $head->{name},
                 optional => $head->{optional},
             };
