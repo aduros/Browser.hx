@@ -420,7 +420,7 @@ foreach my $file(@files) {
                 # Some getters omit the "getter" keyword, so look for de facto standard names
                 if ($params) {
                     my $type = to_hx_type($ret_type, 0);
-                    if($id eq "item") {
+                    if($id eq "item" or index($prop, "getter") >= 0) {
                         $def->{array_access} = $type;
                         next;
                     } elsif($id eq "namedItem") {
