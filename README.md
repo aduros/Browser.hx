@@ -4,8 +4,6 @@ Browser.hx
 Automatically generated Haxe externs for HTML5 and other Javascript APIs. Since
 they're generated, you can be sure they're complete, correct, and up to date.
 
-Using them is as easy as `import js.Browser;`.
-
 What you get
 ------------
 

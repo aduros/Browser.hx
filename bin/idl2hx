@@ -25,17 +25,12 @@ use strict;
 #use warnings FATAL => 'all';
 use warnings;
 use Fatal qw(open);
-use Tie::IxHash;
 use Data::Dumper;
 use File::Basename qw(dirname);
 use Storable qw(lock_retrieve lock_store);
 use constant WIDTH => 68;
 
 # see http://dev.w3.org/2006/webapi/WebIDL/
-
-my $continuous = ($ARGV[0] ~~ "--continuous" && shift @ARGV);
-
-my $db = dirname(__FILE__) . '/.idl2hx.bin';
 
 my @files = @ARGV;
 
@@ -66,8 +61,6 @@ my %skip = (
 
     WindowTimers => 1, # use JSXTimers instead
 );
-
-my %has_definition;
 
 # NOTE: JSX's int is signed 32 bit integer
 
@@ -205,385 +198,391 @@ my $rx_comments = qr{
 }xms;
 
 my %classdef;
-tie %classdef, 'Tie::IxHash';
-%classdef = %{lock_retrieve($db)} if $continuous and -e $db;
 
-foreach my $file(@files) {
-    info "parsing $file";
+sub parse_idls {
+    my @files = @_;
 
-    # XXX: spec bug?
-    my $Document_is_HTMLDocument = ($file =~ / \b html5 \b/xms);
+    foreach my $file(@files) {
+        info "parsing $file";
 
-    local $typemap{Document} = "HTMLDocument" if $Document_is_HTMLDocument;
+        # XXX: spec bug?
+        my $Document_is_HTMLDocument = ($file =~ / \b html5 \b/xms);
 
-    my $content = do {
-        my $arg = $file;
-        if($arg =~ /^https?:/) {
-            if($arg =~ /\.idl$/) {
-                $arg = "curl -L $arg 2>/dev/null |";
+        local $typemap{Document} = "HTMLDocument" if $Document_is_HTMLDocument;
+
+        my $content = do {
+            my $arg = $file;
+            if($arg =~ /^https?:/) {
+                if($arg =~ /\.idl$/) {
+                    $arg = "curl -L $arg 2>/dev/null |";
+                }
+                else {
+                    $arg = "w3m -dump $arg |";
+                }
             }
-            else {
-                $arg = "w3m -dump $arg |";
-            }
-        }
-        open my($fh), $arg; # magic open!
-        local $/;
-        <$fh>;
-    };
-
-    # typedef
-    while($content =~ m{
-            ^ \s* \b typedef \b
-            \s+
-            (?<existing_type> $rx_simple_type)
-            \s+
-            (?<new_type> \w+) \s*
-            ;
-        }xmsg) {
-
-        ($typemap{$+{new_type}} = to_hx_type($+{existing_type})) =~ s/$rx_comments//xms;
-    }
-
-    # class definition
-    while($content =~ m{
-                (?<attrs> (?: \[ (?: [^\]]+ | \[ \s* \])+ \] \s+)* )
-                (?<type> (?:partial \s+)? interface | exception | dictionary)
-                \s+ (?<name> \w+)
-                (?: \s* : \s* (?<base> [\w:]+) )?
-                \s*
-                \{ (?<members> [^\}]*? ) \}
-                \s* ;
-            }xmsg) {
-
-        my $class   = $+{name};
-        my $attrs   = $+{attrs};
-        my $type    = $+{type};
-        my $base    = $+{base};
-        my $members = $+{members};
-
-        if($Document_is_HTMLDocument && $class eq 'Document') {
-            $type =~ s/partial \s+//xms;
-            $class = "HTMLDocument";
-            $base  = "Document";
-        }
-
-        info $type, $class, ($base ? ": $base" : ());
-
-        if($type !~ /\b partial \b/xms) {
-            $has_definition{$class} = 1;
-        }
-
-
-        my $def = $classdef{$class} //= {
-            attrs => $attrs,
-            name  => $class,
-            implements => [],
-            members => [],
-            decl    => {},
-            fake    => $fake{$class},
-            file => $file,
+            open my($fh), $arg; # magic open!
+            local $/;
+            <$fh>;
         };
 
-        $def->{base} //= $base if $base;
-
-        $def->{skip} = 1 if $skip{$class};
-
-        my $members_ref = $def->{members};
-
-        # name to array of members; to resolve override
-        my $decl_ref = $def->{decl};
-
-        if($attrs) {
-            while($attrs =~ m{
-                \b Constructor \s* (?: \(
-                    (?<params> $rx_params)
-                \) )?
-            }xmsg) {
-                make_functions(
-                    $decl_ref, $members_ref,
-                    "new",
-                    "Void", $+{params});
-            }
-
-            if($attrs =~ /\b NoInterfaceObject \b/xms) {
-                #$def->{skip} = 1;
-            }
-        }
-
-
-        while($members =~ m{
-                (?<comments> $rx_comments)
-                |
-                (?<spaces> \s+)
-                |
-                (?<member> [^;]+;
-                    (?: \s+ | (?<member_comment> $rx_comments* ) \n)
-                )
-            }xmsg) {
-            if($+{spaces}) {
-                push @{$members_ref}, "" if $+{spaces} =~ /\n/;
-                next;
-            }
-
-            if(my $comments = $+{comments}) {
-                chomp $comments;
-                push @{$members_ref}, $comments;
-                next;
-            }
-
-            my $member = $+{member};
-
-            push @{$members_ref}, $+{member_comment} if $+{member_comment};
-
-            # compress extra spaces
-            $member =~ s{\s+}{ }g;
-
-            # member constant
-            if($member =~ m{
-                    \b const \s+ (?<type> $rx_type) \s+ (?<ident> \w+) \s+=\s+ (?<value> .*)
-                    [^;\(\)]*;
-                }xms) {
-                my $id = $+{ident};
-
-                my $type = to_hx_type($+{type});
-                my $value = $+{value};
-
-                # WebIDL's constants are available both as class members
-                # and instance members
-                # But Haxe doesn't support that, so use only the static const
-                my $static_const = "static inline var $id : $type = $value;";
-
-                $decl_ref->{$id} //= [];
-                push @{$decl_ref->{$id}}, $static_const;
-                push @{$members_ref}, {
-                    id => $id,
-                    decl => $static_const,
-                    type => $type,
-                    static => 1,
-                };
-            }
-            # member var
-            elsif($member =~ m{
-                    (?: \bstringifier\b \s+ )?
-                    (?<readonly> \breadonly\b \s+)?
-                    (?: \battribute\b \s+)?
-                    (?: \[ [^\]]+ \])?
-                    (?<type> $rx_type) \s+ (?<ident> \w+)
-                    (?: \s+ setraises\( [^\)]+ \) )?
-                    [^;\(\)]* ;
-                }xms) {
-
-                my $id = $+{ident};
-
-                my $decl = "var $id";
-                if($+{readonly}) {
-                    $decl .= "(default,null)"
-                }
-                my $type = to_hx_type($+{type});
-
-                $decl .= " : $type;";
-
-                $decl_ref->{$id} //= [];
-                push @{$decl_ref->{$id}}, $decl;
-                push @{$members_ref}, {
-                    id   => $id,
-                    decl => $decl,
-                    type => $type,
-                    static => 0,
-                };
-            }
-            # member function
-            elsif($member =~ m{
-                    (?<property>
-                        (?: (?: stringifier | legacycaller | getter | setter | creator | deleter) \s+ )*
-                    )
-                    (?<static> \b static \b \s+)?
-                    (?<ret_type> $rx_type)
-                    \s+
-                    (?<ident> \w*)
-                    \s*
-                    \(
-                        (?<params> $rx_params)
-                    \)
-                    (?: \s* raises \s* \( $rx_params \) )?
-                    ;
-                }xms) { # member function
-
-                my $id       = $+{ident};
-                my $prop     = trim($+{property});
-                my $static   = $+{static};
-                my $ret_type = $+{ret_type};
-                my $params   = $+{params};
-
-                my $ret_type_may_be_undefined = 0;
-
-                # Some getters omit the "getter" keyword, so look for de facto standard names
-                if ($params) {
-                    my $type = to_hx_type($ret_type, 0);
-                    if($id eq "item" or index($prop, "getter") >= 0) {
-                        $def->{array_access} = $type;
-                        next;
-                    } elsif($id eq "namedItem") {
-                        $def->{dynamic_access} = $type;
-                        next;
-                    }
-                }
-
-                if($prop) {
-                    if(!$id) {
-                        # no name
-                        next;
-                    }
-                    push @{$members_ref}, "/* $prop */";
-                }
-                elsif(!$id) {
-                    die "unexpected no name for $member.\n";
-                }
-                make_functions(
-                    $decl_ref, $members_ref,
-                    $id,
-                    $ret_type, $params,
-                    $ret_type_may_be_undefined, $static);
-            }
-            elsif($member =~ m{stringifier;}) {
-                # ignore
-            }
-            else {
-                die "[BUG] cannot parse member: $member\n";
-            }
-        }
-    }
-
-    # implements interfaces
-    info 'process implements';
-    {
-        my $classes = join "|", keys %classdef;
+        # typedef
         while($content =~ m{
-            ^ \s* (?<class> $classes)
-            \s+ implements
-            \s+ (?<interface> $classes)
-            \s* ;
+                ^ \s* \b typedef \b
+                \s+
+                (?<existing_type> $rx_simple_type)
+                \s+
+                (?<new_type> \w+) \s*
+                ;
             }xmsg) {
-            my $def       = $classdef{$+{class}};
-            my $interface = $classdef{$+{interface}};
 
-            next if $interface->{name} eq 'WindowTimers';
-
-            info "$def->{name} implements $interface->{name}";
-
-            # FIXME
-            push @{ $def->{members} },
-                "",
-                "// implements $interface->{name}",
-                @{$interface->{members}};
-
-            $interface->{fake} = 1;
+            ($typemap{$+{new_type}} = to_hx_type($+{existing_type})) =~ s/$rx_comments//xms;
         }
-    }
-}
 
-info 'output';
-foreach my $def(values %classdef) {
-    if($def->{skip} or $def->{done}) {
-        next;
-    }
+        # class definition
+        while($content =~ m{
+                    (?<attrs> (?: \[ (?: [^\]]+ | \[ \s* \])+ \] \s+)* )
+                    (?<type> (?:partial \s+)? interface | exception | dictionary)
+                    \s+ (?<name> \w+)
+                    (?: \s* : \s* (?<base> [\w:]+) )?
+                    \s*
+                    \{ (?<members> [^\}]*? ) \}
+                    \s* ;
+                }xmsg) {
 
-    if(!$has_definition{$def->{name}}) {
-        # partial class only
-        next;
-    }
+            my $class   = $+{name};
+            my $attrs   = $+{attrs};
+            my $type    = $+{type};
+            my $base    = $+{base};
+            my $members = $+{members};
+            my $partial = ($type =~ /\b partial \b/xms);
 
-    $def->{done} = 1 if $continuous;
+            if($Document_is_HTMLDocument && $class eq 'Document') {
+                $type =~ s/partial \s+//xms;
+                $class = "HTMLDocument";
+                $base  = "Document";
+                $partial = 0;
+            }
 
-    my %seen;
+            info $type, $class, ($base ? ": $base" : ());
 
-    my $classdecl = "\@:native(\"$def->{name}\") extern class $def->{name}";
+            my $def = $classdef{$class} //= {
+                attrs => $attrs,
+                name  => $class,
+                implements => [],
+                members => [],
+                decl    => {},
+                fake    => $fake{$class},
+            };
 
-    my @interfaces = ();
-    if($def->{base}) {
-        push(@interfaces, " extends $def->{base}");
-    }
-    if(exists $def->{array_access}) {
-        push(@interfaces, " implements ArrayAccess<" . $def->{array_access} . ">");
-    }
-    if(exists $def->{dynamic_access}) {
-        push(@interfaces, " implements Dynamic<" . $def->{dynamic_access} . ">");
-    }
-    $classdecl .= join(",", @interfaces);
+            if(not $partial) {
+                $def->{file} = $file;
+            }
 
-    say "/** From $def->{file} */\n", $classdecl, " {";
+            $def->{base} //= $base if $base;
+            $def->{skip} = 1 if $skip{$class};
 
-    my @members = @{$def->{members}};
+            my $members_ref = $def->{members};
 
-    # trim
-    pop(@members)   while @members && $members[-1] !~ /\S/;
-    shift(@members) while @members && $members[ 0] !~ /\S/;
+            # name to array of members; to resolve override
+            my $decl_ref = $def->{decl};
+
+            if($attrs) {
+                while($attrs =~ m{
+                    \b Constructor \s* (?: \(
+                        (?<params> $rx_params)
+                    \) )?
+                }xmsg) {
+                    make_functions(
+                        $decl_ref, $members_ref,
+                        "new",
+                        "Void", $+{params});
+                }
+
+                if($attrs =~ /\b NoInterfaceObject \b/xms) {
+                    #$def->{skip} = 1;
+                }
+            }
 
 
-    if(@members) {
-        foreach my $member(@members) {
-            my $s;
-
-            if(ref $member) { # var or func
-                my $is_func = exists $member->{param_types};
-
-                $s = $member->{decl};
-
-                # For fields that use Haxe keywords, the best we can do is emit them commented out
-                if (exists $haxe_keywords{$member->{id}}) {
-                    say "\t", "// Excluded: $s";
+            while($members =~ m{
+                    (?<comments> $rx_comments)
+                    |
+                    (?<spaces> \s+)
+                    |
+                    (?<member> [^;]+;
+                        (?: \s+ | (?<member_comment> $rx_comments* ) \n)
+                    )
+                }xmsg) {
+                if($+{spaces}) {
+                    push @{$members_ref}, "" if $+{spaces} =~ /\n/;
                     next;
                 }
 
-                # FIXME(bruno): If a method *overloads* something in its base class, it won't be
-                # emitted
-                if(my @m = find_member_from_bases($def, $member->{id})) {
-                    # Ignore all member/method overrides
+                if(my $comments = $+{comments}) {
+                    chomp $comments;
+                    push @{$members_ref}, $comments;
                     next;
                 }
 
-                if($is_func) {
-                    next if $seen{$member->{id}}++;
-                    # Look for other methods that this one overloads
-                    foreach my $other(@members) {
-                        if (ref $other and $member != $other and
-                                exists $other->{param_types} and $member->{id} eq $other->{id}) {
-                            ++$seen{$other->{id}};
-                            $s = "\@:overload( $other->{anonymous_decl} {})\n$s";
+                my $member = $+{member};
+
+                push @{$members_ref}, $+{member_comment} if $+{member_comment};
+
+                # compress extra spaces
+                $member =~ s{\s+}{ }g;
+
+                # member constant
+                if($member =~ m{
+                        \b const \s+ (?<type> $rx_type) \s+ (?<ident> \w+) \s+=\s+ (?<value> .*)
+                        [^;\(\)]*;
+                    }xms) {
+                    my $id = $+{ident};
+
+                    my $type = to_hx_type($+{type});
+                    my $value = $+{value};
+
+                    # WebIDL's constants are available both as class members
+                    # and instance members
+                    # But Haxe doesn't support that, so use only the static const
+                    my $static_const = "static inline var $id : $type = $value;";
+
+                    $decl_ref->{$id} //= [];
+                    push @{$decl_ref->{$id}}, $static_const;
+                    push @{$members_ref}, {
+                        id => $id,
+                        decl => $static_const,
+                        type => $type,
+                        static => 1,
+                    };
+                }
+                # member var
+                elsif($member =~ m{
+                        (?: \bstringifier\b \s+ )?
+                        (?<readonly> \breadonly\b \s+)?
+                        (?: \battribute\b \s+)?
+                        (?: \[ [^\]]+ \])?
+                        (?<type> $rx_type) \s+ (?<ident> \w+)
+                        (?: \s+ setraises\( [^\)]+ \) )?
+                        [^;\(\)]* ;
+                    }xms) {
+
+                    my $id = $+{ident};
+
+                    my $decl = "var $id";
+                    if($+{readonly}) {
+                        $decl .= "(default,null)"
+                    }
+                    my $type = to_hx_type($+{type});
+
+                    $decl .= " : $type;";
+
+                    $decl_ref->{$id} //= [];
+                    push @{$decl_ref->{$id}}, $decl;
+                    push @{$members_ref}, {
+                        id   => $id,
+                        decl => $decl,
+                        type => $type,
+                        static => 0,
+                    };
+                }
+                # member function
+                elsif($member =~ m{
+                        (?<property>
+                            (?: (?: stringifier | legacycaller | getter | setter | creator | deleter) \s+ )*
+                        )
+                        (?<static> \b static \b \s+)?
+                        (?<ret_type> $rx_type)
+                        \s+
+                        (?<ident> \w*)
+                        \s*
+                        \(
+                            (?<params> $rx_params)
+                        \)
+                        (?: \s* raises \s* \( $rx_params \) )?
+                        ;
+                    }xms) { # member function
+
+                    my $id       = $+{ident};
+                    my $prop     = trim($+{property});
+                    my $static   = $+{static};
+                    my $ret_type = $+{ret_type};
+                    my $params   = $+{params};
+
+                    my $ret_type_may_be_undefined = 0;
+
+                    # Some getters omit the "getter" keyword, so look for de facto standard names
+                    if ($params) {
+                        my $type = to_hx_type($ret_type, 0);
+                        if($id eq "item" or index($prop, "getter") >= 0) {
+                            $def->{array_access} = $type;
+                            next;
+                        } elsif($id eq "namedItem") {
+                            $def->{dynamic_access} = $type;
+                            next;
                         }
                     }
 
-                    # prettify if needed
-                    # if(length $s > WIDTH) {
-                    #     $s =~ s/ \( (.+) \) /prettify_params($1)/xmse;
-                    # }
+                    if($prop) {
+                        if(!$id) {
+                            # no name
+                            next;
+                        }
+                        push @{$members_ref}, "/* $prop */";
+                    }
+                    elsif(!$id) {
+                        die "unexpected no name for $member.\n";
+                    }
+                    make_functions(
+                        $decl_ref, $members_ref,
+                        $id,
+                        $ret_type, $params,
+                        $ret_type_may_be_undefined, $static);
+                }
+                elsif($member =~ m{stringifier;}) {
+                    # ignore
                 }
                 else {
-                    # skip if it is already defined
-                    next if $seen{ join(";", $member->{id}, $member->{static}) }++;
+                    die "[BUG] cannot parse member: $member\n";
                 }
             }
-            else { # comments, etc.
-                # $s = $member;
-                $s = "";
-            }
-
-            $s =~ s/^/\t/xmsg;
-            $s =~ s/\s+\z//xmsg;
-            say $s;
         }
 
-        say "}";
-    }
-    else {
-        say "}";
-    }
+        # implements interfaces
+        info 'process implements';
+        {
+            my $classes = join "|", keys %classdef;
+            while($content =~ m{
+                ^ \s* (?<class> $classes)
+                \s+ implements
+                \s+ (?<interface> $classes)
+                \s* ;
+                }xmsg) {
+                my $def       = $classdef{$+{class}};
+                my $interface = $classdef{$+{interface}};
 
-    say "";
+                next if $interface->{name} eq 'WindowTimers';
+
+                info "$def->{name} implements $interface->{name}";
+
+                # FIXME
+                push @{ $def->{members} },
+                    "",
+                    "// implements $interface->{name}",
+                    @{$interface->{members}};
+
+                $interface->{fake} = 1;
+            }
+        }
+    }
 }
 
-lock_store(\%classdef, $db) if $continuous;
-exit;
+sub generate_haxe {
+    my($fh, @idls) = @_;
+
+    info 'output';
+
+    my %idl_map;
+    foreach my $idl(@idls) {
+        $idl_map{$idl} = 1;
+    }
+
+    foreach my $def(values %classdef) {
+        if($def->{skip} or $def->{done}) {
+            next;
+        }
+        if (not (exists $def->{file})) {
+            next; # This def was only ever partially defined, never output it
+        }
+        if (not $idl_map{$def->{file}}) {
+            next; # Not part of this module
+        }
+
+        my %seen;
+
+        my $classdecl = "\@:native(\"$def->{name}\") extern class $def->{name}";
+
+        my @interfaces = ();
+        if($def->{base}) {
+            push(@interfaces, " extends $def->{base}");
+        }
+        if(exists $def->{array_access}) {
+            push(@interfaces, " implements ArrayAccess<" . $def->{array_access} . ">");
+        }
+        if(exists $def->{dynamic_access}) {
+            push(@interfaces, " implements Dynamic<" . $def->{dynamic_access} . ">");
+        }
+        $classdecl .= join(",", @interfaces);
+
+        say $fh "/** From $def->{file} */\n", $classdecl, " {";
+
+        my @members = @{$def->{members}};
+
+        # trim
+        pop(@members)   while @members && $members[-1] !~ /\S/;
+        shift(@members) while @members && $members[ 0] !~ /\S/;
+
+        if(@members) {
+            foreach my $member(@members) {
+                my $s;
+
+                if(ref $member) { # var or func
+                    my $is_func = exists $member->{param_types};
+
+                    $s = $member->{decl};
+
+                    # For fields that use Haxe keywords, the best we can do is emit them commented out
+                    if (exists $haxe_keywords{$member->{id}}) {
+                        say $fh "\t", "// Excluded: $s";
+                        next;
+                    }
+
+                    # FIXME(bruno): If a method *overloads* something in its base class, it won't be
+                    # emitted
+                    if(my @m = find_member_from_bases($def, $member->{id})) {
+                        # Ignore all member/method overrides
+                        next;
+                    }
+
+                    if($is_func) {
+                        next if $seen{$member->{id}}++;
+                        # Look for other methods that this one overloads
+                        foreach my $other(@members) {
+                            if (ref $other and $member != $other and
+                                    exists $other->{param_types} and $member->{id} eq $other->{id}) {
+                                ++$seen{$other->{id}};
+                                $s = "\@:overload( $other->{anonymous_decl} {})\n$s";
+                            }
+                        }
+
+                        # prettify if needed
+                        # if(length $s > WIDTH) {
+                        #     $s =~ s/ \( (.+) \) /prettify_params($1)/xmse;
+                        # }
+                    }
+                    else {
+                        # skip if it is already defined
+                        next if $seen{ join(";", $member->{id}, $member->{static}) }++;
+                    }
+                }
+                else { # comments, etc.
+                    # $s = $member;
+                    $s = "";
+                }
+
+                $s =~ s/^/\t/xmsg;
+                $s =~ s/\s+\z//xmsg;
+                say $fh $s;
+            }
+
+            say $fh "}";
+        }
+        else {
+            say $fh "}";
+        }
+
+        say $fh "";
+    }
+}
 
 sub to_hx_type {
     my($idl_type, $may_be_undefined) = @_;
@@ -808,3 +807,4 @@ sub trim {
     return $s;
 }
 
+return 1;

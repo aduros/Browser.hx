@@ -30,82 +30,92 @@ use Storable qw(lock_retrieve);
 use Tie::IxHash;
 use POSIX qw(strftime);
 
+require "bin/idl2hx";
+
 # the order is important!
 
 my $root = dirname(__FILE__) . "/..";
 unlink "$root/bin/.idl2hx.bin";
 
+my $lib = "browser";
+
 my @specs = (
-    # TODO(bruno): Break these into multiple files?
-    ['js.Browser' =>
-        # # DOM spec
-        # #'http://www.w3.org/TR/DOM-Level-3-Core/idl/dom.idl',
-        'http://www.w3.org/TR/dom/',
-        'http://www.w3.org/TR/DOM-Level-2-Views/idl/views.idl',
-        'http://www.w3.org/TR/DOM-Level-3-Events/',
-        "$root/idl/events.idl",
-
-        'http://www.w3.org/TR/XMLHttpRequest/',
-
-        # #'http://html5labs.interoperabilitybridges.com/dom4events/', # no correct IDL
-
-        # # CSS
-        'http://dev.w3.org/csswg/cssom/',
-        'http://dev.w3.org/csswg/cssom-view/',
-        # "$root/idl/chrome.idl",
-        # "$root/idl/firefox.idl",
-
-        # # SVG
-        # #"http://www.w3.org/TR/2011/REC-SVG11-20110816/svg.idl",
-
-        # # HTML5
-        # #'http://dev.w3.org/html5/spec/single-page.html', # too new
-        'http://www.w3.org/TR/html5/single-page.html',
-        'http://www.w3.org/TR/FileAPI/',
-        # "$root/idl/file.idl",
-
-        # #"http://www.w3.org/TR/webaudio/", # no correct IDL
-        "http://www.w3.org/TR/touch-events/",
-        "http://dev.w3.org/html5/websockets/",
-        "http://dev.w3.org/geo/api/spec-source-v2.html",
-        "http://dev.w3.org/html5/webstorage/",
-        'http://www.w3.org/TR/selectors-api/',
-
-        # # WebRTC has no correct IDL
-        # #"http://dev.w3.org/2011/webrtc/editor/webrtc.html",
-        # #"http://dev.w3.org/2011/webrtc/editor/getusermedia.html",
-
-        # by html5.org
-        "http://html5.org/specs/dom-parsing.html",
-
-        # # graphics
-        'https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl',
-        'http://dev.w3.org/html5/2dcontext/',
-        'https://www.khronos.org/registry/webgl/specs/latest/webgl.idl',
-
-        # # additionals
-        # "$root/idl/timers.idl",
-        # "$root/idl/animation-timing.idl",
-    ],
+    {
+        module => "TypedArray",
+        imports => [ ],
+        idls => [
+            "https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl",
+        ],
+    }, {
+        module => "DOM",
+        imports => [ "CSS" ],
+        idls => [
+            "http://www.w3.org/TR/dom/",
+            "http://www.w3.org/TR/DOM-Level-2-Views/idl/views.idl",
+            "http://www.w3.org/TR/DOM-Level-3-Events/",
+            "$root/idl/events.idl",
+            "http://www.w3.org/TR/touch-events/",
+            "http://dev.w3.org/geo/api/spec-source-v2.html",
+            "http://www.w3.org/TR/selectors-api/",
+        ],
+    }, {
+        module => "XMLHttpRequest",
+        imports => [ "TypedArray", "DOM", "HTML5" ],
+        idls => [
+            "http://www.w3.org/TR/XMLHttpRequest/",
+        ],
+    }, {
+        module => "CSS",
+        imports => [ "DOM" ],
+        idls => [
+            "http://dev.w3.org/csswg/cssom/",
+            "http://dev.w3.org/csswg/cssom-view/",
+        ],
+    }, {
+        module => "HTML5",
+        imports => [ "TypedArray", "DOM", "CSS" ],
+        idls => [
+            "http://www.w3.org/TR/html5/single-page.html",
+            "http://www.w3.org/TR/FileAPI/",
+            "http://dev.w3.org/html5/2dcontext/",
+            "http://dev.w3.org/html5/webstorage/",
+            "http://html5.org/specs/dom-parsing.html",
+        ],
+    }, {
+        module => "WebSocket",
+        imports => [ "TypedArray", "DOM" ],
+        idls => [
+            "http://dev.w3.org/html5/websockets/",
+        ],
+    }, {
+        module => "WebGL",
+        imports => [ "DOM", "HTML5", "TypedArray" ],
+        idls => [
+            "https://www.khronos.org/registry/webgl/specs/latest/webgl.idl",
+        ],
+    }
 );
 
 my $date = strftime("%B%e, %Y", localtime);
 my $HEADER = <<"T";
 //
 // Generated on $date.
-
 T
 
+# Parse everything first
+my @all_idls;
 foreach my $spec(@specs) {
-    my($class, @idls) = @{$spec};
-    say "Generating $class...";
+    push(@all_idls, @{$spec->{idls}});
+}
+parse_idls(@all_idls);
 
-    my $externs = scalar(`$root/bin/idl2hx --continuous @idls`);
-    if($? != 0) {
-        die "Cannot convert @idls to JSX.\n";
-    }
+# Write out each .hx file
+foreach my $spec(@specs) {
+    my $module = "$lib.$spec->{module}";
+    my $idls = '"' . join('" "', @{$spec->{idls}}) . '"';
+    say "Generating $module...";
 
-    my $path = $class;
+    my $path = $module;
     $path =~ s/\./\//g;
     $path = "haxe/$path.hx";
 
@@ -113,20 +123,34 @@ foreach my $spec(@specs) {
     mkpath($dir);
 
     open my($fh), ">", "$path";
-    print $fh $HEADER;
+    say $fh $HEADER;
 
-    my $idx = rindex($class, ".");
+    my $idx = rindex($module, ".");
     if ($idx >= 0) {
-        my $package = substr($class, 0, $idx);
-        print $fh "package $package;\n\n";
+        my $package = substr($module, 0, $idx);
+        say $fh "package $package;";
+        say $fh "";
     }
 
-    print $fh $externs;
-    close $fh;
+    # Write the import block
+    my @imports = @{$spec->{imports}};
+    if (@imports) {
+        foreach my $import(@imports) {
+            say $fh "import $lib.$import;";
+        }
+        say $fh "";
+    }
 
-    # Run it through the compiler to validate syntax
-    `haxe -js test.js --no-output -cp haxe $class`;
-    if($? != 0) {
-        die "idl2hx generated invalid code!\n";
+    # Write out all the classes that were defined in this spec's IDLs
+    generate_haxe($fh, @{$spec->{idls}});
+    close $fh;
+}
+
+# Finally, run each module through the compiler to validate syntax
+foreach my $spec(@specs) {
+    my $module = "$lib.$spec->{module}";
+    `haxe -js none --no-output -cp haxe $module`;
+    if ($? != 0) {
+        print "idl2hx generated invalid code!\n";
     }
 }
