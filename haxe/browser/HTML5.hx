@@ -1856,7 +1856,8 @@ import browser.CSS;
 	var src : String;
 	var srclang : String;
 	var label : String;
-	// Excluded: var default : Bool;
+	// Excluded because "default" is a Haxe keyword:
+	// var default : Bool;
 	static inline var NONE : Int = 0;
 	static inline var LOADING : Int = 1;
 	static inline var LOADED : Int = 2;

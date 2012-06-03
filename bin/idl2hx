@@ -531,7 +531,8 @@ sub generate_haxe {
 
                     # For fields that use Haxe keywords, the best we can do is emit them commented out
                     if (exists $haxe_keywords{$member->{id}}) {
-                        say $fh "\t", "// Excluded: $s";
+                        say $fh "\t", "// Excluded because \"$member->{id}\" is a Haxe keyword:";
+                        say $fh "\t", "// $s";
                         next;
                     }
 
