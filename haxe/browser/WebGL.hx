@@ -4,7 +4,7 @@
 package browser;
 
 import browser.DOM;
-import browser.HTML5;
+import browser.HTML;
 import browser.TypedArray;
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */

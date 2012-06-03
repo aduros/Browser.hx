@@ -62,7 +62,7 @@ my @specs = (
         ],
     }, {
         module => "XMLHttpRequest",
-        imports => [ "TypedArray", "DOM", "HTML5" ],
+        imports => [ "TypedArray", "DOM", "HTML" ],
         idls => [
             "http://www.w3.org/TR/XMLHttpRequest/",
         ],
@@ -74,7 +74,7 @@ my @specs = (
             "http://dev.w3.org/csswg/cssom-view/",
         ],
     }, {
-        module => "HTML5",
+        module => "HTML",
         imports => [ "TypedArray", "DOM", "CSS", "IndexedDB" ],
         idls => [
             "http://www.w3.org/TR/html5/single-page.html",
@@ -91,7 +91,7 @@ my @specs = (
         ],
     }, {
         module => "WebGL",
-        imports => [ "DOM", "HTML5", "TypedArray" ],
+        imports => [ "DOM", "HTML", "TypedArray" ],
         idls => [
             "https://www.khronos.org/registry/webgl/specs/latest/webgl.idl",
         ],

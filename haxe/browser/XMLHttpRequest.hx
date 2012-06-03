@@ -5,7 +5,7 @@ package browser;
 
 import browser.TypedArray;
 import browser.DOM;
-import browser.HTML5;
+import browser.HTML;
 
 /** From http://www.w3.org/TR/XMLHttpRequest/
  * NOTE: This is a fake class, and is not available at run-time. */
