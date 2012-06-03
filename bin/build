@@ -56,7 +56,7 @@ my @specs = (
             "$root/idl/events.idl",
             "http://www.w3.org/TR/touch-events/",
             "http://dev.w3.org/geo/api/spec-source-v2.html",
-            "http://www.w3.org/TR/selectors-api/",
+            "http://www.w3.org/TR/selectors-api2/",
             # "http://www.w3.org/TR/screen-orientation/",
             "http://www.w3.org/TR/orientation-event/",
         ],

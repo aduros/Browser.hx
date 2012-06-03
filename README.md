@@ -9,7 +9,7 @@ What you get
 
 - [DOM](http://www.w3.org/TR/dom/)
 - [XMLHttpRequest](http://www.w3.org/TR/XMLHttpRequest/)
-- [Multiple](http://dev.w3.org/csswg/cssom/) [CSS](http://dev.w3.org/csswg/cssom-view/') [APIs](http://www.w3.org/TR/selectors-api/)
+- [Multiple](http://dev.w3.org/csswg/cssom/) [CSS](http://dev.w3.org/csswg/cssom-view/) [APIs](http://www.w3.org/TR/selectors-api2/)
 - [HTML5](http://www.w3.org/TR/html5/single-page.html)
 - [File API](http://www.w3.org/TR/FileAPI/)
 - [Touch Events](http://www.w3.org/TR/touch-events/)

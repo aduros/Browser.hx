@@ -90,8 +90,12 @@ import browser.CSS;
 	function replace( nodes : Node ) : Void;
 	function remove() : Void;
 
-	function querySelector( selectors : String ) : Element;
-	function querySelectorAll( selectors : String ) : NodeList;
+	function matchesSelector( selectors : String, ?refNodes : Dynamic ) : Bool;
+
+	function querySelector( selectors : String, ?refNodes : Dynamic ) : Element;
+	function querySelectorAll( selectors : String, ?refNodes : Dynamic ) : NodeList;
+	function queryScopedSelector( selectors : String ) : Element;
+	function queryScopedSelectorAll( selectors : String ) : NodeList;
 
 	function getClientRects() : ClientRectList;
 	function getBoundingClientRect() : ClientRect;
@@ -300,8 +304,10 @@ import browser.CSS;
 	@:overload( function( touch : Touch ) : TouchList {})
 	function createTouchList( touches : Array<Touch> ) : TouchList;
 
-	function querySelector( selectors : String ) : Element;
-	function querySelectorAll( selectors : String ) : NodeList;
+	function querySelector( selectors : String, ?refNodes : Dynamic ) : Element;
+	function querySelectorAll( selectors : String, ?refNodes : Dynamic ) : NodeList;
+	function queryScopedSelector( selectors : String ) : Element;
+	function queryScopedSelectorAll( selectors : String ) : NodeList;
 
 	var styleSheets(default,null) : Array<StyleSheet>;
 	var selectedStyleSheetSet : Null<String>;
@@ -658,8 +664,10 @@ import browser.CSS;
 	@:overload( function( nodes : String ) : Void {})
 	function append( nodes : Node ) : Void;
 
-	function querySelector( selectors : String ) : Element;
-	function querySelectorAll( selectors : String ) : NodeList;
+	function querySelector( selectors : String, ?refNodes : Dynamic ) : Element;
+	function querySelectorAll( selectors : String, ?refNodes : Dynamic ) : NodeList;
+	function queryScopedSelector( selectors : String ) : Element;
+	function queryScopedSelectorAll( selectors : String ) : NodeList;
 }
 
 /** From http://dev.w3.org/geo/api/spec-source-v2.html
