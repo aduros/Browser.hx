@@ -15,9 +15,10 @@ What you get
 - [Touch Events](http://www.w3.org/TR/touch-events/)
 - [WebSockets](http://dev.w3.org/html5/websockets/)
 - [Geolocation API](http://dev.w3.org/geo/api/spec-source-v2.html)
-- [Web Storage](http://dev.w3.org/html5/webstorage/")
+- [Web Storage](http://dev.w3.org/html5/webstorage/)
 - [Typed Arrays](https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl)
 - [WebGL](https://www.khronos.org/registry/webgl/specs/latest/webgl.idl)
+- [IndexedDB](http://www.w3.org/TR/IndexedDB/)
 
 Huge thanks to [JSX](https://github.com/jsx/JSX) and their idl2jsx tool which
 this project is based on.

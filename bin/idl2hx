@@ -83,7 +83,7 @@ my %typemap = (
     'unrestricted double' => 'Float',
 
     'object' => 'Dynamic',
-
+    'Object' => 'Dynamic',
     'any' => 'Dynamic',
 
     # Haxe additions
@@ -131,6 +131,7 @@ my %typemap = (
 my %haxe_keywords = (
     "callback" => 1,
     "default" => 1,
+    "continue" => 1,
 );
 
 sub info {

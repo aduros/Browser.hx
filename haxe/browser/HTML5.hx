@@ -6,6 +6,7 @@ package browser;
 import browser.TypedArray;
 import browser.DOM;
 import browser.CSS;
+import browser.IndexedDB;
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("HTMLTableElement") extern class HTMLTableElement extends HTMLElement {
@@ -501,6 +502,10 @@ import browser.CSS;
 
 
 	var localStorage(default,null) : Storage;
+
+
+
+	var indexedDB(default,null) : IDBFactory;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html
