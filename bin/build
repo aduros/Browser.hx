@@ -107,6 +107,9 @@ my @specs = (
 my $date = strftime("%B%e, %Y", localtime);
 my $HEADER = <<"T";
 //
+// Browser - JS externs for Haxe
+// https://github.com/aduros/Browser.hx/blob/master/LICENSE.txt
+//
 // Generated on $date.
 T
 

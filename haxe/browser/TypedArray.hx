@@ -1,4 +1,7 @@
 //
+// Browser - JS externs for Haxe
+// https://github.com/aduros/Browser.hx/blob/master/LICENSE.txt
+//
 // Generated on June 2, 2012.
 
 package browser;

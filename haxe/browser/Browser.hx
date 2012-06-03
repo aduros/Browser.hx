@@ -1,3 +1,7 @@
+//
+// Browser - JS externs for Haxe
+// https://github.com/aduros/Browser.hx/blob/master/LICENSE.txt
+
 package browser;
 
 import browser.HTML;
