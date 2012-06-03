@@ -101,6 +101,17 @@ import browser.CSS;
 	var datetime : String;
 }
 
+/** From http://www.w3.org/TR/html5/single-page.html
+ * NOTE: This is a fake class, and is not available at run-time. */
+@:native("WindowTimers") extern class WindowTimers {
+	@:overload( function( handler : String, ?timeout : Int, args : Dynamic ) : Int {})
+	function setTimeout( handler : Event -> Void, ?timeout : Int, args : Dynamic ) : Int;
+	function clearTimeout( handle : Int ) : Void;
+	@:overload( function( handler : String, ?timeout : Int, args : Dynamic ) : Int {})
+	function setInterval( handler : Event -> Void, ?timeout : Int, args : Dynamic ) : Int;
+	function clearInterval( handle : Int ) : Void;
+}
+
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("HTMLMeterElement") extern class HTMLMeterElement extends HTMLElement {
 	var value : Float;
@@ -511,6 +522,15 @@ import browser.CSS;
 
 	function btoa( btoa : String ) : String;
 	function atob( atob : String ) : String;
+
+
+
+	@:overload( function( handler : String, ?timeout : Int, args : Dynamic ) : Int {})
+	function setTimeout( handler : Event -> Void, ?timeout : Int, args : Dynamic ) : Int;
+	function clearTimeout( handle : Int ) : Void;
+	@:overload( function( handler : String, ?timeout : Int, args : Dynamic ) : Int {})
+	function setInterval( handler : Event -> Void, ?timeout : Int, args : Dynamic ) : Int;
+	function clearInterval( handle : Int ) : Void;
 
 
 

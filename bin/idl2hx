@@ -57,8 +57,6 @@ my %skip = (
 
     Example => 1,
     Function => 1,
-
-    WindowTimers => 1, # use JSXTimers instead
 );
 
 # NOTE: JSX's int is signed 32 bit integer
@@ -457,8 +455,6 @@ sub parse_idls {
                 }xmsg) {
                 my $def       = $classdef{$+{class}};
                 my $interface = $classdef{$+{interface}};
-
-                next if $interface->{name} eq 'WindowTimers';
 
                 info "$def->{name} implements $interface->{name}";
 
