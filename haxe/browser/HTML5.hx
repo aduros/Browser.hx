@@ -7,15 +7,6 @@ import browser.TypedArray;
 import browser.DOM;
 import browser.CSS;
 
-/** From http://www.w3.org/TR/html5/single-page.html
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("NavigatorID") extern class NavigatorID {
-	var appName(default,null) : String;
-	var appVersion(default,null) : String;
-	var platform(default,null) : String;
-	var userAgent(default,null) : String;
-}
-
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("HTMLTableElement") extern class HTMLTableElement extends HTMLElement {
 	var caption : Null<HTMLTableCaptionElement>;
@@ -99,17 +90,6 @@ import browser.CSS;
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("HTMLTimeElement") extern class HTMLTimeElement extends HTMLElement {
 	var datetime : String;
-}
-
-/** From http://www.w3.org/TR/html5/single-page.html
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("WindowTimers") extern class WindowTimers {
-	@:overload( function( handler : String, ?timeout : Int, args : Dynamic ) : Int {})
-	function setTimeout( handler : Event -> Void, ?timeout : Int, args : Dynamic ) : Int;
-	function clearTimeout( handle : Int ) : Void;
-	@:overload( function( handler : String, ?timeout : Int, args : Dynamic ) : Int {})
-	function setInterval( handler : Event -> Void, ?timeout : Int, args : Dynamic ) : Int;
-	function clearInterval( handle : Int ) : Void;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -323,24 +303,6 @@ import browser.CSS;
 	var color : String;
 	var face : String;
 	var size : String;
-}
-
-/** From http://dev.w3.org/html5/2dcontext/
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("CanvasText") extern class CanvasText {
-
-	var font : String;
-
-	var textAlign : String;
-
-	var textBaseline : String;
-
-}
-
-/** From http://dev.w3.org/html5/webstorage/
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("WindowSessionStorage") extern class WindowSessionStorage {
-	var sessionStorage(default,null) : Storage;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -885,18 +847,6 @@ import browser.CSS;
 	var onunload : Null<Event -> Void>;
 }
 
-/** From http://www.w3.org/TR/html5/single-page.html
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("NavigatorContentUtils") extern class NavigatorContentUtils {
-
-	function registerProtocolHandler( scheme : String, url : String, title : String ) : Void;
-	function registerContentHandler( mimeType : String, url : String, title : String ) : Void;
-	function isProtocolHandlerRegistered( scheme : String, url : String ) : String;
-	function isContentHandlerRegistered( mimeType : String, url : String ) : String;
-	function unregisterProtocolHandler( scheme : String, url : String ) : Void;
-	function unregisterContentHandler( mimeType : String, url : String ) : Void;
-}
-
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("PageTransitionEventInit") extern class PageTransitionEventInit extends EventInit {
 	var persisted : Bool;
@@ -1138,24 +1088,6 @@ import browser.CSS;
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("TrackEventInit") extern class TrackEventInit extends EventInit {
 	var track : Null<Dynamic>;
-}
-
-/** From http://www.w3.org/TR/html5/single-page.html
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("NavigatorOnLine") extern class NavigatorOnLine {
-	var onLine(default,null) : Bool;
-}
-
-/** From http://dev.w3.org/html5/webstorage/
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("WindowLocalStorage") extern class WindowLocalStorage {
-	var localStorage(default,null) : Storage;
-}
-
-/** From http://www.w3.org/TR/html5/single-page.html
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("NavigatorStorageUtils") extern class NavigatorStorageUtils {
-	function yieldForStorageUpdates() : Void;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -1527,27 +1459,6 @@ import browser.CSS;
 	var clear : String;
 }
 
-/** From http://www.w3.org/TR/html5/single-page.html
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("WindowBase64") extern class WindowBase64 {
-	function btoa( btoa : String ) : String;
-	function atob( atob : String ) : String;
-}
-
-/** From http://dev.w3.org/html5/2dcontext/
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("CanvasLineStyles") extern class CanvasLineStyles {
-
-	var lineWidth : Float;
-
-	var lineCap : String;
-
-	var lineJoin : String;
-
-	var miterLimit : Float;
-
-}
-
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("HTMLSpanElement") extern class HTMLSpanElement extends HTMLElement {
 }
@@ -1728,20 +1639,6 @@ import browser.CSS;
 	function setCustomValidity( error : String ) : Void;
 }
 
-/** From http://dev.w3.org/html5/2dcontext/
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("CanvasPathMethods") extern class CanvasPathMethods {
-
-	function closePath() : Void;
-	function moveTo( x : Float, y : Float ) : Void;
-	function lineTo( x : Float, y : Float ) : Void;
-	function quadraticCurveTo( cpx : Float, cpy : Float, x : Float, y : Float ) : Void;
-	function bezierCurveTo( cp1x : Float, cp1y : Float, cp2x : Float, cp2y : Float, x : Float, y : Float ) : Void;
-	function arcTo( x1 : Float, y1 : Float, x2 : Float, y2 : Float, radius : Float ) : Void;
-	function rect( x : Float, y : Float, w : Float, h : Float ) : Void;
-	function arc( x : Float, y : Float, radius : Float, startAngle : Float, endAngle : Float, ?anticlockwise : Bool ) : Void;
-}
-
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("HTMLElement") extern class HTMLElement extends Element {
 	var offsetParent(default,null) : Element;
@@ -1841,17 +1738,6 @@ import browser.CSS;
 
 	var oldURL(default,null) : String;
 	var newURL(default,null) : String;
-}
-
-/** From http://dev.w3.org/html5/2dcontext/
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("CanvasTransformation") extern class CanvasTransformation {
-
-	function scale( x : Float, y : Float ) : Void;
-	function rotate( angle : Float ) : Void;
-	function translate( x : Float, y : Float ) : Void;
-	function transform( a : Float, b : Float, c : Float, d : Float, e : Float, f : Float ) : Void;
-	function setTransform( a : Float, b : Float, c : Float, d : Float, e : Float, f : Float ) : Void;
 }
 
 /** From http://dev.w3.org/html5/2dcontext/ */

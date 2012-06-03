@@ -267,12 +267,6 @@ import browser.DOM;
 	var offset(default,null) : Int;
 }
 
-/** From http://dev.w3.org/csswg/cssom/
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("LinkStyle") extern class LinkStyle {
-	var sheet(default,null) : StyleSheet;
-}
-
 /** From http://dev.w3.org/csswg/cssom-view/ */
 @:native("ClientRectList") extern class ClientRectList implements ArrayAccess<ClientRect> {
 	var length(default,null) : Int;

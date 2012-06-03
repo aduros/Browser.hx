@@ -33,13 +33,6 @@ import browser.CSS;
 @:native("UIEventInit") extern class UIEventInit extends EventInit {
 }
 
-/** From http://www.w3.org/TR/selectors-api/
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("NodeSelector") extern class NodeSelector {
-	function querySelector( selectors : String ) : Element;
-	function querySelectorAll( selectors : String ) : NodeList;
-}
-
 /** From http://dev.w3.org/geo/api/spec-source-v2.html
  * NOTE: This is a fake class, and is not available at run-time. */
 @:native("PositionErrorCallback") extern class PositionErrorCallback {
@@ -200,16 +193,6 @@ import browser.CSS;
 	var y(default,null) : Int;
 	var offsetX(default,null) : Int;
 	var offsetY(default,null) : Int;
-}
-
-/** From http://www.w3.org/TR/DOM-Level-3-Events/
- * NOTE: This is a fake class, and is not available at run-time. */
-@:native("DocumentEvent") extern class DocumentEvent {
-
-	@:overload( function( eventInterface : String ) : Event {})
-	function createEvent( eventInterface : String ) : Event;
-
-
 }
 
 /** From http://www.w3.org/TR/dom/ */

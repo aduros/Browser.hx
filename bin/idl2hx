@@ -464,6 +464,7 @@ sub parse_idls {
                     "// implements $interface->{name}",
                     @{$interface->{members}};
 
+                $interface->{skip} = 1;
                 $interface->{fake} = 1;
             }
         }
