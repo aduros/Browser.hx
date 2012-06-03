@@ -522,6 +522,7 @@ sub generate_haxe {
         shift(@members) while @members && $members[ 0] !~ /\S/;
 
         if(@members) {
+            my $in_whitespace = 1;
             foreach my $member(@members) {
                 my $s;
 
@@ -564,10 +565,13 @@ sub generate_haxe {
                         # skip if it is already defined
                         next if $seen{ join(";", $member->{id}, $member->{static}) }++;
                     }
+                    $in_whitespace = 0;
                 }
                 else { # comments, etc.
                     # $s = $member;
+                    next if $in_whitespace;
                     $s = "";
+                    $in_whitespace = 1;
                 }
 
                 $s =~ s/^/\t/xmsg;

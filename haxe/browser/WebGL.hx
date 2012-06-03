@@ -12,7 +12,6 @@ import browser.TypedArray;
 
 /** From https://www.khronos.org/registry/webgl/specs/latest/webgl.idl */
 @:native("WebGLRenderingContext") extern class WebGLRenderingContext {
-
 	static inline var DEPTH_BUFFER_BIT : Int = 0x00000100;
 	static inline var STENCIL_BUFFER_BIT : Int = 0x00000400;
 	static inline var COLOR_BUFFER_BIT : Int = 0x00004000;
@@ -25,16 +24,6 @@ import browser.TypedArray;
 	static inline var TRIANGLE_STRIP : Int = 0x0005;
 	static inline var TRIANGLE_FAN : Int = 0x0006;
 
-
-
-
-
-
-
-
-
-
-
 	static inline var ZERO : Int = 0;
 	static inline var ONE : Int = 1;
 	static inline var SRC_COLOR : Int = 0x0300;
@@ -44,16 +33,9 @@ import browser.TypedArray;
 	static inline var DST_ALPHA : Int = 0x0304;
 	static inline var ONE_MINUS_DST_ALPHA : Int = 0x0305;
 
-
-
 	static inline var DST_COLOR : Int = 0x0306;
 	static inline var ONE_MINUS_DST_COLOR : Int = 0x0307;
 	static inline var SRC_ALPHA_SATURATE : Int = 0x0308;
-
-
-
-
-
 
 	static inline var FUNC_ADD : Int = 0x8006;
 	static inline var BLEND_EQUATION : Int = 0x8009;
@@ -88,17 +70,6 @@ import browser.TypedArray;
 	static inline var FRONT : Int = 0x0404;
 	static inline var BACK : Int = 0x0405;
 	static inline var FRONT_AND_BACK : Int = 0x0408;
-
-
-
-
-
-
-
-
-
-
-
 
 	static inline var CULL_FACE : Int = 0x0B44;
 	static inline var BLEND : Int = 0x0BE2;
@@ -168,11 +139,6 @@ import browser.TypedArray;
 	static inline var SAMPLE_COVERAGE_VALUE : Int = 0x80AA;
 	static inline var SAMPLE_COVERAGE_INVERT : Int = 0x80AB;
 
-
-
-
-
-
 	static inline var COMPRESSED_TEXTURE_FORMATS : Int = 0x86A3;
 
 	static inline var DONT_CARE : Int = 0x1100;
@@ -195,7 +161,6 @@ import browser.TypedArray;
 	static inline var RGBA : Int = 0x1908;
 	static inline var LUMINANCE : Int = 0x1909;
 	static inline var LUMINANCE_ALPHA : Int = 0x190A;
-
 
 	static inline var UNSIGNED_SHORT_4_4_4_4 : Int = 0x8033;
 	static inline var UNSIGNED_SHORT_5_5_5_1 : Int = 0x8034;
@@ -229,7 +194,6 @@ import browser.TypedArray;
 	static inline var GEQUAL : Int = 0x0206;
 	static inline var ALWAYS : Int = 0x0207;
 
-
 	static inline var KEEP : Int = 0x1E00;
 	static inline var REPLACE : Int = 0x1E01;
 	static inline var INCR : Int = 0x1E02;
@@ -244,8 +208,6 @@ import browser.TypedArray;
 
 	static inline var NEAREST : Int = 0x2600;
 	static inline var LINEAR : Int = 0x2601;
-
-
 
 	static inline var NEAREST_MIPMAP_NEAREST : Int = 0x2700;
 	static inline var LINEAR_MIPMAP_NEAREST : Int = 0x2701;
@@ -495,9 +457,6 @@ import browser.TypedArray;
 	@:overload( function( target : Int, level : Int, internalformat : Int, format : Int, type : Int, pixels : Null<ImageData> ) : Void {})
 	function texImage2D( target : Int, level : Int, internalformat : Int, width : Int, height : Int, border : Int, format : Int, type : Int, pixels : Null<ArrayBufferView> ) : Void;
 
-
-
-
 	function texParameterf( target : Int, pname : Int, param : Float ) : Void;
 	function texParameteri( target : Int, pname : Int, param : Int ) : Void;
 	@:overload( function( target : Int, level : Int, xoffset : Int, yoffset : Int, format : Int, type : Int, video : HTMLVideoElement ) : Void {})
@@ -505,9 +464,6 @@ import browser.TypedArray;
 	@:overload( function( target : Int, level : Int, xoffset : Int, yoffset : Int, format : Int, type : Int, image : HTMLImageElement ) : Void {})
 	@:overload( function( target : Int, level : Int, xoffset : Int, yoffset : Int, format : Int, type : Int, pixels : Null<ImageData> ) : Void {})
 	function texSubImage2D( target : Int, level : Int, xoffset : Int, yoffset : Int, width : Int, height : Int, format : Int, type : Int, pixels : Null<ArrayBufferView> ) : Void;
-
-
-
 
 	function uniform1f( location : Null<WebGLUniformLocation>, x : Float ) : Void;
 	@:overload( function( location : Null<WebGLUniformLocation>, v : Array<Float> ) : Void {})

@@ -213,7 +213,6 @@ import browser.DOM;
 
 /** From http://dev.w3.org/csswg/cssom/ */
 @:native("CSSRule") extern class CSSRule {
-
 	static inline var STYLE_RULE : Int = 1;
 	static inline var IMPORT_RULE : Int = 3;
 	static inline var MEDIA_RULE : Int = 4;

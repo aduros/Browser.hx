@@ -14,7 +14,6 @@ package browser;
 	@:overload( function( array : Uint8ClampedArray ) : Void {})
 	function new( length : Int ) : Void;
 
-
 }
 
 /** From https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl */
@@ -117,16 +116,6 @@ package browser;
 @:native("DataView") extern class DataView extends ArrayBufferView {
 	function new( buffer : ArrayBuffer, ?byteOffset : Int, ?byteLength : Int ) : Void;
 
-
-
-
-
-
-
-
-
-
-
 	function getInt8( byteOffset : Int ) : Int;
 	function getUint8( byteOffset : Int ) : Int;
 	function getInt16( byteOffset : Int, ?littleEndian : Bool ) : Int;
@@ -135,16 +124,6 @@ package browser;
 	function getUint32( byteOffset : Int, ?littleEndian : Bool ) : Int;
 	function getFloat32( byteOffset : Int, ?littleEndian : Bool ) : Float;
 	function getFloat64( byteOffset : Int, ?littleEndian : Bool ) : Float;
-
-
-
-
-
-
-
-
-
-
 
 	function setInt8( byteOffset : Int, value : Int ) : Void;
 	function setUint8( byteOffset : Int, value : Int ) : Void;

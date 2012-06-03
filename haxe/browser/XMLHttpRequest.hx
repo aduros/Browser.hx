@@ -13,7 +13,6 @@ import browser.HTML;
 /** From http://www.w3.org/TR/XMLHttpRequest/
  * NOTE: This is a fake class, and is not available at run-time. */
 @:native("XMLHttpRequestEventTarget") extern class XMLHttpRequestEventTarget extends EventTarget {
-
 	var onloadstart : Null<Event -> Void>;
 	var onprogress : Null<Event -> Void>;
 	var onabort : Null<Event -> Void>;
@@ -26,7 +25,6 @@ import browser.HTML;
 /** From http://www.w3.org/TR/XMLHttpRequest/ */
 @:native("XMLHttpRequest") extern class XMLHttpRequest extends XMLHttpRequestEventTarget {
 	function new() : Void;
-
 
 	var onreadystatechange : Null<Event -> Void>;
 

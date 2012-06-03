@@ -90,8 +90,6 @@ import browser.CSS;
 	function replace( nodes : Node ) : Void;
 	function remove() : Void;
 
-
-
 	function querySelector( selectors : String ) : Element;
 	function querySelectorAll( selectors : String ) : NodeList;
 
@@ -188,8 +186,6 @@ import browser.CSS;
 	@:overload( function( keyArg : String ) : Bool {})
 	function getModifierState( keyArg : String ) : Bool;
 
-
-
 	var pageX(default,null) : Int;
 	var pageY(default,null) : Int;
 	var x(default,null) : Int;
@@ -229,9 +225,6 @@ import browser.CSS;
 	@:overload( function( evt : Event ) : Bool {})
 	function dispatchEvent( event : Event ) : Bool;
 
-
-
-
 }
 
 /** From http://www.w3.org/TR/dom/
@@ -243,7 +236,6 @@ import browser.CSS;
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
 @:native("KeyboardEvent") extern class KeyboardEvent extends UIEvent {
-
 	static inline var DOM_KEY_LOCATION_STANDARD : Int = 0x00;
 	static inline var DOM_KEY_LOCATION_LEFT : Int = 0x01;
 	static inline var DOM_KEY_LOCATION_RIGHT : Int = 0x02;
@@ -267,7 +259,6 @@ import browser.CSS;
 	var charCode(default,null) : Int;
 	var keyCode(default,null) : Int;
 	var which(default,null) : Int;
-
 
 }
 
@@ -305,17 +296,9 @@ import browser.CSS;
 	@:overload( function( nodes : String ) : Void {})
 	function append( nodes : Node ) : Void;
 
-
-
-
-
-
-
 	function createTouch( view : AbstractView, target : EventTarget, identifier : Int, pageX : Int, pageY : Int, screenX : Int, screenY : Int ) : Touch;
 	@:overload( function( touch : Touch ) : TouchList {})
 	function createTouchList( touches : Array<Touch> ) : TouchList;
-
-
 
 	function querySelector( selectors : String ) : Element;
 	function querySelectorAll( selectors : String ) : NodeList;
@@ -472,7 +455,6 @@ import browser.CSS;
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
 @:native("MutationEvent") extern class MutationEvent extends Event {
-
 	static inline var MODIFICATION : Int = 1;
 	static inline var ADDITION : Int = 2;
 	static inline var REMOVAL : Int = 3;
@@ -484,7 +466,6 @@ import browser.CSS;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, relatedNodeArg : Node, prevValueArg : String, newValueArg : String, attrNameArg : String, attrChangeArg : Int ) : Void {})
 	function initMutationEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, relatedNodeArg : Node, prevValueArg : String, newValueArg : String, attrNameArg : String, attrChangeArg : Int ) : Void;
 
-
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
@@ -494,7 +475,6 @@ import browser.CSS;
 
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, relatedNodeArg : Node, prevNamespaceURIArg : String, prevNodeNameArg : String ) : Void {})
 	function initMutationNameEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, relatedNodeArg : Node, prevNamespaceURIArg : String, prevNodeNameArg : String ) : Void;
-
 
 }
 
@@ -509,14 +489,11 @@ import browser.CSS;
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
 @:native("EventException") extern class EventException {
-
 	static inline var UNSPECIFIED_EVENT_TYPE_ERR : Int = 0;
 
 	static inline var DISPATCH_REQUEST_ERR : Int = 1;
 
 	var code : Int;
-
-
 
 }
 
@@ -555,7 +532,6 @@ import browser.CSS;
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
 @:native("WheelEvent") extern class WheelEvent extends MouseEvent {
-
 	static inline var DOM_DELTA_PIXEL : Int = 0x00;
 	static inline var DOM_DELTA_LINE : Int = 0x01;
 	static inline var DOM_DELTA_PAGE : Int = 0x02;
@@ -565,7 +541,6 @@ import browser.CSS;
 	var deltaMode(default,null) : Int;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int, screenXArg : Int, screenYArg : Int, clientXArg : Int, clientYArg : Int, buttonArg : Int, relatedTargetArg : EventTarget, modifiersListArg : String, deltaXArg : Float, deltaYArg : Float, deltaZArg : Float, deltaMode : Int ) : Void {})
 	function initWheelEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, detailArg : Int, screenXArg : Int, screenYArg : Int, clientXArg : Int, clientYArg : Int, buttonArg : Int, relatedTargetArg : EventTarget, modifiersListArg : String, deltaXArg : Float, deltaYArg : Float, deltaZArg : Float, deltaMode : Int ) : Void;
-
 
 }
 
@@ -641,25 +616,17 @@ import browser.CSS;
 	@:overload( function( eventTypeArg : String, canBubbleArg : Bool, cancelableArg : Bool ) : Void {})
 	function initEvent( type : String, bubbles : Bool, cancelable : Bool ) : Void;
 
-
-
-
-
-
 }
 
 /** From http://www.w3.org/TR/dom/ */
 @:native("ProcessingInstruction") extern class ProcessingInstruction extends CharacterData {
 	var target(default,null) : String;
 
-
-
 	var sheet(default,null) : StyleSheet;
 }
 
 /** From http://www.w3.org/TR/DOM-Level-3-Events/ */
 @:native("TextEvent") extern class TextEvent extends UIEvent {
-
 	static inline var DOM_INPUT_METHOD_UNKNOWN : Int = 0x00;
 	static inline var DOM_INPUT_METHOD_KEYBOARD : Int = 0x01;
 	static inline var DOM_INPUT_METHOD_PASTE : Int = 0x02;
@@ -676,7 +643,6 @@ import browser.CSS;
 	@:overload( function( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, dataArg : String, inputMethod : Int, localeArg : String ) : Void {})
 	function initTextEvent( typeArg : String, canBubbleArg : Bool, cancelableArg : Bool, viewArg : AbstractView, dataArg : String, inputMethod : Int, localeArg : String ) : Void;
 
-
 }
 
 /** From http://www.w3.org/TR/DOM-Level-2-Views/idl/views.idl
@@ -687,13 +653,10 @@ import browser.CSS;
 
 /** From http://www.w3.org/TR/dom/ */
 @:native("DocumentFragment") extern class DocumentFragment extends Node {
-
 	@:overload( function( nodes : String ) : Void {})
 	function prepend( nodes : Node ) : Void;
 	@:overload( function( nodes : String ) : Void {})
 	function append( nodes : Node ) : Void;
-
-
 
 	function querySelector( selectors : String ) : Element;
 	function querySelectorAll( selectors : String ) : NodeList;
@@ -725,7 +688,6 @@ import browser.CSS;
 
 /** From http://www.w3.org/TR/dom/ */
 @:native("NodeFilter") extern class NodeFilter {
-
 	static inline var FILTER_ACCEPT : Int = 1;
 	static inline var FILTER_REJECT : Int = 2;
 	static inline var FILTER_SKIP : Int = 3;
@@ -747,7 +709,6 @@ import browser.CSS;
 	static inline var SHOW_DOCUMENT_TYPE : Int = 0x200;
 	static inline var SHOW_DOCUMENT_FRAGMENT : Int = 0x400;
 	static inline var SHOW_NOTATION : Int = 0x800;
-
 
 	function acceptNode( node : Node ) : Int;
 }

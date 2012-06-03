@@ -41,8 +41,6 @@ import browser.IndexedDB;
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("HTMLFormControlsCollection") extern class HTMLFormControlsCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
-
-
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
@@ -86,8 +84,6 @@ import browser.IndexedDB;
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("HTMLAllCollection") extern class HTMLAllCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
-
-
 	function tags( tagName : String ) : HTMLAllCollection;
 }
 
@@ -109,21 +105,12 @@ import browser.IndexedDB;
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("Navigator") extern class Navigator {
-
-
-
-
 	var appName(default,null) : String;
 	var appVersion(default,null) : String;
 	var platform(default,null) : String;
 	var userAgent(default,null) : String;
 
-
-
 	var onLine(default,null) : Bool;
-
-
-
 
 	function registerProtocolHandler( scheme : String, url : String, title : String ) : Void;
 	function registerContentHandler( mimeType : String, url : String, title : String ) : Void;
@@ -131,8 +118,6 @@ import browser.IndexedDB;
 	function isContentHandlerRegistered( mimeType : String, url : String ) : String;
 	function unregisterProtocolHandler( scheme : String, url : String ) : Void;
 	function unregisterContentHandler( mimeType : String, url : String ) : Void;
-
-
 
 	function yieldForStorageUpdates() : Void;
 }
@@ -297,8 +282,6 @@ import browser.IndexedDB;
 	var rev : String;
 	var target : String;
 
-
-
 	var sheet(default,null) : StyleSheet;
 }
 
@@ -379,7 +362,6 @@ import browser.IndexedDB;
 	var screenY(default,null) : Int;
 	var outerWidth(default,null) : Int;
 	var outerHeight(default,null) : Int;
-
 
 	var window(default,null) : Window;
 	var self(default,null) : Window;
@@ -484,12 +466,8 @@ import browser.IndexedDB;
 	var onvolumechange : Null<Event -> Void>;
 	var onwaiting : Null<Event -> Void>;
 
-
-
 	function btoa( btoa : String ) : String;
 	function atob( atob : String ) : String;
-
-
 
 	@:overload( function( handler : String, ?timeout : Int, args : Dynamic ) : Int {})
 	function setTimeout( handler : Event -> Void, ?timeout : Int, args : Dynamic ) : Int;
@@ -498,15 +476,9 @@ import browser.IndexedDB;
 	function setInterval( handler : Event -> Void, ?timeout : Int, args : Dynamic ) : Int;
 	function clearInterval( handle : Int ) : Void;
 
-
-
 	var sessionStorage(default,null) : Storage;
 
-
-
 	var localStorage(default,null) : Storage;
-
-
 
 	var indexedDB(default,null) : IDBFactory;
 }
@@ -598,7 +570,6 @@ import browser.IndexedDB;
 
 /** From http://dev.w3.org/html5/2dcontext/ */
 @:native("CanvasGradient") extern class CanvasGradient {
-
 	function addColorStop( offset : Float, color : String ) : Void;
 }
 
@@ -648,20 +619,15 @@ import browser.IndexedDB;
 
 /** From http://dev.w3.org/html5/2dcontext/ */
 @:native("CanvasRenderingContext2D") extern class CanvasRenderingContext2D {
-
 	var canvas(default,null) : HTMLCanvasElement;
 
 	function save() : Void;
 
 	function restore() : Void;
 
-
-
 	var globalAlpha : Float;
 
 	var globalCompositeOperation : String;
-
-
 
 	var strokeStyle : Dynamic;
 
@@ -680,8 +646,6 @@ import browser.IndexedDB;
 	var shadowBlur : Float;
 
 	var shadowColor : String;
-
-
 
 	function clearRect( x : Float, y : Float, w : Float, h : Float ) : Void;
 	function fillRect( x : Float, y : Float, w : Float, h : Float ) : Void;
@@ -716,17 +680,11 @@ import browser.IndexedDB;
 	@:overload( function( imagedata : ImageData, dx : Float, dy : Float, dirtyX : Float, dirtyY : Float, dirtyWidth : Float, dirtyHeight : Float ) : Void {})
 	function putImageData( imagedata : ImageData, dx : Float, dy : Float ) : Void;
 
-
-
-
 	function scale( x : Float, y : Float ) : Void;
 	function rotate( angle : Float ) : Void;
 	function translate( x : Float, y : Float ) : Void;
 	function transform( a : Float, b : Float, c : Float, d : Float, e : Float, f : Float ) : Void;
 	function setTransform( a : Float, b : Float, c : Float, d : Float, e : Float, f : Float ) : Void;
-
-
-
 
 	var lineWidth : Float;
 
@@ -736,10 +694,6 @@ import browser.IndexedDB;
 
 	var miterLimit : Float;
 
-
-
-
-
 	function closePath() : Void;
 	function moveTo( x : Float, y : Float ) : Void;
 	function lineTo( x : Float, y : Float ) : Void;
@@ -748,9 +702,6 @@ import browser.IndexedDB;
 	function arcTo( x1 : Float, y1 : Float, x2 : Float, y2 : Float, radius : Float ) : Void;
 	function rect( x : Float, y : Float, w : Float, h : Float ) : Void;
 	function arc( x : Float, y : Float, radius : Float, startAngle : Float, endAngle : Float, ?anticlockwise : Bool ) : Void;
-
-
-
 
 	var font : String;
 
@@ -781,7 +732,6 @@ import browser.IndexedDB;
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("ApplicationCache") extern class ApplicationCache extends EventTarget {
-
 	static inline var UNCACHED : Int = 0;
 	static inline var IDLE : Int = 1;
 	static inline var CHECKING : Int = 2;
@@ -1135,8 +1085,6 @@ import browser.IndexedDB;
 	var type : String;
 	var scoped : Bool;
 
-
-
 	var sheet(default,null) : StyleSheet;
 }
 
@@ -1264,8 +1212,6 @@ import browser.IndexedDB;
 @:native("FileReaderSync") extern class FileReaderSync {
 	function new() : Void;
 
-
-
 	function readAsArrayBuffer( blob : Blob ) : ArrayBuffer;
 	function readAsBinaryString( blob : Blob ) : String;
 	function readAsText( blob : Blob, ?encoding : String ) : String;
@@ -1281,9 +1227,6 @@ import browser.IndexedDB;
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("HTMLOptionsCollection") extern class HTMLOptionsCollection extends HTMLCollection, implements ArrayAccess<Null<Dynamic>> {
-
-
-
 	@:overload( function( element : HTMLOptGroupElement, ?before : Int ) : Void {})
 	@:overload( function( element : HTMLOptGroupElement, ?before : HTMLElement ) : Void {})
 	@:overload( function( element : HTMLOptionElement, ?before : Int ) : Void {})
@@ -1331,7 +1274,6 @@ import browser.IndexedDB;
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("HTMLDocument") extern class HTMLDocument extends Document, implements ArrayAccess<Dynamic> {
-
 	var location(default,null) : Null<Location>;
 	var domain : String;
 	var referrer(default,null) : String;
@@ -1508,7 +1450,6 @@ import browser.IndexedDB;
 
 /** From http://www.w3.org/TR/html5/single-page.html */
 @:native("HTMLMediaElement") extern class HTMLMediaElement extends HTMLElement {
-
 	var error(default,null) : Null<MediaError>;
 
 	var src : String;
@@ -1572,7 +1513,6 @@ import browser.IndexedDB;
 @:native("FileReader") extern class FileReader extends EventTarget {
 	function new() : Void;
 
-
 	function readAsArrayBuffer( blob : Blob ) : Void;
 	function readAsBinaryString( blob : Blob ) : Void;
 	function readAsText( blob : Blob, ?encoding : String ) : Void;
@@ -1599,7 +1539,6 @@ import browser.IndexedDB;
 @:native("Blob") extern class Blob {
 	var size(default,null) : Float;
 	var type(default,null) : String;
-
 
 	function slice( ?start : Float, ?end : Float, ?contentType : String ) : Blob;
 }
@@ -1654,7 +1593,6 @@ import browser.IndexedDB;
 	var offsetLeft(default,null) : Int;
 	var offsetWidth(default,null) : Int;
 	var offsetHeight(default,null) : Int;
-
 
 	var title : String;
 	var lang : String;
@@ -1750,7 +1688,6 @@ import browser.IndexedDB;
 
 /** From http://dev.w3.org/html5/2dcontext/ */
 @:native("CanvasPattern") extern class CanvasPattern {
-
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
