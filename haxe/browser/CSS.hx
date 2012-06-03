@@ -171,7 +171,8 @@ import browser.DOM;
 	var style(default,null) : CSSStyleDeclaration;
 }
 
-/** From http://dev.w3.org/csswg/cssom-view/ */
+/** From http://dev.w3.org/csswg/cssom-view/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("MediaQueryListListener") extern class MediaQueryListListener {
 	function handleChange( mql : MediaQueryList ) : Void;
 }
@@ -243,7 +244,8 @@ import browser.DOM;
 	var style(default,null) : CSSStyleDeclaration;
 }
 
-/** From http://dev.w3.org/csswg/cssom/ */
+/** From http://dev.w3.org/csswg/cssom/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("ElementCSSInlineStyle") extern class ElementCSSInlineStyle {
 	var style(default,null) : CSSStyleDeclaration;
 }
@@ -265,7 +267,8 @@ import browser.DOM;
 	var offset(default,null) : Int;
 }
 
-/** From http://dev.w3.org/csswg/cssom/ */
+/** From http://dev.w3.org/csswg/cssom/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("LinkStyle") extern class LinkStyle {
 	var sheet(default,null) : StyleSheet;
 }

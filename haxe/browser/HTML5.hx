@@ -7,7 +7,8 @@ import browser.TypedArray;
 import browser.DOM;
 import browser.CSS;
 
-/** From http://www.w3.org/TR/html5/single-page.html */
+/** From http://www.w3.org/TR/html5/single-page.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("NavigatorID") extern class NavigatorID {
 	var appName(default,null) : String;
 	var appVersion(default,null) : String;
@@ -313,7 +314,8 @@ import browser.CSS;
 	var size : String;
 }
 
-/** From http://dev.w3.org/html5/2dcontext/ */
+/** From http://dev.w3.org/html5/2dcontext/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("CanvasText") extern class CanvasText {
 
 	var font : String;
@@ -324,7 +326,8 @@ import browser.CSS;
 
 }
 
-/** From http://dev.w3.org/html5/webstorage/ */
+/** From http://dev.w3.org/html5/webstorage/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("WindowSessionStorage") extern class WindowSessionStorage {
 	var sessionStorage(default,null) : Storage;
 }
@@ -518,7 +521,8 @@ import browser.CSS;
 	var localStorage(default,null) : Storage;
 }
 
-/** From http://www.w3.org/TR/html5/single-page.html */
+/** From http://www.w3.org/TR/html5/single-page.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("FunctionStringCallback") extern class FunctionStringCallback {
 	function handleEvent( data : String ) : Void;
 }
@@ -815,7 +819,8 @@ import browser.CSS;
 	var cite : String;
 }
 
-/** From http://www.w3.org/TR/html5/single-page.html */
+/** From http://www.w3.org/TR/html5/single-page.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("WindowModal") extern class WindowModal {
 	var dialogArguments(default,null) : Dynamic;
 	var returnValue : String;
@@ -860,7 +865,8 @@ import browser.CSS;
 	var onunload : Null<Event -> Void>;
 }
 
-/** From http://www.w3.org/TR/html5/single-page.html */
+/** From http://www.w3.org/TR/html5/single-page.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("NavigatorContentUtils") extern class NavigatorContentUtils {
 
 	function registerProtocolHandler( scheme : String, url : String, title : String ) : Void;
@@ -1114,17 +1120,20 @@ import browser.CSS;
 	var track : Null<Dynamic>;
 }
 
-/** From http://www.w3.org/TR/html5/single-page.html */
+/** From http://www.w3.org/TR/html5/single-page.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("NavigatorOnLine") extern class NavigatorOnLine {
 	var onLine(default,null) : Bool;
 }
 
-/** From http://dev.w3.org/html5/webstorage/ */
+/** From http://dev.w3.org/html5/webstorage/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("WindowLocalStorage") extern class WindowLocalStorage {
 	var localStorage(default,null) : Storage;
 }
 
-/** From http://www.w3.org/TR/html5/single-page.html */
+/** From http://www.w3.org/TR/html5/single-page.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("NavigatorStorageUtils") extern class NavigatorStorageUtils {
 	function yieldForStorageUpdates() : Void;
 }
@@ -1480,7 +1489,8 @@ import browser.CSS;
 	var align : String;
 }
 
-/** From http://www.w3.org/TR/html5/single-page.html */
+/** From http://www.w3.org/TR/html5/single-page.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("Transferable") extern class Transferable {
 }
 
@@ -1497,13 +1507,15 @@ import browser.CSS;
 	var clear : String;
 }
 
-/** From http://www.w3.org/TR/html5/single-page.html */
+/** From http://www.w3.org/TR/html5/single-page.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("WindowBase64") extern class WindowBase64 {
 	function btoa( btoa : String ) : String;
 	function atob( atob : String ) : String;
 }
 
-/** From http://dev.w3.org/html5/2dcontext/ */
+/** From http://dev.w3.org/html5/2dcontext/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("CanvasLineStyles") extern class CanvasLineStyles {
 
 	var lineWidth : Float;
@@ -1696,7 +1708,8 @@ import browser.CSS;
 	function setCustomValidity( error : String ) : Void;
 }
 
-/** From http://dev.w3.org/html5/2dcontext/ */
+/** From http://dev.w3.org/html5/2dcontext/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("CanvasPathMethods") extern class CanvasPathMethods {
 
 	function closePath() : Void;
@@ -1810,7 +1823,8 @@ import browser.CSS;
 	var newURL(default,null) : String;
 }
 
-/** From http://dev.w3.org/html5/2dcontext/ */
+/** From http://dev.w3.org/html5/2dcontext/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("CanvasTransformation") extern class CanvasTransformation {
 
 	function scale( x : Float, y : Float ) : Void;

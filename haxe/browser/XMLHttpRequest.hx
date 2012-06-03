@@ -7,7 +7,8 @@ import browser.TypedArray;
 import browser.DOM;
 import browser.HTML5;
 
-/** From http://www.w3.org/TR/XMLHttpRequest/ */
+/** From http://www.w3.org/TR/XMLHttpRequest/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("XMLHttpRequestEventTarget") extern class XMLHttpRequestEventTarget extends EventTarget {
 
 	var onloadstart : Null<Event -> Void>;

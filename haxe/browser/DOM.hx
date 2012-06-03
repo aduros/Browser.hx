@@ -33,13 +33,15 @@ import browser.CSS;
 @:native("UIEventInit") extern class UIEventInit extends EventInit {
 }
 
-/** From http://www.w3.org/TR/selectors-api/ */
+/** From http://www.w3.org/TR/selectors-api/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("NodeSelector") extern class NodeSelector {
 	function querySelector( selectors : String ) : Element;
 	function querySelectorAll( selectors : String ) : NodeList;
 }
 
-/** From http://dev.w3.org/geo/api/spec-source-v2.html */
+/** From http://dev.w3.org/geo/api/spec-source-v2.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("PositionErrorCallback") extern class PositionErrorCallback {
 	function handleEvent( error : PositionError ) : Void;
 }
@@ -200,7 +202,8 @@ import browser.CSS;
 	var offsetY(default,null) : Int;
 }
 
-/** From http://www.w3.org/TR/DOM-Level-3-Events/ */
+/** From http://www.w3.org/TR/DOM-Level-3-Events/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("DocumentEvent") extern class DocumentEvent {
 
 	@:overload( function( eventInterface : String ) : Event {})
@@ -227,7 +230,8 @@ import browser.CSS;
 
 }
 
-/** From http://www.w3.org/TR/DOM-Level-3-Events/ */
+/** From http://www.w3.org/TR/DOM-Level-3-Events/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("EventTarget") extern class EventTarget {
 	@:overload( function( type : String, listener : Event -> Void, ?useCapture : Bool ) : Void {})
 	@:overload( function( type : String, listener : Event -> Void, useCapture : Bool ) : Void {})
@@ -244,7 +248,8 @@ import browser.CSS;
 
 }
 
-/** From http://www.w3.org/TR/dom/ */
+/** From http://www.w3.org/TR/dom/
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("DOMStringList") extern class DOMStringList implements ArrayAccess<Null<String>> {
 	var length(default,null) : Int;
 	function contains( string : String ) : Bool;
@@ -340,7 +345,8 @@ import browser.CSS;
 	function caretPositionFromPoint( x : Float, y : Float ) : Null<CaretPosition>;
 }
 
-/** From http://dev.w3.org/geo/api/spec-source-v2.html */
+/** From http://dev.w3.org/geo/api/spec-source-v2.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("Address") extern class Address {
 	var country(default,null) : Null<String>;
 	var region(default,null) : Null<String>;
@@ -364,12 +370,14 @@ import browser.CSS;
 	var pageY(default,null) : Int;
 }
 
-/** From http://dev.w3.org/geo/api/spec-source-v2.html */
+/** From http://dev.w3.org/geo/api/spec-source-v2.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("NavigatorGeolocation") extern class NavigatorGeolocation {
 	var geolocation(default,null) : Geolocation;
 }
 
-/** From http://dev.w3.org/geo/api/spec-source-v2.html */
+/** From http://dev.w3.org/geo/api/spec-source-v2.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("Coordinates") extern class Coordinates {
 	var latitude(default,null) : Null<Float>;
 	var longitude(default,null) : Null<Float>;
@@ -589,7 +597,8 @@ import browser.CSS;
 	var cancelable : Bool;
 }
 
-/** From http://dev.w3.org/geo/api/spec-source-v2.html */
+/** From http://dev.w3.org/geo/api/spec-source-v2.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("PositionError") extern class PositionError {
 	static inline var PERMISSION_DENIED : Int = 1;
 	static inline var POSITION_UNAVAILABLE : Int = 2;
@@ -609,7 +618,8 @@ import browser.CSS;
 
 }
 
-/** From http://dev.w3.org/geo/api/spec-source-v2.html */
+/** From http://dev.w3.org/geo/api/spec-source-v2.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("Geolocation") extern class Geolocation {
 	function getCurrentPosition( successCallback : PositionCallback, ?errorCallback : PositionErrorCallback, ?options : PositionOptions ) : Void;
 	function watchPosition( successCallback : PositionCallback, ?errorCallback : PositionErrorCallback, ?options : PositionOptions ) : Int;
@@ -683,7 +693,8 @@ import browser.CSS;
 
 }
 
-/** From http://www.w3.org/TR/DOM-Level-2-Views/idl/views.idl */
+/** From http://www.w3.org/TR/DOM-Level-2-Views/idl/views.idl
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("AbstractView") extern class AbstractView {
 	var document(default,null) : DocumentView;
 }
@@ -702,7 +713,8 @@ import browser.CSS;
 	function querySelectorAll( selectors : String ) : NodeList;
 }
 
-/** From http://dev.w3.org/geo/api/spec-source-v2.html */
+/** From http://dev.w3.org/geo/api/spec-source-v2.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("Position") extern class Position {
 	var coords(default,null) : Null<Coordinates>;
 	var address(default,null) : Null<Address>;
@@ -763,7 +775,8 @@ import browser.CSS;
 @:native("Comment") extern class Comment extends CharacterData {
 }
 
-/** From http://dev.w3.org/geo/api/spec-source-v2.html */
+/** From http://dev.w3.org/geo/api/spec-source-v2.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("PositionOptions") extern class PositionOptions {
 	var enableHighAccuracy : Bool;
 	var timeout : Int;
@@ -772,7 +785,8 @@ import browser.CSS;
 	var requestAddress : Bool;
 }
 
-/** From http://www.w3.org/TR/DOM-Level-2-Views/idl/views.idl */
+/** From http://www.w3.org/TR/DOM-Level-2-Views/idl/views.idl
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("DocumentView") extern class DocumentView {
 	var defaultView(default,null) : AbstractView;
 }
@@ -839,7 +853,8 @@ import browser.CSS;
 	var localName(default,null) : String;
 }
 
-/** From http://dev.w3.org/geo/api/spec-source-v2.html */
+/** From http://dev.w3.org/geo/api/spec-source-v2.html
+ * NOTE: This is a fake class, and is not available at run-time. */
 @:native("PositionCallback") extern class PositionCallback {
 	function handleEvent( position : Position ) : Void;
 }

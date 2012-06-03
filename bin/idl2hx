@@ -34,15 +34,14 @@ use constant WIDTH => 68;
 
 my @files = @ARGV;
 
+# Known fake classes that aren't marked as such in specs
 my %fake = (
-    Window => 1,
     DocumentEvent => 1,
     DOMLocator => 1,
     DOMConfiguration => 1,
     TypeInfo => 1,
     AbstractView => 1,
     DocumentView => 1,
-
     EventTarget => 1,
     XMLHttpRequestEventTarget => 1,
 );
@@ -299,10 +298,9 @@ sub parse_idls {
                 }
 
                 if($attrs =~ /\b NoInterfaceObject \b/xms) {
-                    #$def->{skip} = 1;
+                    $def->{fake} = 1;
                 }
             }
-
 
             while($members =~ m{
                     (?<comments> $rx_comments)
@@ -513,7 +511,11 @@ sub generate_haxe {
         }
         $classdecl .= join(",", @interfaces);
 
-        say $fh "/** From $def->{file} */\n", $classdecl, " {";
+        my $comment = "From $def->{file}";
+        if ($def->{fake}) {
+            $comment .= "\n * NOTE: This is a fake class, and is not available at run-time.";
+        }
+        say $fh "/** $comment */\n", $classdecl, " {";
 
         my @members = @{$def->{members}};
 
