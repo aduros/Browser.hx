@@ -502,9 +502,9 @@ sub generate_haxe {
         if(exists $def->{array_access}) {
             push(@interfaces, " implements ArrayAccess<" . $def->{array_access} . ">");
         }
-        if(exists $def->{dynamic_access}) {
-            push(@interfaces, " implements Dynamic<" . $def->{dynamic_access} . ">");
-        }
+        # if(exists $def->{dynamic_access}) {
+        #     push(@interfaces, " implements Dynamic<" . $def->{dynamic_access} . ">");
+        # }
         $classdecl .= join(",", @interfaces);
 
         my $comment = "From $def->{file}";

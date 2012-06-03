@@ -263,7 +263,7 @@ import browser.CSS;
 }
 
 /** From http://www.w3.org/TR/html5/single-page.html */
-@:native("HTMLSelectElement") extern class HTMLSelectElement extends HTMLElement, implements ArrayAccess<Element>, implements Dynamic<Dynamic> {
+@:native("HTMLSelectElement") extern class HTMLSelectElement extends HTMLElement, implements ArrayAccess<Element> {
 	var autofocus : Bool;
 	var disabled : Bool;
 	var form(default,null) : Null<HTMLFormElement>;
