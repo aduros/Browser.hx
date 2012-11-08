@@ -1,3 +1,4 @@
+import itertools
 import re
 
 from idlnode import *
@@ -118,7 +119,21 @@ def render(idl_node, package=None):
             if node.operations:
                 wln()
                 wln("/* Operations */")
-                w(sort(node.operations))
+                for id, group in itertools.groupby(sort(node.operations), lambda node: node.id):
+                    group = list(group)
+                    ll = len(group)
+                    if ll > 1:
+                        wln()
+                        for ii, overload in enumerate(group):
+                            if ii < ll-1:
+                                w("@:overload(function (")
+                                w(overload.arguments, ", ")
+                                wln(") :%s {})" % to_haxe(overload.type.id))
+                            else:
+                                w(overload)
+                        wln()
+                    else:
+                        w(group[0])
             end_indent()
             wln("}")
 
