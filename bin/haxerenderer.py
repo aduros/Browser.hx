@@ -36,6 +36,10 @@ haxe_idl_types = {
     "void": "Void",
 }
 
+haxe_keywords = [
+    "callback",
+]
+
 def to_haxe(id):
     match = re.match(r"(?:sequence<(\w+)>|(\w+)\[\])$", id)
     if match:
@@ -53,6 +57,11 @@ def array_access(interface):
     elif "TypedArray" in interface.ext_attrs:
         return interface.ext_attrs["TypedArray"]
     return None
+
+def escape_keyword(id):
+    if id in haxe_keywords:
+        return id+"_"
+    return id
 
 def render(idl_node, package=None):
     output = []
@@ -237,7 +246,7 @@ def render(idl_node, package=None):
 
         elif isinstance(node, IDLArgument):
             wsp(node.ext_attrs)
-            w("%s :%s" % (node.id, to_haxe(node.type.id)))
+            w("%s :%s" % (escape_keyword(node.id), to_haxe(node.type.id)))
 
         else:
             raise TypeError("Expected str or IDLNode but %s found" %
