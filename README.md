@@ -1,24 +1,18 @@
-Browser.hx
-==========
+# Browser.hx
 
 Automatically generated Haxe externs for HTML5 and other Javascript APIs. Since
 they're generated, you can be sure they're complete, correct, and up to date.
 
-What you get
-------------
+## Building
 
-- [DOM](http://www.w3.org/TR/dom/)
-- [XMLHttpRequest](http://www.w3.org/TR/XMLHttpRequest/)
-- [Multiple](http://dev.w3.org/csswg/cssom/) [CSS](http://dev.w3.org/csswg/cssom-view/) [APIs](http://www.w3.org/TR/selectors-api2/)
-- [HTML5](http://www.w3.org/TR/html5/single-page.html)
-- [File API](http://www.w3.org/TR/FileAPI/)
-- [Touch Events](http://www.w3.org/TR/touch-events/)
-- [WebSockets](http://dev.w3.org/html5/websockets/)
-- [Geolocation API](http://dev.w3.org/geo/api/spec-source-v2.html)
-- [Web Storage](http://dev.w3.org/html5/webstorage/)
-- [Typed Arrays](https://www.khronos.org/registry/typedarray/specs/latest/typedarray.idl)
-- [WebGL](https://www.khronos.org/registry/webgl/specs/latest/webgl.idl)
-- [IndexedDB](http://www.w3.org/TR/IndexedDB/)
+1. Put a copy of WebCore into this directory:
 
-Huge thanks to [JSX](https://github.com/jsx/JSX) and their idl2jsx tool which
-this project is based on.
+    svn checkout http://svn.webkit.org/repository/webkit/trunk/Source/WebCore/
+
+2. Build the preprocessed IDL database:
+
+    bin/build-database
+
+3. Generate Haxe externs from the database:
+
+    bin/generate-haxe

@@ -1,1 +1,4 @@
-.idl2hx.bin
+*.pyc
+WebCore
+database
+generated
