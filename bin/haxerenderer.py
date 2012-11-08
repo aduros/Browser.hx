@@ -133,8 +133,6 @@ def render(idl_node, package=None):
             w(node.typeDefs)
 
         elif isinstance(node, IDLInterface):
-            # if node.annotations:
-            #     wln(node.annotations)
             if node.ext_attrs:
                 wln(node.ext_attrs)
             interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
@@ -187,23 +185,6 @@ def render(idl_node, package=None):
             end_indent()
             wln("}")
 
-        elif isinstance(node, IDLAnnotations):
-            pass
-            # sep = ""
-            # for (name, annotation) in sorted(node.items()):
-            #     w(sep)
-            #     sep = " "
-            #     if annotation and len(annotation):
-            #         subRes = []
-            #         for (argName, argValue) in sorted(annotation.items()):
-            #             if argValue is None:
-            #                 subRes.append(argName)
-            #             else:
-            #                 subRes.append("%s=%s" % (argName, argValue))
-            #         w("@%s(%s)" % (name, ", ".join(subRes)))
-            #     else:
-            #         w("@%s" % name)
-
         elif isinstance(node, IDLExtAttrs):
             if len(node):
                 w("[")
@@ -231,7 +212,6 @@ def render(idl_node, package=None):
             w(")")
 
         elif isinstance(node, IDLAttribute):
-            wsp(node.annotations)
             wsp(node.ext_attrs)
             w("var %s " % node.id)
             if node.is_read_only:
@@ -247,12 +227,10 @@ def render(idl_node, package=None):
             # wln(";")
 
         elif isinstance(node, IDLConstant):
-            wsp(node.annotations)
             wsp(node.ext_attrs)
             wln("static inline var %s : %s = %s;" % (node.id, to_haxe(node.type.id), node.value))
 
         elif isinstance(node, IDLOperation):
-            wsp(node.annotations)
             wsp(node.ext_attrs)
             if node.is_static:
                 w("static ")
