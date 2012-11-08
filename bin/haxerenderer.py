@@ -27,12 +27,19 @@ haxe_idl_types = {
     "DOMObject": "Dynamic",
     "DOMString": "String",
     "DOMTimeStamp": "Int", # Float?
+    "Dictionary": "Dynamic",
     "object": "Dynamic",
-    "ObjectArray": "Array",
+
+    "Array": "Array<Dynamic>",
+    "ObjectArray": "Array<Dynamic>",
+    "sequence": "Array<Dynamic>",
+
+    # Where did these go?
     "PositionOptions": "Dynamic",
     "SerializedScriptValue": "Dynamic",
+    "TimeoutHandler": "Void->Void",
+    "CompareHow": "Int",
 
-    "sequence": "Array",
     "void": "Void",
 }
 
