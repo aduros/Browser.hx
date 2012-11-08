@@ -213,7 +213,7 @@ def render(idl_node, package=None):
 
         elif isinstance(node, IDLAttribute):
             wsp(node.ext_attrs)
-            w("var %s " % node.id)
+            w("var %s " % escape_keyword(node.id))
             if node.is_read_only:
                 w("(default,null) ")
             wln(":%s;" % to_haxe(node.type.id))
@@ -228,7 +228,7 @@ def render(idl_node, package=None):
 
         elif isinstance(node, IDLConstant):
             wsp(node.ext_attrs)
-            wln("static inline var %s : %s = %s;" % (node.id, to_haxe(node.type.id), node.value))
+            wln("static inline var %s : %s = %s;" % (escape_keyword(node.id), to_haxe(node.type.id), node.value))
 
         elif isinstance(node, IDLOperation):
             wsp(node.ext_attrs)
@@ -237,7 +237,7 @@ def render(idl_node, package=None):
             if node.specials:
                 w(node.specials, " ")
                 w(" ")
-            w("function %s (" % node.id)
+            w("function %s (" % escape_keyword(node.id))
             w(node.arguments, ", ")
             wln(") :%s;" % to_haxe(node.type.id))
             # if node.raises:
