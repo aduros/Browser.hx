@@ -139,7 +139,12 @@ def render(idl_node, package=None):
             if node.attributes:
                 wln()
                 wln("/* Attributes */")
-                w(sort(node.attributes))
+                attributes = sort(node.attributes)
+                if "ExtendsDOMGlobalObject" in node.ext_attrs:
+                    # Omit class contructors from the global object
+                    w([x for x in attributes if not x.type.id.endswith("Constructor")])
+                else:
+                    w(attributes)
             if node.operations:
                 wln()
                 wln("/* Operations */")
