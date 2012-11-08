@@ -123,7 +123,8 @@ def render(idl_node, package=None):
             #     wln(node.annotations)
             if node.ext_attrs:
                 wln(node.ext_attrs)
-            w("@:native(\"%s\") extern class %s" % (node.id, node.id))
+            interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
+            w("@:native(\"%s\") extern class %s" % (interface_name, node.id))
             if node.parents:
                 w(" extends ")
                 w(node.parents, ", extends ")
