@@ -45,6 +45,9 @@ haxe_idl_types = {
 
 haxe_keywords = [
     "callback",
+    "continue",
+    "default",
+    "override",
 ]
 
 def to_haxe(id):
