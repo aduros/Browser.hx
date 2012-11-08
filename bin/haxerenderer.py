@@ -48,6 +48,10 @@ haxe_keywords = [
 ]
 
 def to_haxe(id):
+    if id.endswith("..."):
+        # TODO(bruno): Support varargs somehow. Probably by emitting a few @:overloads
+        id = id[:-3]
+
     match = re.match(r"(?:sequence<(\w+)>|(\w+)\[\])$", id)
     if match:
         return "Array<%s>" % to_haxe(match.group(1) or match.group(2))
