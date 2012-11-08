@@ -133,8 +133,6 @@ def render(idl_node, package=None):
             w(node.typeDefs)
 
         elif isinstance(node, IDLInterface):
-            if node.ext_attrs:
-                wln(node.ext_attrs)
             interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
             w("@:native(\"%s\") extern class %s" % (interface_name, node.id))
 
@@ -212,7 +210,6 @@ def render(idl_node, package=None):
             w(")")
 
         elif isinstance(node, IDLAttribute):
-            wsp(node.ext_attrs)
             w("var %s " % escape_keyword(node.id))
             if node.is_read_only:
                 w("(default,null) ")
@@ -227,11 +224,9 @@ def render(idl_node, package=None):
             # wln(";")
 
         elif isinstance(node, IDLConstant):
-            wsp(node.ext_attrs)
             wln("static inline var %s : %s = %s;" % (escape_keyword(node.id), to_haxe(node.type.id), node.value))
 
         elif isinstance(node, IDLOperation):
-            wsp(node.ext_attrs)
             if node.is_static:
                 w("static ")
             if node.specials:
