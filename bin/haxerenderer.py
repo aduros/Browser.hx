@@ -136,12 +136,18 @@ def render(idl_node, package=None):
                 wln(node.ext_attrs)
             interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
             w("@:native(\"%s\") extern class %s" % (interface_name, node.id))
+
+            inherits = []
             if node.parents:
-                w(" extends ")
-                w(node.parents, ", extends ")
+                if len(node.parents) > 1:
+                    print("Removing excess superclasses from %s" % node.id)
+                inherits.append("extends %s" % to_haxe(node.parents[0].type.id))
             array_type = array_access(node)
             if array_type:
-                w(" implements ArrayAccess<%s>" % to_haxe(array_type))
+                inherits.append("implements ArrayAccess<%s>" % to_haxe(array_type))
+            if inherits:
+                w(" " + ", ".join(inherits))
+
             wln(" {")
             begin_indent()
             if node.constants:
@@ -177,10 +183,6 @@ def render(idl_node, package=None):
                         w(group[0])
             end_indent()
             wln("}")
-
-        elif isinstance(node, IDLParentInterface):
-            wsp(node.annotations)
-            w(to_haxe(node.type.id))
 
         elif isinstance(node, IDLAnnotations):
             pass
