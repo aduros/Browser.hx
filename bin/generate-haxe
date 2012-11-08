@@ -14,13 +14,13 @@ logging.config.fileConfig(os.path.join(current_dir, "logging.conf"))
 _logger = logging.getLogger("generate-haxe")
 
 def generate_interface(interface):
-    file_path = os.path.join(root_dir, "generated", interface.id+".hx")
+    file_path = os.path.join(root_dir, "generated", "browser", interface.id+".hx")
     _logger.info("Generating %s" % file_path)
 
     dir_name = os.path.dirname(file_path)
     if not os.path.exists(dir_name):
         _logger.debug("Creating directory %s" % dir_name)
-        os.mkdir(dir_name)
+        os.makedirs(dir_name)
 
     # Render the IDLInterface object into text.
     text = haxerenderer.render(interface, "browser")
