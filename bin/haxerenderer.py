@@ -1,4 +1,45 @@
+import re
+
 from idlnode import *
+
+haxe_idl_types = {
+    "boolean": "Bool",
+    "byte": "Int",
+    "octet": "Int",
+    "short": "Int",
+    "unsigned short": "Int",
+    "int": "Int",
+    "unsigned int": "Int",
+    "long": "Int", # Float?
+    "unsigned long": "Int", # Float?
+    "long long": "Int", # Float?
+    "unsigned long long": "Int", # Float?
+    "float": "Float",
+    "double": "Float",
+
+    "any": "Dynamic",
+    "custom": "Dynamic",
+    # "Date": "Float",
+    "DOMObject": "Dynamic",
+    "DOMString": "String",
+    "DOMTimeStamp": "Int", # Float?
+    "object": "Dynamic",
+    "ObjectArray": "Array",
+    "PositionOptions": "Dynamic",
+    "SerializedScriptValue": "Dynamic",
+
+    "sequence": "Array",
+    "void": "Void",
+}
+
+def to_haxe(id):
+    match = re.match(r"(?:sequence<(\w+)>|(\w+)\[\])$", id)
+    if match:
+        return "Array<%s>" % to_haxe(match.group(1) or match.group(2))
+
+    if id in haxe_idl_types:
+        return haxe_idl_types.get(id)
+    return id
 
 def render(idl_node, package=None):
     output = []
@@ -83,7 +124,7 @@ def render(idl_node, package=None):
 
         elif isinstance(node, IDLParentInterface):
             wsp(node.annotations)
-            w(node.type.id)
+            w(to_haxe(node.type.id))
 
         elif isinstance(node, IDLAnnotations):
             pass
@@ -134,20 +175,20 @@ def render(idl_node, package=None):
             w("var %s " % node.id)
             if node.is_read_only:
                 w("(default,null) ")
-            wln(":%s;" % node.type.id)
+            wln(":%s;" % to_haxe(node.type.id))
             # if node.raises:
             #     w(" raises (%s)" % node.raises.id)
             # else:
             #     if node.get_raises:
-            #         w(" getraises (%s)" % node.get_raises.id)
+            #         w(" getraises (%s)" % to_haxe(node.get_raises.id))
             #     if node.set_raises:
-            #         w(" setraises (%s)" % node.set_raises.id)
+            #         w(" setraises (%s)" % to_haxe(node.set_raises.id))
             # wln(";")
 
         elif isinstance(node, IDLConstant):
             wsp(node.annotations)
             wsp(node.ext_attrs)
-            wln("static inline var %s : %s = %s;" % (node.id, node.type.id, node.value))
+            wln("static inline var %s : %s = %s;" % (node.id, to_haxe(node.type.id), node.value))
 
         elif isinstance(node, IDLOperation):
             wsp(node.annotations)
@@ -159,14 +200,14 @@ def render(idl_node, package=None):
                 w(" ")
             w("function %s (" % node.id)
             w(node.arguments, ", ")
-            wln(") :%s;" % node.type.id)
+            wln(") :%s;" % to_haxe(node.type.id))
             # if node.raises:
-            #     w(" raises (%s)" % node.raises.id)
+            #     w(" raises (%s)" % to_haxe(node.raises.id))
             # wln(";")
 
         elif isinstance(node, IDLArgument):
             wsp(node.ext_attrs)
-            w("%s :%s" % (node.id, node.type.id))
+            w("%s :%s" % (node.id, to_haxe(node.type.id)))
 
         else:
             raise TypeError("Expected str or IDLNode but %s found" %
