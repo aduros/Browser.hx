@@ -6,6 +6,9 @@ from idlnode import *
 haxe_idl_types = {
     "boolean": "Bool",
     "byte": "Int",
+    "char": "Int",
+    "signed char": "Int",
+    "unsigned char": "Int",
     "octet": "Int",
     "short": "Int",
     "unsigned short": "Int",
@@ -41,6 +44,15 @@ def to_haxe(id):
     if id in haxe_idl_types:
         return haxe_idl_types.get(id)
     return id
+
+def array_access(interface):
+    if "IndexedGetter" in interface.ext_attrs:
+        for op in interface.operations:
+            if op.id == "item":
+                return op.type.id
+    elif "TypedArray" in interface.ext_attrs:
+        return interface.ext_attrs["TypedArray"]
+    return None
 
 def render(idl_node, package=None):
     output = []
@@ -106,6 +118,9 @@ def render(idl_node, package=None):
             if node.parents:
                 w(" extends ")
                 w(node.parents, ", extends ")
+            array_type = array_access(node)
+            if array_type:
+                w(" implements ArrayAccess<%s>" % to_haxe(array_type))
             wln(" {")
             begin_indent()
             if node.constants:
