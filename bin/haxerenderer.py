@@ -245,7 +245,8 @@ def render(idl_node, package=None):
             # wln(";")
 
         elif isinstance(node, IDLArgument):
-            wsp(node.ext_attrs)
+            if "Optional" in node.ext_attrs and node.ext_attrs["Optional"] is None:
+                w("?")
             w("%s :%s" % (escape_keyword(node.id), to_haxe(node.type.id)))
 
         else:
