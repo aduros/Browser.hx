@@ -78,6 +78,11 @@ def array_access(interface):
         return interface.ext_attrs["TypedArray"]
     return None
 
+def constructable(interface):
+    """Returns whether the interface has a constructor."""
+    return set(["CustomConstructor", "V8CustomConstructor", "Constructor",
+        "NamedConstructor", "ConstructorTemplate"]) & set(interface.ext_attrs)
+
 def escape_keyword(id):
     """Escapes a Haxe keyword."""
     if id in haxe_keywords:
@@ -194,6 +199,38 @@ def render(db, idl_node, package=None):
                     w([x for x in attributes if not x.type.id.endswith("Constructor")])
                 else:
                     w(attributes)
+            if constructable(node):
+                constructors = []
+                if "ConstructorTemplate" in node.ext_attrs:
+                    template = node.ext_attrs["ConstructorTemplate"]
+                    if template == "Event":
+                        constructors += [
+                            ["type :String", "canBubble :Bool = true", "cancelable :Bool = true"],
+                        ]
+                    elif template == "TypedArray":
+                        array_type = to_haxe(node.ext_attrs["TypedArray"])
+                        constructors += [
+                            ["array :ArrayBufferView"],
+                            ["array :Array<"+array_type+">"],
+                            ["buffer :Array<"+array_type+">", "?byteOffset :Int", "?length :Int"],
+                            ["length :Int"],
+                        ]
+                    else:
+                        raise TypeError("Unrecognized ConstructorTemplate for " + node.id)
+                elif "ConstructorParameters" in node.ext_attrs:
+                    c = []
+                    for ii in range(int(node.ext_attrs["ConstructorParameters"])):
+                        c += ["?arg%s :Dynamic" % ii]
+                    constructors += [c]
+                else:
+                    constructors += [[]]
+                wln()
+                for ii, c in enumerate(constructors):
+                    args = ", ".join(c)
+                    if ii < len(constructors)-1:
+                        wln("@:overload(function (%s) :Void {})" % args)
+                    else:
+                        wln("function new (%s) :Void;" % args)
             if node.operations:
                 wln()
                 wln("/* Operations */")
