@@ -3,6 +3,7 @@
 import os
 import logging
 import logging.config
+import json
 
 import database
 import haxerenderer
@@ -16,6 +17,9 @@ _logger = logging.getLogger("generate-haxe")
 db = database.Database(os.path.join(root_dir, "database"))
 db.LoadFromCache()
 
+with open("mdn.json") as f:
+    mdn = json.load(f)
+
 def generate_interface(interface):
     file_path = os.path.join(root_dir, "generated", "browser", interface.id+".hx")
     _logger.info("Generating %s" % file_path)
@@ -26,11 +30,10 @@ def generate_interface(interface):
         os.makedirs(dir_name)
 
     # Render the IDLInterface object into text.
-    text = haxerenderer.render(db, interface, "browser")
+    text = haxerenderer.render(db, interface, mdn, package="browser")
 
-    f = open(file_path, "w")
-    f.write(text)
-    f.close()
+    with open(file_path, "w") as f:
+        f.write(text.encode("utf8"))
 
 for interface in db.GetInterfaces():
     generate_interface(interface)

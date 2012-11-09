@@ -89,7 +89,7 @@ def escape_keyword(id):
         return id+"_"
     return id
 
-def render(db, idl_node, package=None):
+def render(db, idl_node, mdn, package=None):
     output = []
     indent_stack = []
     EventTarget = db.GetInterface("EventTarget")
@@ -136,6 +136,11 @@ def render(db, idl_node, package=None):
         if mark != len(output):
             w(" ")
 
+    def w_doc(text):
+        text = text.strip()
+        if text != "":
+            wln("/** %s */" % text)
+
     def w(node, list_separator=None):
         """Writes the given node.
 
@@ -147,7 +152,7 @@ def render(db, idl_node, package=None):
         if node is None:
             return
 
-        elif isinstance(node, str):
+        elif isinstance(node, str) or isinstance(node, unicode):
             if output and output[-1].endswith("\n"):
                 # Auto-indent.
                 output.extend(indent_stack)
@@ -168,6 +173,27 @@ def render(db, idl_node, package=None):
             w(node.typeDefs)
 
         elif isinstance(node, IDLInterface):
+            class_doc = None
+            if node.id in mdn:
+                class_doc = mdn[node.id]
+                if "summary" in class_doc:
+                    w_doc(class_doc["summary"])
+
+            def w_member_doc(id):
+                if class_doc and class_doc["members"]:
+                    for member in class_doc["members"]:
+                        if member["name"] == id:
+                            w_doc(member["help"])
+
+            def w_constructor_doc():
+                if class_doc and "constructor" in class_doc:
+                    w_doc(class_doc["constructor"])
+
+            def w_members(members):
+                for member in members:
+                    w_member_doc(member.id)
+                    w(member)
+
             if "Callback" in node.ext_attrs:
                 # Generate a function typedef if this is a callback
                 callback = node.operations[0]
@@ -198,16 +224,16 @@ def render(db, idl_node, package=None):
             if node.constants:
                 wln()
                 wln("/* Constants */")
-                w(sort(node.constants))
+                w_members(sort(node.constants))
             if node.attributes:
                 wln()
                 wln("/* Attributes */")
                 attributes = sort([x for x in node.attributes if not defined_in_parent(node, x.id)])
                 if "ExtendsDOMGlobalObject" in node.ext_attrs:
                     # Omit class contructors from the global object
-                    w([x for x in attributes if not x.type.id.endswith("Constructor")])
+                    w_members([x for x in attributes if not x.type.id.endswith("Constructor")])
                 else:
-                    w(attributes)
+                    w_members(attributes)
             if constructable(node):
                 constructors = []
                 if "ConstructorTemplate" in node.ext_attrs:
@@ -234,6 +260,7 @@ def render(db, idl_node, package=None):
                 else:
                     constructors += [[]]
                 wln()
+                w_constructor_doc()
                 for ii, c in enumerate(constructors):
                     args = ", ".join(c)
                     if ii < len(constructors)-1:
@@ -249,6 +276,7 @@ def render(db, idl_node, package=None):
                     ll = len(group)
                     if ll > 1:
                         wln()
+                        w_member_doc(id)
                         for ii, overload in enumerate(group):
                             if ii < ll-1:
                                 w("@:overload(function (")
