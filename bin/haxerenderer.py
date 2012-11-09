@@ -155,6 +155,16 @@ def render(db, idl_node, package=None):
             w(node.typeDefs)
 
         elif isinstance(node, IDLInterface):
+            if "Callback" in node.ext_attrs:
+                # Generate a function typedef if this is a callback
+                callback = node.operations[0]
+                if callback.arguments:
+                    arguments = " -> ".join([to_haxe(x.type.id) for x in callback.arguments])
+                else:
+                    arguments = "Void"
+                w("typedef %s = %s -> %s;" % (node.id, arguments, to_haxe(callback.type.id)))
+                return
+
             interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
             w("@:native(\"%s\") extern class %s" % (interface_name, node.id))
 
