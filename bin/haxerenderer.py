@@ -1,3 +1,6 @@
+#
+# Renders a single IDL file into Haxe
+
 import itertools
 import re
 
@@ -177,7 +180,10 @@ def render(db, idl_node, mdn, package=None):
             if node.id in mdn:
                 class_doc = mdn[node.id]
                 if "summary" in class_doc:
-                    w_doc(class_doc["summary"])
+                    w_doc("<br><br>\n".join([
+                        class_doc["summary"],
+                        "Documentation for this class was provided by <a href=\"%s\">MDN</a>." % class_doc["srcUrl"]
+                    ]))
 
             def w_member_doc(id):
                 if class_doc and class_doc["members"]:
