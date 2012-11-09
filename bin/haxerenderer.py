@@ -92,6 +92,7 @@ def escape_keyword(id):
 def render(db, idl_node, package=None):
     output = []
     indent_stack = []
+    EventTarget = db.GetInterface("EventTarget")
 
     def begin_indent():
         indent_stack.append("    ")
@@ -101,10 +102,17 @@ def render(db, idl_node, package=None):
     def sort(nodes):
         return sorted(nodes, key=lambda node: node.id)
 
+    def get_parent(interface):
+        if interface.parents:
+            return db.GetInterface(interface.parents[0].type.id)
+        if "EventTarget" in interface.ext_attrs:
+            return EventTarget
+        return None
+
     def defined_in_parent(interface, id):
         """Whether an id is already defined in an interface's parents"""
-        if interface.parents:
-            parent = db.GetInterface(interface.parents[0].type.id)
+        parent = get_parent(interface)
+        if parent:
             if parent.attributes:
                 for attribute in parent.attributes:
                     if attribute.id == id:
@@ -174,10 +182,11 @@ def render(db, idl_node, package=None):
             w("@:native(\"%s\") extern class %s" % (interface_name, node.id))
 
             inherits = []
-            if node.parents:
-                if len(node.parents) > 1:
-                    print("Removing excess superclasses from %s" % node.id)
-                inherits.append("extends %s" % to_haxe(node.parents[0].type.id))
+            parent = get_parent(node)
+            if parent:
+                inherits.append("extends %s" % to_haxe(parent.id))
+            if len(node.parents) > 1:
+                print("Omitting excess superclasses from %s" % node.id)
             array_type = array_access(node)
             if array_type:
                 inherits.append("implements ArrayAccess<%s>" % to_haxe(array_type))
