@@ -189,6 +189,9 @@ def main(parallel=False):
     dir_path = os.path.join(webcore_dir, dir_name)
     os.path.walk(dir_path, visitor, None)
 
+  # Include additional IDLs
+  os.path.walk(os.path.join(current_dir, '..', 'idl'), visitor, None)
+
   database_dir = os.path.join(current_dir, '..', 'database')
   return build_database(idl_files, database_dir, parallel=parallel)
 

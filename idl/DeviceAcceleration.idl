@@ -1,0 +1,6 @@
+[Callback, NoInterfaceObject]
+interface DeviceAcceleration {
+    readonly attribute double x;
+    readonly attribute double y;
+    readonly attribute double z;
+}

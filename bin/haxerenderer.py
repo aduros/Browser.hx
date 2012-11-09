@@ -20,6 +20,7 @@ haxe_idl_types = {
     "unsigned long long": "Int", # Float?
     "float": "Float",
     "double": "Float",
+    "void": "Void",
 
     "any": "Dynamic",
     "custom": "Dynamic",
@@ -41,7 +42,9 @@ haxe_idl_types = {
     "TimeoutHandler": "Void->Void",
     "CompareHow": "Int",
 
-    "void": "Void",
+    # Temporary maybe?
+    "Acceleration": "DeviceAcceleration",
+    "RotationRate": "DeviceRotationRate",
 }
 
 haxe_keywords = [
