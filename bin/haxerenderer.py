@@ -33,6 +33,7 @@ haxe_idl_types = {
     "Array": "Array<Dynamic>",
     "ObjectArray": "Array<Dynamic>",
     "sequence": "Array<Dynamic>",
+    "MutationRecordArray": "Array<MutationRecord>",
 
     # Where did these go?
     "PositionOptions": "Dynamic",
