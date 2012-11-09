@@ -92,7 +92,7 @@ def escape_keyword(id):
         return id+"_"
     return id
 
-def render(db, idl_node, mdn, package=None):
+def render(db, idl_node, mdn, header=None):
     output = []
     indent_stack = []
     EventTarget = db.GetInterface("EventTarget")
@@ -361,8 +361,7 @@ def render(db, idl_node, mdn, package=None):
             raise TypeError("Expected str or IDLNode but %s found" %
                 type(node))
 
-    if package:
-        wln("package %s;" % package)
-        wln()
+    if header:
+        wln(header)
     w(idl_node)
     return "".join(output)
