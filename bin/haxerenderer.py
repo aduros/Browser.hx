@@ -51,6 +51,7 @@ haxe_keywords = [
 ]
 
 def to_haxe(id):
+    """Converts an IDL type name to Haxe."""
     if id.endswith("..."):
         # TODO(bruno): Support varargs somehow. Probably by emitting a few @:overloads
         id = id[:-3]
@@ -64,6 +65,7 @@ def to_haxe(id):
     return id
 
 def array_access(interface):
+    """Returns the type to use for ArrayAccess, or None."""
     if "IndexedGetter" in interface.ext_attrs:
         for op in interface.operations:
             if op.id == "item":
@@ -73,11 +75,12 @@ def array_access(interface):
     return None
 
 def escape_keyword(id):
+    """Escapes a Haxe keyword."""
     if id in haxe_keywords:
         return id+"_"
     return id
 
-def render(idl_node, package=None):
+def render(db, idl_node, package=None):
     output = []
     indent_stack = []
 
@@ -88,6 +91,21 @@ def render(idl_node, package=None):
 
     def sort(nodes):
         return sorted(nodes, key=lambda node: node.id)
+
+    def defined_in_parent(interface, id):
+        """Whether an id is already defined in an interface's parents"""
+        if interface.parents:
+            parent = db.GetInterface(interface.parents[0].type.id)
+            if parent.attributes:
+                for attribute in parent.attributes:
+                    if attribute.id == id:
+                        return True
+            if parent.operations:
+                for operation in parent.operations:
+                    if operation.id == id:
+                        return True
+            return defined_in_parent(parent, id)
+        return False
 
     def wln(node=None):
         """Writes the given node and adds a new line."""
@@ -156,7 +174,7 @@ def render(idl_node, package=None):
             if node.attributes:
                 wln()
                 wln("/* Attributes */")
-                attributes = sort(node.attributes)
+                attributes = sort([x for x in node.attributes if not defined_in_parent(node, x.id)])
                 if "ExtendsDOMGlobalObject" in node.ext_attrs:
                     # Omit class contructors from the global object
                     w([x for x in attributes if not x.type.id.endswith("Constructor")])
@@ -165,7 +183,8 @@ def render(idl_node, package=None):
             if node.operations:
                 wln()
                 wln("/* Operations */")
-                for id, group in itertools.groupby(sort(node.operations), lambda node: node.id):
+                operations = sort([x for x in node.operations if not defined_in_parent(node, x.id)])
+                for id, group in itertools.groupby(operations, lambda node: node.id):
                     group = list(group)
                     ll = len(group)
                     if ll > 1:

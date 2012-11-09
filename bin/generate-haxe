@@ -13,6 +13,9 @@ root_dir = os.path.join(current_dir, "..")
 logging.config.fileConfig(os.path.join(current_dir, "logging.conf"))
 _logger = logging.getLogger("generate-haxe")
 
+db = database.Database(os.path.join(root_dir, "database"))
+db.LoadFromCache()
+
 def generate_interface(interface):
     file_path = os.path.join(root_dir, "generated", "browser", interface.id+".hx")
     _logger.info("Generating %s" % file_path)
@@ -23,14 +26,11 @@ def generate_interface(interface):
         os.makedirs(dir_name)
 
     # Render the IDLInterface object into text.
-    text = haxerenderer.render(interface, "browser")
+    text = haxerenderer.render(db, interface, "browser")
 
     f = open(file_path, "w")
     f.write(text)
     f.close()
-
-db = database.Database(os.path.join(root_dir, "database"))
-db.LoadFromCache()
 
 for interface in db.GetInterfaces():
     generate_interface(interface)
