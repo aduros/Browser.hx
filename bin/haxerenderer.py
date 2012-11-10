@@ -198,7 +198,7 @@ def render(db, idl_node, mdn, header=None):
             def w_members(members):
                 for member in members:
                     w_member_doc(member.id)
-                    w(member)
+                    wln(member)
 
             if "Callback" in node.ext_attrs:
                 # Generate a function typedef if this is a callback
@@ -211,7 +211,8 @@ def render(db, idl_node, mdn, header=None):
                 return
 
             interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
-            w("@:native(\"%s\") extern class %s" % (interface_name, node.id))
+            wln("@:native(\"%s\")" % interface_name)
+            w("extern class %s" % node.id)
 
             inherits = []
             parent = get_parent(node)
@@ -225,15 +226,12 @@ def render(db, idl_node, mdn, header=None):
             if inherits:
                 w(" " + ", ".join(inherits))
 
-            wln(" {")
+            wln()
+            wln("{")
             begin_indent()
             if node.constants:
-                wln()
-                wln("/* Constants */")
                 w_members(sort(node.constants))
             if node.attributes:
-                wln()
-                wln("/* Attributes */")
                 attributes = sort([x for x in node.attributes if not defined_in_parent(node, x.id)])
                 if "ExtendsDOMGlobalObject" in node.ext_attrs:
                     # Omit class contructors from the global object
@@ -265,7 +263,6 @@ def render(db, idl_node, mdn, header=None):
                     constructors += [c]
                 else:
                     constructors += [[]]
-                wln()
                 w_constructor_doc()
                 for ii, c in enumerate(constructors):
                     args = ", ".join(c)
@@ -273,15 +270,13 @@ def render(db, idl_node, mdn, header=None):
                         wln("@:overload(function (%s) :Void {})" % args)
                     else:
                         wln("function new (%s) :Void;" % args)
-            if node.operations:
                 wln()
-                wln("/* Operations */")
+            if node.operations:
                 operations = sort([x for x in node.operations if not defined_in_parent(node, x.id)])
                 for id, group in itertools.groupby(operations, lambda node: node.id):
                     group = list(group)
                     ll = len(group)
                     if ll > 1:
-                        wln()
                         w_member_doc(id)
                         for ii, overload in enumerate(group):
                             if ii < ll-1:
@@ -289,10 +284,9 @@ def render(db, idl_node, mdn, header=None):
                                 w(overload.arguments, ", ")
                                 wln(") :%s {})" % to_haxe(overload.type.id))
                             else:
-                                w(overload)
-                        wln()
+                                wln(overload)
                     else:
-                        w(group[0])
+                        wln(group[0])
             end_indent()
             wln("}")
 
@@ -337,7 +331,7 @@ def render(db, idl_node, mdn, header=None):
             # wln(";")
 
         elif isinstance(node, IDLConstant):
-            wln("static inline var %s : %s = %s;" % (escape_keyword(node.id), to_haxe(node.type.id), node.value))
+            wln("static inline var %s :%s = %s;" % (escape_keyword(node.id), to_haxe(node.type.id), node.value))
 
         elif isinstance(node, IDLOperation):
             if node.is_static:
