@@ -32,8 +32,9 @@ with open("mdn-css.json") as f:
     mdn_css = json.load(f)
 
 def generate_interface(interface):
-    file_path = os.path.join(root_dir, "generated", "browser", interface.id+".hx")
-    _logger.info("Generating %s" % file_path)
+    file_path = os.path.join(root_dir, "generated", "browser",
+        haxerenderer.to_haxe(interface.id)+".hx")
+    _logger.debug("Generating %s" % file_path)
 
     dir_name = os.path.dirname(file_path)
     if not os.path.exists(dir_name):

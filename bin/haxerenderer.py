@@ -69,7 +69,7 @@ def to_haxe(id):
 
     if id in haxe_idl_types:
         return haxe_idl_types.get(id)
-    return id
+    return strip_vendor(id)
 
 def array_access(interface):
     """Returns the type to use for ArrayAccess, or None."""
@@ -90,7 +90,32 @@ def escape_keyword(id):
     """Escapes a Haxe keyword."""
     if id in haxe_keywords:
         return id+"_"
+    return strip_vendor(id)
+
+def strip_vendor(id):
+    """Strips vendor prefixes (webkit) from an id."""
+    id = re.sub(r"^WebKit", "", id)
+    id = re.sub(r"^WEBKIT_", "", id)
+    id = re.sub(r"^onwebkit", "on", id)
+    id = re.sub(r"^initWebKit", "init", id) # Used in some Events
+    if id.startswith("webkit"):
+        id = re.sub(r"^webkit", "", id)
+        id = id[0].lower() + id[1:]
     return id
+
+def strip_vendor_fields(nodes, remove=True):
+    for node in nodes:
+        stripped = strip_vendor(node.id)
+        if stripped != node.id:
+            if remove:
+                exists = False
+                for x in nodes:
+                    if x.id == stripped:
+                        exists = True
+                if exists:
+                    nodes.remove(node)
+                    continue
+            node.id = stripped
 
 def is_callback(node):
     return "Callback" in node.ext_attrs \
@@ -216,8 +241,11 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                 return
 
             interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
-            wln("@:native(\"%s\")" % interface_name)
-            w("extern class %s" % node.id)
+            wln("@:native(\"%s\")" % strip_vendor(interface_name))
+            w("extern class %s" % strip_vendor(node.id))
+            strip_vendor_fields(node.constants)
+            strip_vendor_fields(node.attributes)
+            strip_vendor_fields(node.operations, False)
 
             inherits = []
             parent = get_parent(node)
