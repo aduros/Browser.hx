@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import datetime
 import json
 import logging
 import logging.config
@@ -19,10 +18,10 @@ header = """//
 // Browser.hx - JS externs for Haxe
 // https://github.com/aduros/Browser.hx/blob/master/LICENSE.txt
 //
-// Generated on %s. Do not edit!
+// This file is generated, do not edit!
 
 package browser;
-""" % datetime.date.today().isoformat()
+"""
 
 db = database.Database(os.path.join(root_dir, "database"))
 db.LoadFromCache()
