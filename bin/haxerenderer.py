@@ -92,6 +92,11 @@ def escape_keyword(id):
         return id+"_"
     return id
 
+def is_callback(node):
+    return "Callback" in node.ext_attrs \
+        or node.id == "EventListener" \
+        or node.id == "MediaQueryListListener"
+
 def render(db, idl_node, mdn_js, mdn_css, header=None):
     output = []
     indent_stack = []
@@ -200,7 +205,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     w_member_doc(member.id)
                     wln(member)
 
-            if "Callback" in node.ext_attrs:
+            if is_callback(node):
                 # Generate a function typedef if this is a callback
                 callback = node.operations[0]
                 if callback.arguments:
