@@ -290,32 +290,6 @@ def render(db, idl_node, mdn, header=None):
             end_indent()
             wln("}")
 
-        elif isinstance(node, IDLExtAttrs):
-            if len(node):
-                w("[")
-                i = 0
-                for k in sorted(node):
-                    if i > 0:
-                        w(", ")
-                    w(k)
-                    v = node[k]
-                    if v is not None:
-                        if isinstance(v, IDLExtAttrFunctionValue):
-                            if v.id:
-                                w("=")
-                            w(v)
-                        else:
-                            w("=%s" % v.__str__())
-                    i += 1
-                w("]")
-
-        elif isinstance(node, IDLExtAttrFunctionValue):
-            if node.id:
-                w(node.id)
-            w("(")
-            w(node.arguments, ", ")
-            w(")")
-
         elif isinstance(node, IDLAttribute):
             w("var %s " % escape_keyword(node.id))
             if node.is_read_only:
