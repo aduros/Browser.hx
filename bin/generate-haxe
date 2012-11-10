@@ -27,8 +27,10 @@ package browser;
 db = database.Database(os.path.join(root_dir, "database"))
 db.LoadFromCache()
 
-with open("mdn.json") as f:
-    mdn = json.load(f)
+with open("mdn-js.json") as f:
+    mdn_js = json.load(f)
+with open("mdn-css.json") as f:
+    mdn_css = json.load(f)
 
 def generate_interface(interface):
     file_path = os.path.join(root_dir, "generated", "browser", interface.id+".hx")
@@ -40,7 +42,7 @@ def generate_interface(interface):
         os.makedirs(dir_name)
 
     # Render the IDLInterface object into text.
-    text = haxerenderer.render(db, interface, mdn, header=header)
+    text = haxerenderer.render(db, interface, mdn_js, mdn_css, header=header)
 
     with open(file_path, "w") as f:
         f.write(text.encode("utf8"))

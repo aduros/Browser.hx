@@ -92,7 +92,7 @@ def escape_keyword(id):
         return id+"_"
     return id
 
-def render(db, idl_node, mdn, header=None):
+def render(db, idl_node, mdn_js, mdn_css, header=None):
     output = []
     indent_stack = []
     EventTarget = db.GetInterface("EventTarget")
@@ -177,8 +177,8 @@ def render(db, idl_node, mdn, header=None):
 
         elif isinstance(node, IDLInterface):
             class_doc = None
-            if node.id in mdn:
-                class_doc = mdn[node.id]
+            if node.id in mdn_js:
+                class_doc = mdn_js[node.id]
                 if "summary" in class_doc:
                     w_doc("<br><br>\n".join([
                         class_doc["summary"],
@@ -238,6 +238,14 @@ def render(db, idl_node, mdn, header=None):
                     w_members([x for x in attributes if not x.type.id.endswith("Constructor")])
                 else:
                     w_members(attributes)
+            if node.id == "CSSStyleDeclaration":
+                for prop in sorted(mdn_css):
+                    w_doc(mdn_css[prop])
+                    # Convert to camel case
+                    prop = "".join([x[0].upper()+x[1:] for x in prop.split("-")])
+                    prop = prop[0].lower() + prop[1:] # Re-lowercase the first word
+                    wln("var " + prop + " (default,null) :String;")
+                    wln()
             if constructable(node):
                 constructors = []
                 if "ConstructorTemplate" in node.ext_attrs:
