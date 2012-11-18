@@ -12,14 +12,14 @@ TMP_DIR="/tmp/browserhx-$USER"
 mkdir -p "$TMP_DIR"
 rm -rf "$CHXDOC_DIR"
 
-PACKAGE="browser"
+PACKAGE="js.html"
 
 # Generate intermediary haxedoc.xml
 cd "$TMP_DIR"
 haxe -xml haxedoc.xml -debug \
     --macro "include(\"$PACKAGE\", true)" \
     -lib format \
-    --no-output -cp "$ROOT_DIR/generated"
+    -js none.js --no-output -cp "$ROOT_DIR/generated"
 
 # Generate the actual chxdoc directory
 chxdoc -o "$CHXDOC_DIR" haxedoc.xml \

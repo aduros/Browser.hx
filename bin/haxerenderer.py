@@ -295,7 +295,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
 
     def w_typed_shortcut(name, return_type, code):
         w_doc("A typed shortcut for <code>%s</code>." % code)
-        wln("public inline function %s () :%s return cast %s" % (name, return_type, code))
+        wln("public inline function %s () :%s { return cast %s; }" % (name, return_type, code))
 
     def w(node, list_separator=None):
         """Writes the given node.
