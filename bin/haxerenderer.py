@@ -131,49 +131,6 @@ html_elements = {
     "VideoElement": "video",
 }
 
-# Used to generate document.createEvent shortcuts
-html_events = [
-    "AnimationEvent",
-    "AudioProcessingEvent",
-    "BeforeLoadEvent",
-    "CloseEvent",
-    "CompositionEvent",
-    "CustomEvent",
-    "DeviceMotionEvent",
-    "DeviceOrientationEvent",
-    "ErrorEvent",
-    # "Event",
-    "HashChangeEvent",
-    "IDBUpgradeNeededEvent",
-    "IDBVersionChangeEvent",
-    "KeyboardEvent",
-    "MediaKeyEvent",
-    "MediaStreamEvent",
-    "MediaStreamTrackEvent",
-    "MessageEvent",
-    "MouseEvent",
-    "MutationEvent",
-    "OfflineAudioCompletionEvent",
-    "OverflowEvent",
-    "PageTransitionEvent",
-    "PopStateEvent",
-    "ProgressEvent",
-    "RTCDataChannelEvent",
-    "RTCIceCandidateEvent",
-    "SpeechInputEvent",
-    "SpeechRecognitionEvent",
-    "StorageEvent",
-    "SVGZoomEvent",
-    "TextEvent",
-    "TouchEvent",
-    "TrackEvent",
-    "TransitionEvent",
-    "UIEvent",
-    "WebGLContextEvent",
-    "WheelEvent",
-    "XMLHttpRequestProgressEvent",
-]
-
 def to_haxe(id):
     """Converts an IDL type name to Haxe."""
     if id.endswith("..."):
@@ -463,9 +420,6 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             if node.id == "HTMLDocument":
                 for type, tag_name in html_elements.iteritems():
                     w_typed_shortcut("create"+type, type, "createElement(\"%s\")" % tag_name)
-            elif node.id == "Document":
-                for type in html_events:
-                    w_typed_shortcut("create"+type, type, "createEvent(\"%s\")" % type)
             elif node.id == "HTMLCanvasElement":
                 w_typed_shortcut("getContext2d", "CanvasRenderingContext2D", "getContext(\"2d\")")
                 # w_typed_shortcut("getContextWebGL", "WebGLRenderingContext", "getContext(\"webgl\")")
