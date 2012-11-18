@@ -31,6 +31,6 @@ extern class Clipboard
 
     function setData (type :String, data :String) :Bool;
 
-    function setDragImage (image :HTMLImageElement, x :Int, y :Int) :Void;
+    function setDragImage (image :ImageElement, x :Int, y :Int) :Void;
 
 }

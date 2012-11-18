@@ -9,6 +9,6 @@ package js.html;
 @:native("CanvasRenderingContext")
 extern class CanvasRenderingContext
 {
-    var canvas (default,null) :HTMLCanvasElement;
+    var canvas (default,null) :CanvasElement;
 
 }

@@ -6,9 +6,9 @@
 
 package js.html;
 
-@:native("MediaElementAudioSourceNode")
-extern class MediaElementAudioSourceNode extends AudioSourceNode
+@:native("HTMLShadowElement")
+extern class ShadowElement extends HTMLElement
 {
-    var mediaElement (default,null) :MediaElement;
+    var resetStyleInheritance :Bool;
 
 }

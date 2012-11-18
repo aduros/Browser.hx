@@ -13,7 +13,7 @@ extern class HTMLOptionsCollection extends HTMLCollection
 {
     var selectedIndex :Int;
 
-    function add (option :HTMLOptionElement, ?index :Int) :Void;
+    function add (option :OptionElement, ?index :Int) :Void;
 
     function remove (index :Int) :Void;
 

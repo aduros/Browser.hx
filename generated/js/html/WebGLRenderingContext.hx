@@ -815,9 +815,9 @@ extern class WebGLRenderingContext extends CanvasRenderingContext
     /** Throws DOMException. */
     @:overload(function (target :Int, level :Int, internalformat :Int, width :Int, height :Int, border :Int, format :Int, type :Int, pixels :ArrayBufferView) :Void {})
     @:overload(function (target :Int, level :Int, internalformat :Int, format :Int, type :Int, pixels :ImageData) :Void {})
-    @:overload(function (target :Int, level :Int, internalformat :Int, format :Int, type :Int, image :HTMLImageElement) :Void {})
-    @:overload(function (target :Int, level :Int, internalformat :Int, format :Int, type :Int, canvas :HTMLCanvasElement) :Void {})
-    function texImage2D (target :Int, level :Int, internalformat :Int, format :Int, type :Int, video :HTMLVideoElement) :Void;
+    @:overload(function (target :Int, level :Int, internalformat :Int, format :Int, type :Int, image :ImageElement) :Void {})
+    @:overload(function (target :Int, level :Int, internalformat :Int, format :Int, type :Int, canvas :CanvasElement) :Void {})
+    function texImage2D (target :Int, level :Int, internalformat :Int, format :Int, type :Int, video :VideoElement) :Void;
 
     function texParameterf (target :Int, pname :Int, param :Float) :Void;
 
@@ -826,9 +826,9 @@ extern class WebGLRenderingContext extends CanvasRenderingContext
     /** Throws DOMException. */
     @:overload(function (target :Int, level :Int, xoffset :Int, yoffset :Int, width :Int, height :Int, format :Int, type :Int, pixels :ArrayBufferView) :Void {})
     @:overload(function (target :Int, level :Int, xoffset :Int, yoffset :Int, format :Int, type :Int, pixels :ImageData) :Void {})
-    @:overload(function (target :Int, level :Int, xoffset :Int, yoffset :Int, format :Int, type :Int, image :HTMLImageElement) :Void {})
-    @:overload(function (target :Int, level :Int, xoffset :Int, yoffset :Int, format :Int, type :Int, canvas :HTMLCanvasElement) :Void {})
-    function texSubImage2D (target :Int, level :Int, xoffset :Int, yoffset :Int, format :Int, type :Int, video :HTMLVideoElement) :Void;
+    @:overload(function (target :Int, level :Int, xoffset :Int, yoffset :Int, format :Int, type :Int, image :ImageElement) :Void {})
+    @:overload(function (target :Int, level :Int, xoffset :Int, yoffset :Int, format :Int, type :Int, canvas :CanvasElement) :Void {})
+    function texSubImage2D (target :Int, level :Int, xoffset :Int, yoffset :Int, format :Int, type :Int, video :VideoElement) :Void;
 
     function uniform1f (location :WebGLUniformLocation, x :Float) :Void;
 

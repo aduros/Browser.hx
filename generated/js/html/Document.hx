@@ -76,7 +76,7 @@ extern class Document extends Node
     var fullscreenEnabled (default,null) :Bool;
 
     /** Returns the HEAD node of the current document. */
-    var head (default,null) :HTMLHeadElement;
+    var head (default,null) :HeadElement;
 
     var hidden (default,null) :Bool;
 

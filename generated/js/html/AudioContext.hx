@@ -45,7 +45,7 @@ extern class AudioContext extends EventTarget
 
     function createGain () :GainNode;
 
-    function createMediaElementSource (mediaElement :HTMLMediaElement) :MediaElementAudioSourceNode;
+    function createMediaElementSource (mediaElement :MediaElement) :MediaElementAudioSourceNode;
 
     function createMediaStreamSource (mediaStream :MediaStream) :MediaStreamAudioSourceNode;
 
