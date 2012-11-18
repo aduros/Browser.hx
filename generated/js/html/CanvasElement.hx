@@ -28,4 +28,6 @@ extern class CanvasElement extends HTMLElement
 
     function toDataURL (type :String) :String;
 
+    /** A typed shortcut for getContext("2d"). */
+    public inline function getContext2d () :CanvasRenderingContext2D return cast getContext("2d")
 }

@@ -418,6 +418,10 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     w_doc("A typed shortcut for createElement(\"%s\")." % tag_name)
                     wln("public inline function create%s () :%s return cast createElement(\"%s\")" % (
                         type, type, tag_name))
+            elif node.id == "HTMLCanvasElement":
+                w_doc("A typed shortcut for getContext(\"2d\").")
+                wln("public inline function getContext2d () :CanvasRenderingContext2D return cast getContext(\"2d\")")
+                # WebGL's context string isn't finalized yet
             end_indent()
             wln("}")
 
