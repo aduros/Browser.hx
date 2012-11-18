@@ -319,4 +319,80 @@ extern class Document extends Node
 
     function querySelectorAll (selectors :String) :NodeList;
 
+    /** A typed shortcut for <code>createEvent("AnimationEvent")</code>. */
+    public inline function createAnimationEvent () :AnimationEvent return cast createEvent("AnimationEvent")
+    /** A typed shortcut for <code>createEvent("AudioProcessingEvent")</code>. */
+    public inline function createAudioProcessingEvent () :AudioProcessingEvent return cast createEvent("AudioProcessingEvent")
+    /** A typed shortcut for <code>createEvent("BeforeLoadEvent")</code>. */
+    public inline function createBeforeLoadEvent () :BeforeLoadEvent return cast createEvent("BeforeLoadEvent")
+    /** A typed shortcut for <code>createEvent("CloseEvent")</code>. */
+    public inline function createCloseEvent () :CloseEvent return cast createEvent("CloseEvent")
+    /** A typed shortcut for <code>createEvent("CompositionEvent")</code>. */
+    public inline function createCompositionEvent () :CompositionEvent return cast createEvent("CompositionEvent")
+    /** A typed shortcut for <code>createEvent("CustomEvent")</code>. */
+    public inline function createCustomEvent () :CustomEvent return cast createEvent("CustomEvent")
+    /** A typed shortcut for <code>createEvent("DeviceMotionEvent")</code>. */
+    public inline function createDeviceMotionEvent () :DeviceMotionEvent return cast createEvent("DeviceMotionEvent")
+    /** A typed shortcut for <code>createEvent("DeviceOrientationEvent")</code>. */
+    public inline function createDeviceOrientationEvent () :DeviceOrientationEvent return cast createEvent("DeviceOrientationEvent")
+    /** A typed shortcut for <code>createEvent("ErrorEvent")</code>. */
+    public inline function createErrorEvent () :ErrorEvent return cast createEvent("ErrorEvent")
+    /** A typed shortcut for <code>createEvent("HashChangeEvent")</code>. */
+    public inline function createHashChangeEvent () :HashChangeEvent return cast createEvent("HashChangeEvent")
+    /** A typed shortcut for <code>createEvent("IDBUpgradeNeededEvent")</code>. */
+    public inline function createIDBUpgradeNeededEvent () :IDBUpgradeNeededEvent return cast createEvent("IDBUpgradeNeededEvent")
+    /** A typed shortcut for <code>createEvent("IDBVersionChangeEvent")</code>. */
+    public inline function createIDBVersionChangeEvent () :IDBVersionChangeEvent return cast createEvent("IDBVersionChangeEvent")
+    /** A typed shortcut for <code>createEvent("KeyboardEvent")</code>. */
+    public inline function createKeyboardEvent () :KeyboardEvent return cast createEvent("KeyboardEvent")
+    /** A typed shortcut for <code>createEvent("MediaKeyEvent")</code>. */
+    public inline function createMediaKeyEvent () :MediaKeyEvent return cast createEvent("MediaKeyEvent")
+    /** A typed shortcut for <code>createEvent("MediaStreamEvent")</code>. */
+    public inline function createMediaStreamEvent () :MediaStreamEvent return cast createEvent("MediaStreamEvent")
+    /** A typed shortcut for <code>createEvent("MediaStreamTrackEvent")</code>. */
+    public inline function createMediaStreamTrackEvent () :MediaStreamTrackEvent return cast createEvent("MediaStreamTrackEvent")
+    /** A typed shortcut for <code>createEvent("MessageEvent")</code>. */
+    public inline function createMessageEvent () :MessageEvent return cast createEvent("MessageEvent")
+    /** A typed shortcut for <code>createEvent("MouseEvent")</code>. */
+    public inline function createMouseEvent () :MouseEvent return cast createEvent("MouseEvent")
+    /** A typed shortcut for <code>createEvent("MutationEvent")</code>. */
+    public inline function createMutationEvent () :MutationEvent return cast createEvent("MutationEvent")
+    /** A typed shortcut for <code>createEvent("OfflineAudioCompletionEvent")</code>. */
+    public inline function createOfflineAudioCompletionEvent () :OfflineAudioCompletionEvent return cast createEvent("OfflineAudioCompletionEvent")
+    /** A typed shortcut for <code>createEvent("OverflowEvent")</code>. */
+    public inline function createOverflowEvent () :OverflowEvent return cast createEvent("OverflowEvent")
+    /** A typed shortcut for <code>createEvent("PageTransitionEvent")</code>. */
+    public inline function createPageTransitionEvent () :PageTransitionEvent return cast createEvent("PageTransitionEvent")
+    /** A typed shortcut for <code>createEvent("PopStateEvent")</code>. */
+    public inline function createPopStateEvent () :PopStateEvent return cast createEvent("PopStateEvent")
+    /** A typed shortcut for <code>createEvent("ProgressEvent")</code>. */
+    public inline function createProgressEvent () :ProgressEvent return cast createEvent("ProgressEvent")
+    /** A typed shortcut for <code>createEvent("RTCDataChannelEvent")</code>. */
+    public inline function createRTCDataChannelEvent () :RTCDataChannelEvent return cast createEvent("RTCDataChannelEvent")
+    /** A typed shortcut for <code>createEvent("RTCIceCandidateEvent")</code>. */
+    public inline function createRTCIceCandidateEvent () :RTCIceCandidateEvent return cast createEvent("RTCIceCandidateEvent")
+    /** A typed shortcut for <code>createEvent("SpeechInputEvent")</code>. */
+    public inline function createSpeechInputEvent () :SpeechInputEvent return cast createEvent("SpeechInputEvent")
+    /** A typed shortcut for <code>createEvent("SpeechRecognitionEvent")</code>. */
+    public inline function createSpeechRecognitionEvent () :SpeechRecognitionEvent return cast createEvent("SpeechRecognitionEvent")
+    /** A typed shortcut for <code>createEvent("StorageEvent")</code>. */
+    public inline function createStorageEvent () :StorageEvent return cast createEvent("StorageEvent")
+    /** A typed shortcut for <code>createEvent("SVGZoomEvent")</code>. */
+    public inline function createSVGZoomEvent () :SVGZoomEvent return cast createEvent("SVGZoomEvent")
+    /** A typed shortcut for <code>createEvent("TextEvent")</code>. */
+    public inline function createTextEvent () :TextEvent return cast createEvent("TextEvent")
+    /** A typed shortcut for <code>createEvent("TouchEvent")</code>. */
+    public inline function createTouchEvent () :TouchEvent return cast createEvent("TouchEvent")
+    /** A typed shortcut for <code>createEvent("TrackEvent")</code>. */
+    public inline function createTrackEvent () :TrackEvent return cast createEvent("TrackEvent")
+    /** A typed shortcut for <code>createEvent("TransitionEvent")</code>. */
+    public inline function createTransitionEvent () :TransitionEvent return cast createEvent("TransitionEvent")
+    /** A typed shortcut for <code>createEvent("UIEvent")</code>. */
+    public inline function createUIEvent () :UIEvent return cast createEvent("UIEvent")
+    /** A typed shortcut for <code>createEvent("WebGLContextEvent")</code>. */
+    public inline function createWebGLContextEvent () :WebGLContextEvent return cast createEvent("WebGLContextEvent")
+    /** A typed shortcut for <code>createEvent("WheelEvent")</code>. */
+    public inline function createWheelEvent () :WheelEvent return cast createEvent("WheelEvent")
+    /** A typed shortcut for <code>createEvent("XMLHttpRequestProgressEvent")</code>. */
+    public inline function createXMLHttpRequestProgressEvent () :XMLHttpRequestProgressEvent return cast createEvent("XMLHttpRequestProgressEvent")
 }

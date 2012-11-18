@@ -57,7 +57,7 @@ haxe_keywords = [
     "override",
 ]
 
-# Used to generate typed shortcut methods in Document
+# Used to generate document.createElement shortcuts
 html_elements = {
     "AnchorElement": "a",
     "AppletElement": "applet",
@@ -130,6 +130,49 @@ html_elements = {
     # "UnknownElement",
     "VideoElement": "video",
 }
+
+# Used to generate document.createEvent shortcuts
+html_events = [
+    "AnimationEvent",
+    "AudioProcessingEvent",
+    "BeforeLoadEvent",
+    "CloseEvent",
+    "CompositionEvent",
+    "CustomEvent",
+    "DeviceMotionEvent",
+    "DeviceOrientationEvent",
+    "ErrorEvent",
+    # "Event",
+    "HashChangeEvent",
+    "IDBUpgradeNeededEvent",
+    "IDBVersionChangeEvent",
+    "KeyboardEvent",
+    "MediaKeyEvent",
+    "MediaStreamEvent",
+    "MediaStreamTrackEvent",
+    "MessageEvent",
+    "MouseEvent",
+    "MutationEvent",
+    "OfflineAudioCompletionEvent",
+    "OverflowEvent",
+    "PageTransitionEvent",
+    "PopStateEvent",
+    "ProgressEvent",
+    "RTCDataChannelEvent",
+    "RTCIceCandidateEvent",
+    "SpeechInputEvent",
+    "SpeechRecognitionEvent",
+    "StorageEvent",
+    "SVGZoomEvent",
+    "TextEvent",
+    "TouchEvent",
+    "TrackEvent",
+    "TransitionEvent",
+    "UIEvent",
+    "WebGLContextEvent",
+    "WheelEvent",
+    "XMLHttpRequestProgressEvent",
+]
 
 def to_haxe(id):
     """Converts an IDL type name to Haxe."""
@@ -249,6 +292,10 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
         text = text.strip()
         if text != "":
             wln("/** %s */" % text)
+
+    def w_typed_shortcut(name, return_type, code):
+        w_doc("A typed shortcut for <code>%s</code>." % code)
+        wln("public inline function %s () :%s return cast %s" % (name, return_type, code))
 
     def w(node, list_separator=None):
         """Writes the given node.
@@ -415,13 +462,13 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                         wln(group[0])
             if node.id == "HTMLDocument":
                 for type, tag_name in html_elements.iteritems():
-                    w_doc("A typed shortcut for createElement(\"%s\")." % tag_name)
-                    wln("public inline function create%s () :%s return cast createElement(\"%s\")" % (
-                        type, type, tag_name))
+                    w_typed_shortcut("create"+type, type, "createElement(\"%s\")" % tag_name)
+            elif node.id == "Document":
+                for type in html_events:
+                    w_typed_shortcut("create"+type, type, "createEvent(\"%s\")" % type)
             elif node.id == "HTMLCanvasElement":
-                w_doc("A typed shortcut for getContext(\"2d\").")
-                wln("public inline function getContext2d () :CanvasRenderingContext2D return cast getContext(\"2d\")")
-                # WebGL's context string isn't finalized yet
+                w_typed_shortcut("getContext2d", "CanvasRenderingContext2D", "getContext(\"2d\")")
+                # w_typed_shortcut("getContextWebGL", "WebGLRenderingContext", "getContext(\"webgl\")")
             end_indent()
             wln("}")
 
