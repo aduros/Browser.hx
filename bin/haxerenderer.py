@@ -57,6 +57,80 @@ haxe_keywords = [
     "override",
 ]
 
+# Used to generate typed shortcut methods in Document
+html_elements = {
+    "HTMLAnchorElement": "a",
+    "HTMLAppletElement": "applet",
+    "HTMLAreaElement": "area",
+    "HTMLAudioElement": "audio",
+    "HTMLBaseElement": "base",
+    "HTMLBaseFontElement": "basefont",
+    "HTMLBodyElement": "body",
+    "HTMLBRElement": "br",
+    "HTMLButtonElement": "button",
+    "HTMLCanvasElement": "canvas",
+    "HTMLContentElement": "content",
+    "HTMLDataListElement": "datalist",
+    "HTMLDetailsElement": "details",
+    "HTMLDirectoryElement": "dir",
+    "HTMLDivElement": "div",
+    "HTMLDListElement": "dl",
+    # "HTMLElement",
+    "HTMLEmbedElement": "embed",
+    "HTMLFieldSetElement": "fieldset",
+    "HTMLFontElement": "font",
+    "HTMLFormElement": "form",
+    "HTMLFrameElement": "frame",
+    "HTMLFrameSetElement": "frameset",
+    "HTMLHeadElement": "head",
+    # "HTMLHeadingElement"
+    "HTMLHRElement": "hr",
+    "HTMLHtmlElement": "html",
+    "HTMLIFrameElement": "iframe",
+    "HTMLImageElement": "img",
+    "HTMLInputElement": "input",
+    "HTMLKeygenElement": "keygen",
+    "HTMLLabelElement": "label",
+    "HTMLLegendElement": "legend",
+    "HTMLLIElement": "li",
+    "HTMLLinkElement": "link",
+    "HTMLMapElement": "map",
+    "HTMLMarqueeElement": "marquee",
+    "HTMLMediaElement": "media",
+    "HTMLMenuElement": "menu",
+    "HTMLMetaElement": "meta",
+    "HTMLMeterElement": "meter",
+    "HTMLModElement": "mod",
+    "HTMLObjectElement": "object",
+    "HTMLOListElement": "ol",
+    "HTMLOptGroupElement": "optgroup",
+    "HTMLOptionElement": "option",
+    "HTMLOutputElement": "output",
+    "HTMLParagraphElement": "p",
+    "HTMLParamElement": "param",
+    "HTMLPreElement": "pre",
+    "HTMLProgressElement": "progress",
+    "HTMLQuoteElement": "quote",
+    "HTMLScriptElement": "script",
+    "HTMLSelectElement": "select",
+    "HTMLShadowElement": "shadow",
+    "HTMLSourceElement": "source",
+    "HTMLSpanElement": "span",
+    "HTMLStyleElement": "style",
+    "HTMLTableCaptionElement": "caption",
+    "HTMLTableCellElement": "td",
+    "HTMLTableColElement": "col",
+    "HTMLTableElement": "table",
+    "HTMLTableRowElement": "tr",
+    "HTMLTableSectionElement": "thead",
+    "HTMLTextAreaElement": "textarea",
+    "HTMLTitleElement": "title",
+    "HTMLTrackElement": "track",
+    "HTMLUListElement": "ul",
+    # "HTMLUnknownElement",
+    "HTMLVideoElement": "video",
+}
+
 def to_haxe(id):
     """Converts an IDL type name to Haxe."""
     if id.endswith("..."):
@@ -335,6 +409,11 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                                 wln(overload)
                     else:
                         wln(group[0])
+            if node.id == "HTMLDocument":
+                for type, tag_name in html_elements.iteritems():
+                    w_doc("A typed shortcut for createElement(\"%s\")." % tag_name)
+                    wln("public inline function create%s () :%s return cast createElement(\"%s\")" % (
+                        type, type, tag_name))
             end_indent()
             wln("}")
 
