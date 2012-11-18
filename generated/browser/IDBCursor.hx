@@ -37,7 +37,9 @@ extern class IDBCursor
 
     function advance (count :Int) :Void;
 
-    function continue_ (?key :IDBKey) :Void;
+    private inline function continue_ (?key :IDBKey) :Void {
+        (untyped this["continue"])(key);
+    }
 
     function delete () :IDBRequest;
 

@@ -88,9 +88,7 @@ def constructable(interface):
 
 def escape_keyword(id):
     """Escapes a Haxe keyword."""
-    if id in haxe_keywords:
-        return id+"_"
-    return strip_vendor(id)
+    return id+"_" if id in haxe_keywords else id
 
 def strip_vendor(id):
     """Strips vendor prefixes (webkit) from an id."""
@@ -341,28 +339,59 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             wln("}")
 
         elif isinstance(node, IDLAttribute):
-            w("var %s " % escape_keyword(node.id))
-            if node.is_read_only:
-                w("(default,null) ")
-            wln(":%s;" % to_haxe(node.type.id))
+            stripped = strip_vendor(node.id)
+            escaped = escape_keyword(stripped)
+            attr_type = to_haxe(node.type.id)
+            w("var %s " % escaped)
+            if escaped != stripped:
+                # TODO(bruno): Switch over to Haxe 3 property syntax
+                wln("(get_%s,%s) :%s;" % (escaped, "null" if node.is_read_only else "set_"+escaped, attr_type))
+                wln("private inline function get_%s () :%s {" % (escaped, attr_type))
+                begin_indent()
+                wln("return untyped this[\"%s\"];" % stripped)
+                end_indent()
+                wln("}")
+                if not node.is_read_only:
+                    wln("private inline function set_%s (x :%s) :%s {" % (escaped, attr_type, attr_type))
+                    begin_indent()
+                    wln("return untyped this[\"%s\"] = x;" % stripped)
+                    end_indent()
+                    wln("}")
+            else:
+                if node.is_read_only:
+                    w("(default,null) ")
+                wln(":%s;" % to_haxe(node.type.id))
 
         elif isinstance(node, IDLConstant):
-            wln("static inline var %s :%s = %s;" % (escape_keyword(node.id), to_haxe(node.type.id), node.value))
+            wln("static inline var %s :%s = %s;" % (escape_keyword(strip_vendor(node.id)),
+                to_haxe(node.type.id), node.value))
 
         elif isinstance(node, IDLOperation):
+            stripped = strip_vendor(node.id)
+            escaped = escape_keyword(stripped)
+            return_type = to_haxe(node.type.id)
             if node.is_static:
                 w("static ")
-            if node.specials:
-                w(node.specials, " ")
-                w(" ")
-            w("function %s (" % escape_keyword(node.id))
-            w(node.arguments, ", ")
-            wln(") :%s;" % to_haxe(node.type.id))
+            if escaped != stripped:
+                w("private inline function %s (" % escaped)
+                w(node.arguments, ", ")
+                wln(") :%s {" % return_type)
+                begin_indent()
+                if return_type != "Void":
+                    w("return ")
+                wln("(untyped this[\"%s\"])(%s);" % (stripped,
+                    ", ".join([escape_keyword(strip_vendor(arg.id)) for arg in node.arguments])))
+                end_indent()
+                wln("}")
+            else:
+                w("function %s (" % escaped)
+                w(node.arguments, ", ")
+                wln(") :%s;" % return_type)
 
         elif isinstance(node, IDLArgument):
             if "Optional" in node.ext_attrs and node.ext_attrs["Optional"] is None:
                 w("?")
-            w("%s :%s" % (escape_keyword(node.id), to_haxe(node.type.id)))
+            w("%s :%s" % (escape_keyword(strip_vendor(node.id)), to_haxe(node.type.id)))
 
         else:
             raise TypeError("Expected str or IDLNode but %s found" %

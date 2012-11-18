@@ -23,7 +23,13 @@ extern class HTMLTrackElement extends HTMLElement
     static inline var NONE :Int = 0;
 
     /** This attribute indicates that the track should be enabled unless the user's preferences indicate that another track is more appropriate. This may only be used on one <code>track</code> element per media element. */
-    var default_ :Bool;
+    var default_ (get_default_,set_default_) :Bool;
+    private inline function get_default_ () :Bool {
+        return untyped this["default"];
+    }
+    private inline function set_default_ (x :Bool) :Bool {
+        return untyped this["default"] = x;
+    }
 
     /** Kind of text track. The following keywords are allowed: <ul> <li>subtitles: A transcription or translation of the dialogue.</li> <li>captions: A transcription or translation of the dialogue or other sound effects. Suitable for users who are deaf or when the sound is muted.</li> <li>descriptions: Textual descriptions of the video content. Suitable for users who are blind.</li> <li>chapters: Chapter titles, intended to be used when the user is navigating the media resource.</li> <li>metadata: Tracks used by script. Not visible to the user.</li> </ul> */
     var kind :String;
