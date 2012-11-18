@@ -37,7 +37,7 @@ extern class HTMLSelectElement extends HTMLElement, implements ArrayAccess<Node>
     var labels (default,null) :NodeList;
 
     /** The number of <code><a rel="custom" href="https://developer.mozilla.org/en/HTML/Element/option">&lt;option&gt;</a></code>
- elements in this <code>select</code> element. */
+ elements in this <code>select</code> element. Setter throws DOMException. */
     var length :Int;
 
     /** Reflects the 

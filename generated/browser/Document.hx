@@ -33,7 +33,7 @@ extern class Document extends Node
     /** Returns an ordered list of the applets within a document. */
     var applets (default,null) :HTMLCollection;
 
-    /** Returns the BODY node of the current document. */
+    /** Returns the BODY node of the current document. Setter throws DOMException. */
     var body :HTMLElement;
 
     /** Returns the character set being used by the document. */
@@ -44,7 +44,7 @@ extern class Document extends Node
     /** Indicates whether the document is rendered in Quirks or Strict mode. */
     var compatMode (default,null) :String;
 
-    /** Returns a semicolon-separated list of the cookies for that document or sets a single cookie. */
+    /** Returns a semicolon-separated list of the cookies for that document or sets a single cookie. Getter throws DOMException. Setter throws DOMException. */
     var cookie :String;
 
     var currentFullScreenElement (default,null) :Element;
@@ -63,7 +63,7 @@ extern class Document extends Node
     /** Returns the document location. */
     var documentURI (default,null) :String;
 
-    /** Returns the domain of the current document. */
+    /** Returns the domain of the current document. Setter throws DOMException. */
     var domain :String;
 
     /** Returns a list of the FORM elements within the current document. */
@@ -229,10 +229,10 @@ extern class Document extends Node
     /** Returns the encoding as determined by the XML declaration.<br> <div class="note">Firefox 10 and later don't implement it anymore.</div> */
     var xmlEncoding (default,null) :String;
 
-    /** Returns <code>true</code> if the XML declaration specifies the document is standalone (<em>e.g.,</em> An external part of the DTD affects the document's content), else <code>false</code>. */
+    /** Returns <code>true</code> if the XML declaration specifies the document is standalone (<em>e.g.,</em> An external part of the DTD affects the document's content), else <code>false</code>. Setter throws DOMException. */
     var xmlStandalone :Bool;
 
-    /** Returns the version number as specified in the XML declaration or <code>"1.0"</code> if the declaration is absent. */
+    /** Returns the version number as specified in the XML declaration or <code>"1.0"</code> if the declaration is absent. Setter throws DOMException. */
     var xmlVersion :String;
 
     function adoptNode (source :Node) :Node;

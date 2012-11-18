@@ -42,7 +42,7 @@ extern class HTMLOptionElement extends HTMLElement
     /** Indicates whether the option is selected. */
     var selected :Bool;
 
-    /** Contains the text content of the element. */
+    /** Contains the text content of the element. Setter throws DOMException. */
     var text :String;
 
     /** Reflects the value of the 

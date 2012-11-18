@@ -17,6 +17,7 @@ extern class CSSValue
 
     static inline var CSS_VALUE_LIST :Int = 2;
 
+    /** Setter throws DOMException. */
     var cssText :String;
 
     var cssValueType (default,null) :Int;

@@ -25,11 +25,13 @@ extern class HTMLMarqueeElement extends HTMLElement
     /** Sets the horizontal margin */
     var hspace :Int;
 
-    /** Sets the number of times the marquee will scroll. If no value is specified, the default value is −1, which means the marquee will scroll continuously. */
+    /** Sets the number of times the marquee will scroll. If no value is specified, the default value is −1, which means the marquee will scroll continuously. Setter throws DOMException. */
     var loop :Int;
 
+    /** Setter throws DOMException. */
     var scrollAmount :Int;
 
+    /** Setter throws DOMException. */
     var scrollDelay :Int;
 
     var trueSpeed :Bool;

@@ -11,8 +11,10 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGAltGlyphElement")
 extern class SVGAltGlyphElement extends SVGTextPositioningElement
 {
+    /** Setter throws DOMException. */
     var format :String;
 
+    /** Setter throws DOMException. */
     var glyphRef :String;
 
 }

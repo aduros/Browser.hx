@@ -81,6 +81,7 @@ extern class CanvasRenderingContext2D extends CanvasRenderingContext
 
     function closePath () :Void;
 
+    /** Throws DOMException. */
     @:overload(function (imagedata :ImageData) :ImageData {})
     function createImageData (sw :Float, sh :Float) :ImageData;
 
@@ -101,7 +102,7 @@ extern class CanvasRenderingContext2D extends CanvasRenderingContext
 </dt> <dd>The specified <code><a rel="custom" href="https://developer.mozilla.org/en/HTML/Element/canvas">&lt;canvas&gt;</a></code>
  element for the <code>image</code> parameter is zero-sized (that is, one or both of its dimensions are 0 pixels).</dd>
 </dl>
-</div> */
+</div> Throws DOMException. */
     @:overload(function (canvas :HTMLCanvasElement, repetitionType :String) :CanvasPattern {})
     function createPattern (image :HTMLImageElement, repetitionType :String) :CanvasPattern;
 
@@ -126,7 +127,7 @@ extern class CanvasRenderingContext2D extends CanvasRenderingContext
 .</li> <li>Gecko 9.0 (Firefox 9.0 / Thunderbird 9.0 / SeaMonkey 2.6)
  now correctly supports CORS for drawing images across domains without <a title="en/CORS_Enabled_Image#What_is_a_.22tainted.22_canvas.3F" rel="internal" href="https://developer.mozilla.org/en/CORS_Enabled_Image#What_is_a_.22tainted.22_canvas.3F">tainting the canvas</a>.</li>
 </ul>
-</div> */
+</div> Throws DOMException. */
     @:overload(function (image :HTMLImageElement, x :Float, y :Float) :Void {})
     @:overload(function (image :HTMLImageElement, x :Float, y :Float, width :Float, height :Float) :Void {})
     @:overload(function (image :HTMLImageElement, sx :Float, sy :Float, sw :Float, sh :Float, dx :Float, dy :Float, dw :Float, dh :Float) :Void {})
@@ -162,10 +163,11 @@ extern class CanvasRenderingContext2D extends CanvasRenderingContext
     /** <h6 class="editable">Compatibility notes</h6>
 <ul> <li>Starting in Gecko 10.0 (Firefox 10.0 / Thunderbird 10.0)
 , non-finite values to any of these parameters causes the call to putImageData() to be silently ignored, rather than throwing an exception.</li>
-</ul> */
+</ul> Throws DOMException. */
     @:overload(function (imagedata :ImageData, dx :Float, dy :Float) :Void {})
     function putImageData (imagedata :ImageData, dx :Float, dy :Float, dirtyX :Float, dirtyY :Float, dirtyWidth :Float, dirtyHeight :Float) :Void;
 
+    /** Throws DOMException. */
     @:overload(function (imagedata :ImageData, dx :Float, dy :Float) :Void {})
     function putImageDataHD (imagedata :ImageData, dx :Float, dy :Float, dirtyX :Float, dirtyY :Float, dirtyWidth :Float, dirtyHeight :Float) :Void;
 

@@ -9,8 +9,10 @@ package browser;
 @:native("RTCSessionDescription")
 extern class RTCSessionDescription
 {
+    /** Setter throws DOMException. */
     var sdp :String;
 
+    /** Setter throws DOMException. */
     var type :String;
 
     function new () :Void;

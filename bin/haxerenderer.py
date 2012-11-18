@@ -215,11 +215,20 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                         "Documentation for this class was provided by <a href=\"%s\">MDN</a>." % class_doc["srcUrl"]
                     ]))
 
-            def w_member_doc(id):
+            def w_member_doc(node):
+                docs = []
+                if hasattr(node, "raises") and node.raises:
+                    docs += ["Throws %s." % to_haxe(node.raises.id)]
+                if hasattr(node, "get_raises") and node.get_raises:
+                    docs += ["Getter throws %s." % to_haxe(node.get_raises.id)]
+                if hasattr(node, "set_raises") and node.set_raises:
+                    docs += ["Setter throws %s." % to_haxe(node.set_raises.id)]
                 if class_doc and class_doc["members"]:
                     for member in class_doc["members"]:
-                        if member["name"] == id:
-                            w_doc(member["help"])
+                        if member["name"] == node.id:
+                            docs = [member["help"]] + docs
+                            break
+                w_doc(" ".join(docs))
 
             def w_constructor_doc():
                 if class_doc and "constructor" in class_doc:
@@ -227,7 +236,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
 
             def w_members(members):
                 for member in members:
-                    w_member_doc(member.id)
+                    w_member_doc(member)
                     wln(member)
 
             if is_callback(node):
@@ -318,7 +327,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     group = list(group)
                     ll = len(group)
                     if ll > 1:
-                        w_member_doc(id)
+                        w_member_doc(group[0])
                         for ii, overload in enumerate(group):
                             if ii < ll-1:
                                 w("@:overload(function (")
@@ -336,14 +345,6 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             if node.is_read_only:
                 w("(default,null) ")
             wln(":%s;" % to_haxe(node.type.id))
-            # if node.raises:
-            #     w(" raises (%s)" % node.raises.id)
-            # else:
-            #     if node.get_raises:
-            #         w(" getraises (%s)" % to_haxe(node.get_raises.id))
-            #     if node.set_raises:
-            #         w(" setraises (%s)" % to_haxe(node.set_raises.id))
-            # wln(";")
 
         elif isinstance(node, IDLConstant):
             wln("static inline var %s :%s = %s;" % (escape_keyword(node.id), to_haxe(node.type.id), node.value))
@@ -357,9 +358,6 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             w("function %s (" % escape_keyword(node.id))
             w(node.arguments, ", ")
             wln(") :%s;" % to_haxe(node.type.id))
-            # if node.raises:
-            #     w(" raises (%s)" % to_haxe(node.raises.id))
-            # wln(";")
 
         elif isinstance(node, IDLArgument):
             if "Optional" in node.ext_attrs and node.ext_attrs["Optional"] is None:

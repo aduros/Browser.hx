@@ -30,7 +30,7 @@ extern class CSSRule
 
     static inline var UNKNOWN_RULE :Int = 0;
 
-    /** Returns the textual representation of the rule, e.g. <code>"h1,h2 { font-size: 16pt }"</code> */
+    /** Returns the textual representation of the rule, e.g. <code>"h1,h2 { font-size: 16pt }"</code> Setter throws DOMException. */
     var cssText :String;
 
     /** Returns the containing rule, otherwise <code>null</code>. E.g. if this rule is a style rule inside an <code><a title="en/CSS/@media" rel="internal" href="https://developer.mozilla.org/en/CSS/@media">@media</a></code> block, the parent rule would be that <code><a title="en/DOM/CSSMediaRule" rel="internal" href="https://developer.mozilla.org/en/DOM/CSSMediaRule">CSSMediaRule</a></code>. */

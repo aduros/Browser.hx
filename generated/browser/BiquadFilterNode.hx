@@ -31,6 +31,7 @@ extern class BiquadFilterNode extends AudioNode
 
     var gain (default,null) :AudioParam;
 
+    /** Setter throws DOMException. */
     var type :Int;
 
     function getFrequencyResponse (frequencyHz :Float32Array, magResponse :Float32Array, phaseResponse :Float32Array) :Void;

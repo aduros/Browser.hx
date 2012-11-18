@@ -17,6 +17,7 @@ extern class AudioBufferSourceNode extends AudioSourceNode
 
     static inline var UNSCHEDULED_STATE :Int = 0;
 
+    /** Setter throws DOMException. */
     var buffer :AudioBuffer;
 
     var gain (default,null) :AudioGain;

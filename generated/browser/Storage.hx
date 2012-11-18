@@ -13,6 +13,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("Storage")
 extern class Storage
 {
+    /** Getter throws DOMException. */
     var length (default,null) :Int;
 
     function clear () :Void;

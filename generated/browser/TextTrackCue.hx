@@ -9,12 +9,14 @@ package browser;
 @:native("TextTrackCue")
 extern class TextTrackCue extends EventTarget
 {
+    /** Setter throws DOMException. */
     var align :String;
 
     var endTime :Float;
 
     var id :String;
 
+    /** Setter throws DOMException. */
     var line :Int;
 
     var onenter :EventListener;
@@ -23,8 +25,10 @@ extern class TextTrackCue extends EventTarget
 
     var pauseOnExit :Bool;
 
+    /** Setter throws DOMException. */
     var position :Int;
 
+    /** Setter throws DOMException. */
     var size :Int;
 
     var snapToLines :Bool;
@@ -35,6 +39,7 @@ extern class TextTrackCue extends EventTarget
 
     var track (default,null) :TextTrack;
 
+    /** Setter throws DOMException. */
     var vertical :String;
 
     function new () :Void;

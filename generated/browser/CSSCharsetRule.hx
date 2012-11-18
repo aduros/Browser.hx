@@ -9,6 +9,7 @@ package browser;
 @:native("CSSCharsetRule")
 extern class CSSCharsetRule extends CSSRule
 {
+    /** Setter throws DOMException. */
     var encoding :String;
 
 }

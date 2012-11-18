@@ -11,6 +11,7 @@ extern class MediaController extends EventTarget
 {
     var buffered (default,null) :TimeRanges;
 
+    /** Setter throws DOMException. */
     var currentTime :Float;
 
     var defaultPlaybackRate :Float;
@@ -27,6 +28,7 @@ extern class MediaController extends EventTarget
 
     var seekable (default,null) :TimeRanges;
 
+    /** Setter throws DOMException. */
     var volume :Float;
 
     function new () :Void;

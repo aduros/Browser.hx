@@ -67,10 +67,10 @@ extern class SVGPreserveAspectRatio
 <code><a rel="custom" href="https://developer.mozilla.org/en/SVG/Attribute/preserveAspectRatio">preserveAspectRatio</a></code>. */
     static inline var SVG_PRESERVEASPECTRATIO_XMINYMIN :Int = 2;
 
-    /** The type of the alignment value as specified by one of the SVG_PRESERVEASPECTRATIO_* constants defined on this interface. */
+    /** The type of the alignment value as specified by one of the SVG_PRESERVEASPECTRATIO_* constants defined on this interface. Setter throws DOMException. */
     var align :Int;
 
-    /** The type of the meet-or-slice value as specified by one of the SVG_MEETORSLICE_* constants defined on this interface. */
+    /** The type of the meet-or-slice value as specified by one of the SVG_MEETORSLICE_* constants defined on this interface. Setter throws DOMException. */
     var meetOrSlice :Int;
 
 }

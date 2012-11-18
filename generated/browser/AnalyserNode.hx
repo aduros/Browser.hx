@@ -9,6 +9,7 @@ package browser;
 @:native("AnalyserNode")
 extern class AnalyserNode extends AudioNode
 {
+    /** Setter throws DOMException. */
     var fftSize :Int;
 
     var frequencyBinCount (default,null) :Int;

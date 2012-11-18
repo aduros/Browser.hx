@@ -13,7 +13,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 extern class HTMLDataListElement extends HTMLElement
 {
     /** A collection of the contained option elements. */
-    /** A collection of the contained option elements. */
     var options (default,null) :HTMLCollection;
 
 }

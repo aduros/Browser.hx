@@ -9,6 +9,7 @@ package browser;
 @:native("SQLResultSet")
 extern class SQLResultSet
 {
+    /** Getter throws DOMException. */
     var insertId (default,null) :Int;
 
     var rows (default,null) :SQLResultSetRowList;

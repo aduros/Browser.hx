@@ -14,22 +14,17 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 extern class HTMLMediaElement extends HTMLElement
 {
     /** Data is available for the current playback position, but not enough to actually play more than one frame. */
-    /** Data is available for the current playback position, but not enough to actually play more than one frame. */
     static inline var HAVE_CURRENT_DATA :Int = 2;
 
-    /** Enough data is available—and the download rate is high enough—that the media can be played through to the end without interruption. */
     /** Enough data is available—and the download rate is high enough—that the media can be played through to the end without interruption. */
     static inline var HAVE_ENOUGH_DATA :Int = 4;
 
     /** Data for the current playback position as well as for at least a little bit of time into the future is available (in other words, at least two frames of video, for example). */
-    /** Data for the current playback position as well as for at least a little bit of time into the future is available (in other words, at least two frames of video, for example). */
     static inline var HAVE_FUTURE_DATA :Int = 3;
 
     /** Enough of the media resource has been retrieved that the metadata attributes are initialized.&nbsp; Seeking will no longer raise an exception. */
-    /** Enough of the media resource has been retrieved that the metadata attributes are initialized.&nbsp; Seeking will no longer raise an exception. */
     static inline var HAVE_METADATA :Int = 1;
 
-    /** No information is available about the media resource. */
     /** No information is available about the media resource. */
     static inline var HAVE_NOTHING :Int = 0;
 
@@ -65,7 +60,7 @@ extern class HTMLMediaElement extends HTMLElement
     /** The absolute URL of the chosen media resource (if, for example, the server selects a media file based on the resolution of the user's display), or an empty string if the <code>networkState</code> is <code>EMPTY</code>. */
     var currentSrc (default,null) :String;
 
-    /** The current playback time, in seconds.&nbsp; Setting this value seeks the media to the new time. */
+    /** The current playback time, in seconds.&nbsp; Setting this value seeks the media to the new time. Setter throws DOMException. */
     var currentTime :Float;
 
     /** Reflects the 
@@ -151,7 +146,7 @@ extern class HTMLMediaElement extends HTMLElement
 
     var videoDecodedByteCount (default,null) :Int;
 
-    /** The audio volume, from 0.0 (silent) to 1.0 (loudest). */
+    /** The audio volume, from 0.0 (silent) to 1.0 (loudest). Setter throws DOMException. */
     var volume :Float;
 
     function addKey (keySystem :String, key :Uint8Array, ?initData :Uint8Array, sessionId :String) :Void;

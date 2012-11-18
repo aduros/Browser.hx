@@ -12,7 +12,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("CSSStyleDeclaration")
 extern class CSSStyleDeclaration implements ArrayAccess<String>
 {
-    /** Textual representation of the declaration block. Setting this attribute changes the style. */
+    /** Textual representation of the declaration block. Setting this attribute changes the style. Setter throws DOMException. */
     var cssText :String;
 
     /** The number of properties. See the <strong>item</strong> method below. */

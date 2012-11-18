@@ -15,7 +15,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 extern class FileList implements ArrayAccess<File>
 {
     /** A read-only value indicating the number of files in the list. */
-    /** A read-only value indicating the number of files in the list. */
     var length (default,null) :Int;
 
     function item (index :Int) :File;

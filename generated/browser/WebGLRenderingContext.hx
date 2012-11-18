@@ -627,10 +627,12 @@ extern class WebGLRenderingContext extends CanvasRenderingContext
 
     function blendFuncSeparate (srcRGB :Int, dstRGB :Int, srcAlpha :Int, dstAlpha :Int) :Void;
 
+    /** Throws DOMException. */
     @:overload(function (target :Int, data :ArrayBuffer, usage :Int) :Void {})
     @:overload(function (target :Int, data :ArrayBufferView, usage :Int) :Void {})
     function bufferData (target :Int, size :Int, usage :Int) :Void;
 
+    /** Throws DOMException. */
     @:overload(function (target :Int, offset :Int, data :ArrayBuffer) :Void {})
     function bufferSubData (target :Int, offset :Int, data :ArrayBufferView) :Void;
 
@@ -810,6 +812,7 @@ extern class WebGLRenderingContext extends CanvasRenderingContext
 
     function stencilOpSeparate (face :Int, fail :Int, zfail :Int, zpass :Int) :Void;
 
+    /** Throws DOMException. */
     @:overload(function (target :Int, level :Int, internalformat :Int, width :Int, height :Int, border :Int, format :Int, type :Int, pixels :ArrayBufferView) :Void {})
     @:overload(function (target :Int, level :Int, internalformat :Int, format :Int, type :Int, pixels :ImageData) :Void {})
     @:overload(function (target :Int, level :Int, internalformat :Int, format :Int, type :Int, image :HTMLImageElement) :Void {})
@@ -820,6 +823,7 @@ extern class WebGLRenderingContext extends CanvasRenderingContext
 
     function texParameteri (target :Int, pname :Int, param :Int) :Void;
 
+    /** Throws DOMException. */
     @:overload(function (target :Int, level :Int, xoffset :Int, yoffset :Int, width :Int, height :Int, format :Int, type :Int, pixels :ArrayBufferView) :Void {})
     @:overload(function (target :Int, level :Int, xoffset :Int, yoffset :Int, format :Int, type :Int, pixels :ImageData) :Void {})
     @:overload(function (target :Int, level :Int, xoffset :Int, yoffset :Int, format :Int, type :Int, image :HTMLImageElement) :Void {})

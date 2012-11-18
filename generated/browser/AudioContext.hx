@@ -27,6 +27,7 @@ extern class AudioContext extends EventTarget
 
     function createBiquadFilter () :BiquadFilterNode;
 
+    /** Throws DOMException. */
     @:overload(function (numberOfChannels :Int, numberOfFrames :Int, sampleRate :Float) :AudioBuffer {})
     function createBuffer (buffer :ArrayBuffer, mixToMono :Bool) :AudioBuffer;
 

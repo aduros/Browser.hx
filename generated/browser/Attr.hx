@@ -29,7 +29,7 @@ extern class Attr extends Node
     /** This property has been deprecated and will be removed in the future; it now always returns <code>true</code>. */
     var specified (default,null) :Bool;
 
-    /** The attribute's value. */
+    /** The attribute's value. Setter throws DOMException. */
     var value :String;
 
 }

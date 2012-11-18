@@ -24,7 +24,7 @@ extern class SVGElement extends Element
     var viewportElement (default,null) :SVGElement;
 
     /** Corresponds to attribute 
-<code><a rel="internal" href="https://developer.mozilla.org/en/SVG/Attribute/xml%3Abase" class="new">xml:base</a></code> on the given element. */
+<code><a rel="internal" href="https://developer.mozilla.org/en/SVG/Attribute/xml%3Abase" class="new">xml:base</a></code> on the given element. Setter throws DOMException. */
     var xmlbase :String;
 
 }

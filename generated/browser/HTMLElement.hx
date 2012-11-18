@@ -76,7 +76,7 @@ extern class HTMLElement extends Element
  of the current child elements. */
     var children (default,null) :HTMLCollection;
 
-    /** Gets/sets whether or not the element is editable. */
+    /** Gets/sets whether or not the element is editable. Setter throws DOMException. */
     var contentEditable :String;
 
     /** Gets/sets the directionality of the element. */
@@ -91,9 +91,10 @@ extern class HTMLElement extends Element
     /** Gets/sets the id of the element. */
     var id :String;
 
-    /** Gets/sets the markup of the element's content. */
+    /** Gets/sets the markup of the element's content. Setter throws DOMException. */
     var innerHTML :String;
 
+    /** Setter throws DOMException. */
     var innerText :String;
 
     /** Indicates whether or not the content of the element can be edited. Read only. */
@@ -102,9 +103,10 @@ extern class HTMLElement extends Element
     /** Gets/sets the language of an element's attributes, text, and element contents. */
     var lang :String;
 
-    /** Gets the markup of the element including its content. When used as a setter, replaces the element with nodes parsed from the given string. */
+    /** Gets the markup of the element including its content. When used as a setter, replaces the element with nodes parsed from the given string. Setter throws DOMException. */
     var outerHTML :String;
 
+    /** Setter throws DOMException. */
     var outerText :String;
 
     /** Controls <a title="en/Controlling_spell_checking_in_HTML_forms" rel="internal" href="https://developer.mozilla.org/en/HTML/Controlling_spell_checking_in_HTML_forms">spell-checking</a> (present on all HTML&nbsp;elements) */

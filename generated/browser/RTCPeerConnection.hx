@@ -11,6 +11,7 @@ extern class RTCPeerConnection extends EventTarget
 {
     var iceState (default,null) :String;
 
+    /** Getter throws DOMException. */
     var localDescription (default,null) :RTCSessionDescription;
 
     var localStreams (default,null) :MediaStreamList;
@@ -33,6 +34,7 @@ extern class RTCPeerConnection extends EventTarget
 
     var readyState (default,null) :String;
 
+    /** Getter throws DOMException. */
     var remoteDescription (default,null) :RTCSessionDescription;
 
     var remoteStreams (default,null) :MediaStreamList;

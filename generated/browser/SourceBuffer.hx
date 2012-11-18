@@ -9,8 +9,10 @@ package browser;
 @:native("SourceBuffer")
 extern class SourceBuffer
 {
+    /** Getter throws DOMException. */
     var buffered (default,null) :TimeRanges;
 
+    /** Setter throws DOMException. */
     var timestampOffset :Float;
 
     function abort () :Void;

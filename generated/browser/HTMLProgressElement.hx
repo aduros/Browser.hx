@@ -13,7 +13,7 @@ extern class HTMLProgressElement extends HTMLElement
 {
     var labels (default,null) :NodeList;
 
-    /** This attribute describes how much work the task indicated by the <code>progress</code> element requires. */
+    /** This attribute describes how much work the task indicated by the <code>progress</code> element requires. Setter throws DOMException. */
     var max :Float;
 
     var position (default,null) :Float;
@@ -22,7 +22,7 @@ extern class HTMLProgressElement extends HTMLElement
 </dl>
 <p>You can use the <code><a rel="custom" href="https://developer.mozilla.org/en/CSS/orient">orient</a></code>
  property to specify whether the progress bar should be rendered horizontally (the default) or vertically. The <code><a rel="custom" href="https://developer.mozilla.org/en/CSS/%3Aindeterminate">:indeterminate</a></code>
- pseudo-class can be used to match against indeterminate progress bars.</p> */
+ pseudo-class can be used to match against indeterminate progress bars.</p> Setter throws DOMException. */
     var value :Float;
 
 }

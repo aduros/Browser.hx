@@ -129,30 +129,23 @@ extern class Element extends Node
     var onbeforepaste :EventListener;
 
     /** Returns the event handling code for the blur event. */
-    /** Returns the event handling code for the blur event. */
     var onblur :EventListener;
 
-    /** Returns the event handling code for the change event. */
     /** Returns the event handling code for the change event. */
     var onchange :EventListener;
 
     /** Returns the event handling code for the click event. */
-    /** Returns the event handling code for the click event. */
     var onclick :EventListener;
 
-    /** Returns the event handling code for the contextmenu event. */
     /** Returns the event handling code for the contextmenu event. */
     var oncontextmenu :EventListener;
 
     /** Returns the event handling code for the copy event. */
-    /** Returns the event handling code for the copy event. */
     var oncopy :EventListener;
 
     /** Returns the event handling code for the cut event. */
-    /** Returns the event handling code for the cut event. */
     var oncut :EventListener;
 
-    /** Returns the event handling code for the dblclick event. */
     /** Returns the event handling code for the dblclick event. */
     var ondblclick :EventListener;
 
@@ -173,7 +166,6 @@ extern class Element extends Node
     var onerror :EventListener;
 
     /** Returns the event handling code for the focus event. */
-    /** Returns the event handling code for the focus event. */
     var onfocus :EventListener;
 
     var onfullscreenchange :EventListener;
@@ -185,48 +177,38 @@ extern class Element extends Node
     var oninvalid :EventListener;
 
     /** Returns the event handling code for the keydown event. */
-    /** Returns the event handling code for the keydown event. */
     var onkeydown :EventListener;
 
     /** Returns the event handling code for the keypress event. */
-    /** Returns the event handling code for the keypress event. */
     var onkeypress :EventListener;
 
-    /** Returns the event handling code for the keyup event. */
     /** Returns the event handling code for the keyup event. */
     var onkeyup :EventListener;
 
     var onload :EventListener;
 
     /** Returns the event handling code for the mousedown event. */
-    /** Returns the event handling code for the mousedown event. */
     var onmousedown :EventListener;
 
-    /** Returns the event handling code for the mousemove event. */
     /** Returns the event handling code for the mousemove event. */
     var onmousemove :EventListener;
 
     /** Returns the event handling code for the mouseout event. */
-    /** Returns the event handling code for the mouseout event. */
     var onmouseout :EventListener;
 
     /** Returns the event handling code for the mouseover event. */
-    /** Returns the event handling code for the mouseover event. */
     var onmouseover :EventListener;
 
-    /** Returns the event handling code for the mouseup event. */
     /** Returns the event handling code for the mouseup event. */
     var onmouseup :EventListener;
 
     var onmousewheel :EventListener;
 
     /** Returns the event handling code for the paste event. */
-    /** Returns the event handling code for the paste event. */
     var onpaste :EventListener;
 
     var onreset :EventListener;
 
-    /** Returns the event handling code for the scroll event. */
     /** Returns the event handling code for the scroll event. */
     var onscroll :EventListener;
 

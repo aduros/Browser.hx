@@ -25,6 +25,7 @@ extern class SVGViewSpec
 
     var viewTargetString (default,null) :String;
 
+    /** Setter throws DOMException. */
     var zoomAndPan :Int;
 
 }

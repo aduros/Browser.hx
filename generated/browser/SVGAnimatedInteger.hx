@@ -14,7 +14,7 @@ extern class SVGAnimatedInteger
     /** If the given attribute or property is being animated, contains the current animated value of the attribute or property. If the given attribute or property is not currently being animated, contains the same value as <code>baseVal</code>. */
     var animVal (default,null) :Int;
 
-    /** The base value of the given attribute before applying any animations. */
+    /** The base value of the given attribute before applying any animations. Setter throws DOMException. */
     var baseVal :Int;
 
 }

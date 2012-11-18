@@ -9,16 +9,21 @@ package browser;
 @:native("SVGGlyphRefElement")
 extern class SVGGlyphRefElement extends SVGElement
 {
+    /** Setter throws DOMException. */
     var dx :Float;
 
+    /** Setter throws DOMException. */
     var dy :Float;
 
     var format :String;
 
+    /** Setter throws DOMException. */
     var glyphRef :String;
 
+    /** Setter throws DOMException. */
     var x :Float;
 
+    /** Setter throws DOMException. */
     var y :Float;
 
 }

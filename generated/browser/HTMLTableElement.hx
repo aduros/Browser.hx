@@ -21,7 +21,8 @@ extern class HTMLTableElement extends HTMLElement
     /** <b>border</b> gets/sets the table border. */
     var border :String;
 
-    /** <b>caption</b> returns the table caption. */
+    /** <b>caption</b> returns the table caption.
+ Setter throws DOMException. */
     var caption :HTMLTableCaptionElement;
 
     /** <b>cellPadding</b> gets/sets the cell padding. */
@@ -45,10 +46,12 @@ extern class HTMLTableElement extends HTMLElement
     /** <b>tBodies</b> returns the table bodies. */
     var tBodies (default,null) :HTMLCollection;
 
-    /** <b>tFoot</b> returns the table footer. */
+    /** <b>tFoot</b> returns the table footer.
+ Setter throws DOMException. */
     var tFoot :HTMLTableSectionElement;
 
-    /** <b>tHead</b> returns the table head. */
+    /** <b>tHead</b> returns the table head.
+ Setter throws DOMException. */
     var tHead :HTMLTableSectionElement;
 
     /** <b>width</b> gets/sets the width of the table. */

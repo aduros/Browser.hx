@@ -11,6 +11,7 @@ extern class MediaSource extends EventTarget
 {
     var activeSourceBuffers (default,null) :SourceBufferList;
 
+    /** Setter throws DOMException. */
     var duration :Float;
 
     var readyState (default,null) :String;

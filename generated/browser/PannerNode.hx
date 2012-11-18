@@ -31,10 +31,12 @@ extern class PannerNode extends AudioNode
 
     var distanceGain (default,null) :AudioGain;
 
+    /** Setter throws DOMException. */
     var distanceModel :Int;
 
     var maxDistance :Float;
 
+    /** Setter throws DOMException. */
     var panningModel :Int;
 
     var refDistance :Float;

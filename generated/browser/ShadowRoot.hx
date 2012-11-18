@@ -13,6 +13,7 @@ extern class ShadowRoot extends DocumentFragment
 
     var applyAuthorStyles :Bool;
 
+    /** Setter throws DOMException. */
     var innerHTML :String;
 
     var resetStyleInheritance :Bool;

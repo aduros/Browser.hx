@@ -9,6 +9,7 @@ package browser;
 @:native("RTCDataChannel")
 extern class RTCDataChannel extends EventTarget
 {
+    /** Setter throws DOMException. */
     var binaryType :String;
 
     var bufferedAmount (default,null) :Int;
@@ -29,6 +30,7 @@ extern class RTCDataChannel extends EventTarget
 
     function close () :Void;
 
+    /** Throws DOMException. */
     @:overload(function (data :ArrayBuffer) :Void {})
     @:overload(function (data :ArrayBufferView) :Void {})
     @:overload(function (data :Blob) :Void {})

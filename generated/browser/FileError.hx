@@ -42,7 +42,6 @@ extern class FileError
     static inline var TYPE_MISMATCH_ERR :Int = 11;
 
     /** The <a title="en/nsIDOMFileError#Error codes" rel="internal" href="https://developer.mozilla.org/en/nsIDOMFileError#Error_codes">error code</a>. */
-    /** The <a title="en/nsIDOMFileError#Error codes" rel="internal" href="https://developer.mozilla.org/en/nsIDOMFileError#Error_codes">error code</a>. */
     var code (default,null) :Int;
 
 }

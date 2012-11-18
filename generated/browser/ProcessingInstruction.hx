@@ -14,6 +14,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("ProcessingInstruction")
 extern class ProcessingInstruction extends Node
 {
+    /** Setter throws DOMException. */
     var data :String;
 
     var sheet (default,null) :StyleSheet;

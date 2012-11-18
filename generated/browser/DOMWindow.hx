@@ -67,7 +67,7 @@ extern class DOMWindow extends EventTarget
 . */
     var length (default,null) :Int;
 
-    /** Returns a reference to the local storage object used to store data that may only be accessed by the origin that created it. */
+    /** Returns a reference to the local storage object used to store data that may only be accessed by the origin that created it. Getter throws DOMException. */
     var localStorage (default,null) :Storage;
 
     /** Gets/sets the location, or current URL, of the window object. */
@@ -90,7 +90,6 @@ extern class DOMWindow extends EventTarget
     var offscreenBuffering (default,null) :Bool;
 
     /** An event handler property for abort events on the window. */
-    /** An event handler property for abort events on the window. */
     var onabort :EventListener;
 
     var onanimationend :EventListener;
@@ -100,10 +99,8 @@ extern class DOMWindow extends EventTarget
     var onanimationstart :EventListener;
 
     /** An event handler property for before-unload events on the window. */
-    /** An event handler property for before-unload events on the window. */
     var onbeforeunload :EventListener;
 
-    /** An event handler property for blur events on the window. */
     /** An event handler property for blur events on the window. */
     var onblur :EventListener;
 
@@ -112,14 +109,11 @@ extern class DOMWindow extends EventTarget
     var oncanplaythrough :EventListener;
 
     /** An event handler property for change events on the window. */
-    /** An event handler property for change events on the window. */
     var onchange :EventListener;
 
     /** An event handler property for click events on the window. */
-    /** An event handler property for click events on the window. */
     var onclick :EventListener;
 
-    /** An event handler property for right-click events on the window. */
     /** An event handler property for right-click events on the window. */
     var oncontextmenu :EventListener;
 
@@ -150,14 +144,11 @@ extern class DOMWindow extends EventTarget
     var onended :EventListener;
 
     /** An event handler property for errors raised on the window. */
-    /** An event handler property for errors raised on the window. */
     var onerror :EventListener;
 
     /** An event handler property for focus events on the window. */
-    /** An event handler property for focus events on the window. */
     var onfocus :EventListener;
 
-    /** An event handler property for hash change events on the window; called when the part of the URL after the hash mark ("#") changes. */
     /** An event handler property for hash change events on the window; called when the part of the URL after the hash mark ("#") changes. */
     var onhashchange :EventListener;
 
@@ -166,18 +157,14 @@ extern class DOMWindow extends EventTarget
     var oninvalid :EventListener;
 
     /** An event handler property for keydown events on the window. */
-    /** An event handler property for keydown events on the window. */
     var onkeydown :EventListener;
 
-    /** An event handler property for keypress events on the window. */
     /** An event handler property for keypress events on the window. */
     var onkeypress :EventListener;
 
     /** An event handler property for keyup events on the window. */
-    /** An event handler property for keyup events on the window. */
     var onkeyup :EventListener;
 
-    /** An event handler property for window loading. */
     /** An event handler property for window loading. */
     var onload :EventListener;
 
@@ -190,22 +177,17 @@ extern class DOMWindow extends EventTarget
     var onmessage :EventListener;
 
     /** An event handler property for mousedown events on the window. */
-    /** An event handler property for mousedown events on the window. */
     var onmousedown :EventListener;
 
-    /** An event handler property for mousemove events on the window. */
     /** An event handler property for mousemove events on the window. */
     var onmousemove :EventListener;
 
     /** An event handler property for mouseout events on the window. */
-    /** An event handler property for mouseout events on the window. */
     var onmouseout :EventListener;
 
     /** An event handler property for mouseover events on the window. */
-    /** An event handler property for mouseover events on the window. */
     var onmouseover :EventListener;
 
-    /** An event handler property for mouseup events on the window. */
     /** An event handler property for mouseup events on the window. */
     var onmouseup :EventListener;
 
@@ -216,10 +198,8 @@ extern class DOMWindow extends EventTarget
     var ononline :EventListener;
 
     /** An event handler property for pagehide events on the window. */
-    /** An event handler property for pagehide events on the window. */
     var onpagehide :EventListener;
 
-    /** An event handler property for pageshow events on the window. */
     /** An event handler property for pageshow events on the window. */
     var onpageshow :EventListener;
 
@@ -230,7 +210,6 @@ extern class DOMWindow extends EventTarget
     var onplaying :EventListener;
 
     /** An event handler property for popstate events, which are fired when navigating to a session history entry representing a state object. */
-    /** An event handler property for popstate events, which are fired when navigating to a session history entry representing a state object. */
     var onpopstate :EventListener;
 
     var onprogress :EventListener;
@@ -238,14 +217,11 @@ extern class DOMWindow extends EventTarget
     var onratechange :EventListener;
 
     /** An event handler property for reset events on the window. */
-    /** An event handler property for reset events on the window. */
     var onreset :EventListener;
 
     /** An event handler property for window resizing. */
-    /** An event handler property for window resizing. */
     var onresize :EventListener;
 
-    /** An event handler property for window scrolling. */
     /** An event handler property for window scrolling. */
     var onscroll :EventListener;
 
@@ -256,14 +232,12 @@ extern class DOMWindow extends EventTarget
     var onseeking :EventListener;
 
     /** An event handler property for window selection. */
-    /** An event handler property for window selection. */
     var onselect :EventListener;
 
     var onstalled :EventListener;
 
     var onstorage :EventListener;
 
-    /** An event handler property for submits on window forms. */
     /** An event handler property for submits on window forms. */
     var onsubmit :EventListener;
 
@@ -281,7 +255,6 @@ extern class DOMWindow extends EventTarget
 
     var ontransitionend :EventListener;
 
-    /** An event handler property for unload events on the window. */
     /** An event handler property for unload events on the window. */
     var onunload :EventListener;
 
@@ -340,7 +313,7 @@ extern class DOMWindow extends EventTarget
     /** Returns an object reference to the window object itself. */
     var self (default,null) :DOMWindow;
 
-    /** A storage object for storing data within a single page session. */
+    /** A storage object for storing data within a single page session. Getter throws DOMException. */
     var sessionStorage (default,null) :Storage;
 
     /** Gets/sets the text in the statusbar at the bottom of the browser. */
@@ -416,7 +389,7 @@ extern class DOMWindow extends EventTarget
 
     function openDatabase (name :String, version :String, displayName :String, estimatedSize :Int, ?creationCallback :DatabaseCallback) :Database;
 
-    /** Provides a secure means for one window to send a string of data to another window, which need not be within the same domain as the first, in a secure manner. */
+    /** Provides a secure means for one window to send a string of data to another window, which need not be within the same domain as the first, in a secure manner. Throws DOMException. */
     @:overload(function (message :Dynamic, targetOrigin :String) :Void {})
     function postMessage (message :Dynamic, targetOrigin :String, messagePorts :Array<Dynamic>) :Void;
 

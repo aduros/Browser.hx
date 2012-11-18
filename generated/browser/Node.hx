@@ -79,6 +79,7 @@ extern class Node extends EventTarget
 
     var nodeType (default,null) :Int;
 
+    /** Setter throws DOMException. */
     var nodeValue :String;
 
     var ownerDocument (default,null) :Document;
@@ -87,10 +88,12 @@ extern class Node extends EventTarget
 
     var parentNode (default,null) :Node;
 
+    /** Setter throws DOMException. */
     var prefix :String;
 
     var previousSibling (default,null) :Node;
 
+    /** Setter throws DOMException. */
     var textContent :String;
 
     function appendChild (newChild :Node) :Node;

@@ -11,6 +11,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("CharacterData")
 extern class CharacterData extends Node
 {
+    /** Setter throws DOMException. */
     var data :String;
 
     var length (default,null) :Int;

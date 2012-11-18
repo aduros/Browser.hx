@@ -42,25 +42,25 @@ extern class XPathResult
     /** A result node-set containing snapshots of all the nodes matching the expression. The nodes may not necessarily be in the same order that they appear in the document. */
     static inline var UNORDERED_NODE_SNAPSHOT_TYPE :Int = 6;
 
-    /** readonly boolean */
+    /** readonly boolean Getter throws DOMException. */
     var booleanValue (default,null) :Bool;
 
     /** readonly boolean */
     var invalidIteratorState (default,null) :Bool;
 
-    /** readonly float */
+    /** readonly float Getter throws DOMException. */
     var numberValue (default,null) :Float;
 
     /** readonly integer (short) */
     var resultType (default,null) :Int;
 
-    /** readonly Node */
+    /** readonly Node Getter throws DOMException. */
     var singleNodeValue (default,null) :Node;
 
-    /** readonly Integer */
+    /** readonly Integer Getter throws DOMException. */
     var snapshotLength (default,null) :Int;
 
-    /** readonly String */
+    /** readonly String Getter throws DOMException. */
     var stringValue (default,null) :String;
 
     function iterateNext () :Node;

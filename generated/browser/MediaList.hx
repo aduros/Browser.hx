@@ -11,6 +11,7 @@ extern class MediaList implements ArrayAccess<String>
 {
     var length (default,null) :Int;
 
+    /** Setter throws DOMException. */
     var mediaText :String;
 
     function appendMedium (newMedium :String) :Void;

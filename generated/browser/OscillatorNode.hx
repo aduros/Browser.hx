@@ -33,6 +33,7 @@ extern class OscillatorNode extends AudioSourceNode
 
     var playbackState (default,null) :Int;
 
+    /** Setter throws DOMException. */
     var type :Int;
 
     function setWaveTable (waveTable :WaveTable) :Void;

@@ -12,6 +12,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("TreeWalker")
 extern class TreeWalker
 {
+    /** Setter throws DOMException. */
     var currentNode :Node;
 
     var expandEntityReferences (default,null) :Bool;
