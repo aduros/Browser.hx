@@ -433,7 +433,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             w("var %s " % escaped)
             if escaped != stripped:
                 # TODO(bruno): Switch over to Haxe 3 property syntax
-                wln("(get_%s,%s) :%s;" % (escaped, "null" if node.is_read_only else "set_"+escaped, attr_type))
+                wln("(get,%s) :%s;" % ("null" if node.is_read_only else "set", attr_type))
                 wln("private inline function get_%s () :%s {" % (escaped, attr_type))
                 begin_indent()
                 wln("return untyped this[\"%s\"];" % stripped)

@@ -40,7 +40,7 @@ extern class TrackElement extends HTMLElement
     static inline var NONE :Int = 0;
 
     /** This attribute indicates that the track should be enabled unless the user's preferences indicate that another track is more appropriate. This may only be used on one <code>track</code> element per media element. */
-    var default_ (get_default_,set_default_) :Bool;
+    var default_ (get,set) :Bool;
     private inline function get_default_ () :Bool {
         return untyped this["default"];
     }
