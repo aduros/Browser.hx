@@ -17,6 +17,8 @@ they're generated, you can be sure they're complete, correct, and up to date.
 
     bin/generate-haxe
 
+After regenerating, run `bin/test` to verify everything still compiles.
+
 ## About
 
 Substantial portions of the tools in this project come from Dart.  Those
