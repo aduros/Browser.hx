@@ -1,4 +1,4 @@
-#
+e
 # Renders a single IDL file into Haxe
 
 import itertools
@@ -85,7 +85,7 @@ html_elements = {
     "HeadElement": "head",
     # "HeadingElement"
     "HRElement": "hr",
-    "HtmlElement": "html",
+    "HTMLElement": "html",
     "IFrameElement": "iframe",
     "ImageElement": "img",
     "InputElement": "input",
@@ -144,6 +144,11 @@ def to_haxe(id):
     match = re.match(r"HTML(.+)Element", id)
     if match:
         id = match.group(1)+"Element"
+
+	# Hack: handle HTMLHtmlElement, change these to HTMLElement
+    if (id == "HtmlElement"):
+        print("converting HTMLHtmlElement to HTMLElement")
+        id = "HTMLElement"
 
     if id in haxe_idl_types:
         return haxe_idl_types.get(id)

@@ -50,8 +50,6 @@ extern class IDBDatabase extends EventTarget
 
     function deleteObjectStore (name :String) :Void;
 
-    function setVersion (version :String) :IDBVersionChangeRequest;
-
     /** <p>Immediately returns an <a title="en/IndexedDB/IDBTransaction" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBTransaction">IDBTransaction</a> object, and starts a transaction in a separate thread. &nbsp;The method returns a transaction object (<a title="en/IndexedDB/IDBTransaction" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBTransaction"><code>IDBTransaction</code></a>) containing the <a title="en/IndexedDB/IDBTransaction#objectStore()" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBTransaction#objectStore()">objectStore()</a> method, which you can use to access your object store.&nbsp;</p>
 
 <div id="section_22"><span id="Parameters_4"></span><h5 class="editable">Parameters</h5>
@@ -70,7 +68,7 @@ extern class IDBDatabase extends EventTarget
 <p>This method can raise an <a title="en/IndexedDB/IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following codes:</p>
 <table class="standard-table"> <thead> <tr> <th scope="col" width="131">Exception</th> <th scope="col" width="698">Description</th> </tr> </thead> <tbody> <tr> <td><code><a title="en/IndexedDB/DatabaseException#NOT ALLOWED ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR">NOT_ALLOWED_ERR</a></code></td> <td>The error is thrown for one of two reasons: <ul> <li>The <code>close()</code> method has been called on this IDBDatabase instance.</li> <li>The object store has been deleted or removed.</li> </ul> </td> </tr> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#NOT FOUND ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#NOT_FOUND_ERR">NOT_FOUND_ERR</a></code></td> <td>One of the object stores doesn't exist in the connected database.</td> </tr> </tbody>
 </table>
-</div> Throws IDBDatabaseException. */
+</div> Throws DOMException. */
     @:overload(function (storeNames :DOMStringList, mode :String) :IDBTransaction {})
     @:overload(function (storeNames :Array<String>, mode :String) :IDBTransaction {})
     function transaction (storeName :String, mode :String) :IDBTransaction;

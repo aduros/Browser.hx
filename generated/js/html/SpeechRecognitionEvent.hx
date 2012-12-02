@@ -26,11 +26,15 @@ package js.html;
 @:native("SpeechRecognitionEvent")
 extern class SpeechRecognitionEvent extends Event
 {
+    var emma (default,null) :Document;
+
     var result (default,null) :SpeechRecognitionResult;
 
     var resultHistory (default,null) :SpeechRecognitionResultList;
 
     var resultIndex (default,null) :Int;
+
+    var results (default,null) :SpeechRecognitionResultList;
 
     function new (type :String, canBubble :Bool = true, cancelable :Bool = true) :Void;
 

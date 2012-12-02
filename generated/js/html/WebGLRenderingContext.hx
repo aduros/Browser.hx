@@ -747,7 +747,7 @@ extern class WebGLRenderingContext extends CanvasRenderingContext
 
     function getError () :Int;
 
-    function getExtension (name :String) :Void;
+    function getExtension (name :String) :Dynamic;
 
     function getFramebufferAttachmentParameter () :Void;
 
@@ -767,7 +767,7 @@ extern class WebGLRenderingContext extends CanvasRenderingContext
 
     function getShaderSource (shader :WebGLShader) :String;
 
-    function getSupportedExtensions () :Void;
+    function getSupportedExtensions () :Array<String>;
 
     function getTexParameter () :Void;
 

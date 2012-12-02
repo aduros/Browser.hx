@@ -64,6 +64,8 @@ extern class AudioContext extends EventTarget
 
     function createMediaElementSource (mediaElement :MediaElement) :MediaElementAudioSourceNode;
 
+    function createMediaStreamDestination () :MediaStreamAudioDestinationNode;
+
     function createMediaStreamSource (mediaStream :MediaStream) :MediaStreamAudioSourceNode;
 
     function createOscillator () :OscillatorNode;

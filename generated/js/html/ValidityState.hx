@@ -28,6 +28,8 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("ValidityState")
 extern class ValidityState
 {
+    var badInput (default,null) :Bool;
+
     /** The element's custom validity message has been set to a non-empty string by calling the element's setCustomValidity() method. */
     var customError (default,null) :Bool;
 

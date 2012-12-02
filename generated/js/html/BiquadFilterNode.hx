@@ -44,6 +44,8 @@ extern class BiquadFilterNode extends AudioNode
 
     var Q (default,null) :AudioParam;
 
+    var detune (default,null) :AudioParam;
+
     var frequency (default,null) :AudioParam;
 
     var gain (default,null) :AudioParam;

@@ -28,18 +28,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("IDBCursor")
 extern class IDBCursor
 {
-    /** The cursor shows all records, including duplicates. It starts at the lower bound of the key range and moves upwards (monotonically increasing in the order of keys). */
-    static inline var NEXT :Int = 0;
-
-    /** The cursor shows all records, excluding duplicates. If multiple records exist with the same key, only the first one iterated is retrieved. It starts at the lower bound of the key range and moves upwards. */
-    static inline var NEXT_NO_DUPLICATE :Int = 1;
-
-    /** The cursor shows all records, including duplicates. It starts at the upper bound of the key range and moves downwards (monotonically decreasing in the order of keys). */
-    static inline var PREV :Int = 2;
-
-    /** The cursor shows all records, excluding duplicates. If multiple records exist with the same key, only the first one iterated is retrieved. It starts at the upper bound of the key range and moves downwards. */
-    static inline var PREV_NO_DUPLICATE :Int = 3;
-
     /** On getting, returns the <a title="en/IndexedDB/Basic_Concepts_Behind_IndexedDB#gloss direction" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/Basic_Concepts_Behind_IndexedDB#gloss_direction">direction</a> of traversal of the cursor. See Constants for possible values. */
     var direction (default,null) :String;
 

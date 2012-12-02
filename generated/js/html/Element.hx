@@ -270,6 +270,8 @@ extern class Element extends Node
 
     function blur () :Void;
 
+    function createShadowRoot () :ShadowRoot;
+
     function focus () :Void;
 
     function getAttribute (name :String) :String;

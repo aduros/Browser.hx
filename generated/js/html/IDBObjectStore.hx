@@ -56,7 +56,7 @@ extern class IDBObjectStore
 </div><div id="section_14"><span id="Exceptions_3"></span><h5 class="editable">Exceptions</h5>
 <p>This method can raise an <a title="IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following codes:</p>
 <dl> <dt><code><a href="IDBDatabaseException#DATA_ERR" rel="internal" title="en/IndexedDB/DatabaseException#DATA ERR">DATA_ERR</a></code></dt> <dd>If the object store uses in-line keys or has a key generator, and a key parameter was provided.<br> If the object store uses out-of-line keys and has no key generator, and no key parameter was provided.<br> If the object store uses in-line keys but no key generator, and the object store's key path does not yield a valid key.<br> If the key parameter was provided but does not contain a valid key.<br> If there are indexed on this object store, and using their key path on the value parameter yields a value that is not a valid key.</dd> <dt><code><a href="IDBDatabaseException#NOT_ALLOWED_ERR" rel="internal" title="en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR">NOT_ALLOWED_ERR</a></code></dt> <dd>The request was made on a source object that has been deleted or removed.</dd>
-</dl></div> Throws IDBDatabaseException. */
+</dl></div> Throws DOMException. */
     @:overload(function (?range :IDBKeyRange) :IDBRequest {})
     function count (key :IDBKey) :IDBRequest;
 
@@ -77,7 +77,7 @@ extern class IDBObjectStore
 </div><div id="section_18"><span id="Exceptions_4"></span><h5 class="editable">Exceptions</h5>
 <p>This method can raise an <a title="en/IndexedDB/IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following codes:</p>
 <dl> <dt><code><a title="en/IndexedDB/DatabaseException#CONSTRAINT ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#CONSTRAINT_ERR">CONSTRAINT_ERR</a></code></dt> <dd>If an index with the same name (based on case-sensitive comparison) already exists in the connected database.</dd> <dt><code><a title="en/IndexedDB/DatabaseException#NOT ALLOWED ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR">NOT_ALLOWED_ERR</a></code></dt> <dd>If this method was not called from a <a title="en/IndexedDB/IDBTransaction#VERSION CHANGE" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBTransaction#VERSION_CHANGE"><code>VERSION_CHANGE</code></a> transaction callback.</dd>
-</dl></div> Throws IDBDatabaseException. */
+</dl></div> Throws DOMException. */
     @:overload(function (name :String, keyPath :Array<String>, ?options :Dynamic) :IDBIndex {})
     function createIndex (name :String, keyPath :String, ?options :Dynamic) :IDBIndex;
 
@@ -93,7 +93,7 @@ extern class IDBObjectStore
 <dl> <dt><a title="en/IndexedDB/IDBRequest" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBRequest">IDBRequest</a></dt> <dd>A request object on which subsequent events related to this operation are fired.</dd>
 </dl>
 </div><div id="section_22"><span id="Exceptions_5"></span><h5 class="editable">Exceptions</h5>
-<p>This method can raise an <a title="en/IndexedDB/IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following codes:</p></div> Throws IDBDatabaseException. */
+<p>This method can raise an <a title="en/IndexedDB/IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following codes:</p></div> Throws DOMException. */
     @:overload(function (keyRange :IDBKeyRange) :IDBRequest {})
     function delete (key :IDBKey) :IDBRequest;
 
@@ -113,7 +113,7 @@ extern class IDBObjectStore
 <p>This method can raise an <a title="en/IndexedDB/IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following code:</p>
 <dl> <dt><code><a title="en/IndexedDB/IDBDatabaseException#DATA ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#DATA_ERR">DATA_ERR</a></code></dt> <dd>If the <code>key</code> parameter was not a valid value.</dd> <dt><code><a title="en/IndexedDB/IDBDatabaseException#TRANSACTION INACTIVE ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#TRANSACTION_INACTIVE_ERR">TRANSACTION_INACTIVE_ERR</a></code></dt> <dd>If the associated transaction is not active.</dd>
 </dl>
-</div> Throws IDBDatabaseException. */
+</div> Throws DOMException. */
     @:overload(function (key :IDBKeyRange) :IDBRequest {})
     function get (key :IDBKey) :IDBRequest;
 
@@ -135,7 +135,7 @@ extern class IDBObjectStore
 <p>This method can raise an IDBDatabaseException with the following code:</p>
 <dl> <dt><code><a title="en/IndexedDB/DatabaseException#NOT ALLOWED ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR">NOT_ALLOWED_ERR</a></code></dt> <dd>If this object store is not in the scope of any existing transaction on the connected database.</dd>
 </dl>
-</div> Throws IDBDatabaseException. */
+</div> Throws DOMException. */
     @:overload(function (?range :IDBKeyRange, ?direction :String) :IDBRequest {})
     function openCursor (key :IDBKey, ?direction :String) :IDBRequest;
 

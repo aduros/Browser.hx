@@ -28,6 +28,8 @@ extern class RTCStatsElement
 {
     var timestamp (default,null) :Date;
 
+    function names () :Array<String>;
+
     function stat (name :String) :String;
 
 }

@@ -55,7 +55,7 @@ extern class IDBIndex
 <p>This method can raise a <a title="en/IndexedDB/IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following code:</p>
 <table class="standard-table"> <thead> <tr> <th scope="col" width="131">Attribute</th> <th scope="col" width="698">Description</th> </tr> </thead> <tbody> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#DATA ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#DATA_ERR">DATA_ERR</a></code></td> <td>The <code>key</code> parameter was not a valid value.</td> </tr> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR">NOT_ALLOWED_ERR</a></code></td> <td>The request was made on a source object that has been deleted or removed.</td> </tr> </tbody>
 </table>
-</div> Throws IDBDatabaseException. */
+</div> Throws DOMException. */
     @:overload(function (?range :IDBKeyRange) :IDBRequest {})
     function count (key :IDBKey) :IDBRequest;
 
@@ -81,7 +81,7 @@ extern class IDBIndex
 <p>This method can raise an <a title="en/IndexedDB/IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following code:</p>
 <table class="standard-table"> <thead> <tr> <th scope="col" width="131">Attribute</th> <th scope="col" width="698">Description</th> </tr> </thead> <tbody> <tr> <td><a title="en/IndexedDB/IDBDatabaseException#TRANSACTION INACTIVE ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#TRANSACTION_INACTIVE_ERR"><code>TRANSACTION_INACTIVE_ERR</code></a></td> <td>The index's transaction is not active.</td> </tr> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#DATA ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#DATA_ERR">DATA_ERR</a></code></td> <td>The <code>key</code> parameter was not a valid value.</td> </tr> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR">NOT_ALLOWED_ERR</a></code></td> <td>The request was made on a source object that has been deleted or removed.</td> </tr> </tbody>
 </table>
-</div> Throws IDBDatabaseException. */
+</div> Throws DOMException. */
     @:overload(function (key :IDBKeyRange) :IDBRequest {})
     function get (key :IDBKey) :IDBRequest;
 
@@ -107,7 +107,7 @@ extern class IDBIndex
 <p>This method can raise a <a title="en/IndexedDB/IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following code:</p>
 <table class="standard-table"> <thead> <tr> <th scope="col" width="131">Attribute</th> <th scope="col" width="698">Description</th> </tr> </thead> <tbody> <tr> <td><a title="en/IndexedDB/IDBDatabaseException#TRANSACTION INACTIVE ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#TRANSACTION_INACTIVE_ERR"><code>TRANSACTION_INACTIVE_ERR</code></a></td> <td>The index's transaction is not active.</td> </tr> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#DATA ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#DATA_ERR">DATA_ERR</a></code></td> <td>The <code>key</code> parameter was not a valid value.</td> </tr> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR">NOT_ALLOWED_ERR</a></code></td> <td>The request was made on a source object that has been deleted or removed.</td> </tr> </tbody>
 </table>
-</div> Throws IDBDatabaseException. */
+</div> Throws DOMException. */
     @:overload(function (key :IDBKeyRange) :IDBRequest {})
     function getKey (key :IDBKey) :IDBRequest;
 
@@ -131,7 +131,7 @@ extern class IDBIndex
 <p>This method can raise an <a title="en/IndexedDB/IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following code:</p>
 <table class="standard-table"> <thead> <tr> <th scope="col" width="131">Attribute</th> <th scope="col" width="698">Description</th> </tr> </thead> <tbody> <tr> <td><a title="en/IndexedDB/IDBDatabaseException#TRANSACTION INACTIVE ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#TRANSACTION_INACTIVE_ERR"><code>TRANSACTION_INACTIVE_ERR</code></a></td> <td>The index's transaction is not active.</td> </tr> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#DATA ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#DATA_ERR">DATA_ERR</a></code></td> <td>The <code>key</code> parameter was not a valid value.</td> </tr> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR">NOT_ALLOWED_ERR</a></code></td> <td>The request was made on a source object that has been deleted or removed.</td> </tr> </tbody>
 </table>
-</div> Throws IDBDatabaseException. */
+</div> Throws DOMException. */
     @:overload(function (?range :IDBKeyRange, ?direction :String) :IDBRequest {})
     function openCursor (key :IDBKey, ?direction :String) :IDBRequest;
 
@@ -155,7 +155,7 @@ extern class IDBIndex
 <p>This method can raise an <a title="en/IndexedDB/IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following code:</p>
 <table class="standard-table"> <thead> <tr> <th scope="col" width="131">Attribute</th> <th scope="col" width="698">Description</th> </tr> </thead> <tbody> <tr> <td><a title="en/IndexedDB/IDBDatabaseException#TRANSACTION INACTIVE ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#TRANSACTION_INACTIVE_ERR"><code>TRANSACTION_INACTIVE_ERR</code></a></td> <td>The index's transaction is not active.</td> </tr> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#DATA ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#DATA_ERR">DATA_ERR</a></code></td> <td>The <code>key</code> parameter was not a valid value.</td> </tr> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR">NOT_ALLOWED_ERR</a></code></td> <td>The request was made on a source object that has been deleted or removed.</td> </tr> </tbody>
 </table>
-</div> Throws IDBDatabaseException. */
+</div> Throws DOMException. */
     @:overload(function (?range :IDBKeyRange, ?direction :String) :IDBRequest {})
     function openKeyCursor (key :IDBKey, ?direction :String) :IDBRequest;
 

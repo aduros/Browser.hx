@@ -30,13 +30,10 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("IDBRequest")
 extern class IDBRequest extends EventTarget
 {
-    /** Getter throws IDBDatabaseException. */
+    /** Getter throws DOMException. */
     var error (default,null) :DOMError;
 
-    /** Getter throws IDBDatabaseException. */
-    var errorCode (default,null) :Int;
-
-    /** Getter throws IDBDatabaseException. */
+    /** Getter throws DOMException. */
     var errorMessage (default,null) :String;
 
     var onerror :EventListener;
@@ -45,7 +42,7 @@ extern class IDBRequest extends EventTarget
 
     var readyState (default,null) :String;
 
-    /** Getter throws IDBDatabaseException. */
+    /** Getter throws DOMException. */
     var result (default,null) :IDBAny;
 
     var source (default,null) :IDBAny;

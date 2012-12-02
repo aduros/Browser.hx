@@ -77,6 +77,8 @@ extern class HTMLDocument extends Document
     public inline function createTableCellElement () :TableCellElement { return cast createElement("td"); }
     /** A typed shortcut for <code>createElement("hr")</code>. */
     public inline function createHRElement () :HRElement { return cast createElement("hr"); }
+    /** A typed shortcut for <code>createElement("html")</code>. */
+    public inline function createHTMLElement () :HTMLElement { return cast createElement("html"); }
     /** A typed shortcut for <code>createElement("marquee")</code>. */
     public inline function createMarqueeElement () :MarqueeElement { return cast createElement("marquee"); }
     /** A typed shortcut for <code>createElement("basefont")</code>. */
@@ -197,8 +199,6 @@ extern class HTMLDocument extends Document
     public inline function createContentElement () :ContentElement { return cast createElement("content"); }
     /** A typed shortcut for <code>createElement("br")</code>. */
     public inline function createBRElement () :BRElement { return cast createElement("br"); }
-    /** A typed shortcut for <code>createElement("html")</code>. */
-    public inline function createHtmlElement () :HtmlElement { return cast createElement("html"); }
     /** A typed shortcut for <code>createElement("textarea")</code>. */
     public inline function createTextAreaElement () :TextAreaElement { return cast createElement("textarea"); }
     /** A typed shortcut for <code>createElement("media")</code>. */
