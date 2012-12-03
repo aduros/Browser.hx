@@ -26,6 +26,8 @@ package js.html;
 @:native("RTCPeerConnection")
 extern class RTCPeerConnection extends EventTarget
 {
+    var iceGatheringState (default,null) :String;
+
     var iceState (default,null) :String;
 
     /** Getter throws DOMException. */
@@ -36,6 +38,8 @@ extern class RTCPeerConnection extends EventTarget
     var onaddstream :EventListener;
 
     var ondatachannel :EventListener;
+
+    var ongatheringchange :EventListener;
 
     var onicecandidate :EventListener;
 

@@ -50,6 +50,10 @@ with open("mdn-css.json") as f:
     mdn_css = json.load(f)
 
 def generate_interface(interface):
+    if interface.id == "HTMLHtmlElement":
+        print("skipping HTMLHtmlElement")
+        return
+
     file_path = os.path.join(root_dir, "generated", "js", "html",
         haxerenderer.to_haxe(interface.id)+".hx")
     _logger.debug("Generating %s" % file_path)

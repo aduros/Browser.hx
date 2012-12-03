@@ -26,9 +26,7 @@ package js.html;
 @:native("SpeechRecognitionResult")
 extern class SpeechRecognitionResult implements ArrayAccess<SpeechRecognitionAlternative>
 {
-    var emma (default,null) :Document;
-
-    var final (default,null) :Bool;
+    var isFinal (default,null) :Bool;
 
     var length (default,null) :Int;
 

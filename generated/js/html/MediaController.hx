@@ -41,6 +41,8 @@ extern class MediaController extends EventTarget
 
     var playbackRate :Float;
 
+    var playbackState (default,null) :String;
+
     var played (default,null) :TimeRanges;
 
     var seekable (default,null) :TimeRanges;
@@ -53,5 +55,7 @@ extern class MediaController extends EventTarget
     function pause () :Void;
 
     function play () :Void;
+
+    function unpause () :Void;
 
 }

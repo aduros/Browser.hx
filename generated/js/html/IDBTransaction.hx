@@ -29,15 +29,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("IDBTransaction")
 extern class IDBTransaction extends EventTarget
 {
-    /** Allows data to be read but not changed.&nbsp; */
-    static inline var READ_ONLY :Int = 0;
-
-    /** Allows reading and writing of data in existing data stores to be changed. */
-    static inline var READ_WRITE :Int = 1;
-
-    /** Allows any operation to be performed, including ones that delete and create object stores and indexes. This mode is for updating the version number of transactions that were started using the <a title="en/IndexedDB/IDBDatabase#setVersion" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabase#setVersion"><code>setVersion()</code></a> method of <a title="en/IndexedDB/IDBDatabase" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabase">IDBDatabase</a> objects. Transactions of this mode cannot run concurrently with other transactions. */
-    static inline var VERSION_CHANGE :Int = 2;
-
     /** The database connection that this transaction is associated with. */
     var db (default,null) :IDBDatabase;
 
