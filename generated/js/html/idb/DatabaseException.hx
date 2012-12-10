@@ -21,12 +21,12 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.idb;
 
 /** In the <a title="en/IndexedDB" rel="internal" href="https://developer.mozilla.org/en/IndexedDB">IndexedDB API</a>, an <code>IDBDatabaseException</code> object represents exception conditions that can be encountered while performing database operations.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">MDN</a>. */
 @:native("IDBDatabaseException")
-extern class IDBDatabaseException
+extern class DatabaseException
 {
     /** A request was aborted, for example, through a call to<a title="en/IndexedDB/IDBTransaction#abort" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBTransaction#abort"> <code>IDBTransaction.abort</code></a>. */
     static inline var ABORT_ERR :Int = 20;

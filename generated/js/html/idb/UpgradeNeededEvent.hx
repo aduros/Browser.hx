@@ -21,9 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.idb;
 
-@:native("IDBKey")
-extern class IDBKey
+@:native("IDBVersionChangeEvent")
+extern class UpgradeNeededEvent extends js.html.Event
 {
+    var newVersion (default,null) :Int;
+
+    var oldVersion (default,null) :Int;
+
 }

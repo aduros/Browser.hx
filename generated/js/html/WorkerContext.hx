@@ -30,7 +30,7 @@ extern class WorkerContext extends EventTarget
 
     static inline var TEMPORARY :Int = 0;
 
-    var indexedDB (default,null) :IDBFactory;
+    var indexedDB (default,null) :js.html.idb.Factory;
 
     var location (default,null) :WorkerLocation;
 

@@ -72,7 +72,7 @@ extern class DOMWindow extends EventTarget
     /** Returns a reference to the history object. */
     var history (default,null) :History;
 
-    var indexedDB (default,null) :IDBFactory;
+    var indexedDB (default,null) :js.html.idb.Factory;
 
     /** Gets the height of the content area of the browser window including, if rendered, the horizontal scrollbar. */
     var innerHeight (default,null) :Int;

@@ -21,9 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.idb;
 
-@:native("IDBAny")
-extern class IDBAny
+@:native("IDBOpenDBRequest")
+extern class OpenDBRequest extends Request
 {
+    var onblocked :js.html.EventListener;
+
+    var onupgradeneeded :js.html.EventListener;
+
 }

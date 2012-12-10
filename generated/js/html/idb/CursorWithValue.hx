@@ -21,10 +21,10 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.idb;
 
 @:native("IDBCursorWithValue")
-extern class IDBCursorWithValue extends IDBCursor
+extern class CursorWithValue extends Cursor
 {
     var value (default,null) :Dynamic;
 

@@ -21,36 +21,36 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.idb;
 
 /** <p>The <code>IDBDatabase</code> interface of the IndexedDB&nbsp;API provides asynchronous access to a <a title="en/IndexedDB#database connection" rel="internal" href="https://developer.mozilla.org/en/IndexedDB#database_connection">connection to a database</a>. Use it to create, manipulate, and delete objects in that database. The interface also provides the only way to get a <a title="en/IndexedDB#gloss transaction" rel="internal" href="https://developer.mozilla.org/en/IndexedDB#gloss_transaction">transaction</a>&nbsp;and manage versions on that database.</p>
 <p>Inherits from: <a title="en/DOM/EventTarget" rel="internal" href="https://developer.mozilla.org/en/DOM/EventTarget">EventTarget</a></p><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/IndexedDB/IDBDatabase">MDN</a>. */
 @:native("IDBDatabase")
-extern class IDBDatabase extends EventTarget
+extern class Database extends js.html.EventTarget
 {
     /** Name of the connected database. */
     var name (default,null) :String;
 
     /** A list of the names of the <a title="en/IndexedDB#gloss object store" rel="internal" href="https://developer.mozilla.org/en/IndexedDB#gloss_object_store">object stores</a> currently in the connected database. */
-    var objectStoreNames (default,null) :DOMStringList;
+    var objectStoreNames (default,null) :js.html.DOMStringList;
 
-    var onabort :EventListener;
+    var onabort :js.html.EventListener;
 
-    var onerror :EventListener;
+    var onerror :js.html.EventListener;
 
-    var onversionchange :EventListener;
+    var onversionchange :js.html.EventListener;
 
     /** The version of the connected database. When a database is first created, this attribute is the empty string. */
-    var version (default,null) :IDBAny;
+    var version (default,null) :Any;
 
     function close () :Void;
 
-    function createObjectStore (name :String, ?options :Dynamic) :IDBObjectStore;
+    function createObjectStore (name :String, ?options :Dynamic) :ObjectStore;
 
     function deleteObjectStore (name :String) :Void;
 
-    function setVersion (version :String) :IDBVersionChangeRequest;
+    function setVersion (version :String) :VersionChangeRequest;
 
     /** <p>Immediately returns an <a title="en/IndexedDB/IDBTransaction" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBTransaction">IDBTransaction</a> object, and starts a transaction in a separate thread. &nbsp;The method returns a transaction object (<a title="en/IndexedDB/IDBTransaction" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBTransaction"><code>IDBTransaction</code></a>) containing the <a title="en/IndexedDB/IDBTransaction#objectStore()" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBTransaction#objectStore()">objectStore()</a> method, which you can use to access your object store.&nbsp;</p>
 
@@ -70,9 +70,9 @@ extern class IDBDatabase extends EventTarget
 <p>This method can raise an <a title="en/IndexedDB/IDBDatabaseException" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException">IDBDatabaseException</a> with the following codes:</p>
 <table class="standard-table"> <thead> <tr> <th scope="col" width="131">Exception</th> <th scope="col" width="698">Description</th> </tr> </thead> <tbody> <tr> <td><code><a title="en/IndexedDB/DatabaseException#NOT ALLOWED ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#NOT_ALLOWED_ERR">NOT_ALLOWED_ERR</a></code></td> <td>The error is thrown for one of two reasons: <ul> <li>The <code>close()</code> method has been called on this IDBDatabase instance.</li> <li>The object store has been deleted or removed.</li> </ul> </td> </tr> <tr> <td><code><a title="en/IndexedDB/IDBDatabaseException#NOT FOUND ERR" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseException#NOT_FOUND_ERR">NOT_FOUND_ERR</a></code></td> <td>One of the object stores doesn't exist in the connected database.</td> </tr> </tbody>
 </table>
-</div> Throws IDBDatabaseException. */
-    @:overload(function (storeNames :DOMStringList, mode :String) :IDBTransaction {})
-    @:overload(function (storeNames :Array<String>, mode :String) :IDBTransaction {})
-    function transaction (storeName :String, mode :String) :IDBTransaction;
+</div> Throws DatabaseException. */
+    @:overload(function (storeNames :js.html.DOMStringList, mode :String) :Transaction {})
+    @:overload(function (storeNames :Array<String>, mode :String) :Transaction {})
+    function transaction (storeName :String, mode :String) :Transaction;
 
 }

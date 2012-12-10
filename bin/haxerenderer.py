@@ -206,6 +206,10 @@ def to_haxe(id):
     elif id.startswith("OES") or id.startswith("EXT"):
         path += ["webgl"]
 
+    elif id.startswith("IDB"):
+        id = id[len("IDB"):]
+        path += ["idb"]
+
     elif id in audio_classes:
         path += ["audio"]
 
