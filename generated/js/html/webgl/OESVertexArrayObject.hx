@@ -28,12 +28,12 @@ extern class OESVertexArrayObject
 {
     static inline var VERTEX_ARRAY_BINDING_OES :Int = 0x85B5;
 
-    function bindVertexArrayOES (arrayObject :WebGLVertexArrayObjectOES) :Void;
+    function bindVertexArrayOES (arrayObject :VertexArrayObjectOES) :Void;
 
-    function createVertexArrayOES () :WebGLVertexArrayObjectOES;
+    function createVertexArrayOES () :VertexArrayObjectOES;
 
-    function deleteVertexArrayOES (arrayObject :WebGLVertexArrayObjectOES) :Void;
+    function deleteVertexArrayOES (arrayObject :VertexArrayObjectOES) :Void;
 
-    function isVertexArrayOES (arrayObject :WebGLVertexArrayObjectOES) :Bool;
+    function isVertexArrayOES (arrayObject :VertexArrayObjectOES) :Bool;
 
 }

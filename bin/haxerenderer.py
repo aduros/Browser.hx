@@ -152,12 +152,18 @@ def to_haxe(id):
 
     id = strip_vendor(id)
     path = ["js", "html"]
+
     if id.startswith("SVG"):
+        id = id[len("SVG"):]
         path += ["svg"]
+
     elif id.startswith("WebGL"):
+        id = id[len("WebGL"):]
         path += ["webgl"]
+
     elif id.startswith("OES"):
         path += ["webgl"]
+
     path += [id]
 
     return path

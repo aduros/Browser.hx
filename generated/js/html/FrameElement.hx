@@ -60,6 +60,6 @@ extern class FrameElement extends HTMLElement
 
     var width (default,null) :Int;
 
-    function getSVGDocument () :js.html.svg.SVGDocument;
+    function getSVGDocument () :js.html.svg.Document;
 
 }
