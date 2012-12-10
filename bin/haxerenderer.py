@@ -474,7 +474,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     # Convert to camel case
                     prop = "".join([x[0].upper()+x[1:] for x in prop.split("-")])
                     prop = prop[0].lower() + prop[1:] # Re-lowercase the first word
-                    wln("var " + prop + " (default,null) :String;")
+                    wln("var " + prop + " :String;")
                     wln()
             if constructable(node):
                 constructors = []
