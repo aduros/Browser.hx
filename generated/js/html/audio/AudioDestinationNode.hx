@@ -21,9 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("ChannelMergerNode")
-extern class ChannelMergerNode extends AudioNode
+@:native("AudioDestinationNode")
+extern class AudioDestinationNode extends AudioNode
 {
+    var numberOfChannels (default,null) :Int;
+
 }

@@ -21,11 +21,6 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("GainNode")
-extern class GainNode extends AudioNode
-{
-    var gain (default,null) :AudioGain;
-
-}
+typedef AudioBufferCallback = AudioBuffer -> Bool;

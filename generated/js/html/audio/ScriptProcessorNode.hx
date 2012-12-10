@@ -21,9 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("AudioSourceNode")
-extern class AudioSourceNode extends AudioNode
+@:native("ScriptProcessorNode")
+extern class ScriptProcessorNode extends AudioNode
 {
+    var bufferSize (default,null) :Int;
+
+    var onaudioprocess :js.html.EventListener;
+
 }

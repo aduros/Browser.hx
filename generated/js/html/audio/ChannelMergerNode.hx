@@ -21,9 +21,9 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("ChannelSplitterNode")
-extern class ChannelSplitterNode extends AudioNode
+@:native("ChannelMergerNode")
+extern class ChannelMergerNode extends AudioNode
 {
 }

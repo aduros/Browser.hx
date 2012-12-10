@@ -21,11 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("MediaStreamAudioSourceNode")
-extern class MediaStreamAudioSourceNode extends AudioSourceNode
+@:native("WaveShaperNode")
+extern class WaveShaperNode extends AudioNode
 {
-    var mediaStream (default,null) :MediaStream;
+    var curve :js.html.Float32Array;
 
 }

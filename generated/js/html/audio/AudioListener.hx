@@ -21,13 +21,19 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("ScriptProcessorNode")
-extern class ScriptProcessorNode extends AudioNode
+@:native("AudioListener")
+extern class AudioListener
 {
-    var bufferSize (default,null) :Int;
+    var dopplerFactor :Float;
 
-    var onaudioprocess :EventListener;
+    var speedOfSound :Float;
+
+    function setOrientation (x :Float, y :Float, z :Float, xUp :Float, yUp :Float, zUp :Float) :Void;
+
+    function setPosition (x :Float, y :Float, z :Float) :Void;
+
+    function setVelocity (x :Float, y :Float, z :Float) :Void;
 
 }

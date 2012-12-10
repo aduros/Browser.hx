@@ -21,49 +21,26 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("PannerNode")
-extern class PannerNode extends AudioNode
+@:native("AnalyserNode")
+extern class AnalyserNode extends AudioNode
 {
-    static inline var EQUALPOWER :Int = 0;
-
-    static inline var EXPONENTIAL_DISTANCE :Int = 2;
-
-    static inline var HRTF :Int = 1;
-
-    static inline var INVERSE_DISTANCE :Int = 1;
-
-    static inline var LINEAR_DISTANCE :Int = 0;
-
-    static inline var SOUNDFIELD :Int = 2;
-
-    var coneGain (default,null) :AudioGain;
-
-    var coneInnerAngle :Float;
-
-    var coneOuterAngle :Float;
-
-    var coneOuterGain :Float;
-
-    var distanceGain (default,null) :AudioGain;
-
     /** Setter throws DOMException. */
-    var distanceModel :Int;
+    var fftSize :Int;
 
-    var maxDistance :Float;
+    var frequencyBinCount (default,null) :Int;
 
-    /** Setter throws DOMException. */
-    var panningModel :Int;
+    var maxDecibels :Float;
 
-    var refDistance :Float;
+    var minDecibels :Float;
 
-    var rolloffFactor :Float;
+    var smoothingTimeConstant :Float;
 
-    function setOrientation (x :Float, y :Float, z :Float) :Void;
+    function getByteFrequencyData (array :js.html.Uint8Array) :Void;
 
-    function setPosition (x :Float, y :Float, z :Float) :Void;
+    function getByteTimeDomainData (array :js.html.Uint8Array) :Void;
 
-    function setVelocity (x :Float, y :Float, z :Float) :Void;
+    function getFloatFrequencyData (array :js.html.Float32Array) :Void;
 
 }

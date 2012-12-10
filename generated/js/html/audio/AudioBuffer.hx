@@ -21,11 +21,21 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("AudioDestinationNode")
-extern class AudioDestinationNode extends AudioNode
+@:native("AudioBuffer")
+extern class AudioBuffer
 {
+    var duration (default,null) :Float;
+
+    var gain :Float;
+
+    var length (default,null) :Int;
+
     var numberOfChannels (default,null) :Int;
+
+    var sampleRate (default,null) :Float;
+
+    function getChannelData (channelIndex :Int) :js.html.Float32Array;
 
 }

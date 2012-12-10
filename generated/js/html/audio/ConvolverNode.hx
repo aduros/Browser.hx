@@ -21,9 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("WaveTable")
-extern class WaveTable
+@:native("ConvolverNode")
+extern class ConvolverNode extends AudioNode
 {
+    var buffer :AudioBuffer;
+
+    var normalize :Bool;
+
 }

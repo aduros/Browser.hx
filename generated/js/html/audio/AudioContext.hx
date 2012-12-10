@@ -21,10 +21,10 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
 @:native("AudioContext")
-extern class AudioContext extends EventTarget
+extern class AudioContext extends js.html.EventTarget
 {
     var activeSourceCount (default,null) :Int;
 
@@ -34,7 +34,7 @@ extern class AudioContext extends EventTarget
 
     var listener (default,null) :AudioListener;
 
-    var oncomplete :EventListener;
+    var oncomplete :js.html.EventListener;
 
     var sampleRate (default,null) :Float;
 
@@ -46,7 +46,7 @@ extern class AudioContext extends EventTarget
 
     /** Throws DOMException. */
     @:overload(function (numberOfChannels :Int, numberOfFrames :Int, sampleRate :Float) :AudioBuffer {})
-    function createBuffer (buffer :ArrayBuffer, mixToMono :Bool) :AudioBuffer;
+    function createBuffer (buffer :js.html.ArrayBuffer, mixToMono :Bool) :AudioBuffer;
 
     function createBufferSource () :AudioBufferSourceNode;
 
@@ -62,9 +62,9 @@ extern class AudioContext extends EventTarget
 
     function createGain () :GainNode;
 
-    function createMediaElementSource (mediaElement :MediaElement) :MediaElementAudioSourceNode;
+    function createMediaElementSource (mediaElement :js.html.MediaElement) :MediaElementAudioSourceNode;
 
-    function createMediaStreamSource (mediaStream :MediaStream) :MediaStreamAudioSourceNode;
+    function createMediaStreamSource (mediaStream :js.html.MediaStream) :MediaStreamAudioSourceNode;
 
     function createOscillator () :OscillatorNode;
 
@@ -74,9 +74,9 @@ extern class AudioContext extends EventTarget
 
     function createWaveShaper () :WaveShaperNode;
 
-    function createWaveTable (real :Float32Array, imag :Float32Array) :WaveTable;
+    function createWaveTable (real :js.html.Float32Array, imag :js.html.Float32Array) :WaveTable;
 
-    function decodeAudioData (audioData :ArrayBuffer, successCallback :AudioBufferCallback, ?errorCallback :AudioBufferCallback) :Void;
+    function decodeAudioData (audioData :js.html.ArrayBuffer, successCallback :AudioBufferCallback, ?errorCallback :AudioBufferCallback) :Void;
 
     function startRendering () :Void;
 

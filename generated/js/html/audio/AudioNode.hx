@@ -21,13 +21,21 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("ConvolverNode")
-extern class ConvolverNode extends AudioNode
+@:native("AudioNode")
+extern class AudioNode
 {
-    var buffer :AudioBuffer;
+    var context (default,null) :AudioContext;
 
-    var normalize :Bool;
+    var numberOfInputs (default,null) :Int;
+
+    var numberOfOutputs (default,null) :Int;
+
+    /** Throws DOMException. */
+    @:overload(function (destination :AudioNode, output :Int, input :Int) :Void {})
+    function connect (destination :AudioParam, output :Int) :Void;
+
+    function disconnect (output :Int) :Void;
 
 }

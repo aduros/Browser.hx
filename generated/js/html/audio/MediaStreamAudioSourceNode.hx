@@ -21,11 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("OfflineAudioCompletionEvent")
-extern class OfflineAudioCompletionEvent extends Event
+@:native("MediaStreamAudioSourceNode")
+extern class MediaStreamAudioSourceNode extends AudioSourceNode
 {
-    var renderedBuffer (default,null) :AudioBuffer;
+    var mediaStream (default,null) :js.html.MediaStream;
 
 }

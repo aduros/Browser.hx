@@ -128,6 +128,37 @@ html_elements = {
     "VideoElement": "video",
 }
 
+# Web Audio classes (by grepping for WEB_AUDIO in the IDL database)
+audio_classes = [
+    "AnalyserNode",
+    "AudioBuffer",
+    "AudioBufferCallback",
+    "AudioBufferSourceNode",
+    "AudioContext",
+    "AudioDestinationNode",
+    "AudioGain",
+    "AudioListener",
+    "AudioNode",
+    "AudioParam",
+    "AudioProcessingEvent",
+    "AudioSourceNode",
+    "BiquadFilterNode",
+    "ChannelMergerNode",
+    "ChannelSplitterNode",
+    "ConvolverNode",
+    "DelayNode",
+    "DynamicsCompressorNode",
+    "GainNode",
+    "MediaElementAudioSourceNode",
+    "MediaStreamAudioSourceNode",
+    "OfflineAudioCompletionEvent",
+    "OscillatorNode",
+    "PannerNode",
+    "ScriptProcessorNode",
+    "WaveShaperNode",
+    "WaveTable",
+]
+
 def to_haxe(id):
     """Converts an IDL type name to Haxe."""
     if id.endswith("..."):
@@ -163,6 +194,9 @@ def to_haxe(id):
 
     elif id.startswith("OES") or id.startswith("EXT"):
         path += ["webgl"]
+
+    elif id in audio_classes:
+        path += ["audio"]
 
     path += [id]
 

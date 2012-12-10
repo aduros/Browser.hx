@@ -21,19 +21,21 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("AudioListener")
-extern class AudioListener
+@:native("DynamicsCompressorNode")
+extern class DynamicsCompressorNode extends AudioNode
 {
-    var dopplerFactor :Float;
+    var attack (default,null) :AudioParam;
 
-    var speedOfSound :Float;
+    var knee (default,null) :AudioParam;
 
-    function setOrientation (x :Float, y :Float, z :Float, xUp :Float, yUp :Float, zUp :Float) :Void;
+    var ratio (default,null) :AudioParam;
 
-    function setPosition (x :Float, y :Float, z :Float) :Void;
+    var reduction (default,null) :AudioParam;
 
-    function setVelocity (x :Float, y :Float, z :Float) :Void;
+    var release (default,null) :AudioParam;
+
+    var threshold (default,null) :AudioParam;
 
 }

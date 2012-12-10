@@ -21,21 +21,42 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("AudioNode")
-extern class AudioNode
+@:native("OscillatorNode")
+extern class OscillatorNode extends AudioSourceNode
 {
-    var context (default,null) :AudioContext;
+    static inline var CUSTOM :Int = 4;
 
-    var numberOfInputs (default,null) :Int;
+    static inline var FINISHED_STATE :Int = 3;
 
-    var numberOfOutputs (default,null) :Int;
+    static inline var PLAYING_STATE :Int = 2;
 
-    /** Throws DOMException. */
-    @:overload(function (destination :AudioNode, output :Int, input :Int) :Void {})
-    function connect (destination :AudioParam, output :Int) :Void;
+    static inline var SAWTOOTH :Int = 2;
 
-    function disconnect (output :Int) :Void;
+    static inline var SCHEDULED_STATE :Int = 1;
+
+    static inline var SINE :Int = 0;
+
+    static inline var SQUARE :Int = 1;
+
+    static inline var TRIANGLE :Int = 3;
+
+    static inline var UNSCHEDULED_STATE :Int = 0;
+
+    var detune (default,null) :AudioParam;
+
+    var frequency (default,null) :AudioParam;
+
+    var playbackState (default,null) :Int;
+
+    /** Setter throws DOMException. */
+    var type :Int;
+
+    function setWaveTable (waveTable :WaveTable) :Void;
+
+    function start (when :Float) :Void;
+
+    function stop (when :Float) :Void;
 
 }

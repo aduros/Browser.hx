@@ -21,11 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("WaveShaperNode")
-extern class WaveShaperNode extends AudioNode
+@:native("DelayNode")
+extern class DelayNode extends AudioNode
 {
-    var curve :Float32Array;
+    var delayTime (default,null) :AudioParam;
 
 }

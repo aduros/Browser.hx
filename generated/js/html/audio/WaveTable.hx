@@ -21,11 +21,9 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("DelayNode")
-extern class DelayNode extends AudioNode
+@:native("WaveTable")
+extern class WaveTable
 {
-    var delayTime (default,null) :AudioParam;
-
 }

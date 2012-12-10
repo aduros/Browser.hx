@@ -21,26 +21,9 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("AnalyserNode")
-extern class AnalyserNode extends AudioNode
+@:native("AudioSourceNode")
+extern class AudioSourceNode extends AudioNode
 {
-    /** Setter throws DOMException. */
-    var fftSize :Int;
-
-    var frequencyBinCount (default,null) :Int;
-
-    var maxDecibels :Float;
-
-    var minDecibels :Float;
-
-    var smoothingTimeConstant :Float;
-
-    function getByteFrequencyData (array :Uint8Array) :Void;
-
-    function getByteTimeDomainData (array :Uint8Array) :Void;
-
-    function getFloatFrequencyData (array :Float32Array) :Void;
-
 }

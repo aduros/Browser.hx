@@ -21,21 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("AudioBuffer")
-extern class AudioBuffer
+@:native("GainNode")
+extern class GainNode extends AudioNode
 {
-    var duration (default,null) :Float;
-
-    var gain :Float;
-
-    var length (default,null) :Int;
-
-    var numberOfChannels (default,null) :Int;
-
-    var sampleRate (default,null) :Float;
-
-    function getChannelData (channelIndex :Int) :Float32Array;
+    var gain (default,null) :AudioGain;
 
 }

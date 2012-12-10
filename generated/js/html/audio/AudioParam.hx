@@ -21,21 +21,33 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.audio;
 
-@:native("DynamicsCompressorNode")
-extern class DynamicsCompressorNode extends AudioNode
+@:native("AudioParam")
+extern class AudioParam
 {
-    var attack (default,null) :AudioParam;
+    var defaultValue (default,null) :Float;
 
-    var knee (default,null) :AudioParam;
+    var maxValue (default,null) :Float;
 
-    var ratio (default,null) :AudioParam;
+    var minValue (default,null) :Float;
 
-    var reduction (default,null) :AudioParam;
+    var name (default,null) :String;
 
-    var release (default,null) :AudioParam;
+    var units (default,null) :Int;
 
-    var threshold (default,null) :AudioParam;
+    var value :Float;
+
+    function cancelScheduledValues (startTime :Float) :Void;
+
+    function exponentialRampToValueAtTime (value :Float, time :Float) :Void;
+
+    function linearRampToValueAtTime (value :Float, time :Float) :Void;
+
+    function setTargetAtTime (target :Float, time :Float, timeConstant :Float) :Void;
+
+    function setValueAtTime (value :Float, time :Float) :Void;
+
+    function setValueCurveAtTime (values :js.html.Float32Array, time :Float, duration :Float) :Void;
 
 }
