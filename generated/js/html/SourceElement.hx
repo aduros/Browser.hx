@@ -24,7 +24,7 @@
 package js.html;
 
 @:native("HTMLSourceElement")
-extern class SourceElement extends HTMLElement
+extern class SourceElement extends Element
 {
     /** Reflects the 
 

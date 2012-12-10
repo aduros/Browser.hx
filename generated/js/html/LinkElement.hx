@@ -26,7 +26,7 @@ package js.html;
 /** The <em>HTML Link Element</em> (&lt;link&gt;) specifies relationships between the current document and other documents. Possible uses for this element include defining a relational framework for navigation and linking the document to a style sheet.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/link">MDN</a>. */
 @:native("HTMLLinkElement")
-extern class LinkElement extends HTMLElement
+extern class LinkElement extends Element
 {
     /** This attribute defines the character encoding of the linked resource. The value is a space- and/or comma-delimited list of character sets as defined in <a class="external" title="http://tools.ietf.org/html/rfc2045" rel="external" href="http://tools.ietf.org/html/rfc2045" target="_blank">RFC 2045</a>. The default value is ISO-8859-1. <div class="note"><strong>Usage note: </strong>This attribute is obsolete in HTML5 and <span>must</span><strong> not be used by authors</strong>. To achieve its effect, use the <span>Content-Type:</span> HTTP header on the linked resource.</div> */
     var charset :String;

@@ -27,7 +27,7 @@ package js.html;
 .<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/param">MDN</a>. */
 @:native("HTMLParamElement")
-extern class ParamElement extends HTMLElement
+extern class ParamElement extends Element
 {
     /** Name of the parameter. */
     var name :String;

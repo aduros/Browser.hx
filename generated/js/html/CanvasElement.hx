@@ -27,7 +27,7 @@ package js.html;
  object interface.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLCanvasElement">MDN</a>. */
 @:native("HTMLCanvasElement")
-extern class CanvasElement extends HTMLElement
+extern class CanvasElement extends Element
 {
     /** Reflects the 
 

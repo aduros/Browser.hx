@@ -28,6 +28,6 @@ package js.html;
 <div class="note">Diese Referenz trennt zwischen Methoden und Eigenschaften die für Webinhalte verfügbar oder nur für Entwickler von Erweiterungen verfügbar sind. Erweiterungsentwickler halten sich bitte an die englische Funktionsreferenz im Mozilla Developer Center.</div><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/de/Gecko-DOM-Referenz">MDN</a>. */
 @:native("HTMLUnknownElement")
-extern class UnknownElement extends HTMLElement
+extern class UnknownElement extends Element
 {
 }

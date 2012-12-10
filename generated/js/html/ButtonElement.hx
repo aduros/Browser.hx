@@ -28,7 +28,7 @@ package js.html;
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML">HTML 4</a></span>) interface, which provides properties and methods (beyond the <a href="https://developer.mozilla.org/en/DOM/element" rel="internal">element</a> object interface they also have available to them by inheritance) for manipulating the layout and presentation of button elements.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLButtonElement">MDN</a>. */
 @:native("HTMLButtonElement")
-extern class ButtonElement extends HTMLElement
+extern class ButtonElement extends Element
 {
     /** The control should have input focus when the page loads, unless the user overrides it, for example by typing in a different control. Only one form-associated element in a document can have this attribute specified. */
     var autofocus :Bool;

@@ -27,7 +27,7 @@ package js.html;
 <br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLTableElement">MDN</a>. */
 @:native("HTMLTableElement")
-extern class TableElement extends HTMLElement
+extern class TableElement extends Element
 {
     /** <b>align</b> gets/sets the alignment of the table. */
     var align :String;
@@ -74,13 +74,13 @@ extern class TableElement extends HTMLElement
     /** <b>width</b> gets/sets the width of the table. */
     var width :String;
 
-    function createCaption () :HTMLElement;
+    function createCaption () :Element;
 
-    function createTBody () :HTMLElement;
+    function createTBody () :Element;
 
-    function createTFoot () :HTMLElement;
+    function createTFoot () :Element;
 
-    function createTHead () :HTMLElement;
+    function createTHead () :Element;
 
     function deleteCaption () :Void;
 
@@ -90,6 +90,6 @@ extern class TableElement extends HTMLElement
 
     function deleteTHead () :Void;
 
-    function insertRow (index :Int) :HTMLElement;
+    function insertRow (index :Int) :Element;
 
 }

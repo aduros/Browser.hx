@@ -26,7 +26,7 @@ package js.html;
 /** Obsolete<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/applet">MDN</a>. */
 @:native("HTMLAppletElement")
-extern class AppletElement extends HTMLElement
+extern class AppletElement extends Element
 {
     /** This attribute is used to position the applet on the page relative to content that might flow around it. The HTML 4.01 specification defines values of bottom, left, middle, right, and top, whereas Microsoft and Netscape also might support <strong>absbottom</strong>, <strong>absmiddle</strong>, <strong>baseline</strong>, <strong>center</strong>, and <strong>texttop</strong>. */
     var align :String;

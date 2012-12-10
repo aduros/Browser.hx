@@ -26,7 +26,7 @@ package js.html;
 /** This element represents preformatted text. Text within this element is typically displayed in a non-proportional font exactly as it is laid out in the file. Whitespaces inside this element are displayed as typed.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/pre">MDN</a>. */
 @:native("HTMLPreElement")
-extern class PreElement extends HTMLElement
+extern class PreElement extends Element
 {
     var width :Int;
 

@@ -160,6 +160,13 @@ audio_classes = [
     "WaveTable",
 ]
 
+# Merged class pairs
+merged_targets = {
+    "HTMLElement": "Element",
+    "HTMLDocument": "Document",
+}
+merged_sources = dict([[v,k] for k,v in merged_targets.iteritems()])
+
 def to_haxe(id):
     """Converts an IDL type name to Haxe."""
     if id.endswith("..."):
@@ -169,6 +176,9 @@ def to_haxe(id):
     match = re.match(r"(?:sequence<(\w+)>|(\w+)\[\])$", id)
     if match:
         return ["Array<%s>" % to_haxe_package(match.group(1) or match.group(2))]
+
+    if id in merged_targets:
+        id = merged_targets.get(id)
 
     # Strip the "HTML" prefix from elements
     match = re.match(r"HTML(.+)Element", id)
@@ -274,7 +284,10 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
 
     def get_parent(interface):
         if interface.parents:
-            return db.GetInterface(interface.parents[0].type.id)
+            parent = interface.parents[0].type.id
+            if interface.id not in merged_targets and parent in merged_sources:
+                parent = merged_sources.get(parent)
+            return db.GetInterface(parent)
         if "EventTarget" in interface.ext_attrs:
             return EventTarget
         return None
@@ -358,6 +371,25 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             wln("package %s;" % ".".join(package))
             wln()
 
+            constants = node.constants[:]
+            attributes = node.attributes[:]
+            operations = node.operations[:]
+            if node.id in merged_sources:
+                def append_uniques(tgt, src):
+                    for s in src:
+                        duplicate = False
+                        for t in tgt:
+                            if s.id == t.id:
+                                duplicate = True
+                                break
+                        if not duplicate:
+                            tgt.append(s)
+                source = db.GetInterface(merged_sources.get(node.id))
+                append_uniques(constants, source.constants)
+                append_uniques(attributes, source.attributes)
+                operations += source.operations
+                print("Merged %s onto %s" % (source.id, node.id))
+
             class_doc = None
             if node.id in mdn_js:
                 class_doc = mdn_js[node.id]
@@ -393,7 +425,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
 
             if is_callback(node):
                 # Generate a function typedef if this is a callback
-                callback = node.operations[0]
+                callback = operations[0]
                 if callback.arguments:
                     arguments = " -> ".join([to_haxe_local(x.type.id) for x in callback.arguments])
                 else:
@@ -404,9 +436,9 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
             wln("@:native(\"%s\")" % strip_vendor(interface_name))
             w("extern class %s" % to_haxe_class(node.id))
-            strip_vendor_fields(node.constants)
-            strip_vendor_fields(node.attributes)
-            strip_vendor_fields(node.operations, False)
+            strip_vendor_fields(constants)
+            strip_vendor_fields(attributes)
+            strip_vendor_fields(operations, False)
 
             inherits = []
             parent = get_parent(node)
@@ -423,10 +455,10 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             wln()
             wln("{")
             begin_indent()
-            if node.constants:
-                w_members(sort(node.constants))
-            if node.attributes:
-                attributes = sort([x for x in node.attributes if not defined_in_parent(node, x.id)])
+            if constants:
+                w_members(sort(constants))
+            if attributes:
+                attributes = sort([x for x in attributes if not defined_in_parent(node, x.id)])
                 if "ExtendsDOMGlobalObject" in node.ext_attrs:
                     # Omit class contructors from the global object
                     w_members([x for x in attributes if not x.type.id.endswith("Constructor")])
@@ -473,8 +505,8 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     else:
                         wln("function new (%s) :Void;" % args)
                 wln()
-            if node.operations:
-                operations = sort([x for x in node.operations if not defined_in_parent(node, x.id)])
+            if operations:
+                operations = sort([x for x in operations if not defined_in_parent(node, x.id)])
                 for id, group in itertools.groupby(operations, lambda node: node.id):
                     group = list(group)
                     ll = len(group)
@@ -489,7 +521,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                                 wln(overload)
                     else:
                         wln(group[0])
-            if node.id == "HTMLDocument":
+            if node.id == "Document":
                 for type, tag_name in html_elements.iteritems():
                     w_typed_shortcut("create"+type, type, "createElement(\"%s\")" % tag_name)
             elif node.id == "HTMLCanvasElement":

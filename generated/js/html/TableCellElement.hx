@@ -26,7 +26,7 @@ package js.html;
 /** The <em>HTML Table Cell Element</em> (<code>&lt;td&gt;</code>) defines a cell that content data.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/td">MDN</a>. */
 @:native("HTMLTableCellElement")
-extern class TableCellElement extends HTMLElement
+extern class TableCellElement extends Element
 {
     /** This attribute contains a short abbreviated description of the content of the cell. Some user-agents, such as speech readers, may present this description before the content itself. <div class="note"><strong>Note: </strong>Do not use this attribute as it is obsolete in the latest standard: instead either consider starting the cell content by an independent abbreviated content itself or use the abbreviated content as the cell content and use the long content as the description of the cell by putting it in the <strong>title</strong> attribute.</div> */
     var abbr :String;

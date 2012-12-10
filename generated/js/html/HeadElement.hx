@@ -29,7 +29,7 @@ package js.html;
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML/HTML5">HTML5</a></span>, this interface inherits from HTMLElement, but defines no additional members.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLHeadElement">MDN</a>. */
 @:native("HTMLHeadElement")
-extern class HeadElement extends HTMLElement
+extern class HeadElement extends Element
 {
     /** The URIs of one or more metadata profiles (white space separated). 
 

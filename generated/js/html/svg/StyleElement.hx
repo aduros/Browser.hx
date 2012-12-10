@@ -37,11 +37,6 @@ extern class StyleElement extends Element
     var media :String;
 
     /** Corresponds to attribute 
-<code><a rel="internal" href="https://developer.mozilla.org/en/SVG/Attribute/title" class="new">title</a></code> on the given element. A <code><a rel="custom" href="https://developer.mozilla.org/en/DOM/DOMException">DOMException</a></code>
- is raised with code <code>NO_MODIFICATION_ALLOWED_ERR</code> on an attempt to change the value of a read only attribut. Setter throws DOMException. */
-    var title :String;
-
-    /** Corresponds to attribute 
 <code><a rel="internal" href="https://developer.mozilla.org/en/SVG/Attribute/type" class="new">type</a></code> on the given element. A <code><a rel="custom" href="https://developer.mozilla.org/en/DOM/DOMException">DOMException</a></code>
  is raised with code <code>NO_MODIFICATION_ALLOWED_ERR</code> on an attempt to change the value of a read only attribut. Setter throws DOMException. */
     var type :String;

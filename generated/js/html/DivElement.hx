@@ -28,7 +28,7 @@ package js.html;
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML/HTML5">HTML5</a></span>, this interface inherits from HTMLElement, but defines no additional members.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLDivElement">MDN</a>. */
 @:native("HTMLDivElement")
-extern class DivElement extends HTMLElement
+extern class DivElement extends Element
 {
     /** Enumerated attribute indicating alignment of the element's contents with respect to the surrounding context. */
     var align :String;

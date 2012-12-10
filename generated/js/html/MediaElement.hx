@@ -28,7 +28,7 @@ package js.html;
 ) expose the <code>HTMLMediaElement</code> interface which provides special properties and methods (beyond the regular <a href="https://developer.mozilla.org/en/DOM/element" rel="internal">element</a> object interface they also have available to them by inheritance) for manipulating the layout and presentation of media elements.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLMediaElement">MDN</a>. */
 @:native("HTMLMediaElement")
-extern class MediaElement extends HTMLElement
+extern class MediaElement extends Element
 {
     /** Data is available for the current playback position, but not enough to actually play more than one frame. */
     static inline var HAVE_CURRENT_DATA :Int = 2;

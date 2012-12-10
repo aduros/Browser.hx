@@ -26,7 +26,7 @@ package js.html;
 /** Non-standard<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/marquee">MDN</a>. */
 @:native("HTMLMarqueeElement")
-extern class MarqueeElement extends HTMLElement
+extern class MarqueeElement extends Element
 {
     /** Sets how the text is scrolled within the marquee. Possible values are <code>scroll</code>, <code>slide</code> and <code>alternate</code>. If no value is specified, the default value is <code>scroll</code>. */
     var behavior :String;

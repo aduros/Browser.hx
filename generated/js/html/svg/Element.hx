@@ -28,10 +28,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGElement")
 extern class Element extends js.html.Element
 {
-    /** The value of the 
-<code><a rel="internal" href="https://developer.mozilla.org/en/SVG/Attribute/id" class="new">id</a></code> attribute on the given element, or the empty string if <code>id</code> is not present. */
-    var id :String;
-
     /** The nearest ancestor <code><a rel="custom" href="https://developer.mozilla.org/en/SVG/Element/svg">&lt;svg&gt;</a></code>
  element. <code>Null</code> if the given element is the outermost svg element. */
     var ownerSVGElement (default,null) :SVGElement;

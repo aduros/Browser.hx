@@ -27,7 +27,7 @@ package js.html;
  elements and their content.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLDataListElement">MDN</a>. */
 @:native("HTMLDataListElement")
-extern class DataListElement extends HTMLElement
+extern class DataListElement extends Element
 {
     /** A collection of the contained option elements. */
     var options (default,null) :HTMLCollection;

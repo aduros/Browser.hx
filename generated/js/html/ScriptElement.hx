@@ -27,7 +27,7 @@ package js.html;
 <p>Scripts without <code>async</code> or <code>defer</code> attributes are fetched and executed immediately, before the browser continues to parse the page.</p><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/En/HTML/Element/Script">MDN</a>. */
 @:native("HTMLScriptElement")
-extern class ScriptElement extends HTMLElement
+extern class ScriptElement extends Element
 {
     /** Set this Boolean attribute to indicate that the browser should, if possible, execute the script asynchronously. It has no effect on inline scripts (i.e., scripts that don't have the <strong>src</strong> attribute). In older browsers that don't support the <strong>async</strong> attribute, parser-inserted scripts block the parser; script-inserted scripts execute asynchronously in IE and WebKit, but synchronously in Opera and pre-4.0 Firefox. In Firefox 4.0, the <code>async</code> DOM&nbsp;property defaults to <code>true</code> for script-created scripts, so the default behavior matches the behavior of IE&nbsp;and WebKit. To request script-inserted external scripts be executed in the insertion order in browsers where the <code>document.createElement("script").async</code> evaluates to <code>true</code> (such as Firefox 4.0), set <code>.async=false</code> on the scripts you want to maintain order. Never call <code>document.write()</code> from an <code>async</code> script. In Gecko 1.9.2, calling <code>document.write()</code> has an unpredictable effect. In Gecko 2.0, calling <code>document.write()</code> from an <code>async</code> script has no effect (other than printing a warning to the error console). */
     var async :Bool;

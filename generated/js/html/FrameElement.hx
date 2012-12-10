@@ -29,7 +29,7 @@ package js.html;
 &nbsp;may be preferred.</p><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/frame">MDN</a>. */
 @:native("HTMLFrameElement")
-extern class FrameElement extends HTMLElement
+extern class FrameElement extends Element
 {
     var contentDocument (default,null) :Document;
 

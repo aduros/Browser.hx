@@ -28,7 +28,7 @@ package js.html;
  object interface they also have available to them by inheritance) for manipulating body elements.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLBodyElement">MDN</a>. */
 @:native("HTMLBodyElement")
-extern class BodyElement extends HTMLElement
+extern class BodyElement extends Element
 {
     /** Color of active hyperlinks. */
     var aLink :String;

@@ -26,7 +26,7 @@ package js.html;
 /** Obsolete<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/font">MDN</a>. */
 @:native("HTMLFontElement")
-extern class FontElement extends HTMLElement
+extern class FontElement extends Element
 {
     /** This attribute sets the text color using either a named color or a color specified in the hexadecimal #RRGGBB format. */
     var color :String;

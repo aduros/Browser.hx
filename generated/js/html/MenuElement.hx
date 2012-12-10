@@ -36,7 +36,7 @@ package js.html;
 <div class="note"><strong>Note</strong>: This element was deprecated in HTML4, but reintroduced in HTML5.</div><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/menu">MDN</a>. */
 @:native("HTMLMenuElement")
-extern class MenuElement extends HTMLElement
+extern class MenuElement extends Element
 {
     var compact :Bool;
 

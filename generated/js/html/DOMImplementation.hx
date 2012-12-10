@@ -34,7 +34,7 @@ extern class DOMImplementation
 
     function createDocumentType (qualifiedName :String, publicId :String, systemId :String) :DocumentType;
 
-    function createHTMLDocument (title :String) :HTMLDocument;
+    function createHTMLDocument (title :String) :Document;
 
     function hasFeature (feature :String, version :String) :Bool;
 

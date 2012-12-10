@@ -28,7 +28,7 @@ package js.html;
 <p>No methods are defined on this interface.</p><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLOptionElement">MDN</a>. */
 @:native("HTMLOptionElement")
-extern class OptionElement extends HTMLElement
+extern class OptionElement extends Element
 {
     /** Reflects the value of the 
 

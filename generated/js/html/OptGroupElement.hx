@@ -27,7 +27,7 @@ package js.html;
  element.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/optgroup">MDN</a>. */
 @:native("HTMLOptGroupElement")
-extern class OptGroupElement extends HTMLElement
+extern class OptGroupElement extends Element
 {
     /** If this Boolean attribute is set, none of the items in this option group is selectable. Often browsers grey out such control and it won't received any browsing events, like mouse clicks or focus-related ones. */
     var disabled :Bool;

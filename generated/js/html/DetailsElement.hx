@@ -26,7 +26,7 @@ package js.html;
 /** The HTML <em>details</em> element (<code>&lt;details&gt;</code>) is used as a disclosure widget from which the user the retrieve additional information.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/details">MDN</a>. */
 @:native("HTMLDetailsElement")
-extern class DetailsElement extends HTMLElement
+extern class DetailsElement extends Element
 {
     /** This Boolean attribute indicates whether the details will be shown to the user on page load. If omitted the details will be hidden. */
     var open :Bool;

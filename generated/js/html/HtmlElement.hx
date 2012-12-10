@@ -29,7 +29,7 @@ package js.html;
 <p>You can retrieve the <code>html</code> object for a document by obtaining the value of the <a class="internal" title="en/DOM/document.documentElement" rel="internal" href="https://developer.mozilla.org/en/DOM/document.documentElement"><code>document.documentElement</code></a> property.</p><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/En/DOM/Html">MDN</a>. */
 @:native("HTMLHtmlElement")
-extern class HtmlElement extends HTMLElement
+extern class HtmlElement extends Element
 {
     var manifest :String;
 

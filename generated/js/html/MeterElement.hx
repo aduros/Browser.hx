@@ -27,7 +27,7 @@ package js.html;
 <div class="note"><strong>Usage note: </strong>Unless the <strong>value</strong> attribute is between 0 and 1 (inclusive), the <strong>min</strong> attribute and <strong>max</strong> attribute should define the range so that the <strong>value</strong> attribute's value is within it.</div><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/meter">MDN</a>. */
 @:native("HTMLMeterElement")
-extern class MeterElement extends HTMLElement
+extern class MeterElement extends Element
 {
     /** The lower numeric bound of the high end of the measured range. This must be less than the maximum value (<strong>max</strong> attribute), and it also must be greater than the low value and minimum value (<strong>low</strong> attribute and <strong>min</strong> attribute, respectively), if any are specified. If unspecified, or if greater than the maximum value, the <strong>high</strong> value is equal to the maximum value. Setter throws DOMException. */
     var high :Float;

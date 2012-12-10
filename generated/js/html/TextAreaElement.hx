@@ -28,7 +28,7 @@ package js.html;
  elements.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLTextAreaElement">MDN</a>. */
 @:native("HTMLTextAreaElement")
-extern class TextAreaElement extends HTMLElement
+extern class TextAreaElement extends Element
 {
     /** Reflects the 
 

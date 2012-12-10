@@ -26,7 +26,7 @@ package js.html;
 /** The HTML <em>progress</em> (<code>&lt;progress&gt;</code>) element is used to view the completion progress of a task. While the specifics of how it's displayed is left up to the browser developer, it's typically displayed as a progress bar.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/progress">MDN</a>. */
 @:native("HTMLProgressElement")
-extern class ProgressElement extends HTMLElement
+extern class ProgressElement extends Element
 {
     var labels (default,null) :NodeList;
 

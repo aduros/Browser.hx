@@ -26,7 +26,7 @@ package js.html;
 /** <strong>Note:</strong>&nbsp;This topic describes the HTMLEmbedElement interface as defined in the HTML5 standard. It does not address earlier, non-standardized version of the interface.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLEmbedElement">MDN</a>. */
 @:native("HTMLEmbedElement")
-extern class EmbedElement extends HTMLElement
+extern class EmbedElement extends Element
 {
     var align :String;
 

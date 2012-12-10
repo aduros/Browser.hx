@@ -27,7 +27,7 @@ package js.html;
 <p>This interface provides methods to create and modify <code>FORM</code> elements using the DOM.</p><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLFormElement">MDN</a>. */
 @:native("HTMLFormElement")
-extern class FormElement extends HTMLElement
+extern class FormElement extends Element
 {
     /** Reflects the 
 

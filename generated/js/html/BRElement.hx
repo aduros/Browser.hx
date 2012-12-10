@@ -28,7 +28,7 @@ package js.html;
 <span>HTML 4.01</span>.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLBRElement">MDN</a>. */
 @:native("HTMLBRElement")
-extern class BRElement extends HTMLElement
+extern class BRElement extends Element
 {
     /** Indicates flow of text around floating objects. */
     var clear :String;

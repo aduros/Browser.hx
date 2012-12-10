@@ -28,7 +28,7 @@ package js.html;
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML">HTML 4</a></span>) interface.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLLegendElement">MDN</a>. */
 @:native("HTMLLegendElement")
-extern class LegendElement extends HTMLElement
+extern class LegendElement extends Element
 {
     /** Alignment relative to the form set. 
 

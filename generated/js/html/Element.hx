@@ -89,8 +89,14 @@ extern class Element extends Node
 {
     static inline var ALLOW_KEYBOARD_INPUT :Int = 1;
 
+    var accessKey :String;
+
     /** The number of child nodes that are elements. */
     var childElementCount (default,null) :Int;
+
+    /** A live <code><a rel="internal" href="https://developer.mozilla.org/Article_not_found?uri=en/XPCOM_Interface_Reference/nsIDOMNodeList&amp;ident=nsIDOMNodeList" class="new">nsIDOMNodeList</a></code>
+ of the current child elements. */
+    var children (default,null) :HTMLCollection;
 
     /** Token list of class attribute */
     var classList (default,null) :DOMTokenList;
@@ -110,11 +116,38 @@ extern class Element extends Node
     /** The inner width of an element. */
     var clientWidth (default,null) :Int;
 
+    /** Gets/sets whether or not the element is editable. Setter throws DOMException. */
+    var contentEditable :String;
+
     /** Allows access to read and write custom data attributes on the element. */
     var dataset (default,null) :DOMStringMap;
 
+    /** Gets/sets the directionality of the element. */
+    var dir :String;
+
+    var draggable :Bool;
+
+    var dropzone :String;
+
     /** The first direct child element of an element, or <code>null</code> if the element has no child elements. */
     var firstElementChild (default,null) :Element;
+
+    var hidden :Bool;
+
+    /** Gets/sets the id of the element. */
+    var id :String;
+
+    /** Gets/sets the markup of the element's content. Setter throws DOMException. */
+    var innerHTML :String;
+
+    /** Setter throws DOMException. */
+    var innerText :String;
+
+    /** Indicates whether or not the content of the element can be edited. Read only. */
+    var isContentEditable (default,null) :Bool;
+
+    /** Gets/sets the language of an element's attributes, text, and element contents. */
+    var lang :String;
 
     /** The last direct child element of an element, or <code>null</code> if the element has no child elements. */
     var lastElementChild (default,null) :Element;
@@ -245,6 +278,12 @@ extern class Element extends Node
 
     var ontouchstart :EventListener;
 
+    /** Gets the markup of the element including its content. When used as a setter, replaces the element with nodes parsed from the given string. Setter throws DOMException. */
+    var outerHTML :String;
+
+    /** Setter throws DOMException. */
+    var outerText :String;
+
     /** The element immediately preceding the given one in the tree, or <code>null</code> if there is no sibling element. */
     var previousElementSibling (default,null) :Element;
 
@@ -262,13 +301,26 @@ extern class Element extends Node
     /** The scroll view width of an element. */
     var scrollWidth (default,null) :Int;
 
+    /** Controls <a title="en/Controlling_spell_checking_in_HTML_forms" rel="internal" href="https://developer.mozilla.org/en/HTML/Controlling_spell_checking_in_HTML_forms">spell-checking</a> (present on all HTML&nbsp;elements) */
+    var spellcheck :Bool;
+
     /** An object representing the declarations of an element's style attributes. */
     var style (default,null) :CSSStyleDeclaration;
+
+    /** Gets/sets the position of the element in the tabbing order. */
+    var tabIndex :Int;
 
     /** The name of the tag for the given element. */
     var tagName (default,null) :String;
 
+    /** A string that appears in a popup box when mouse is over the element. */
+    var title :String;
+
+    var translate :Bool;
+
     function blur () :Void;
+
+    function click () :Void;
 
     function focus () :Void;
 
@@ -293,6 +345,12 @@ extern class Element extends Node
     function hasAttribute (name :String) :Bool;
 
     function hasAttributeNS (namespaceURI :String, localName :String) :Bool;
+
+    function insertAdjacentElement (where :String, element :Element) :Element;
+
+    function insertAdjacentHTML (where :String, html :String) :Void;
+
+    function insertAdjacentText (where :String, text :String) :Void;
 
     function matchesSelector (selectors :String) :Bool;
 

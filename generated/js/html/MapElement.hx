@@ -27,7 +27,7 @@ package js.html;
  elements to define a image map.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/map">MDN</a>. */
 @:native("HTMLMapElement")
-extern class MapElement extends HTMLElement
+extern class MapElement extends Element
 {
     var areas (default,null) :HTMLCollection;
 

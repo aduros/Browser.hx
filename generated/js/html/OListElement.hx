@@ -36,7 +36,7 @@ package js.html;
  is adequate.</div><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/ol">MDN</a>. */
 @:native("HTMLOListElement")
-extern class OListElement extends HTMLElement
+extern class OListElement extends Element
 {
     /** This Boolean attribute hints that the list should be rendered in a compact style. The interpretation of this attribute depends on the user agent and it doesn't work in all browsers. <div class="note"><strong>Usage note:&nbsp;</strong>Do not use this attribute, as it has been deprecated: the <code><a rel="custom" href="https://developer.mozilla.org/en/HTML/Element/ol">&lt;ol&gt;</a></code>
  element should be styled using <a title="en/CSS" rel="internal" href="https://developer.mozilla.org/en/CSS">CSS</a>. To give a similar effect than the <span>compact</span> attribute, the <a title="en/CSS" rel="internal" href="https://developer.mozilla.org/en/CSS">CSS</a> property <code><a rel="custom" href="https://developer.mozilla.org/en/CSS/line-height">line-height</a></code>

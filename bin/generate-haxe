@@ -53,6 +53,9 @@ with open("mdn-css.json") as f:
     mdn_css = json.load(f)
 
 def generate_interface(interface):
+    if interface.id in haxerenderer.merged_targets:
+        return # Skip merged classes
+
     path = haxerenderer.to_haxe(interface.id)
     name = path[-1]
     package = path[0:-1]

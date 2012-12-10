@@ -27,7 +27,7 @@ package js.html;
  elements.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/frameset">MDN</a>. */
 @:native("HTMLFrameSetElement")
-extern class FrameSetElement extends HTMLElement
+extern class FrameSetElement extends Element
 {
     var cols :String;
 

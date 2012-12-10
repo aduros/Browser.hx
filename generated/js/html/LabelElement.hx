@@ -27,10 +27,10 @@ package js.html;
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML">HTML 4</a></span> <a class=" external" title="http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-13691394" rel="external" href="http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-13691394" target="_blank">HTMLLabelElement</a>) interface.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLLabelElement">MDN</a>. */
 @:native("HTMLLabelElement")
-extern class LabelElement extends HTMLElement
+extern class LabelElement extends Element
 {
     /** The labeled control. */
-    var control (default,null) :HTMLElement;
+    var control (default,null) :Element;
 
     /** The form owner of this label. */
     var form (default,null) :FormElement;

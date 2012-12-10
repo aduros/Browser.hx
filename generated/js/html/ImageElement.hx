@@ -28,7 +28,7 @@ package js.html;
  object interface they also have available to them by inheritance) for manipulating the layout and presentation of input elements.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLImageElement">MDN</a>. */
 @:native("HTMLImageElement")
-extern class ImageElement extends HTMLElement
+extern class ImageElement extends Element
 {
     /** Indicates the alignment of the image with respect to the surrounding context. */
     var align :String;

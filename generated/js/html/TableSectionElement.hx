@@ -26,7 +26,7 @@ package js.html;
 /** The <em>HTML Table Head Element</em> (<code>&lt;thead&gt;</code>) defines a set of rows defining the head of the columns of the table.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/thead">MDN</a>. */
 @:native("HTMLTableSectionElement")
-extern class TableSectionElement extends HTMLElement
+extern class TableSectionElement extends Element
 {
     /** This enumerated attribute specifies how horizontal alignment of each cell content will be handled. Possible values are: <ul> <li><span>left</span>, aligning the content to the left of the cell</li> <li><span>center</span>, centering the content in the cell</li> <li><span>right</span>, aligning the content to the right of the cell</li> <li><span>justify</span>, inserting spaces into the textual content so that the content is justified in the cell</li> <li><span>char</span>, aligning the textual content on a special character with a minimal offset, defined by the 
 
@@ -58,6 +58,6 @@ bug 2212</a>
 
     function deleteRow (index :Int) :Void;
 
-    function insertRow (index :Int) :HTMLElement;
+    function insertRow (index :Int) :Element;
 
 }

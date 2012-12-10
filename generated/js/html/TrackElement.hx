@@ -29,7 +29,7 @@ package js.html;
 <p>The type of data that <code> track</code> adds to the media is set in the <code>kind</code> attribute, which can take values of <code>subtitles</code>, <code>captions</code>, <code>descriptions</code>, <code>chapters</code> or <code>metadata</code>. The element points to a source file containing timed text that the browser exposes when the user requests additional data. </p><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/track">MDN</a>. */
 @:native("HTMLTrackElement")
-extern class TrackElement extends HTMLElement
+extern class TrackElement extends Element
 {
     static inline var ERROR :Int = 3;
 

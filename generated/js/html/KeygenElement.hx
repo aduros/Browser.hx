@@ -28,7 +28,7 @@ bug 101019</a>
  for details and status.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLKeygenElement">MDN</a>. */
 @:native("HTMLKeygenElement")
-extern class KeygenElement extends HTMLElement
+extern class KeygenElement extends Element
 {
     /** Reflects the 
 

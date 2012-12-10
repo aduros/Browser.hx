@@ -27,7 +27,7 @@ package js.html;
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML/HTML5">HTML5</a></span>, this interface inherits from HTMLElement, but defines no additional members.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLDListElement">MDN</a>. */
 @:native("HTMLDListElement")
-extern class DListElement extends HTMLElement
+extern class DListElement extends Element
 {
     /** Indicates that spacing between list items should be reduced. */
     var compact :Bool;

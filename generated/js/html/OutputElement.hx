@@ -24,7 +24,7 @@
 package js.html;
 
 @:native("HTMLOutputElement")
-extern class OutputElement extends HTMLElement
+extern class OutputElement extends Element
 {
     /** The default value of the element, initially the empty string. */
     var defaultValue :String;

@@ -28,6 +28,6 @@ package js.html;
  is a block-level element whereas a &lt;span&gt; is an inline element.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/HTML/Element/span">MDN</a>. */
 @:native("HTMLSpanElement")
-extern class SpanElement extends HTMLElement
+extern class SpanElement extends Element
 {
 }

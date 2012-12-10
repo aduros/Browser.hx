@@ -27,7 +27,7 @@ package js.html;
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML">HTML 4</a></span> <a class=" external" rel="external" href="http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-6043025" title="http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-6043025" target="_blank"><code>HTMLInputElement</code></a>) interface, which provides special properties and methods (beyond the regular <a rel="internal" href="https://developer.mozilla.org/en/DOM/element">element</a> object interface they also have available to them by inheritance) for manipulating the layout and presentation of input elements.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLInputElement">MDN</a>. */
 @:native("HTMLInputElement")
-extern class InputElement extends HTMLElement
+extern class InputElement extends Element
 {
     /** Reflects the 
 
@@ -151,7 +151,7 @@ extern class InputElement extends HTMLElement
     var labels (default,null) :NodeList;
 
     /** Identifies a list of pre-defined options to suggest to the user. The value must be the <strong>id</strong> of a <code><a class="new" href="https://developer.mozilla.org/en/HTML/Element/datalist" rel="internal">&lt;datalist&gt;</a></code> element in the same document. The browser displays only options that are valid values for this input element. This attribute is ignored when the <strong>type</strong> attribute's value is <span>hidden</span>, <span>checkbox</span>, <span>radio</span>, <span>file</span>, or a button type. */
-    var list (default,null) :HTMLElement;
+    var list (default,null) :Element;
 
     /** Reflects the 
 

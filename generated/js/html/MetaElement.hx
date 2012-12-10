@@ -26,7 +26,7 @@ package js.html;
 /** The meta objects expose the <a class=" external" target="_blank" rel="external" href="http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-37041454" title="http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-37041454">HTMLMetaElement</a> interface which contains descriptive metadata about a document.&nbsp; This object inherits all of the properties and methods described in the <a class="internal" rel="internal" href="https://developer.mozilla.org/en/DOM/element">element</a> section.<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLMetaElement">MDN</a>. */
 @:native("HTMLMetaElement")
-extern class MetaElement extends HTMLElement
+extern class MetaElement extends Element
 {
     /** Gets or sets the value of meta-data property. */
     var content :String;
