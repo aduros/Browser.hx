@@ -5,6 +5,7 @@ import json
 import logging
 import logging.config
 import os
+import shutil
 
 import database
 import haxerenderer
@@ -43,6 +44,9 @@ header = """/*
 db = database.Database(os.path.join(root_dir, "database"))
 db.LoadFromCache()
 
+generated_dir = "generated"
+shutil.rmtree(os.path.join(root_dir, generated_dir), ignore_errors=True)
+
 with open("mdn-js.json") as f:
     mdn_js = json.load(f)
 with open("mdn-css.json") as f:
@@ -53,7 +57,7 @@ def generate_interface(interface):
     name = path[-1]
     package = path[0:-1]
 
-    file_path = os.sep.join([root_dir, "generated"] + package + [name+".hx"])
+    file_path = os.sep.join([root_dir, generated_dir] + package + [name+".hx"])
     _logger.debug("Generating %s" % file_path)
 
     dir_name = os.path.dirname(file_path)
