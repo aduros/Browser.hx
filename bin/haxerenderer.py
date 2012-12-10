@@ -161,7 +161,7 @@ def to_haxe(id):
         id = id[len("WebGL"):]
         path += ["webgl"]
 
-    elif id.startswith("OES"):
+    elif id.startswith("OES") or id.startswith("EXT"):
         path += ["webgl"]
 
     path += [id]

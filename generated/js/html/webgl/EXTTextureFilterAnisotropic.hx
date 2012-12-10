@@ -21,7 +21,7 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.webgl;
 
 @:native("EXTTextureFilterAnisotropic")
 extern class EXTTextureFilterAnisotropic
