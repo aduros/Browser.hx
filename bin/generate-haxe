@@ -38,7 +38,6 @@ header = """/*
  */
 
 // This file is generated, do not edit!
-package js.html;
 """ % (datetime.date.today().year)
 
 db = database.Database(os.path.join(root_dir, "database"))
@@ -50,8 +49,11 @@ with open("mdn-css.json") as f:
     mdn_css = json.load(f)
 
 def generate_interface(interface):
-    file_path = os.path.join(root_dir, "generated", "js", "html",
-        haxerenderer.to_haxe(interface.id)+".hx")
+    path = haxerenderer.to_haxe(interface.id)
+    name = path[-1]
+    package = path[0:-1]
+
+    file_path = os.sep.join([root_dir, "generated"] + package + [name+".hx"])
     _logger.debug("Generating %s" % file_path)
 
     dir_name = os.path.dirname(file_path)

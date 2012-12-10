@@ -84,6 +84,6 @@ extern class IFrameElement extends HTMLElement
 &nbsp;HTML&nbsp;attribute, indicating the width of the frame. */
     var width :String;
 
-    function getSVGDocument () :SVGDocument;
+    function getSVGDocument () :js.html.svg.SVGDocument;
 
 }

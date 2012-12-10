@@ -42,6 +42,6 @@ extern class ScriptProfileNode
 
     var visible (default,null) :Bool;
 
-    function children () :Array<ScriptProfileNode>;
+    function children () :Array<js.html.ScriptProfileNode>;
 
 }

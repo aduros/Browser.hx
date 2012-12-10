@@ -56,6 +56,6 @@ extern class EmbedElement extends HTMLElement
  HTML&nbsp;attribute, containing the displayed width of the resource. */
     var width :String;
 
-    function getSVGDocument () :SVGDocument;
+    function getSVGDocument () :js.html.svg.SVGDocument;
 
 }

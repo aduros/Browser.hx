@@ -152,7 +152,7 @@ extern class ObjectElement extends HTMLElement
 
     function checkValidity () :Bool;
 
-    function getSVGDocument () :SVGDocument;
+    function getSVGDocument () :js.html.svg.SVGDocument;
 
     function setCustomValidity (error :String) :Void;
 

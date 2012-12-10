@@ -33,7 +33,7 @@ extern class Console
 {
     var memory (default,null) :MemoryInfo;
 
-    var profiles (default,null) :Array<ScriptProfile>;
+    var profiles (default,null) :Array<js.html.ScriptProfile>;
 
     function assert (condition :Bool) :Void;
 

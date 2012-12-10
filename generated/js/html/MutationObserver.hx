@@ -32,6 +32,6 @@ extern class MutationObserver
 
     function observe (target :Node, options :Dynamic) :Void;
 
-    function takeRecords () :Array<MutationRecord>;
+    function takeRecords () :Array<js.html.MutationRecord>;
 
 }

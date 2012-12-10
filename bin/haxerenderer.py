@@ -27,7 +27,7 @@ haxe_idl_types = {
 
     "any": "Dynamic",
     "custom": "Dynamic",
-    # "Date": "Float",
+    "Date": "Date",
     "DOMObject": "Dynamic",
     "DOMString": "String",
     "DOMTimeStamp": "Int", # Float?
@@ -44,12 +44,9 @@ haxe_idl_types = {
     "SerializedScriptValue": "Dynamic",
     "TimeoutHandler": "Void->Void",
     "CompareHow": "Int",
-
-    # Temporary maybe?
-    "Acceleration": "DeviceAcceleration",
-    "RotationRate": "DeviceRotationRate",
 }
 
+# If these identifiers appear in the IDL, they should be suffixed
 haxe_keywords = [
     "callback",
     "continue",
@@ -139,15 +136,37 @@ def to_haxe(id):
 
     match = re.match(r"(?:sequence<(\w+)>|(\w+)\[\])$", id)
     if match:
-        return "Array<%s>" % to_haxe(match.group(1) or match.group(2))
+        return ["Array<%s>" % to_haxe_package(match.group(1) or match.group(2))]
 
+    # Strip the "HTML" prefix from elements
     match = re.match(r"HTML(.+)Element", id)
     if match:
         id = match.group(1)+"Element"
 
+    # Temporary hackery?
+    if id == "Acceleration" or id == "RotationRate":
+        id = "Device"+id
+
     if id in haxe_idl_types:
-        return haxe_idl_types.get(id)
-    return strip_vendor(id)
+        return [haxe_idl_types.get(id)]
+
+    id = strip_vendor(id)
+    path = ["js", "html"]
+    if id.startswith("SVG"):
+        path += ["svg"]
+    elif id.startswith("WebGL"):
+        path += ["webgl"]
+    elif id.startswith("OES"):
+        path += ["webgl"]
+    path += [id]
+
+    return path
+
+def to_haxe_package(id):
+    return ".".join(to_haxe(id))
+
+def to_haxe_class(id):
+    return to_haxe(id)[-1]
 
 def array_access(interface):
     """Returns the type to use for ArrayAccess, or None."""
@@ -202,6 +221,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
     output = []
     indent_stack = []
     EventTarget = db.GetInterface("EventTarget")
+    package = None
 
     def begin_indent():
         indent_stack.append("    ")
@@ -232,6 +252,12 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                         return True
             return defined_in_parent(parent, id)
         return False
+
+    def to_haxe_local(id):
+        # Omit the package if unnecessary
+        global package
+        path = to_haxe(id)
+        return path[-1] if path[0:-1] == package else ".".join(path)
 
     def wln(node=None):
         """Writes the given node and adds a new line."""
@@ -286,6 +312,11 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             w(node.typeDefs)
 
         elif isinstance(node, IDLInterface):
+            global package
+            package = to_haxe(node.id)[0:-1]
+            wln("package %s;" % ".".join(package))
+            wln()
+
             class_doc = None
             if node.id in mdn_js:
                 class_doc = mdn_js[node.id]
@@ -298,11 +329,11 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             def w_member_doc(node):
                 docs = []
                 if hasattr(node, "raises") and node.raises:
-                    docs += ["Throws %s." % to_haxe(node.raises.id)]
+                    docs += ["Throws %s." % to_haxe_class(node.raises.id)]
                 if hasattr(node, "get_raises") and node.get_raises:
-                    docs += ["Getter throws %s." % to_haxe(node.get_raises.id)]
+                    docs += ["Getter throws %s." % to_haxe_class(node.get_raises.id)]
                 if hasattr(node, "set_raises") and node.set_raises:
-                    docs += ["Setter throws %s." % to_haxe(node.set_raises.id)]
+                    docs += ["Setter throws %s." % to_haxe_class(node.set_raises.id)]
                 if class_doc and class_doc["members"]:
                     for member in class_doc["members"]:
                         if member["name"] == node.id:
@@ -323,15 +354,15 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                 # Generate a function typedef if this is a callback
                 callback = node.operations[0]
                 if callback.arguments:
-                    arguments = " -> ".join([to_haxe(x.type.id) for x in callback.arguments])
+                    arguments = " -> ".join([to_haxe_local(x.type.id) for x in callback.arguments])
                 else:
                     arguments = "Void"
-                w("typedef %s = %s -> %s;" % (node.id, arguments, to_haxe(callback.type.id)))
+                w("typedef %s = %s -> %s;" % (node.id, arguments, to_haxe_local(callback.type.id)))
                 return
 
             interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
             wln("@:native(\"%s\")" % strip_vendor(interface_name))
-            w("extern class %s" % to_haxe(node.id))
+            w("extern class %s" % to_haxe_class(node.id))
             strip_vendor_fields(node.constants)
             strip_vendor_fields(node.attributes)
             strip_vendor_fields(node.operations, False)
@@ -339,12 +370,12 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             inherits = []
             parent = get_parent(node)
             if parent:
-                inherits.append("extends %s" % to_haxe(parent.id))
+                inherits.append("extends %s" % to_haxe_local(parent.id))
             if len(node.parents) > 1:
                 print("Omitting excess superclasses from %s" % node.id)
             array_type = array_access(node)
             if array_type:
-                inherits.append("implements ArrayAccess<%s>" % to_haxe(array_type))
+                inherits.append("implements ArrayAccess<%s>" % to_haxe_local(array_type))
             if inherits:
                 w(" " + ", ".join(inherits))
 
@@ -377,7 +408,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                             ["type :String", "canBubble :Bool = true", "cancelable :Bool = true"],
                         ]
                     elif template == "TypedArray":
-                        array_type = to_haxe(node.ext_attrs["TypedArray"])
+                        array_type = to_haxe_local(node.ext_attrs["TypedArray"])
                         constructors += [
                             ["array :ArrayBufferView"],
                             ["array :Array<"+array_type+">"],
@@ -412,7 +443,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                             if ii < ll-1:
                                 w("@:overload(function (")
                                 w(overload.arguments, ", ")
-                                wln(") :%s {})" % to_haxe(overload.type.id))
+                                wln(") :%s {})" % to_haxe_local(overload.type.id))
                             else:
                                 wln(overload)
                     else:
@@ -429,7 +460,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
         elif isinstance(node, IDLAttribute):
             stripped = strip_vendor(node.id)
             escaped = escape_keyword(stripped)
-            attr_type = to_haxe(node.type.id)
+            attr_type = to_haxe_local(node.type.id)
             w("var %s " % escaped)
             if escaped != stripped:
                 # TODO(bruno): Switch over to Haxe 3 property syntax
@@ -448,16 +479,16 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             else:
                 if node.is_read_only:
                     w("(default,null) ")
-                wln(":%s;" % to_haxe(node.type.id))
+                wln(":%s;" % to_haxe_local(node.type.id))
 
         elif isinstance(node, IDLConstant):
             wln("static inline var %s :%s = %s;" % (escape_keyword(strip_vendor(node.id)),
-                to_haxe(node.type.id), node.value))
+                to_haxe_local(node.type.id), node.value))
 
         elif isinstance(node, IDLOperation):
             stripped = strip_vendor(node.id)
             escaped = escape_keyword(stripped)
-            return_type = to_haxe(node.type.id)
+            return_type = to_haxe_local(node.type.id)
             if node.is_static:
                 w("static ")
             if escaped != stripped:
@@ -479,13 +510,13 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
         elif isinstance(node, IDLArgument):
             if "Optional" in node.ext_attrs and node.ext_attrs["Optional"] is None:
                 w("?")
-            w("%s :%s" % (escape_keyword(strip_vendor(node.id)), to_haxe(node.type.id)))
+            w("%s :%s" % (escape_keyword(strip_vendor(node.id)), to_haxe_local(node.type.id)))
 
         else:
             raise TypeError("Expected str or IDLNode but %s found" %
                 type(node))
 
     if header:
-        wln(header)
+        w(header)
     w(idl_node)
     return "".join(output)
