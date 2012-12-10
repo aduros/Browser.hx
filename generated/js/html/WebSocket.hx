@@ -79,6 +79,26 @@ extern class WebSocket extends EventTarget
 
     function close (?code :Int, ?reason :String) :Void;
 
+    /** <p>Transmits data to the server over the WebSocket connection.</p>
+
+<div id="section_11"><span id="Parameters_2"></span><h6 class="editable">Parameters</h6>
+<dl> <dt><code>data</code></dt> <dd>A text string to send to the server.</dd>
+</dl>
+</div><div id="section_12"><span id="Exceptions_thrown_2"></span><h6 class="editable">Exceptions thrown</h6>
+<dl> <dt><code>INVALID_STATE_ERR</code></dt> <dd>The connection is not currently <code>OPEN</code>.</dd> <dt><code>SYNTAX_ERR</code></dt> <dd>The data is a string that has unpaired surrogates.</dd>
+</dl>
+</div><div id="section_13"><span id="Remarks"></span><h6 class="editable">Remarks</h6>
+<div class="geckoVersionNote"> <p>
+</p><div class="geckoVersionHeading">Gecko 6.0 note<div>(Firefox 6.0 / Thunderbird 6.0 / SeaMonkey 2.3)
+</div></div>
+<p></p> <p>Gecko's implementation of the <code>send()</code>&nbsp;method differs somewhat from the specification in Gecko 6.0; Gecko returns a <code>boolean</code> indicating whether or not the connection is still open (and, by extension, that the data was successfully queued or transmitted); this is corrected in Gecko 8.0 (Firefox 8.0 / Thunderbird 8.0 / SeaMonkey 2.5)
+. In addition, at this time, Gecko does not support <code><a title="en/JavaScript typed arrays/ArrayBuffer" rel="internal" href="https://developer.mozilla.org/en/JavaScript_typed_arrays/ArrayBuffer">ArrayBuffer</a></code> or <code><a rel="custom" href="https://developer.mozilla.org/en/DOM/Blob">Blob</a></code>
+ data types.</p>
+</div>
+</div> Throws DOMException. */
+    @:overload(function (data :ArrayBuffer) :Bool {})
+    @:overload(function (data :ArrayBufferView) :Bool {})
+    @:overload(function (data :Blob) :Bool {})
     function send (data :String) :Bool;
 
 }
