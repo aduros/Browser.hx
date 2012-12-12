@@ -1,0 +1,5 @@
+interface ImageData {
+    // For whatever reason, this property is wrapped in an #if !LANGUAGE_JAVASCRIPT block in
+    // WebCore, so forcefully include it here
+    readonly attribute Uint8ClampedArray data;
+}
