@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Copies the generated externs to the standard library
+
+if [ ! -d "$HAXE_LIBRARY_PATH" ]; then
+    echo "No valid \$HAXE_LIBRARY_PATH defined"
+    exit 1
+fi
+
+rsync -avz --delete generated/js/html/ "$HAXE_LIBRARY_PATH/js/html/"
