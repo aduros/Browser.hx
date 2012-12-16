@@ -520,7 +520,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     arguments = " -> ".join([to_haxe_local(x.type.id) for x in callback.arguments])
                 else:
                     arguments = "Void"
-                w("typedef %s = %s -> %s;" % (node.id, arguments, to_haxe_local(callback.type.id)))
+                w("typedef %s = %s -> %s;" % (to_haxe_class(node.id), arguments, to_haxe_local(callback.type.id)))
                 return
 
             interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id

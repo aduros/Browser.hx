@@ -23,4 +23,4 @@
 // This file is generated, do not edit!
 package js.html.rtc;
 
-typedef RTCErrorCallback = String -> Bool;
+typedef ErrorCallback = String -> Bool;

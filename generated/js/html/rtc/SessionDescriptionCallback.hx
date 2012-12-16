@@ -23,4 +23,4 @@
 // This file is generated, do not edit!
 package js.html.rtc;
 
-typedef RTCSessionDescriptionCallback = SessionDescription -> Bool;
+typedef SessionDescriptionCallback = SessionDescription -> Bool;

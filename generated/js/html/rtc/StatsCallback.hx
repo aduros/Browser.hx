@@ -23,4 +23,4 @@
 // This file is generated, do not edit!
 package js.html.rtc;
 
-typedef RTCStatsCallback = StatsResponse -> Bool;
+typedef StatsCallback = StatsResponse -> Bool;

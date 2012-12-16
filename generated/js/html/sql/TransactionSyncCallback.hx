@@ -23,4 +23,4 @@
 // This file is generated, do not edit!
 package js.html.sql;
 
-typedef SQLTransactionSyncCallback = TransactionSync -> Bool;
+typedef TransactionSyncCallback = TransactionSync -> Bool;

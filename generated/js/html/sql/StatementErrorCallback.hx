@@ -23,4 +23,4 @@
 // This file is generated, do not edit!
 package js.html.sql;
 
-typedef SQLStatementErrorCallback = Transaction -> Error -> Bool;
+typedef StatementErrorCallback = Transaction -> Error -> Bool;
