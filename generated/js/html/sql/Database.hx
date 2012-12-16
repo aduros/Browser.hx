@@ -33,10 +33,10 @@ extern class Database
 {
     var version (default,null) :String;
 
-    function changeVersion (oldVersion :String, newVersion :String, ?callback_ :SQLTransactionCallback, ?errorCallback :SQLTransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
+    function changeVersion (oldVersion :String, newVersion :String, ?callback_ :TransactionCallback, ?errorCallback :TransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
 
-    function readTransaction (callback_ :SQLTransactionCallback, ?errorCallback :SQLTransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
+    function readTransaction (callback_ :TransactionCallback, ?errorCallback :TransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
 
-    function transaction (callback_ :SQLTransactionCallback, ?errorCallback :SQLTransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
+    function transaction (callback_ :TransactionCallback, ?errorCallback :TransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
 
 }

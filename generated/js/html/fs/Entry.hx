@@ -31,7 +31,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 extern class Entry
 {
     /** The file system on which the entry resides. */
-    var filesystem (default,null) :DOMFileSystem;
+    var filesystem (default,null) :FileSystem;
 
     var fullPath (default,null) :String;
 

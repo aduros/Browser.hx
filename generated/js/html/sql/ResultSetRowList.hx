@@ -21,13 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html.rtc;
+package js.html.sql;
 
-@:native("RTCStatsReport")
-extern class RTCStatsReport
+@:native("SQLResultSetRowList")
+extern class ResultSetRowList
 {
-    var local (default,null) :RTCStatsElement;
+    var length (default,null) :Int;
 
-    var remote (default,null) :RTCStatsElement;
+    function item (index :Int) :Dynamic;
 
 }

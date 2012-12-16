@@ -21,6 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html.sql;
+package js.html.rtc;
 
-typedef SQLTransactionCallback = SQLTransaction -> Bool;
+@:native("RTCStatsResponse")
+extern class StatsResponse
+{
+    function result () :Array<js.html.rtc.StatsReport>;
+
+}

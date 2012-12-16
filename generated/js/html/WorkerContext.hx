@@ -56,7 +56,7 @@ extern class WorkerContext extends EventTarget
 
     function requestFileSystem (type :Int, size :Int, ?successCallback :js.html.fs.FileSystemCallback, ?errorCallback :js.html.fs.ErrorCallback) :Void;
 
-    function requestFileSystemSync (type :Int, size :Int) :js.html.fs.DOMFileSystemSync;
+    function requestFileSystemSync (type :Int, size :Int) :js.html.fs.FileSystemSync;
 
     function resolveLocalFileSystemSyncURL (url :String) :js.html.fs.EntrySync;
 

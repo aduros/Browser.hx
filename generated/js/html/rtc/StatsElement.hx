@@ -21,13 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html.fs;
+package js.html.rtc;
 
-@:native("DOMFileSystem")
-extern class DOMFileSystem
+@:native("RTCStatsElement")
+extern class StatsElement
 {
-    var name (default,null) :String;
+    var timestamp (default,null) :Date;
 
-    var root (default,null) :DirectoryEntry;
+    function stat (name :String) :String;
 
 }

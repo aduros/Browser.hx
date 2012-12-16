@@ -23,9 +23,9 @@
 // This file is generated, do not edit!
 package js.html.sql;
 
-@:native("SQLTransactionSync")
-extern class SQLTransactionSync
+@:native("SQLTransaction")
+extern class Transaction
 {
-    function executeSql (sqlStatement :String, arguments :Array<Dynamic>) :SQLResultSet;
+    function executeSql (sqlStatement :String, arguments :Array<Dynamic>, ?callback_ :StatementCallback, ?errorCallback :StatementErrorCallback) :Void;
 
 }

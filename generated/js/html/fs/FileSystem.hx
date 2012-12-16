@@ -21,13 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html.sql;
+package js.html.fs;
 
-@:native("SQLResultSetRowList")
-extern class SQLResultSetRowList
+@:native("DOMFileSystem")
+extern class FileSystem
 {
-    var length (default,null) :Int;
+    var name (default,null) :String;
 
-    function item (index :Int) :Dynamic;
+    var root (default,null) :DirectoryEntry;
 
 }

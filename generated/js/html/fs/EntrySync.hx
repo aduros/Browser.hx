@@ -30,7 +30,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("EntrySync")
 extern class EntrySync
 {
-    var filesystem (default,null) :DOMFileSystemSync;
+    var filesystem (default,null) :FileSystemSync;
 
     var fullPath (default,null) :String;
 

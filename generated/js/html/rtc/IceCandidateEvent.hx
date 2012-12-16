@@ -23,4 +23,9 @@
 // This file is generated, do not edit!
 package js.html.rtc;
 
-typedef RTCSessionDescriptionCallback = RTCSessionDescription -> Bool;
+@:native("RTCIceCandidateEvent")
+extern class IceCandidateEvent extends js.html.Event
+{
+    var candidate (default,null) :IceCandidate;
+
+}

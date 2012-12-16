@@ -21,17 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html.rtc;
+package js.html.sql;
 
-@:native("RTCSessionDescription")
-extern class RTCSessionDescription
+@:native("SQLTransactionSync")
+extern class TransactionSync
 {
-    /** Setter throws DOMException. */
-    var sdp :String;
-
-    /** Setter throws DOMException. */
-    var type :String;
-
-    function new () :Void;
+    function executeSql (sqlStatement :String, arguments :Array<Dynamic>) :ResultSet;
 
 }

@@ -38,10 +38,10 @@ extern class DatabaseSync
     /** The version of the connected database. Has the null value when the database is first created. */
     var version (default,null) :String;
 
-    function changeVersion (oldVersion :String, newVersion :String, ?callback_ :SQLTransactionSyncCallback) :Void;
+    function changeVersion (oldVersion :String, newVersion :String, ?callback_ :TransactionSyncCallback) :Void;
 
-    function readTransaction (callback_ :SQLTransactionSyncCallback) :Void;
+    function readTransaction (callback_ :TransactionSyncCallback) :Void;
 
-    function transaction (callback_ :SQLTransactionSyncCallback) :Void;
+    function transaction (callback_ :TransactionSyncCallback) :Void;
 
 }

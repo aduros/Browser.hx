@@ -21,13 +21,6 @@
  */
 
 // This file is generated, do not edit!
-package js.html.fs;
+package js.html.sql;
 
-@:native("DOMFileSystemSync")
-extern class DOMFileSystemSync
-{
-    var name (default,null) :String;
-
-    var root (default,null) :DirectoryEntrySync;
-
-}
+typedef SQLStatementErrorCallback = Transaction -> Error -> Bool;

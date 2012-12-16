@@ -23,9 +23,4 @@
 // This file is generated, do not edit!
 package js.html.sql;
 
-@:native("SQLTransaction")
-extern class SQLTransaction
-{
-    function executeSql (sqlStatement :String, arguments :Array<Dynamic>, ?callback_ :SQLStatementCallback, ?errorCallback :SQLStatementErrorCallback) :Void;
-
-}
+typedef SQLTransactionCallback = Transaction -> Bool;

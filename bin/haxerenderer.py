@@ -129,9 +129,14 @@ html_elements = {
     "VideoElement": "video",
 }
 
+class PackageGroup:
+    def __init__ (self, names, remove_prefix=None):
+        self.names = names
+        self.remove_prefix = remove_prefix
+
 packaged_classes = {
-    "audio": [
-        # Web Audio classes (by grepping for WEB_AUDIO in the IDL database)
+    # Web Audio classes (by grepping for WEB_AUDIO in the IDL database)
+    "audio": PackageGroup([
         "AnalyserNode",
         "AudioBuffer",
         "AudioBufferCallback",
@@ -159,9 +164,10 @@ packaged_classes = {
         "ScriptProcessorNode",
         "WaveShaperNode",
         "WaveTable",
-    ],
-    "fs": [
-        # FileSystem API classes (grep for FILE_SYSTEM)
+    ]),
+
+    # FILE_SYSTEM
+    "fs": PackageGroup([
         # "DataTransferItem",
         "DOMFileSystem",
         "DOMFileSystemSync",
@@ -187,9 +193,10 @@ packaged_classes = {
         "FileWriterSync",
         "Metadata",
         "MetadataCallback",
-    ],
-    "rtc": [
-        # MEDIA_STREAM
+    ], remove_prefix="DOM"),
+
+    # MEDIA_STREAM
+    "rtc": PackageGroup([
         "LocalMediaStream",
         "MediaStream",
         # "MediaStreamAudioSourceNode",
@@ -213,9 +220,10 @@ packaged_classes = {
         "RTCStatsElement",
         "RTCStatsReport",
         "RTCStatsResponse",
-    ],
-    "sql": [
-        # SQL_DATABASE
+    ], remove_prefix="RTC"),
+
+    # SQL_DATABASE
+    "sql": PackageGroup([
         "Database",
         "DatabaseCallback",
         "DatabaseSync",
@@ -230,7 +238,7 @@ packaged_classes = {
         "SQLTransactionErrorCallback",
         "SQLTransactionSync",
         "SQLTransactionSyncCallback",
-    ],
+    ], remove_prefix="SQL"),
 }
 
 # Merged class pairs
@@ -284,9 +292,11 @@ def to_haxe(id):
         path += ["idb"]
 
     else:
-        for package, names in packaged_classes.iteritems():
-            if id in names:
+        for package, group in packaged_classes.iteritems():
+            if id in group.names:
                 path += [package]
+                if group.remove_prefix and id.startswith(group.remove_prefix):
+                    id = id[len(group.remove_prefix):]
                 break
 
     path += [id]

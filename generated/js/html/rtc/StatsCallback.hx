@@ -23,9 +23,4 @@
 // This file is generated, do not edit!
 package js.html.rtc;
 
-@:native("RTCStatsResponse")
-extern class RTCStatsResponse
-{
-    function result () :Array<js.html.rtc.RTCStatsReport>;
-
-}
+typedef RTCStatsCallback = StatsResponse -> Bool;

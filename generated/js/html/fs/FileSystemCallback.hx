@@ -23,4 +23,4 @@
 // This file is generated, do not edit!
 package js.html.fs;
 
-typedef FileSystemCallback = DOMFileSystem -> Bool;
+typedef FileSystemCallback = FileSystem -> Bool;

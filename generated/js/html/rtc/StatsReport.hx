@@ -21,16 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html.sql;
+package js.html.rtc;
 
-@:native("SQLResultSet")
-extern class SQLResultSet
+@:native("RTCStatsReport")
+extern class StatsReport
 {
-    /** Getter throws DOMException. */
-    var insertId (default,null) :Int;
+    var local (default,null) :StatsElement;
 
-    var rows (default,null) :SQLResultSetRowList;
-
-    var rowsAffected (default,null) :Int;
+    var remote (default,null) :StatsElement;
 
 }

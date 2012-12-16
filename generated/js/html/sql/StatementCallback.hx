@@ -21,17 +21,6 @@
  */
 
 // This file is generated, do not edit!
-package js.html.rtc;
+package js.html.sql;
 
-@:native("RTCIceCandidate")
-extern class RTCIceCandidate
-{
-    var candidate (default,null) :String;
-
-    var sdpMLineIndex (default,null) :Int;
-
-    var sdpMid (default,null) :String;
-
-    function new () :Void;
-
-}
+typedef SQLStatementCallback = Transaction -> ResultSet -> Bool;

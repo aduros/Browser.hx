@@ -21,36 +21,29 @@
  */
 
 // This file is generated, do not edit!
-package js.html.rtc;
+package js.html.sql;
 
-@:native("RTCDataChannel")
-extern class RTCDataChannel extends js.html.EventTarget
+@:native("SQLException")
+extern class Exception
 {
-    /** Setter throws DOMException. */
-    var binaryType :String;
+    static inline var CONSTRAINT_ERR :Int = 6;
 
-    var bufferedAmount (default,null) :Int;
+    static inline var DATABASE_ERR :Int = 1;
 
-    var label (default,null) :String;
+    static inline var QUOTA_ERR :Int = 4;
 
-    var onclose :js.html.EventListener;
+    static inline var SYNTAX_ERR :Int = 5;
 
-    var onerror :js.html.EventListener;
+    static inline var TIMEOUT_ERR :Int = 7;
 
-    var onmessage :js.html.EventListener;
+    static inline var TOO_LARGE_ERR :Int = 3;
 
-    var onopen :js.html.EventListener;
+    static inline var UNKNOWN_ERR :Int = 0;
 
-    var readyState (default,null) :String;
+    static inline var VERSION_ERR :Int = 2;
 
-    var reliable (default,null) :Bool;
+    var code (default,null) :Int;
 
-    function close () :Void;
-
-    /** Throws DOMException. */
-    @:overload(function (data :js.html.ArrayBuffer) :Void {})
-    @:overload(function (data :js.html.ArrayBufferView) :Void {})
-    @:overload(function (data :js.html.Blob) :Void {})
-    function send (data :String) :Void;
+    var message (default,null) :String;
 
 }

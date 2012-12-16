@@ -23,9 +23,15 @@
 // This file is generated, do not edit!
 package js.html.rtc;
 
-@:native("RTCDataChannelEvent")
-extern class RTCDataChannelEvent extends js.html.Event
+@:native("RTCIceCandidate")
+extern class IceCandidate
 {
-    var channel (default,null) :RTCDataChannel;
+    var candidate (default,null) :String;
+
+    var sdpMLineIndex (default,null) :Int;
+
+    var sdpMid (default,null) :String;
+
+    function new () :Void;
 
 }

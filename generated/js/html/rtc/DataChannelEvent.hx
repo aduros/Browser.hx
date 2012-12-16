@@ -23,11 +23,9 @@
 // This file is generated, do not edit!
 package js.html.rtc;
 
-@:native("RTCStatsElement")
-extern class RTCStatsElement
+@:native("RTCDataChannelEvent")
+extern class DataChannelEvent extends js.html.Event
 {
-    var timestamp (default,null) :Date;
-
-    function stat (name :String) :String;
+    var channel (default,null) :DataChannel;
 
 }

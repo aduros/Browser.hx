@@ -24,12 +24,12 @@
 package js.html.rtc;
 
 @:native("RTCPeerConnection")
-extern class RTCPeerConnection extends js.html.EventTarget
+extern class PeerConnection extends js.html.EventTarget
 {
     var iceState (default,null) :String;
 
     /** Getter throws DOMException. */
-    var localDescription (default,null) :RTCSessionDescription;
+    var localDescription (default,null) :SessionDescription;
 
     var localStreams (default,null) :MediaStreamList;
 
@@ -52,31 +52,31 @@ extern class RTCPeerConnection extends js.html.EventTarget
     var readyState (default,null) :String;
 
     /** Getter throws DOMException. */
-    var remoteDescription (default,null) :RTCSessionDescription;
+    var remoteDescription (default,null) :SessionDescription;
 
     var remoteStreams (default,null) :MediaStreamList;
 
     function new () :Void;
 
-    function addIceCandidate (candidate :RTCIceCandidate) :Void;
+    function addIceCandidate (candidate :IceCandidate) :Void;
 
     function addStream (stream :MediaStream, ?mediaConstraints :Dynamic) :Void;
 
     function close () :Void;
 
-    function createAnswer (successCallback :RTCSessionDescriptionCallback, failureCallback :RTCErrorCallback, ?mediaConstraints :Dynamic) :Void;
+    function createAnswer (successCallback :SessionDescriptionCallback, failureCallback :ErrorCallback, ?mediaConstraints :Dynamic) :Void;
 
-    function createDataChannel (label :String, ?options :Dynamic) :RTCDataChannel;
+    function createDataChannel (label :String, ?options :Dynamic) :DataChannel;
 
-    function createOffer (successCallback :RTCSessionDescriptionCallback, failureCallback :RTCErrorCallback, ?mediaConstraints :Dynamic) :Void;
+    function createOffer (successCallback :SessionDescriptionCallback, failureCallback :ErrorCallback, ?mediaConstraints :Dynamic) :Void;
 
-    function getStats (successCallback :RTCStatsCallback, selector :MediaStreamTrack) :Void;
+    function getStats (successCallback :StatsCallback, selector :MediaStreamTrack) :Void;
 
     function removeStream (stream :MediaStream) :Void;
 
-    function setLocalDescription (description :RTCSessionDescription, successCallback :js.html.VoidCallback, failureCallback :RTCErrorCallback) :Void;
+    function setLocalDescription (description :SessionDescription, successCallback :js.html.VoidCallback, failureCallback :ErrorCallback) :Void;
 
-    function setRemoteDescription (description :RTCSessionDescription, successCallback :js.html.VoidCallback, failureCallback :RTCErrorCallback) :Void;
+    function setRemoteDescription (description :SessionDescription, successCallback :js.html.VoidCallback, failureCallback :ErrorCallback) :Void;
 
     function updateIce (?configuration :Dynamic, ?mediaConstraints :Dynamic) :Void;
 

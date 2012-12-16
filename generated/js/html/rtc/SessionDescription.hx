@@ -21,6 +21,17 @@
  */
 
 // This file is generated, do not edit!
-package js.html.sql;
+package js.html.rtc;
 
-typedef SQLTransactionSyncCallback = SQLTransactionSync -> Bool;
+@:native("RTCSessionDescription")
+extern class SessionDescription
+{
+    /** Setter throws DOMException. */
+    var sdp :String;
+
+    /** Setter throws DOMException. */
+    var type :String;
+
+    function new () :Void;
+
+}
