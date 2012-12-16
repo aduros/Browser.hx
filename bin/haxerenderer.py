@@ -188,6 +188,23 @@ packaged_classes = {
         "Metadata",
         "MetadataCallback",
     ],
+    "sql": [
+        # SQL_DATABASE
+        "Database",
+        "DatabaseCallback",
+        "DatabaseSync",
+        "SQLError",
+        "SQLException",
+        "SQLResultSet",
+        "SQLResultSetRowList",
+        "SQLStatementCallback",
+        "SQLStatementErrorCallback",
+        "SQLTransaction",
+        "SQLTransactionCallback",
+        "SQLTransactionErrorCallback",
+        "SQLTransactionSync",
+        "SQLTransactionSyncCallback",
+    ],
 }
 
 # Merged class pairs

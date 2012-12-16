@@ -21,6 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.sql;
 
-typedef SQLStatementCallback = SQLTransaction -> SQLResultSet -> Bool;
+@:native("SQLResultSetRowList")
+extern class SQLResultSetRowList
+{
+    var length (default,null) :Int;
+
+    function item (index :Int) :Dynamic;
+
+}

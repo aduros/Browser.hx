@@ -21,6 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.sql;
 
-typedef SQLTransactionCallback = SQLTransaction -> Bool;
+@:native("SQLTransactionSync")
+extern class SQLTransactionSync
+{
+    function executeSql (sqlStatement :String, arguments :Array<Dynamic>) :SQLResultSet;
+
+}

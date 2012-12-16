@@ -21,29 +21,27 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.sql;
 
-@:native("SQLError")
-extern class SQLError
+/** <div><strong>DRAFT</strong>
+<div>This page is not complete.</div>
+</div>
+
+<p></p>
+<p>The <code>DatabaseSync</code> interface in the <a title="en/IndexedDB" rel="internal" href="https://developer.mozilla.org/en/IndexedDB">IndexedDB API</a> represents a synchronous <a title="en/IndexedDB#gloss database connection" rel="internal" href="https://developer.mozilla.org/en/IndexedDB#gloss_database_connection">connection to a database</a>.</p><br><br>
+Documentation for this class was provided by <a href="https://developer.mozilla.org/en/IndexedDB/IDBDatabaseSync">MDN</a>. */
+@:native("DatabaseSync")
+extern class DatabaseSync
 {
-    static inline var CONSTRAINT_ERR :Int = 6;
+    var lastErrorMessage (default,null) :String;
 
-    static inline var DATABASE_ERR :Int = 1;
+    /** The version of the connected database. Has the null value when the database is first created. */
+    var version (default,null) :String;
 
-    static inline var QUOTA_ERR :Int = 4;
+    function changeVersion (oldVersion :String, newVersion :String, ?callback_ :SQLTransactionSyncCallback) :Void;
 
-    static inline var SYNTAX_ERR :Int = 5;
+    function readTransaction (callback_ :SQLTransactionSyncCallback) :Void;
 
-    static inline var TIMEOUT_ERR :Int = 7;
-
-    static inline var TOO_LARGE_ERR :Int = 3;
-
-    static inline var UNKNOWN_ERR :Int = 0;
-
-    static inline var VERSION_ERR :Int = 2;
-
-    var code (default,null) :Int;
-
-    var message (default,null) :String;
+    function transaction (callback_ :SQLTransactionSyncCallback) :Void;
 
 }

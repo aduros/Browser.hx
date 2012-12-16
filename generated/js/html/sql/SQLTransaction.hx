@@ -21,16 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.sql;
 
-@:native("SQLResultSet")
-extern class SQLResultSet
+@:native("SQLTransaction")
+extern class SQLTransaction
 {
-    /** Getter throws DOMException. */
-    var insertId (default,null) :Int;
-
-    var rows (default,null) :SQLResultSetRowList;
-
-    var rowsAffected (default,null) :Int;
+    function executeSql (sqlStatement :String, arguments :Array<Dynamic>, ?callback_ :SQLStatementCallback, ?errorCallback :SQLStatementErrorCallback) :Void;
 
 }

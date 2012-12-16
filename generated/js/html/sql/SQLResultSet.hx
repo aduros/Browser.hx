@@ -21,6 +21,16 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.sql;
 
-typedef SQLTransactionErrorCallback = SQLError -> Bool;
+@:native("SQLResultSet")
+extern class SQLResultSet
+{
+    /** Getter throws DOMException. */
+    var insertId (default,null) :Int;
+
+    var rows (default,null) :SQLResultSetRowList;
+
+    var rowsAffected (default,null) :Int;
+
+}

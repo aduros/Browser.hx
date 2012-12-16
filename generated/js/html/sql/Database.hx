@@ -21,7 +21,7 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.sql;
 
 /** <div><p>This content covers features introduced in <a rel="custom" href="https://developer.mozilla.org/en/Firefox_3_for_developers">Firefox 3</a>.</p></div>
 <p></p>
@@ -33,10 +33,10 @@ extern class Database
 {
     var version (default,null) :String;
 
-    function changeVersion (oldVersion :String, newVersion :String, ?callback_ :SQLTransactionCallback, ?errorCallback :SQLTransactionErrorCallback, ?successCallback :VoidCallback) :Void;
+    function changeVersion (oldVersion :String, newVersion :String, ?callback_ :SQLTransactionCallback, ?errorCallback :SQLTransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
 
-    function readTransaction (callback_ :SQLTransactionCallback, ?errorCallback :SQLTransactionErrorCallback, ?successCallback :VoidCallback) :Void;
+    function readTransaction (callback_ :SQLTransactionCallback, ?errorCallback :SQLTransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
 
-    function transaction (callback_ :SQLTransactionCallback, ?errorCallback :SQLTransactionErrorCallback, ?successCallback :VoidCallback) :Void;
+    function transaction (callback_ :SQLTransactionCallback, ?errorCallback :SQLTransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
 
 }

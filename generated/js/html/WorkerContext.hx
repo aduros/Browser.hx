@@ -50,9 +50,9 @@ extern class WorkerContext extends EventTarget
 
     function importScripts () :Void;
 
-    function openDatabase (name :String, version :String, displayName :String, estimatedSize :Int, ?creationCallback :DatabaseCallback) :Database;
+    function openDatabase (name :String, version :String, displayName :String, estimatedSize :Int, ?creationCallback :js.html.sql.DatabaseCallback) :js.html.sql.Database;
 
-    function openDatabaseSync (name :String, version :String, displayName :String, estimatedSize :Int, ?creationCallback :DatabaseCallback) :DatabaseSync;
+    function openDatabaseSync (name :String, version :String, displayName :String, estimatedSize :Int, ?creationCallback :js.html.sql.DatabaseCallback) :js.html.sql.DatabaseSync;
 
     function requestFileSystem (type :Int, size :Int, ?successCallback :js.html.fs.FileSystemCallback, ?errorCallback :js.html.fs.ErrorCallback) :Void;
 

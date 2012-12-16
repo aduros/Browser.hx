@@ -21,6 +21,6 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.sql;
 
-typedef SQLTransactionSyncCallback = SQLTransactionSync -> Bool;
+typedef SQLTransactionCallback = SQLTransaction -> Bool;
