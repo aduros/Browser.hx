@@ -21,6 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-typedef RTCStatsCallback = RTCStatsResponse -> Bool;
+@:native("NavigatorUserMediaError")
+extern class NavigatorUserMediaError
+{
+    static inline var PERMISSION_DENIED :Int = 1;
+
+    var code (default,null) :Int;
+
+}

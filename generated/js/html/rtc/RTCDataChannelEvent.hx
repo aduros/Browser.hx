@@ -21,6 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-typedef RTCSessionDescriptionCallback = RTCSessionDescription -> Bool;
+@:native("RTCDataChannelEvent")
+extern class RTCDataChannelEvent extends js.html.Event
+{
+    var channel (default,null) :RTCDataChannel;
+
+}

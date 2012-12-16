@@ -21,13 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-@:native("RTCStatsReport")
-extern class RTCStatsReport
+@:native("MediaStreamTrackEvent")
+extern class MediaStreamTrackEvent extends js.html.Event
 {
-    var local (default,null) :RTCStatsElement;
-
-    var remote (default,null) :RTCStatsElement;
+    var track (default,null) :MediaStreamTrack;
 
 }

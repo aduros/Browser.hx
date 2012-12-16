@@ -21,13 +21,21 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-@:native("RTCStatsElement")
-extern class RTCStatsElement
+@:native("MediaStreamTrackList")
+extern class MediaStreamTrackList extends js.html.EventTarget, implements ArrayAccess<MediaStreamTrack>
 {
-    var timestamp (default,null) :Date;
+    var length (default,null) :Int;
 
-    function stat (name :String) :String;
+    var onaddtrack :js.html.EventListener;
+
+    var onremovetrack :js.html.EventListener;
+
+    function add (track :MediaStreamTrack) :Void;
+
+    function item (index :Int) :MediaStreamTrack;
+
+    function remove (track :MediaStreamTrack) :Void;
 
 }

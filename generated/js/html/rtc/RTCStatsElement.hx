@@ -21,11 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-@:native("MediaStreamEvent")
-extern class MediaStreamEvent extends Event
+@:native("RTCStatsElement")
+extern class RTCStatsElement
 {
-    var stream (default,null) :MediaStream;
+    var timestamp (default,null) :Date;
+
+    function stat (name :String) :String;
 
 }

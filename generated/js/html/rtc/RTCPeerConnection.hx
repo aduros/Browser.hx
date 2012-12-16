@@ -21,10 +21,10 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
 @:native("RTCPeerConnection")
-extern class RTCPeerConnection extends EventTarget
+extern class RTCPeerConnection extends js.html.EventTarget
 {
     var iceState (default,null) :String;
 
@@ -33,21 +33,21 @@ extern class RTCPeerConnection extends EventTarget
 
     var localStreams (default,null) :MediaStreamList;
 
-    var onaddstream :EventListener;
+    var onaddstream :js.html.EventListener;
 
-    var ondatachannel :EventListener;
+    var ondatachannel :js.html.EventListener;
 
-    var onicecandidate :EventListener;
+    var onicecandidate :js.html.EventListener;
 
-    var onicechange :EventListener;
+    var onicechange :js.html.EventListener;
 
-    var onnegotiationneeded :EventListener;
+    var onnegotiationneeded :js.html.EventListener;
 
-    var onopen :EventListener;
+    var onopen :js.html.EventListener;
 
-    var onremovestream :EventListener;
+    var onremovestream :js.html.EventListener;
 
-    var onstatechange :EventListener;
+    var onstatechange :js.html.EventListener;
 
     var readyState (default,null) :String;
 
@@ -74,9 +74,9 @@ extern class RTCPeerConnection extends EventTarget
 
     function removeStream (stream :MediaStream) :Void;
 
-    function setLocalDescription (description :RTCSessionDescription, successCallback :VoidCallback, failureCallback :RTCErrorCallback) :Void;
+    function setLocalDescription (description :RTCSessionDescription, successCallback :js.html.VoidCallback, failureCallback :RTCErrorCallback) :Void;
 
-    function setRemoteDescription (description :RTCSessionDescription, successCallback :VoidCallback, failureCallback :RTCErrorCallback) :Void;
+    function setRemoteDescription (description :RTCSessionDescription, successCallback :js.html.VoidCallback, failureCallback :RTCErrorCallback) :Void;
 
     function updateIce (?configuration :Dynamic, ?mediaConstraints :Dynamic) :Void;
 

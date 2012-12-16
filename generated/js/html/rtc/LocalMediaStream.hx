@@ -21,11 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-@:native("MediaStreamTrackEvent")
-extern class MediaStreamTrackEvent extends Event
+@:native("LocalMediaStream")
+extern class LocalMediaStream extends MediaStream
 {
-    var track (default,null) :MediaStreamTrack;
+    function stop () :Void;
 
 }

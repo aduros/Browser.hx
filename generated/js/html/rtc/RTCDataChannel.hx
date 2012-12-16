@@ -21,11 +21,36 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-@:native("RTCDataChannelEvent")
-extern class RTCDataChannelEvent extends Event
+@:native("RTCDataChannel")
+extern class RTCDataChannel extends js.html.EventTarget
 {
-    var channel (default,null) :RTCDataChannel;
+    /** Setter throws DOMException. */
+    var binaryType :String;
+
+    var bufferedAmount (default,null) :Int;
+
+    var label (default,null) :String;
+
+    var onclose :js.html.EventListener;
+
+    var onerror :js.html.EventListener;
+
+    var onmessage :js.html.EventListener;
+
+    var onopen :js.html.EventListener;
+
+    var readyState (default,null) :String;
+
+    var reliable (default,null) :Bool;
+
+    function close () :Void;
+
+    /** Throws DOMException. */
+    @:overload(function (data :js.html.ArrayBuffer) :Void {})
+    @:overload(function (data :js.html.ArrayBufferView) :Void {})
+    @:overload(function (data :js.html.Blob) :Void {})
+    function send (data :String) :Void;
 
 }

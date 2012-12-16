@@ -21,29 +21,17 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-@:native("MediaStreamTrack")
-extern class MediaStreamTrack extends EventTarget
+@:native("RTCSessionDescription")
+extern class RTCSessionDescription
 {
-    static inline var ENDED :Int = 2;
+    /** Setter throws DOMException. */
+    var sdp :String;
 
-    static inline var LIVE :Int = 0;
+    /** Setter throws DOMException. */
+    var type :String;
 
-    static inline var MUTED :Int = 1;
-
-    var enabled :Bool;
-
-    var kind (default,null) :String;
-
-    var label (default,null) :String;
-
-    var onended :EventListener;
-
-    var onmute :EventListener;
-
-    var onunmute :EventListener;
-
-    var readyState (default,null) :Int;
+    function new () :Void;
 
 }

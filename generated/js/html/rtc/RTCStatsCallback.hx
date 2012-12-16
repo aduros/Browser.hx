@@ -21,11 +21,6 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-@:native("RTCStatsResponse")
-extern class RTCStatsResponse
-{
-    function result () :Array<js.html.RTCStatsReport>;
-
-}
+typedef RTCStatsCallback = RTCStatsResponse -> Bool;

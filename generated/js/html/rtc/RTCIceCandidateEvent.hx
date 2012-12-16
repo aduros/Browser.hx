@@ -21,10 +21,10 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
 @:native("RTCIceCandidateEvent")
-extern class RTCIceCandidateEvent extends Event
+extern class RTCIceCandidateEvent extends js.html.Event
 {
     var candidate (default,null) :RTCIceCandidate;
 

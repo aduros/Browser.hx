@@ -21,11 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-@:native("LocalMediaStream")
-extern class LocalMediaStream extends MediaStream
+@:native("RTCStatsReport")
+extern class RTCStatsReport
 {
-    function stop () :Void;
+    var local (default,null) :RTCStatsElement;
+
+    var remote (default,null) :RTCStatsElement;
 
 }

@@ -21,36 +21,11 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-@:native("RTCDataChannel")
-extern class RTCDataChannel extends EventTarget
+@:native("MediaStreamEvent")
+extern class MediaStreamEvent extends js.html.Event
 {
-    /** Setter throws DOMException. */
-    var binaryType :String;
-
-    var bufferedAmount (default,null) :Int;
-
-    var label (default,null) :String;
-
-    var onclose :EventListener;
-
-    var onerror :EventListener;
-
-    var onmessage :EventListener;
-
-    var onopen :EventListener;
-
-    var readyState (default,null) :String;
-
-    var reliable (default,null) :Bool;
-
-    function close () :Void;
-
-    /** Throws DOMException. */
-    @:overload(function (data :ArrayBuffer) :Void {})
-    @:overload(function (data :ArrayBufferView) :Void {})
-    @:overload(function (data :Blob) :Void {})
-    function send (data :String) :Void;
+    var stream (default,null) :MediaStream;
 
 }

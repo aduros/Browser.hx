@@ -21,25 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-@:native("MediaStream")
-extern class MediaStream extends EventTarget
+@:native("MediaStreamList")
+extern class MediaStreamList implements ArrayAccess<MediaStream>
 {
-    static inline var ENDED :Int = 2;
+    var length (default,null) :Int;
 
-    static inline var LIVE :Int = 1;
-
-    var audioTracks (default,null) :MediaStreamTrackList;
-
-    var label (default,null) :String;
-
-    var onended :EventListener;
-
-    var readyState (default,null) :Int;
-
-    var videoTracks (default,null) :MediaStreamTrackList;
-
-    function new () :Void;
+    function item (index :Int) :MediaStream;
 
 }

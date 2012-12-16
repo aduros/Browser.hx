@@ -21,6 +21,17 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.rtc;
 
-typedef NavigatorUserMediaSuccessCallback = LocalMediaStream -> Bool;
+@:native("RTCIceCandidate")
+extern class RTCIceCandidate
+{
+    var candidate (default,null) :String;
+
+    var sdpMLineIndex (default,null) :Int;
+
+    var sdpMid (default,null) :String;
+
+    function new () :Void;
+
+}
