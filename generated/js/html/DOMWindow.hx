@@ -419,13 +419,13 @@ extern class DOMWindow extends EventTarget
     @:overload(function (callback_ :RequestAnimationFrameCallback) :Int {})
     function requestAnimationFrame (callback_ :RequestAnimationFrameCallback) :Int;
 
-    function requestFileSystem (type :Int, size :Int, successCallback :FileSystemCallback, ?errorCallback :ErrorCallback) :Void;
+    function requestFileSystem (type :Int, size :Int, successCallback :js.html.fs.FileSystemCallback, ?errorCallback :js.html.fs.ErrorCallback) :Void;
 
     function resizeBy (x :Float, y :Float) :Void;
 
     function resizeTo (width :Float, height :Float) :Void;
 
-    function resolveLocalFileSystemURL (url :String, successCallback :EntryCallback, ?errorCallback :ErrorCallback) :Void;
+    function resolveLocalFileSystemURL (url :String, successCallback :js.html.fs.EntryCallback, ?errorCallback :js.html.fs.ErrorCallback) :Void;
 
     function scroll (x :Int, y :Int) :Void;
 

@@ -21,7 +21,7 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.fs;
 
 /** <div><strong>DRAFT</strong> <div>This page is not complete.</div>
 </div>
@@ -52,7 +52,7 @@ extern class Entry
 
     function moveTo (parent :DirectoryEntry, ?name :String, ?successCallback :EntryCallback, ?errorCallback :ErrorCallback) :Void;
 
-    function remove (successCallback :VoidCallback, ?errorCallback :ErrorCallback) :Void;
+    function remove (successCallback :js.html.VoidCallback, ?errorCallback :ErrorCallback) :Void;
 
     function toURL () :String;
 

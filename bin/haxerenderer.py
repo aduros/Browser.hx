@@ -129,36 +129,66 @@ html_elements = {
     "VideoElement": "video",
 }
 
-# Web Audio classes (by grepping for WEB_AUDIO in the IDL database)
-audio_classes = [
-    "AnalyserNode",
-    "AudioBuffer",
-    "AudioBufferCallback",
-    "AudioBufferSourceNode",
-    "AudioContext",
-    "AudioDestinationNode",
-    "AudioGain",
-    "AudioListener",
-    "AudioNode",
-    "AudioParam",
-    "AudioProcessingEvent",
-    "AudioSourceNode",
-    "BiquadFilterNode",
-    "ChannelMergerNode",
-    "ChannelSplitterNode",
-    "ConvolverNode",
-    "DelayNode",
-    "DynamicsCompressorNode",
-    "GainNode",
-    "MediaElementAudioSourceNode",
-    "MediaStreamAudioSourceNode",
-    "OfflineAudioCompletionEvent",
-    "OscillatorNode",
-    "PannerNode",
-    "ScriptProcessorNode",
-    "WaveShaperNode",
-    "WaveTable",
-]
+packaged_classes = {
+    "audio": [
+        # Web Audio classes (by grepping for WEB_AUDIO in the IDL database)
+        "AnalyserNode",
+        "AudioBuffer",
+        "AudioBufferCallback",
+        "AudioBufferSourceNode",
+        "AudioContext",
+        "AudioDestinationNode",
+        "AudioGain",
+        "AudioListener",
+        "AudioNode",
+        "AudioParam",
+        "AudioProcessingEvent",
+        "AudioSourceNode",
+        "BiquadFilterNode",
+        "ChannelMergerNode",
+        "ChannelSplitterNode",
+        "ConvolverNode",
+        "DelayNode",
+        "DynamicsCompressorNode",
+        "GainNode",
+        "MediaElementAudioSourceNode",
+        "MediaStreamAudioSourceNode",
+        "OfflineAudioCompletionEvent",
+        "OscillatorNode",
+        "PannerNode",
+        "ScriptProcessorNode",
+        "WaveShaperNode",
+        "WaveTable",
+    ],
+    "fs": [
+        # FileSystem API classes (grep for FILE_SYSTEM)
+        # "DataTransferItem",
+        "DOMFileSystem",
+        "DOMFileSystemSync",
+        "DirectoryEntry",
+        "DirectoryEntrySync",
+        "DirectoryReader",
+        "DirectoryReaderSync",
+        "EntriesCallback",
+        "Entry",
+        "EntryArray",
+        "EntryArraySync",
+        "EntryCallback",
+        "EntrySync",
+        "ErrorCallback",
+        "FileCallback",
+        "FileEntry",
+        "FileEntrySync",
+        "FileError",
+        "FileException",
+        "FileSystemCallback",
+        "FileWriter",
+        "FileWriterCallback",
+        "FileWriterSync",
+        "Metadata",
+        "MetadataCallback",
+    ],
+}
 
 # Merged class pairs
 merged_targets = {
@@ -210,8 +240,11 @@ def to_haxe(id):
         id = id[len("IDB"):]
         path += ["idb"]
 
-    elif id in audio_classes:
-        path += ["audio"]
+    else:
+        for package, names in packaged_classes.iteritems():
+            if id in names:
+                path += [package]
+                break
 
     path += [id]
 

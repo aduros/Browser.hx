@@ -21,7 +21,7 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.fs;
 
 /** Represents an error that occurs while using the <code><a rel="custom" href="https://developer.mozilla.org/en/DOM/FileReader">FileReader</a></code>
  interface.<br><br>

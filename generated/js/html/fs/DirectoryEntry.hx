@@ -21,35 +21,21 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.fs;
 
 /** <div><strong>DRAFT</strong> <div>This page is not complete.</div>
 </div>
-<p>The <code>EntrySync</code> interface of the <a title="en/DOM/File_API/File_System_API" rel="internal" href="https://developer.mozilla.org/en/DOM/File_API/File_System_API">FileSystem API</a> represents entries in a file system. The entries can be a file&nbsp;or a <a href="https://developer.mozilla.org/en/DOM/File_API/File_system_API/DirectoryEntry" rel="internal" title="en/DOM/File_API/File_system_API/DirectoryEntry">DirectoryEntry</a>.</p><br><br>
-Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/File_API/File_System_API/EntrySync">MDN</a>. */
-@:native("EntrySync")
-extern class EntrySync
+<p>The <code>DirectoryEntry</code> interface of the <a title="en/DOM/File_API/File_System_API" rel="internal" href="https://developer.mozilla.org/en/DOM/File_API/File_System_API">FileSystem API</a> represents a directory in a file system.</p><br><br>
+Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/File_API/File_System_API/DirectoryEntry">MDN</a>. */
+@:native("DirectoryEntry")
+extern class DirectoryEntry extends Entry
 {
-    var filesystem (default,null) :DOMFileSystemSync;
+    function createReader () :DirectoryReader;
 
-    var fullPath (default,null) :String;
+    function getDirectory (path :String, ?options :Dynamic, ?successCallback :EntryCallback, ?errorCallback :ErrorCallback) :Void;
 
-    var isDirectory (default,null) :Bool;
+    function getFile (path :String, ?options :Dynamic, ?successCallback :EntryCallback, ?errorCallback :ErrorCallback) :Void;
 
-    var isFile (default,null) :Bool;
-
-    var name (default,null) :String;
-
-    function copyTo (parent :DirectoryEntrySync, name :String) :EntrySync;
-
-    function getMetadata () :Metadata;
-
-    function getParent () :DirectoryEntrySync;
-
-    function moveTo (parent :DirectoryEntrySync, name :String) :EntrySync;
-
-    function remove () :Void;
-
-    function toURL () :String;
+    function removeRecursively (successCallback :js.html.VoidCallback, ?errorCallback :ErrorCallback) :Void;
 
 }

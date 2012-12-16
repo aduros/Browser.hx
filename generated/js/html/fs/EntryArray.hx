@@ -21,6 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.fs;
 
-typedef FileSystemCallback = DOMFileSystem -> Bool;
+@:native("EntryArray")
+extern class EntryArray implements ArrayAccess<Entry>
+{
+    var length (default,null) :Int;
+
+    function item (index :Int) :Entry;
+
+}

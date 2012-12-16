@@ -21,6 +21,13 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.fs;
 
-typedef MetadataCallback = Metadata -> Bool;
+@:native("DOMFileSystem")
+extern class DOMFileSystem
+{
+    var name (default,null) :String;
+
+    var root (default,null) :DirectoryEntry;
+
+}

@@ -21,7 +21,7 @@
  */
 
 // This file is generated, do not edit!
-package js.html;
+package js.html.fs;
 
 /** <div><strong>DRAFT</strong> <div>This page is not complete.</div>
 </div>
