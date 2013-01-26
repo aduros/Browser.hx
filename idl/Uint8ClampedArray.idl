@@ -1,0 +1,5 @@
+interface Uint8ClampedArray {
+    // Missing from WebCore??
+    void set(in Uint8ClampedArray array, in [Optional] unsigned long offset);
+    void set(in sequence<long> array, in [Optional] unsigned long offset);
+};

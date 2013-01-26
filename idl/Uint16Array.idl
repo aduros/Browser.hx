@@ -1,0 +1,5 @@
+interface Uint16Array {
+    // Missing from WebCore??
+    void set(in Uint16Array array, in [Optional] unsigned long offset);
+    void set(in sequence<long> array, in [Optional] unsigned long offset);
+};

@@ -1,0 +1,5 @@
+interface Float64Array {
+    // Missing from WebCore??
+    void set(in Float64Array array, in [Optional] unsigned long offset);
+    void set(in sequence<long> array, in [Optional] unsigned long offset);
+};
