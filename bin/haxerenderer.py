@@ -616,9 +616,33 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     w_typed_shortcut("create"+type, type, "createElement(\"%s\")" % tag_name)
             elif node.id == "HTMLCanvasElement":
                 w_typed_shortcut("getContext2d", "CanvasRenderingContext2D", "getContext(\"2d\")")
-                # w_typed_shortcut("getContextWebGL", "WebGLRenderingContext", "getContext(\"webgl\")")
+                wln()
+                wln("public inline function getContextWebGL (?attribs :Dynamic) :js.html.webgl.RenderingContext {")
+                begin_indent()
+                wln("return CanvasUtil.getContextWebGL(this, attribs);")
+                end_indent()
+                wln("}")
             end_indent()
             wln("}")
+
+            # getContextWebGL is too big to inline, put it in a helper class
+            if node.id == "HTMLCanvasElement":
+                wln()
+                wln("private class CanvasUtil {")
+                begin_indent()
+                wln("public static function getContextWebGL (canvas :CanvasElement, attribs :Dynamic) {")
+                begin_indent()
+                wln('for (name in ["webgl", "experimental-webgl"]) {')
+                begin_indent()
+                wln('var ctx = (untyped canvas).getContext(name, attribs);')
+                wln('if (ctx != null) return ctx;')
+                end_indent()
+                wln("}")
+                wln("return null;")
+                end_indent()
+                wln("}")
+                end_indent()
+                w("}")
 
         elif isinstance(node, IDLAttribute):
             stripped = strip_vendor(node.id)
@@ -626,7 +650,6 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             attr_type = to_haxe_local(node.type.id)
             w("var %s " % escaped)
             if escaped != stripped:
-                # TODO(bruno): Switch over to Haxe 3 property syntax
                 wln("(get,%s) :%s;" % ("null" if node.is_read_only else "set", attr_type))
                 wln("private inline function get_%s () :%s {" % (escaped, attr_type))
                 begin_indent()

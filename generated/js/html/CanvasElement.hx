@@ -47,4 +47,18 @@ extern class CanvasElement extends Element
 
     /** A typed shortcut for <code>getContext("2d")</code>. */
     public inline function getContext2d () :CanvasRenderingContext2D { return cast getContext("2d"); }
+
+    public inline function getContextWebGL (?attribs :Dynamic) :js.html.webgl.RenderingContext {
+        return CanvasUtil.getContextWebGL(this, attribs);
+    }
+}
+
+private class CanvasUtil {
+    public static function getContextWebGL (canvas :CanvasElement, attribs :Dynamic) {
+        for (name in ["webgl", "experimental-webgl"]) {
+            var ctx = (untyped canvas).getContext(name, attribs);
+            if (ctx != null) return ctx;
+        }
+        return null;
+    }
 }
