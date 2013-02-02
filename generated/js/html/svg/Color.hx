@@ -30,22 +30,22 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGColor")
 extern class Color extends js.html.CSSValue
 {
-    static inline var SVG_COLORTYPE_CURRENTCOLOR :Int = 3;
+	static inline var SVG_COLORTYPE_CURRENTCOLOR : Int = 3;
 
-    static inline var SVG_COLORTYPE_RGBCOLOR :Int = 1;
+	static inline var SVG_COLORTYPE_RGBCOLOR : Int = 1;
 
-    static inline var SVG_COLORTYPE_RGBCOLOR_ICCCOLOR :Int = 2;
+	static inline var SVG_COLORTYPE_RGBCOLOR_ICCCOLOR : Int = 2;
 
-    static inline var SVG_COLORTYPE_UNKNOWN :Int = 0;
+	static inline var SVG_COLORTYPE_UNKNOWN : Int = 0;
 
-    var colorType (default,null) :Int;
+	var colorType (default,null) : Int;
 
-    var rgbColor (default,null) :js.html.RGBColor;
+	var rgbColor (default,null) : js.html.RGBColor;
 
-    function setColor (colorType :Int, rgbColor :String, iccColor :String) :Void;
+	function setColor( colorType : Int, rgbColor : String, iccColor : String ) : Void;
 
-    function setRGBColor (rgbColor :String) :Void;
+	function setRGBColor( rgbColor : String ) : Void;
 
-    function setRGBColorICCColor (rgbColor :String, iccColor :String) :Void;
+	function setRGBColorICCColor( rgbColor : String, iccColor : String ) : Void;
 
 }

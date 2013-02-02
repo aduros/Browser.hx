@@ -28,6 +28,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("CanvasGradient")
 extern class CanvasGradient
 {
-    function addColorStop (offset :Float, color :String) :Void;
+	function addColorStop( offset : Float, color : String ) : Void;
 
 }

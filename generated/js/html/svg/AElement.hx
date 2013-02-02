@@ -29,9 +29,9 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGAElement")
 extern class AElement extends Element
 {
-    /** Corresponds to attribute 
+	/** Corresponds to attribute 
 <code><a rel="internal" href="https://developer.mozilla.org/en/SVG/Attribute/target" class="new">target</a></code> on the given <code><a rel="custom" href="https://developer.mozilla.org/en/SVG/Element/a">&lt;a&gt;</a></code>
  element. */
-    var target (default,null) :AnimatedString;
+	var target (default,null) : AnimatedString;
 
 }

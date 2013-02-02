@@ -28,10 +28,10 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLOptionsCollection")
 extern class HTMLOptionsCollection extends HTMLCollection
 {
-    var selectedIndex :Int;
+	var selectedIndex : Int;
 
-    function add (option :OptionElement, ?index :Int) :Void;
+	function add( option : OptionElement, ?index : Int ) : Void;
 
-    function remove (index :Int) :Void;
+	function remove( index : Int ) : Void;
 
 }

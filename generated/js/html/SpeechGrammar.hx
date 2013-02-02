@@ -26,10 +26,10 @@ package js.html;
 @:native("SpeechGrammar")
 extern class SpeechGrammar
 {
-    var src :String;
+	var src : String;
 
-    var weight :Float;
+	var weight : Float;
 
-    function new () :Void;
+	function new() : Void;
 
 }

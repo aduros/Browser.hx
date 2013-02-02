@@ -365,7 +365,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
     package = None
 
     def begin_indent():
-        indent_stack.append("    ")
+        indent_stack.append("\t")
     def end_indent():
         indent_stack.pop()
 
@@ -422,7 +422,14 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
 
     def w_typed_shortcut(name, return_type, code):
         w_doc("A typed shortcut for <code>%s</code>." % code)
-        wln("public inline function %s () :%s { return cast %s; }" % (name, return_type, code))
+        wln("public inline function %s() : %s { return cast %s; }" % (name, return_type, code))
+
+    def w_arguments(node):
+        """Handle the stdlib's tricky argument formatting"""
+        if node:
+            w(" ")
+            w(node, ", ")
+            w(" ")
 
     def w(node, list_separator=None):
         """Writes the given node.
@@ -564,7 +571,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     # Convert to camel case
                     prop = "".join([x[0].upper()+x[1:] for x in prop.split("-")])
                     prop = prop[0].lower() + prop[1:] # Re-lowercase the first word
-                    wln("var " + prop + " :String;")
+                    wln("var " + prop + " : String;")
                     wln()
             if constructable(node):
                 constructors = []
@@ -572,22 +579,22 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     template = node.ext_attrs["ConstructorTemplate"]
                     if template == "Event":
                         constructors += [
-                            ["type :String", "canBubble :Bool = true", "cancelable :Bool = true"],
+                            ["type : String", "canBubble : Bool = true", "cancelable : Bool = true"],
                         ]
                     elif template == "TypedArray":
                         array_type = to_haxe_local(node.ext_attrs["TypedArray"])
                         constructors += [
-                            ["array :ArrayBufferView"],
-                            ["array :Array<"+array_type+">"],
-                            ["buffer :Array<"+array_type+">", "?byteOffset :Int", "?length :Int"],
-                            ["length :Int"],
+                            ["array : ArrayBufferView"],
+                            ["array : Array<"+array_type+">"],
+                            ["buffer : Array<"+array_type+">", "?byteOffset : Int", "?length : Int"],
+                            ["length : Int"],
                         ]
                     else:
                         raise TypeError("Unrecognized ConstructorTemplate for " + node.id)
                 elif "ConstructorParameters" in node.ext_attrs:
                     c = []
                     for ii in range(int(node.ext_attrs["ConstructorParameters"])):
-                        c += ["?arg%s :Dynamic" % ii]
+                        c += ["?arg%s : Dynamic" % ii]
                     constructors += [c]
                 else:
                     constructors += [[]]
@@ -595,9 +602,9 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                 for ii, c in enumerate(constructors):
                     args = ", ".join(c)
                     if ii < len(constructors)-1:
-                        wln("@:overload(function (%s) :Void {})" % args)
+                        wln("@:overload( function(%s) : Void {} )" % args)
                     else:
-                        wln("function new (%s) :Void;" % args)
+                        wln("function new(%s) : Void;" % args)
                 wln()
             if operations:
                 operations = sort([x for x in operations if not defined_in_parent(node, x.id)])
@@ -608,9 +615,9 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                         w_member_doc(group[0])
                         for ii, overload in enumerate(group):
                             if ii < ll-1:
-                                w("@:overload(function (")
-                                w(overload.arguments, ", ")
-                                wln(") :%s {})" % to_haxe_local(overload.type.id))
+                                w("@:overload( function(")
+                                w_arguments(overload.arguments)
+                                wln(") :%s {} )" % to_haxe_local(overload.type.id))
                             else:
                                 wln(overload)
                     else:
@@ -621,7 +628,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             elif node.id == "HTMLCanvasElement":
                 w_typed_shortcut("getContext2d", "CanvasRenderingContext2D", "getContext(\"2d\")")
                 wln()
-                wln("public inline function getContextWebGL (?attribs :js.html.webgl.ContextAttributes) :js.html.webgl.RenderingContext {")
+                wln("public inline function getContextWebGL( ?attribs :js.html.webgl.ContextAttributes ) :js.html.webgl.RenderingContext {")
                 begin_indent()
                 wln("return CanvasUtil.getContextWebGL(this, attribs);")
                 end_indent()
@@ -634,7 +641,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                 wln()
                 wln("private class CanvasUtil {")
                 begin_indent()
-                wln("public static function getContextWebGL (canvas :CanvasElement, attribs :Dynamic) {")
+                wln("public static function getContextWebGL( canvas :CanvasElement, attribs :Dynamic ) {")
                 begin_indent()
                 wln('for (name in ["webgl", "experimental-webgl"]) {')
                 begin_indent()
@@ -657,13 +664,13 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             w("var %s " % escaped)
             if escaped != stripped:
                 wln("(get,%s) :%s;" % ("null" if node.is_read_only else "set", attr_type))
-                wln("private inline function get_%s () :%s {" % (escaped, attr_type))
+                wln("private inline function get_%s() : %s {" % (escaped, attr_type))
                 begin_indent()
                 wln("return untyped this[\"%s\"];" % stripped)
                 end_indent()
                 wln("}")
                 if not node.is_read_only:
-                    wln("private inline function set_%s (x :%s) :%s {" % (escaped, attr_type, attr_type))
+                    wln("private inline function set_%s(x : %s) : %s {" % (escaped, attr_type, attr_type))
                     begin_indent()
                     wln("return untyped this[\"%s\"] = x;" % stripped)
                     end_indent()
@@ -671,10 +678,10 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             else:
                 if node.is_read_only:
                     w("(default,null) ")
-                wln(":%s;" % to_haxe_local(node.type.id))
+                wln(": %s;" % to_haxe_local(node.type.id))
 
         elif isinstance(node, IDLConstant):
-            wln("static inline var %s :%s = %s;" % (escape_keyword(strip_vendor(node.id)),
+            wln("static inline var %s : %s = %s;" % (escape_keyword(strip_vendor(node.id)),
                 to_haxe_local(node.type.id), node.value))
 
         elif isinstance(node, IDLOperation):
@@ -684,9 +691,9 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             if node.is_static:
                 w("static ")
             if escaped != stripped:
-                w("private inline function %s (" % escaped)
-                w(node.arguments, ", ")
-                wln(") :%s {" % return_type)
+                w("private inline function %s(" % escaped)
+                w_arguments(node.arguments)
+                wln(") : %s {" % return_type)
                 begin_indent()
                 if return_type != "Void":
                     w("return ")
@@ -695,17 +702,17 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                 end_indent()
                 wln("}")
             else:
-                w("function %s (" % escaped)
-                w(node.arguments, ", ")
+                w("function %s(" % escaped)
+                w_arguments(node.arguments)
                 if "CallWith" in node.ext_attrs and "ScriptArguments" in node.ext_attrs["CallWith"].split("|"):
                     if node.arguments: w(", ")
-                    w(["?p1 :Dynamic", "?p2 :Dynamic", "?p3 :Dynamic", "?p4 :Dynamic", "?p5 :Dynamic"], ", ")
-                wln(") :%s;" % return_type)
+                    w(["?p1 : Dynamic", "?p2 : Dynamic", "?p3 : Dynamic", "?p4 : Dynamic", "?p5 : Dynamic"], ", ")
+                wln(") : %s;" % return_type)
 
         elif isinstance(node, IDLArgument):
             if "Optional" in node.ext_attrs and node.ext_attrs["Optional"] is None:
                 w("?")
-            w("%s :%s" % (escape_keyword(strip_vendor(node.id)), to_haxe_local(node.type.id)))
+            w("%s : %s" % (escape_keyword(strip_vendor(node.id)), to_haxe_local(node.type.id)))
 
         else:
             raise TypeError("Expected str or IDLNode but %s found" %

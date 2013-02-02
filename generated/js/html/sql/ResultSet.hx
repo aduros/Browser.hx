@@ -26,11 +26,11 @@ package js.html.sql;
 @:native("SQLResultSet")
 extern class ResultSet
 {
-    /** Getter throws DOMException. */
-    var insertId (default,null) :Int;
+	/** Getter throws DOMException. */
+	var insertId (default,null) : Int;
 
-    var rows (default,null) :ResultSetRowList;
+	var rows (default,null) : ResultSetRowList;
 
-    var rowsAffected (default,null) :Int;
+	var rowsAffected (default,null) : Int;
 
 }

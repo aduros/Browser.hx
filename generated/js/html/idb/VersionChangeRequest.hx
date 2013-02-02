@@ -30,7 +30,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("IDBVersionChangeRequest")
 extern class VersionChangeRequest extends Request
 {
-    /** The event handler for the blocked event. */
-    var onblocked :js.html.EventListener;
+	/** The event handler for the blocked event. */
+	var onblocked : js.html.EventListener;
 
 }

@@ -26,6 +26,6 @@ package js.html.audio;
 @:native("WaveShaperNode")
 extern class WaveShaperNode extends AudioNode
 {
-    var curve :js.html.Float32Array;
+	var curve : js.html.Float32Array;
 
 }

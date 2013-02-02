@@ -26,8 +26,8 @@ package js.html;
 @:native("DedicatedWorkerContext")
 extern class DedicatedWorkerContext extends WorkerContext
 {
-    var onmessage :EventListener;
+	var onmessage : EventListener;
 
-    function postMessage (message :Dynamic, ?messagePorts :Array<Dynamic>) :Void;
+	function postMessage( message : Dynamic, ?messagePorts : Array<Dynamic> ) : Void;
 
 }

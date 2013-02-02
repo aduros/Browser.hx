@@ -26,8 +26,8 @@ package js.html.svg;
 @:native("SVGElementInstanceList")
 extern class ElementInstanceList
 {
-    var length (default,null) :Int;
+	var length (default,null) : Int;
 
-    function item (index :Int) :ElementInstance;
+	function item( index : Int ) : ElementInstance;
 
 }

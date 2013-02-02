@@ -28,28 +28,28 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGFETurbulenceElement")
 extern class FETurbulenceElement extends Element
 {
-    static inline var SVG_STITCHTYPE_NOSTITCH :Int = 2;
+	static inline var SVG_STITCHTYPE_NOSTITCH : Int = 2;
 
-    static inline var SVG_STITCHTYPE_STITCH :Int = 1;
+	static inline var SVG_STITCHTYPE_STITCH : Int = 1;
 
-    static inline var SVG_STITCHTYPE_UNKNOWN :Int = 0;
+	static inline var SVG_STITCHTYPE_UNKNOWN : Int = 0;
 
-    static inline var SVG_TURBULENCE_TYPE_FRACTALNOISE :Int = 1;
+	static inline var SVG_TURBULENCE_TYPE_FRACTALNOISE : Int = 1;
 
-    static inline var SVG_TURBULENCE_TYPE_TURBULENCE :Int = 2;
+	static inline var SVG_TURBULENCE_TYPE_TURBULENCE : Int = 2;
 
-    static inline var SVG_TURBULENCE_TYPE_UNKNOWN :Int = 0;
+	static inline var SVG_TURBULENCE_TYPE_UNKNOWN : Int = 0;
 
-    var baseFrequencyX (default,null) :AnimatedNumber;
+	var baseFrequencyX (default,null) : AnimatedNumber;
 
-    var baseFrequencyY (default,null) :AnimatedNumber;
+	var baseFrequencyY (default,null) : AnimatedNumber;
 
-    var numOctaves (default,null) :AnimatedInteger;
+	var numOctaves (default,null) : AnimatedInteger;
 
-    var seed (default,null) :AnimatedNumber;
+	var seed (default,null) : AnimatedNumber;
 
-    var stitchTiles (default,null) :AnimatedEnumeration;
+	var stitchTiles (default,null) : AnimatedEnumeration;
 
-    var type (default,null) :AnimatedEnumeration;
+	var type (default,null) : AnimatedEnumeration;
 
 }

@@ -26,14 +26,14 @@ package js.html;
 @:native("SourceBuffer")
 extern class SourceBuffer
 {
-    /** Getter throws DOMException. */
-    var buffered (default,null) :TimeRanges;
+	/** Getter throws DOMException. */
+	var buffered (default,null) : TimeRanges;
 
-    /** Setter throws DOMException. */
-    var timestampOffset :Float;
+	/** Setter throws DOMException. */
+	var timestampOffset : Float;
 
-    function abort () :Void;
+	function abort() : Void;
 
-    function append (data :Uint8Array) :Void;
+	function append( data : Uint8Array ) : Void;
 
 }

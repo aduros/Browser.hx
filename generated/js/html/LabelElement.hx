@@ -29,16 +29,16 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLLabelElement")
 extern class LabelElement extends Element
 {
-    /** The labeled control. */
-    var control (default,null) :Element;
+	/** The labeled control. */
+	var control (default,null) : Element;
 
-    /** The form owner of this label. */
-    var form (default,null) :FormElement;
+	/** The form owner of this label. */
+	var form (default,null) : FormElement;
 
-    /** The ID of the labeled control. Reflects the 
+	/** The ID of the labeled control. Reflects the 
 
 <code><a rel="custom" href="https://developer.mozilla.org/en/HTML/Element/label#attr-for">for</a></code>
  attribute. */
-    var htmlFor :String;
+	var htmlFor : String;
 
 }

@@ -26,25 +26,25 @@ package js.html;
 @:native("ShadowRoot")
 extern class ShadowRoot extends DocumentFragment
 {
-    var activeElement (default,null) :Element;
+	var activeElement (default,null) : Element;
 
-    var applyAuthorStyles :Bool;
+	var applyAuthorStyles : Bool;
 
-    /** Setter throws DOMException. */
-    var innerHTML :String;
+	/** Setter throws DOMException. */
+	var innerHTML : String;
 
-    var resetStyleInheritance :Bool;
+	var resetStyleInheritance : Bool;
 
-    function new () :Void;
+	function new() : Void;
 
-    function getElementById (elementId :String) :Element;
+	function getElementById( elementId : String ) : Element;
 
-    function getElementsByClassName (className :String) :NodeList;
+	function getElementsByClassName( className : String ) : NodeList;
 
-    function getElementsByTagName (tagName :String) :NodeList;
+	function getElementsByTagName( tagName : String ) : NodeList;
 
-    function getElementsByTagNameNS (namespaceURI :String, localName :String) :NodeList;
+	function getElementsByTagNameNS( namespaceURI : String, localName : String ) : NodeList;
 
-    function getSelection () :DOMSelection;
+	function getSelection() : DOMSelection;
 
 }

@@ -28,7 +28,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLTitleElement")
 extern class TitleElement extends Element
 {
-    /** Gets or sets the text content of the document's title. */
-    var text :String;
+	/** Gets or sets the text content of the document's title. */
+	var text : String;
 
 }

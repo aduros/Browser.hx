@@ -26,10 +26,10 @@ package js.html;
 @:native("Geolocation")
 extern class Geolocation
 {
-    function clearWatch (watchId :Int) :Void;
+	function clearWatch( watchId : Int ) : Void;
 
-    function getCurrentPosition (successCallback :PositionCallback, ?errorCallback :PositionErrorCallback, ?options :Dynamic) :Void;
+	function getCurrentPosition( successCallback : PositionCallback, ?errorCallback : PositionErrorCallback, ?options : Dynamic ) : Void;
 
-    function watchPosition (successCallback :PositionCallback, ?errorCallback :PositionErrorCallback, ?options :Dynamic) :Int;
+	function watchPosition( successCallback : PositionCallback, ?errorCallback : PositionErrorCallback, ?options : Dynamic ) : Int;
 
 }

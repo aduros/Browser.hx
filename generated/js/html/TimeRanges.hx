@@ -31,11 +31,11 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("TimeRanges")
 extern class TimeRanges
 {
-    /** The number of time ranges represented by the time range object. <strong>Read only.</strong> */
-    var length (default,null) :Int;
+	/** The number of time ranges represented by the time range object. <strong>Read only.</strong> */
+	var length (default,null) : Int;
 
-    function end (index :Int) :Float;
+	function end( index : Int ) : Float;
 
-    function start (index :Int) :Float;
+	function start( index : Int ) : Float;
 
 }

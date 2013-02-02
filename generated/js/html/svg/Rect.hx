@@ -29,14 +29,14 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGRect")
 extern class Rect
 {
-    /** The <em>height</em> coordinate of the rectangle, in user units. */
-    var height :Float;
+	/** The <em>height</em> coordinate of the rectangle, in user units. */
+	var height : Float;
 
-    /** The <em>width</em> coordinate of the rectangle, in user units. */
-    var width :Float;
+	/** The <em>width</em> coordinate of the rectangle, in user units. */
+	var width : Float;
 
-    var x :Float;
+	var x : Float;
 
-    var y :Float;
+	var y : Float;
 
 }

@@ -30,26 +30,26 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("EntrySync")
 extern class EntrySync
 {
-    var filesystem (default,null) :FileSystemSync;
+	var filesystem (default,null) : FileSystemSync;
 
-    var fullPath (default,null) :String;
+	var fullPath (default,null) : String;
 
-    var isDirectory (default,null) :Bool;
+	var isDirectory (default,null) : Bool;
 
-    var isFile (default,null) :Bool;
+	var isFile (default,null) : Bool;
 
-    var name (default,null) :String;
+	var name (default,null) : String;
 
-    function copyTo (parent :DirectoryEntrySync, name :String) :EntrySync;
+	function copyTo( parent : DirectoryEntrySync, name : String ) : EntrySync;
 
-    function getMetadata () :Metadata;
+	function getMetadata() : Metadata;
 
-    function getParent () :DirectoryEntrySync;
+	function getParent() : DirectoryEntrySync;
 
-    function moveTo (parent :DirectoryEntrySync, name :String) :EntrySync;
+	function moveTo( parent : DirectoryEntrySync, name : String ) : EntrySync;
 
-    function remove () :Void;
+	function remove() : Void;
 
-    function toURL () :String;
+	function toURL() : String;
 
 }

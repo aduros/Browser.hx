@@ -29,14 +29,14 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("FileReaderSync")
 extern class FileReaderSync
 {
-    function new () :Void;
+	function new() : Void;
 
-    function readAsArrayBuffer (blob :Blob) :ArrayBuffer;
+	function readAsArrayBuffer( blob : Blob ) : ArrayBuffer;
 
-    function readAsBinaryString (blob :Blob) :String;
+	function readAsBinaryString( blob : Blob ) : String;
 
-    function readAsDataURL (blob :Blob) :String;
+	function readAsDataURL( blob : Blob ) : String;
 
-    function readAsText (blob :Blob, ?encoding :String) :String;
+	function readAsText( blob : Blob, ?encoding : String ) : String;
 
 }

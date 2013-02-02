@@ -31,8 +31,8 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("DocumentFragment")
 extern class DocumentFragment extends Node
 {
-    function querySelector (selectors :String) :Element;
+	function querySelector( selectors : String ) : Element;
 
-    function querySelectorAll (selectors :String) :NodeList;
+	function querySelectorAll( selectors : String ) : NodeList;
 
 }

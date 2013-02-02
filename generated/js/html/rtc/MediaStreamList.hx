@@ -26,8 +26,8 @@ package js.html.rtc;
 @:native("MediaStreamList")
 extern class MediaStreamList implements ArrayAccess<MediaStream>
 {
-    var length (default,null) :Int;
+	var length (default,null) : Int;
 
-    function item (index :Int) :MediaStream;
+	function item( index : Int ) : MediaStream;
 
 }

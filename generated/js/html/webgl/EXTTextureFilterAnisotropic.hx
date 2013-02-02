@@ -26,8 +26,8 @@ package js.html.webgl;
 @:native("EXTTextureFilterAnisotropic")
 extern class EXTTextureFilterAnisotropic
 {
-    static inline var MAX_TEXTURE_MAX_ANISOTROPY_EXT :Int = 0x84FF;
+	static inline var MAX_TEXTURE_MAX_ANISOTROPY_EXT : Int = 0x84FF;
 
-    static inline var TEXTURE_MAX_ANISOTROPY_EXT :Int = 0x84FE;
+	static inline var TEXTURE_MAX_ANISOTROPY_EXT : Int = 0x84FE;
 
 }

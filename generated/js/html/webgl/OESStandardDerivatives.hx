@@ -26,6 +26,6 @@ package js.html.webgl;
 @:native("OESStandardDerivatives")
 extern class OESStandardDerivatives
 {
-    static inline var FRAGMENT_SHADER_DERIVATIVE_HINT_OES :Int = 0x8B8B;
+	static inline var FRAGMENT_SHADER_DERIVATIVE_HINT_OES : Int = 0x8B8B;
 
 }

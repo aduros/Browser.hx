@@ -26,6 +26,6 @@ package js.html.rtc;
 @:native("LocalMediaStream")
 extern class LocalMediaStream extends MediaStream
 {
-    function stop () :Void;
+	function stop() : Void;
 
 }

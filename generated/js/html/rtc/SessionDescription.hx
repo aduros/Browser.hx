@@ -26,12 +26,12 @@ package js.html.rtc;
 @:native("RTCSessionDescription")
 extern class SessionDescription
 {
-    /** Setter throws DOMException. */
-    var sdp :String;
+	/** Setter throws DOMException. */
+	var sdp : String;
 
-    /** Setter throws DOMException. */
-    var type :String;
+	/** Setter throws DOMException. */
+	var type : String;
 
-    function new () :Void;
+	function new() : Void;
 
 }

@@ -26,14 +26,14 @@ package js.html;
 @:native("SpeechGrammarList")
 extern class SpeechGrammarList implements ArrayAccess<SpeechGrammar>
 {
-    var length (default,null) :Int;
+	var length (default,null) : Int;
 
-    function new () :Void;
+	function new() : Void;
 
-    function addFromString (string :String, ?weight :Float) :Void;
+	function addFromString( string : String, ?weight : Float ) : Void;
 
-    function addFromUri (src :String, ?weight :Float) :Void;
+	function addFromUri( src : String, ?weight : Float ) : Void;
 
-    function item (index :Int) :SpeechGrammar;
+	function item( index : Int ) : SpeechGrammar;
 
 }

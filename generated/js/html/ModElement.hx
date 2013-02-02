@@ -28,12 +28,12 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLModElement")
 extern class ModElement extends Element
 {
-    /** Reflects the 
+	/** Reflects the 
 
 <code><a rel="custom" href="https://developer.mozilla.org/en/HTML/Element/del#attr-cite">cite</a></code>
  HTML attribute, containing a URI of a resource explaining the change. */
-    var cite :String;
+	var cite : String;
 
-    var dateTime :String;
+	var dateTime : String;
 
 }

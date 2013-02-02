@@ -26,8 +26,8 @@ package js.html.webgl;
 @:native("WebGLDebugRendererInfo")
 extern class DebugRendererInfo
 {
-    static inline var UNMASKED_RENDERER_WEBGL :Int = 0x9246;
+	static inline var UNMASKED_RENDERER_WEBGL : Int = 0x9246;
 
-    static inline var UNMASKED_VENDOR_WEBGL :Int = 0x9245;
+	static inline var UNMASKED_VENDOR_WEBGL : Int = 0x9245;
 
 }

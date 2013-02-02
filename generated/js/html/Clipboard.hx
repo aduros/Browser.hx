@@ -32,22 +32,22 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("Clipboard")
 extern class Clipboard
 {
-    var dropEffect :String;
+	var dropEffect : String;
 
-    var effectAllowed :String;
+	var effectAllowed : String;
 
-    var files (default,null) :FileList;
+	var files (default,null) : FileList;
 
-    var items (default,null) :DataTransferItemList;
+	var items (default,null) : DataTransferItemList;
 
-    var types (default,null) :Array<Dynamic>;
+	var types (default,null) : Array<Dynamic>;
 
-    function clearData (?type :String) :Void;
+	function clearData( ?type : String ) : Void;
 
-    function getData (type :String) :String;
+	function getData( type : String ) : String;
 
-    function setData (type :String, data :String) :Bool;
+	function setData( type : String, data : String ) : Bool;
 
-    function setDragImage (image :ImageElement, x :Int, y :Int) :Void;
+	function setDragImage( image : ImageElement, x : Int, y : Int ) : Void;
 
 }

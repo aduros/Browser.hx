@@ -26,14 +26,14 @@ package js.html;
 @:native("CSSKeyframesRule")
 extern class CSSKeyframesRule extends CSSRule
 {
-    var cssRules (default,null) :CSSRuleList;
+	var cssRules (default,null) : CSSRuleList;
 
-    var name :String;
+	var name : String;
 
-    function deleteRule (key :String) :Void;
+	function deleteRule( key : String ) : Void;
 
-    function findRule (key :String) :CSSKeyframeRule;
+	function findRule( key : String ) : CSSKeyframeRule;
 
-    function insertRule (rule :String) :Void;
+	function insertRule( rule : String ) : Void;
 
 }

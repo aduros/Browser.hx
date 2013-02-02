@@ -28,17 +28,17 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLStyleElement")
 extern class StyleElement extends Element
 {
-    /** Returns true if the stylesheet is disabled, and false if not */
-    var disabled :Bool;
+	/** Returns true if the stylesheet is disabled, and false if not */
+	var disabled : Bool;
 
-    /** Specifies the intended destination medium for style information. */
-    var media :String;
+	/** Specifies the intended destination medium for style information. */
+	var media : String;
 
-    var scoped :Bool;
+	var scoped : Bool;
 
-    var sheet (default,null) :StyleSheet;
+	var sheet (default,null) : StyleSheet;
 
-    /** Returns the type of style being applied by this statement. */
-    var type :String;
+	/** Returns the type of style being applied by this statement. */
+	var type : String;
 
 }

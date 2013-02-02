@@ -28,6 +28,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("Crypto")
 extern class Crypto
 {
-    function getRandomValues (array :ArrayBufferView) :Void;
+	function getRandomValues( array : ArrayBufferView ) : Void;
 
 }

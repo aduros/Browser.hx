@@ -26,8 +26,8 @@ package js.html.audio;
 @:native("ConvolverNode")
 extern class ConvolverNode extends AudioNode
 {
-    var buffer :AudioBuffer;
+	var buffer : AudioBuffer;
 
-    var normalize :Bool;
+	var normalize : Bool;
 
 }

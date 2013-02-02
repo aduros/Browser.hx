@@ -26,20 +26,20 @@ package js.html.svg;
 @:native("SVGPathSegList")
 extern class PathSegList
 {
-    var numberOfItems (default,null) :Int;
+	var numberOfItems (default,null) : Int;
 
-    function appendItem (newItem :PathSeg) :PathSeg;
+	function appendItem( newItem : PathSeg ) : PathSeg;
 
-    function clear () :Void;
+	function clear() : Void;
 
-    function getItem (index :Int) :PathSeg;
+	function getItem( index : Int ) : PathSeg;
 
-    function initialize (newItem :PathSeg) :PathSeg;
+	function initialize( newItem : PathSeg ) : PathSeg;
 
-    function insertItemBefore (newItem :PathSeg, index :Int) :PathSeg;
+	function insertItemBefore( newItem : PathSeg, index : Int ) : PathSeg;
 
-    function removeItem (index :Int) :PathSeg;
+	function removeItem( index : Int ) : PathSeg;
 
-    function replaceItem (newItem :PathSeg, index :Int) :PathSeg;
+	function replaceItem( newItem : PathSeg, index : Int ) : PathSeg;
 
 }

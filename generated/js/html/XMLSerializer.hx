@@ -33,8 +33,8 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("XMLSerializer")
 extern class XMLSerializer
 {
-    function new () :Void;
+	function new() : Void;
 
-    function serializeToString (node :Node) :String;
+	function serializeToString( node : Node ) : String;
 
 }

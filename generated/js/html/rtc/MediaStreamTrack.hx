@@ -26,24 +26,24 @@ package js.html.rtc;
 @:native("MediaStreamTrack")
 extern class MediaStreamTrack extends js.html.EventTarget
 {
-    static inline var ENDED :Int = 2;
+	static inline var ENDED : Int = 2;
 
-    static inline var LIVE :Int = 0;
+	static inline var LIVE : Int = 0;
 
-    static inline var MUTED :Int = 1;
+	static inline var MUTED : Int = 1;
 
-    var enabled :Bool;
+	var enabled : Bool;
 
-    var kind (default,null) :String;
+	var kind (default,null) : String;
 
-    var label (default,null) :String;
+	var label (default,null) : String;
 
-    var onended :js.html.EventListener;
+	var onended : js.html.EventListener;
 
-    var onmute :js.html.EventListener;
+	var onmute : js.html.EventListener;
 
-    var onunmute :js.html.EventListener;
+	var onunmute : js.html.EventListener;
 
-    var readyState (default,null) :Int;
+	var readyState (default,null) : Int;
 
 }

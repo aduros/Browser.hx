@@ -26,10 +26,10 @@ package js.html.svg;
 @:native("SVGPoint")
 extern class Point
 {
-    var x :Float;
+	var x : Float;
 
-    var y :Float;
+	var y : Float;
 
-    function matrixTransform (matrix :Matrix) :Point;
+	function matrixTransform( matrix : Matrix ) : Point;
 
 }

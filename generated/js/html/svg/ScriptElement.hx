@@ -29,9 +29,9 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGScriptElement")
 extern class ScriptElement extends Element
 {
-    /** Corresponds to attribute 
+	/** Corresponds to attribute 
 <code><a rel="internal" href="https://developer.mozilla.org/en/SVG/Attribute/type" class="new">type</a></code> on the given element. A <code><a rel="custom" href="https://developer.mozilla.org/en/DOM/DOMException">DOMException</a></code>
  is raised with code <code>NO_MODIFICATION_ALLOWED_ERR</code> on an attempt to change the value of a read only attribut. */
-    var type :String;
+	var type : String;
 
 }

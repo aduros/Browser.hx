@@ -26,18 +26,18 @@ package js.html.svg;
 @:native("SVGException")
 extern class Exception
 {
-    static inline var SVG_INVALID_VALUE_ERR :Int = 1;
+	static inline var SVG_INVALID_VALUE_ERR : Int = 1;
 
-    static inline var SVG_MATRIX_NOT_INVERTABLE :Int = 2;
+	static inline var SVG_MATRIX_NOT_INVERTABLE : Int = 2;
 
-    static inline var SVG_WRONG_TYPE_ERR :Int = 0;
+	static inline var SVG_WRONG_TYPE_ERR : Int = 0;
 
-    var code (default,null) :Int;
+	var code (default,null) : Int;
 
-    var message (default,null) :String;
+	var message (default,null) : String;
 
-    var name (default,null) :String;
+	var name (default,null) : String;
 
-    function toString () :String;
+	function toString() : String;
 
 }

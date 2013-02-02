@@ -28,8 +28,8 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SharedWorker")
 extern class SharedWorker extends AbstractWorker
 {
-    var port (default,null) :MessagePort;
+	var port (default,null) : MessagePort;
 
-    function new () :Void;
+	function new() : Void;
 
 }

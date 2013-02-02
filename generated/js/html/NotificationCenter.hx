@@ -26,12 +26,12 @@ package js.html;
 @:native("NotificationCenter")
 extern class NotificationCenter
 {
-    function checkPermission () :Int;
+	function checkPermission() : Int;
 
-    function createHTMLNotification (url :String) :Notification;
+	function createHTMLNotification( url : String ) : Notification;
 
-    function createNotification (iconUrl :String, title :String, body :String) :Notification;
+	function createNotification( iconUrl : String, title : String, body : String ) : Notification;
 
-    function requestPermission (callback_ :VoidCallback) :Void;
+	function requestPermission( callback_ : VoidCallback ) : Void;
 
 }

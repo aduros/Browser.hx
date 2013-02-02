@@ -26,10 +26,10 @@ package js.html;
 @:native("PagePopupController")
 extern class PagePopupController
 {
-    function formatMonth (year :Int, zeroBaseMonth :Int) :String;
+	function formatMonth( year : Int, zeroBaseMonth : Int ) : String;
 
-    function localizeNumberString (numberString :String) :String;
+	function localizeNumberString( numberString : String ) : String;
 
-    function setValueAndClosePopup (numberValue :Int, stringValue :String) :Void;
+	function setValueAndClosePopup( numberValue : Int, stringValue : String ) : Void;
 
 }

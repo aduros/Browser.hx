@@ -26,8 +26,8 @@ package js.html.webgl;
 @:native("WebGLLoseContext")
 extern class LoseContext
 {
-    function loseContext () :Void;
+	function loseContext() : Void;
 
-    function restoreContext () :Void;
+	function restoreContext() : Void;
 
 }

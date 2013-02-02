@@ -26,10 +26,10 @@ package js.html.svg;
 @:native("SVGUnitTypes")
 extern class UnitTypes
 {
-    static inline var SVG_UNIT_TYPE_OBJECTBOUNDINGBOX :Int = 2;
+	static inline var SVG_UNIT_TYPE_OBJECTBOUNDINGBOX : Int = 2;
 
-    static inline var SVG_UNIT_TYPE_UNKNOWN :Int = 0;
+	static inline var SVG_UNIT_TYPE_UNKNOWN : Int = 0;
 
-    static inline var SVG_UNIT_TYPE_USERSPACEONUSE :Int = 1;
+	static inline var SVG_UNIT_TYPE_USERSPACEONUSE : Int = 1;
 
 }

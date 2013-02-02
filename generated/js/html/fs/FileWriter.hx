@@ -26,38 +26,38 @@ package js.html.fs;
 @:native("FileWriter")
 extern class FileWriter extends js.html.EventTarget
 {
-    static inline var DONE :Int = 2;
+	static inline var DONE : Int = 2;
 
-    static inline var INIT :Int = 0;
+	static inline var INIT : Int = 0;
 
-    static inline var WRITING :Int = 1;
+	static inline var WRITING : Int = 1;
 
-    var error (default,null) :FileError;
+	var error (default,null) : FileError;
 
-    var length (default,null) :Int;
+	var length (default,null) : Int;
 
-    var onabort :js.html.EventListener;
+	var onabort : js.html.EventListener;
 
-    var onerror :js.html.EventListener;
+	var onerror : js.html.EventListener;
 
-    var onprogress :js.html.EventListener;
+	var onprogress : js.html.EventListener;
 
-    var onwrite :js.html.EventListener;
+	var onwrite : js.html.EventListener;
 
-    var onwriteend :js.html.EventListener;
+	var onwriteend : js.html.EventListener;
 
-    var onwritestart :js.html.EventListener;
+	var onwritestart : js.html.EventListener;
 
-    var position (default,null) :Int;
+	var position (default,null) : Int;
 
-    var readyState (default,null) :Int;
+	var readyState (default,null) : Int;
 
-    function abort () :Void;
+	function abort() : Void;
 
-    function seek (position :Int) :Void;
+	function seek( position : Int ) : Void;
 
-    function truncate (size :Int) :Void;
+	function truncate( size : Int ) : Void;
 
-    function write (data :js.html.Blob) :Void;
+	function write( data : js.html.Blob ) : Void;
 
 }

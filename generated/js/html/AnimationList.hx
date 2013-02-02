@@ -26,8 +26,8 @@ package js.html;
 @:native("AnimationList")
 extern class AnimationList implements ArrayAccess<Animation>
 {
-    var length (default,null) :Int;
+	var length (default,null) : Int;
 
-    function item (index :Int) :Animation;
+	function item( index : Int ) : Animation;
 
 }

@@ -29,10 +29,10 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("CSSStyleRule")
 extern class CSSStyleRule extends CSSRule
 {
-    /** Gets/sets the textual representation of the selector for this rule, e.g. <code>"h1,h2"</code>. */
-    var selectorText :String;
+	/** Gets/sets the textual representation of the selector for this rule, e.g. <code>"h1,h2"</code>. */
+	var selectorText : String;
 
-    /** Returns the <code><a title="en/DOM/CSSStyleDeclaration" rel="internal" href="https://developer.mozilla.org/en/DOM/CSSStyleDeclaration">CSSStyleDeclaration</a></code> object for the rule. <strong>Read only.</strong> */
-    var style (default,null) :CSSStyleDeclaration;
+	/** Returns the <code><a title="en/DOM/CSSStyleDeclaration" rel="internal" href="https://developer.mozilla.org/en/DOM/CSSStyleDeclaration">CSSStyleDeclaration</a></code> object for the rule. <strong>Read only.</strong> */
+	var style (default,null) : CSSStyleDeclaration;
 
 }

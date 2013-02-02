@@ -29,8 +29,8 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGNumber")
 extern class Number
 {
-    /** <p>The value of the given attribute.</p> <p><strong>Exceptions on setting:</strong> a <code><a rel="custom" href="https://developer.mozilla.org/en/DOM/DOMException">DOMException</a></code>
+	/** <p>The value of the given attribute.</p> <p><strong>Exceptions on setting:</strong> a <code><a rel="custom" href="https://developer.mozilla.org/en/DOM/DOMException">DOMException</a></code>
  with code <code>NO_MODIFICATION_ALLOWED_ERR</code> is Raised on an attempt to change the value of a read only attribute.</p> */
-    var value :Float;
+	var value : Float;
 
 }

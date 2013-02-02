@@ -29,10 +29,10 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLQuoteElement")
 extern class QuoteElement extends Element
 {
-    /** Reflects the 
+	/** Reflects the 
 
 <code><a rel="custom" href="https://developer.mozilla.org/en/HTML/Element/blockquote#attr-cite">cite</a></code>
  HTML attribute, containing a URL for the source of the quotation. */
-    var cite :String;
+	var cite : String;
 
 }

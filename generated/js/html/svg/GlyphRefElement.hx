@@ -26,21 +26,21 @@ package js.html.svg;
 @:native("SVGGlyphRefElement")
 extern class GlyphRefElement extends Element
 {
-    /** Setter throws DOMException. */
-    var dx :Float;
+	/** Setter throws DOMException. */
+	var dx : Float;
 
-    /** Setter throws DOMException. */
-    var dy :Float;
+	/** Setter throws DOMException. */
+	var dy : Float;
 
-    var format :String;
+	var format : String;
 
-    /** Setter throws DOMException. */
-    var glyphRef :String;
+	/** Setter throws DOMException. */
+	var glyphRef : String;
 
-    /** Setter throws DOMException. */
-    var x :Float;
+	/** Setter throws DOMException. */
+	var x : Float;
 
-    /** Setter throws DOMException. */
-    var y :Float;
+	/** Setter throws DOMException. */
+	var y : Float;
 
 }

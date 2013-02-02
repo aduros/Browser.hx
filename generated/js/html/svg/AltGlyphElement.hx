@@ -28,10 +28,10 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGAltGlyphElement")
 extern class AltGlyphElement extends TextPositioningElement
 {
-    /** Setter throws DOMException. */
-    var format :String;
+	/** Setter throws DOMException. */
+	var format : String;
 
-    /** Setter throws DOMException. */
-    var glyphRef :String;
+	/** Setter throws DOMException. */
+	var glyphRef : String;
 
 }

@@ -31,6 +31,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLAudioElement")
 extern class AudioElement extends MediaElement
 {
-    function new () :Void;
+	function new() : Void;
 
 }

@@ -26,14 +26,14 @@ package js.html;
 @:native("PositionError")
 extern class PositionError
 {
-    static inline var PERMISSION_DENIED :Int = 1;
+	static inline var PERMISSION_DENIED : Int = 1;
 
-    static inline var POSITION_UNAVAILABLE :Int = 2;
+	static inline var POSITION_UNAVAILABLE : Int = 2;
 
-    static inline var TIMEOUT :Int = 3;
+	static inline var TIMEOUT : Int = 3;
 
-    var code (default,null) :Int;
+	var code (default,null) : Int;
 
-    var message (default,null) :String;
+	var message (default,null) : String;
 
 }

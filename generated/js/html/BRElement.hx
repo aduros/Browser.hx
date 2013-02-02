@@ -30,7 +30,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLBRElement")
 extern class BRElement extends Element
 {
-    /** Indicates flow of text around floating objects. */
-    var clear :String;
+	/** Indicates flow of text around floating objects. */
+	var clear : String;
 
 }

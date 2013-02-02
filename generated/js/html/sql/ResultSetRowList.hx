@@ -26,8 +26,8 @@ package js.html.sql;
 @:native("SQLResultSetRowList")
 extern class ResultSetRowList
 {
-    var length (default,null) :Int;
+	var length (default,null) : Int;
 
-    function item (index :Int) :Dynamic;
+	function item( index : Int ) : Dynamic;
 
 }

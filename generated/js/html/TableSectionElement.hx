@@ -28,7 +28,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLTableSectionElement")
 extern class TableSectionElement extends Element
 {
-    /** This enumerated attribute specifies how horizontal alignment of each cell content will be handled. Possible values are: <ul> <li><span>left</span>, aligning the content to the left of the cell</li> <li><span>center</span>, centering the content in the cell</li> <li><span>right</span>, aligning the content to the right of the cell</li> <li><span>justify</span>, inserting spaces into the textual content so that the content is justified in the cell</li> <li><span>char</span>, aligning the textual content on a special character with a minimal offset, defined by the 
+	/** This enumerated attribute specifies how horizontal alignment of each cell content will be handled. Possible values are: <ul> <li><span>left</span>, aligning the content to the left of the cell</li> <li><span>center</span>, centering the content in the cell</li> <li><span>right</span>, aligning the content to the right of the cell</li> <li><span>justify</span>, inserting spaces into the textual content so that the content is justified in the cell</li> <li><span>char</span>, aligning the textual content on a special character with a minimal offset, defined by the 
 
 <code><a rel="custom" href="https://developer.mozilla.org/en/HTML/Element/thead#attr-char">char</a></code>
  and 
@@ -46,18 +46,18 @@ bug 2212</a>
  property 
 <span class="unimplementedInlineTemplate">Unimplemented</span>
 .</li> </ul> </div> */
-    var align :String;
+	var align : String;
 
-    var ch :String;
+	var ch : String;
 
-    var chOff :String;
+	var chOff : String;
 
-    var rows (default,null) :HTMLCollection;
+	var rows (default,null) : HTMLCollection;
 
-    var vAlign :String;
+	var vAlign : String;
 
-    function deleteRow (index :Int) :Void;
+	function deleteRow( index : Int ) : Void;
 
-    function insertRow (index :Int) :Element;
+	function insertRow( index : Int ) : Element;
 
 }

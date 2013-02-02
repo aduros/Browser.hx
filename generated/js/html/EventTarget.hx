@@ -29,10 +29,10 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("EventTarget")
 extern class EventTarget
 {
-    function addEventListener (type :String, listener :EventListener, ?useCapture :Bool) :Void;
+	function addEventListener( type : String, listener : EventListener, ?useCapture : Bool ) : Void;
 
-    function dispatchEvent (event :Event) :Bool;
+	function dispatchEvent( event : Event ) : Bool;
 
-    function removeEventListener (type :String, listener :EventListener, ?useCapture :Bool) :Void;
+	function removeEventListener( type : String, listener : EventListener, ?useCapture : Bool ) : Void;
 
 }

@@ -31,9 +31,9 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLHtmlElement")
 extern class HtmlElement extends Element
 {
-    var manifest :String;
+	var manifest : String;
 
-    /** Version of the HTML&nbsp;Document Type Definition that governs this document. */
-    var version :String;
+	/** Version of the HTML&nbsp;Document Type Definition that governs this document. */
+	var version : String;
 
 }

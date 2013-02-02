@@ -30,8 +30,8 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("FileEntry")
 extern class FileEntry extends Entry
 {
-    function createWriter (successCallback :FileWriterCallback, ?errorCallback :ErrorCallback) :Void;
+	function createWriter( successCallback : FileWriterCallback, ?errorCallback : ErrorCallback ) : Void;
 
-    function file (successCallback :FileCallback, ?errorCallback :ErrorCallback) :Void;
+	function file( successCallback : FileCallback, ?errorCallback : ErrorCallback ) : Void;
 
 }

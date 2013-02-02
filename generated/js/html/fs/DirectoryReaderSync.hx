@@ -30,6 +30,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("DirectoryReaderSync")
 extern class DirectoryReaderSync
 {
-    function readEntries () :EntryArraySync;
+	function readEntries() : EntryArraySync;
 
 }

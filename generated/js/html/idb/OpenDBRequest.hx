@@ -26,8 +26,8 @@ package js.html.idb;
 @:native("IDBOpenDBRequest")
 extern class OpenDBRequest extends Request
 {
-    var onblocked :js.html.EventListener;
+	var onblocked : js.html.EventListener;
 
-    var onupgradeneeded :js.html.EventListener;
+	var onupgradeneeded : js.html.EventListener;
 
 }

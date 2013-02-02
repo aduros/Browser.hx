@@ -30,6 +30,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("DirectoryReader")
 extern class DirectoryReader
 {
-    function readEntries (successCallback :EntriesCallback, ?errorCallback :ErrorCallback) :Void;
+	function readEntries( successCallback : EntriesCallback, ?errorCallback : ErrorCallback ) : Void;
 
 }

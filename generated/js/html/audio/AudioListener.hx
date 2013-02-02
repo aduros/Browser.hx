@@ -26,14 +26,14 @@ package js.html.audio;
 @:native("AudioListener")
 extern class AudioListener
 {
-    var dopplerFactor :Float;
+	var dopplerFactor : Float;
 
-    var speedOfSound :Float;
+	var speedOfSound : Float;
 
-    function setOrientation (x :Float, y :Float, z :Float, xUp :Float, yUp :Float, zUp :Float) :Void;
+	function setOrientation( x : Float, y : Float, z : Float, xUp : Float, yUp : Float, zUp : Float ) : Void;
 
-    function setPosition (x :Float, y :Float, z :Float) :Void;
+	function setPosition( x : Float, y : Float, z : Float ) : Void;
 
-    function setVelocity (x :Float, y :Float, z :Float) :Void;
+	function setVelocity( x : Float, y : Float, z : Float ) : Void;
 
 }

@@ -26,8 +26,8 @@ package js.html.rtc;
 @:native("RTCStatsElement")
 extern class StatsElement
 {
-    var timestamp (default,null) :Date;
+	var timestamp (default,null) : Date;
 
-    function stat (name :String) :String;
+	function stat( name : String ) : String;
 
 }

@@ -30,7 +30,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLDivElement")
 extern class DivElement extends Element
 {
-    /** Enumerated attribute indicating alignment of the element's contents with respect to the surrounding context. */
-    var align :String;
+	/** Enumerated attribute indicating alignment of the element's contents with respect to the surrounding context. */
+	var align : String;
 
 }

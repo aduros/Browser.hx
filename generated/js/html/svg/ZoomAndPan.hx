@@ -26,12 +26,12 @@ package js.html.svg;
 @:native("SVGZoomAndPan")
 extern class ZoomAndPan
 {
-    static inline var SVG_ZOOMANDPAN_DISABLE :Int = 1;
+	static inline var SVG_ZOOMANDPAN_DISABLE : Int = 1;
 
-    static inline var SVG_ZOOMANDPAN_MAGNIFY :Int = 2;
+	static inline var SVG_ZOOMANDPAN_MAGNIFY : Int = 2;
 
-    static inline var SVG_ZOOMANDPAN_UNKNOWN :Int = 0;
+	static inline var SVG_ZOOMANDPAN_UNKNOWN : Int = 0;
 
-    var zoomAndPan :Int;
+	var zoomAndPan : Int;
 
 }

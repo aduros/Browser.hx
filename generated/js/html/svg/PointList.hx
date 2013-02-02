@@ -26,20 +26,20 @@ package js.html.svg;
 @:native("SVGPointList")
 extern class PointList
 {
-    var numberOfItems (default,null) :Int;
+	var numberOfItems (default,null) : Int;
 
-    function appendItem (item :Point) :Point;
+	function appendItem( item : Point ) : Point;
 
-    function clear () :Void;
+	function clear() : Void;
 
-    function getItem (index :Int) :Point;
+	function getItem( index : Int ) : Point;
 
-    function initialize (item :Point) :Point;
+	function initialize( item : Point ) : Point;
 
-    function insertItemBefore (item :Point, index :Int) :Point;
+	function insertItemBefore( item : Point, index : Int ) : Point;
 
-    function removeItem (index :Int) :Point;
+	function removeItem( index : Int ) : Point;
 
-    function replaceItem (item :Point, index :Int) :Point;
+	function replaceItem( item : Point, index : Int ) : Point;
 
 }

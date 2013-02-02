@@ -26,8 +26,8 @@ package js.html.svg;
 @:native("SVGLangSpace")
 extern class LangSpace
 {
-    var xmllang :String;
+	var xmllang : String;
 
-    var xmlspace :String;
+	var xmlspace : String;
 
 }

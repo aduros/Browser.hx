@@ -26,8 +26,8 @@ package js.html;
 @:native("SharedWorkerContext")
 extern class SharedWorkerContext extends WorkerContext
 {
-    var name (default,null) :String;
+	var name (default,null) : String;
 
-    var onconnect :EventListener;
+	var onconnect : EventListener;
 
 }

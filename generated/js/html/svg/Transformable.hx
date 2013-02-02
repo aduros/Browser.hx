@@ -29,8 +29,8 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGTransformable")
 extern class Transformable extends Locatable
 {
-    /** Corresponds to attribute 
+	/** Corresponds to attribute 
 <code><a rel="custom" href="https://developer.mozilla.org/en/SVG/Attribute/transform">transform</a></code> on the given element. */
-    var transform (default,null) :AnimatedTransformList;
+	var transform (default,null) : AnimatedTransformList;
 
 }

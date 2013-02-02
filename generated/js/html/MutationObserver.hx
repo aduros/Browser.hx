@@ -26,12 +26,12 @@ package js.html;
 @:native("MutationObserver")
 extern class MutationObserver
 {
-    function new (?arg0 :Dynamic) :Void;
+	function new(?arg0 : Dynamic) : Void;
 
-    function disconnect () :Void;
+	function disconnect() : Void;
 
-    function observe (target :Node, options :Dynamic) :Void;
+	function observe( target : Node, options : Dynamic ) : Void;
 
-    function takeRecords () :Array<js.html.MutationRecord>;
+	function takeRecords() : Array<js.html.MutationRecord>;
 
 }

@@ -26,10 +26,10 @@ package js.html;
 @:native("TextTrackList")
 extern class TextTrackList extends EventTarget, implements ArrayAccess<TextTrack>
 {
-    var length (default,null) :Int;
+	var length (default,null) : Int;
 
-    var onaddtrack :EventListener;
+	var onaddtrack : EventListener;
 
-    function item (index :Int) :TextTrack;
+	function item( index : Int ) : TextTrack;
 
 }

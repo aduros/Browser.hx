@@ -26,12 +26,12 @@ package js.html.svg;
 @:native("SVGPathSegCurvetoQuadraticAbs")
 extern class PathSegCurvetoQuadraticAbs extends PathSeg
 {
-    var x :Float;
+	var x : Float;
 
-    var x1 :Float;
+	var x1 : Float;
 
-    var y :Float;
+	var y : Float;
 
-    var y1 :Float;
+	var y1 : Float;
 
 }

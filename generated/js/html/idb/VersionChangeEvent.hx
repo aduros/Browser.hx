@@ -29,7 +29,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("IDBVersionChangeEvent")
 extern class VersionChangeEvent extends js.html.Event
 {
-    /** <div class="warning"><strong>Warning:</strong> While this property is still implemented by not up-to-date browsers, the latest specification does replace it by the <code>oldVersion</code> and <code>newVersion</code> attributes. See compatibility table to know what browsers support them.</div> The new version of the database in a <a title="en/IndexedDB/IDBTransaction#VERSION CHANGE" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBTransaction#VERSION_CHANGE">VERSION_CHANGE</a> transaction. */
-    var version (default,null) :String;
+	/** <div class="warning"><strong>Warning:</strong> While this property is still implemented by not up-to-date browsers, the latest specification does replace it by the <code>oldVersion</code> and <code>newVersion</code> attributes. See compatibility table to know what browsers support them.</div> The new version of the database in a <a title="en/IndexedDB/IDBTransaction#VERSION CHANGE" rel="internal" href="https://developer.mozilla.org/en/IndexedDB/IDBTransaction#VERSION_CHANGE">VERSION_CHANGE</a> transaction. */
+	var version (default,null) : String;
 
 }

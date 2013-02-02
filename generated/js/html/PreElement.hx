@@ -28,8 +28,8 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLPreElement")
 extern class PreElement extends Element
 {
-    var width :Int;
+	var width : Int;
 
-    var wrap :Bool;
+	var wrap : Bool;
 
 }

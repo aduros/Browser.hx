@@ -31,12 +31,12 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("Database")
 extern class Database
 {
-    var version (default,null) :String;
+	var version (default,null) : String;
 
-    function changeVersion (oldVersion :String, newVersion :String, ?callback_ :TransactionCallback, ?errorCallback :TransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
+	function changeVersion( oldVersion : String, newVersion : String, ?callback_ : TransactionCallback, ?errorCallback : TransactionErrorCallback, ?successCallback : js.html.VoidCallback ) : Void;
 
-    function readTransaction (callback_ :TransactionCallback, ?errorCallback :TransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
+	function readTransaction( callback_ : TransactionCallback, ?errorCallback : TransactionErrorCallback, ?successCallback : js.html.VoidCallback ) : Void;
 
-    function transaction (callback_ :TransactionCallback, ?errorCallback :TransactionErrorCallback, ?successCallback :js.html.VoidCallback) :Void;
+	function transaction( callback_ : TransactionCallback, ?errorCallback : TransactionErrorCallback, ?successCallback : js.html.VoidCallback ) : Void;
 
 }

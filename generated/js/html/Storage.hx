@@ -30,17 +30,17 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("Storage")
 extern class Storage
 {
-    /** Getter throws DOMException. */
-    var length (default,null) :Int;
+	/** Getter throws DOMException. */
+	var length (default,null) : Int;
 
-    function clear () :Void;
+	function clear() : Void;
 
-    function getItem (key :String) :String;
+	function getItem( key : String ) : String;
 
-    function key (index :Int) :String;
+	function key( index : Int ) : String;
 
-    function removeItem (key :String) :Void;
+	function removeItem( key : String ) : Void;
 
-    function setItem (key :String, data :String) :Void;
+	function setItem( key : String, data : String ) : Void;
 
 }

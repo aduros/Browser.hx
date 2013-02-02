@@ -29,7 +29,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLDListElement")
 extern class DListElement extends Element
 {
-    /** Indicates that spacing between list items should be reduced. */
-    var compact :Bool;
+	/** Indicates that spacing between list items should be reduced. */
+	var compact : Bool;
 
 }

@@ -26,6 +26,6 @@ package js.html;
 @:native("DOMSettableTokenList")
 extern class DOMSettableTokenList extends DOMTokenList
 {
-    var value :String;
+	var value : String;
 
 }

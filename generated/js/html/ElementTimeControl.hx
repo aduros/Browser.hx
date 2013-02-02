@@ -26,12 +26,12 @@ package js.html;
 @:native("ElementTimeControl")
 extern class ElementTimeControl
 {
-    function beginElement () :Void;
+	function beginElement() : Void;
 
-    function beginElementAt (offset :Float) :Void;
+	function beginElementAt( offset : Float ) : Void;
 
-    function endElement () :Void;
+	function endElement() : Void;
 
-    function endElementAt (offset :Float) :Void;
+	function endElementAt( offset : Float ) : Void;
 
 }

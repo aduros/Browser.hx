@@ -26,16 +26,16 @@ package js.html;
 @:native("XMLHttpRequestUpload")
 extern class XMLHttpRequestUpload extends EventTarget
 {
-    var onabort :EventListener;
+	var onabort : EventListener;
 
-    var onerror :EventListener;
+	var onerror : EventListener;
 
-    var onload :EventListener;
+	var onload : EventListener;
 
-    var onloadend :EventListener;
+	var onloadend : EventListener;
 
-    var onloadstart :EventListener;
+	var onloadstart : EventListener;
 
-    var onprogress :EventListener;
+	var onprogress : EventListener;
 
 }

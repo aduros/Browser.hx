@@ -26,21 +26,21 @@ package js.html.audio;
 @:native("AnalyserNode")
 extern class AnalyserNode extends AudioNode
 {
-    /** Setter throws DOMException. */
-    var fftSize :Int;
+	/** Setter throws DOMException. */
+	var fftSize : Int;
 
-    var frequencyBinCount (default,null) :Int;
+	var frequencyBinCount (default,null) : Int;
 
-    var maxDecibels :Float;
+	var maxDecibels : Float;
 
-    var minDecibels :Float;
+	var minDecibels : Float;
 
-    var smoothingTimeConstant :Float;
+	var smoothingTimeConstant : Float;
 
-    function getByteFrequencyData (array :js.html.Uint8Array) :Void;
+	function getByteFrequencyData( array : js.html.Uint8Array ) : Void;
 
-    function getByteTimeDomainData (array :js.html.Uint8Array) :Void;
+	function getByteTimeDomainData( array : js.html.Uint8Array ) : Void;
 
-    function getFloatFrequencyData (array :js.html.Float32Array) :Void;
+	function getFloatFrequencyData( array : js.html.Float32Array ) : Void;
 
 }

@@ -26,6 +26,6 @@ package js.html;
 @:native("AbstractWorker")
 extern class AbstractWorker extends EventTarget
 {
-    var onerror :EventListener;
+	var onerror : EventListener;
 
 }

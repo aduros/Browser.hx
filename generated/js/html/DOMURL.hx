@@ -26,12 +26,12 @@ package js.html;
 @:native("URL")
 extern class DOMURL
 {
-    function new () :Void;
+	function new() : Void;
 
-    @:overload(function (source :MediaSource) :String {})
-    @:overload(function (stream :js.html.rtc.MediaStream) :String {})
-    static function createObjectURL (blob :Blob) :String;
+	@:overload( function( source : MediaSource ) :String {} )
+	@:overload( function( stream : js.html.rtc.MediaStream ) :String {} )
+	static function createObjectURL( blob : Blob ) : String;
 
-    static function revokeObjectURL (url :String) :Void;
+	static function revokeObjectURL( url : String ) : Void;
 
 }

@@ -26,6 +26,6 @@ package js.html;
 @:native("HTMLShadowElement")
 extern class ShadowElement extends Element
 {
-    var resetStyleInheritance :Bool;
+	var resetStyleInheritance : Bool;
 
 }

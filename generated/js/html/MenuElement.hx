@@ -38,6 +38,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLMenuElement")
 extern class MenuElement extends Element
 {
-    var compact :Bool;
+	var compact : Bool;
 
 }

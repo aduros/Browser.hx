@@ -26,17 +26,17 @@ package js.html;
 @:native("CSSValue")
 extern class CSSValue
 {
-    static inline var CSS_CUSTOM :Int = 3;
+	static inline var CSS_CUSTOM : Int = 3;
 
-    static inline var CSS_INHERIT :Int = 0;
+	static inline var CSS_INHERIT : Int = 0;
 
-    static inline var CSS_PRIMITIVE_VALUE :Int = 1;
+	static inline var CSS_PRIMITIVE_VALUE : Int = 1;
 
-    static inline var CSS_VALUE_LIST :Int = 2;
+	static inline var CSS_VALUE_LIST : Int = 2;
 
-    /** Setter throws DOMException. */
-    var cssText :String;
+	/** Setter throws DOMException. */
+	var cssText : String;
 
-    var cssValueType (default,null) :Int;
+	var cssValueType (default,null) : Int;
 
 }

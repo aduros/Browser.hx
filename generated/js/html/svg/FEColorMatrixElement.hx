@@ -28,20 +28,20 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGFEColorMatrixElement")
 extern class FEColorMatrixElement extends Element
 {
-    static inline var SVG_FECOLORMATRIX_TYPE_HUEROTATE :Int = 3;
+	static inline var SVG_FECOLORMATRIX_TYPE_HUEROTATE : Int = 3;
 
-    static inline var SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA :Int = 4;
+	static inline var SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA : Int = 4;
 
-    static inline var SVG_FECOLORMATRIX_TYPE_MATRIX :Int = 1;
+	static inline var SVG_FECOLORMATRIX_TYPE_MATRIX : Int = 1;
 
-    static inline var SVG_FECOLORMATRIX_TYPE_SATURATE :Int = 2;
+	static inline var SVG_FECOLORMATRIX_TYPE_SATURATE : Int = 2;
 
-    static inline var SVG_FECOLORMATRIX_TYPE_UNKNOWN :Int = 0;
+	static inline var SVG_FECOLORMATRIX_TYPE_UNKNOWN : Int = 0;
 
-    var in1 (default,null) :AnimatedString;
+	var in1 (default,null) : AnimatedString;
 
-    var type (default,null) :AnimatedEnumeration;
+	var type (default,null) : AnimatedEnumeration;
 
-    var values (default,null) :AnimatedNumberList;
+	var values (default,null) : AnimatedNumberList;
 
 }

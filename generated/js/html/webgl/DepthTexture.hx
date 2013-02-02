@@ -26,6 +26,6 @@ package js.html.webgl;
 @:native("WebGLDepthTexture")
 extern class DepthTexture
 {
-    static inline var UNSIGNED_INT_24_8_WEBGL :Int = 0x84FA;
+	static inline var UNSIGNED_INT_24_8_WEBGL : Int = 0x84FA;
 
 }

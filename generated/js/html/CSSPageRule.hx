@@ -26,8 +26,8 @@ package js.html;
 @:native("CSSPageRule")
 extern class CSSPageRule extends CSSRule
 {
-    var selectorText :String;
+	var selectorText : String;
 
-    var style (default,null) :CSSStyleDeclaration;
+	var style (default,null) : CSSStyleDeclaration;
 
 }

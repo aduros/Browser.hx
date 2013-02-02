@@ -26,6 +26,6 @@ package js.html.rtc;
 @:native("RTCStatsResponse")
 extern class StatsResponse
 {
-    function result () :Array<js.html.rtc.StatsReport>;
+	function result() : Array<js.html.rtc.StatsReport>;
 
 }

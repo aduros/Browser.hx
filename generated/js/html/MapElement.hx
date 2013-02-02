@@ -29,8 +29,8 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLMapElement")
 extern class MapElement extends Element
 {
-    var areas (default,null) :HTMLCollection;
+	var areas (default,null) : HTMLCollection;
 
-    var name :String;
+	var name : String;
 
 }

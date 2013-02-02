@@ -28,25 +28,25 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("StyleSheet")
 extern class StyleSheet
 {
-    /** This property indicates whether the current stylesheet has been applied or not. */
-    var disabled :Bool;
+	/** This property indicates whether the current stylesheet has been applied or not. */
+	var disabled : Bool;
 
-    /** Returns the location of the stylesheet. */
-    var href (default,null) :String;
+	/** Returns the location of the stylesheet. */
+	var href (default,null) : String;
 
-    /** Specifies the intended destination medium for style information. */
-    var media (default,null) :MediaList;
+	/** Specifies the intended destination medium for style information. */
+	var media (default,null) : MediaList;
 
-    /** Returns the node that associates this style sheet with the document. */
-    var ownerNode (default,null) :Node;
+	/** Returns the node that associates this style sheet with the document. */
+	var ownerNode (default,null) : Node;
 
-    /** Returns the stylesheet that is including this one, if any. */
-    var parentStyleSheet (default,null) :StyleSheet;
+	/** Returns the stylesheet that is including this one, if any. */
+	var parentStyleSheet (default,null) : StyleSheet;
 
-    /** Returns the advisory title of the current style sheet. */
-    var title (default,null) :String;
+	/** Returns the advisory title of the current style sheet. */
+	var title (default,null) : String;
 
-    /** Specifies the style sheet language for this style sheet. */
-    var type (default,null) :String;
+	/** Specifies the style sheet language for this style sheet. */
+	var type (default,null) : String;
 
 }

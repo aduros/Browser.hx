@@ -26,6 +26,6 @@ package js.html.webgl;
 @:native("WebGLDebugShaders")
 extern class DebugShaders
 {
-    function getTranslatedShaderSource (shader :Shader) :String;
+	function getTranslatedShaderSource( shader : Shader ) : String;
 
 }

@@ -26,10 +26,10 @@ package js.html;
 @:native("HTMLContentElement")
 extern class ContentElement extends Element
 {
-    var resetStyleInheritance :Bool;
+	var resetStyleInheritance : Bool;
 
-    var select :String;
+	var select : String;
 
-    function getDistributedNodes () :NodeList;
+	function getDistributedNodes() : NodeList;
 
 }

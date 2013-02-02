@@ -30,11 +30,11 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLCollection")
 extern class HTMLCollection implements ArrayAccess<Node>
 {
-    /** The number of items in the collection. <strong>Read only</strong>. */
-    var length (default,null) :Int;
+	/** The number of items in the collection. <strong>Read only</strong>. */
+	var length (default,null) : Int;
 
-    function item (index :Int) :Node;
+	function item( index : Int ) : Node;
 
-    function namedItem (name :String) :Node;
+	function namedItem( name : String ) : Node;
 
 }

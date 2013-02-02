@@ -26,16 +26,16 @@ package js.html.svg;
 @:native("SVGLocatable")
 extern class Locatable
 {
-    var farthestViewportElement (default,null) :Element;
+	var farthestViewportElement (default,null) : Element;
 
-    var nearestViewportElement (default,null) :Element;
+	var nearestViewportElement (default,null) : Element;
 
-    function getBBox () :Rect;
+	function getBBox() : Rect;
 
-    function getCTM () :Matrix;
+	function getCTM() : Matrix;
 
-    function getScreenCTM () :Matrix;
+	function getScreenCTM() : Matrix;
 
-    function getTransformToElement (element :Element) :Matrix;
+	function getTransformToElement( element : Element ) : Matrix;
 
 }

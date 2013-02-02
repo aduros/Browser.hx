@@ -29,14 +29,14 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGStylable")
 extern class Stylable
 {
-    /** Corresponds to attribute 
+	/** Corresponds to attribute 
 <code><a rel="custom" href="https://developer.mozilla.org/en/SVG/Attribute/class">class</a></code> on the given element. */
-    var className (default,null) :AnimatedString;
+	var className (default,null) : AnimatedString;
 
-    /** Corresponds to attribute 
+	/** Corresponds to attribute 
 <code><a rel="custom" href="https://developer.mozilla.org/en/SVG/Attribute/style">style</a></code> on the given element. */
-    var style (default,null) :js.html.CSSStyleDeclaration;
+	var style (default,null) : js.html.CSSStyleDeclaration;
 
-    function getPresentationAttribute (name :String) :js.html.CSSValue;
+	function getPresentationAttribute( name : String ) : js.html.CSSValue;
 
 }

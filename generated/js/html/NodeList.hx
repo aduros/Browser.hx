@@ -30,9 +30,9 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("NodeList")
 extern class NodeList implements ArrayAccess<Node>
 {
-    /** Reflects the number of elements in the NodeList.&nbsp; */
-    var length (default,null) :Int;
+	/** Reflects the number of elements in the NodeList.&nbsp; */
+	var length (default,null) : Int;
 
-    function item (index :Int) :Node;
+	function item( index : Int ) : Node;
 
 }

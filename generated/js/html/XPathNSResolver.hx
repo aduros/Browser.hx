@@ -26,6 +26,6 @@ package js.html;
 @:native("XPathNSResolver")
 extern class XPathNSResolver
 {
-    function lookupNamespaceURI (prefix :String) :String;
+	function lookupNamespaceURI( prefix : String ) : String;
 
 }

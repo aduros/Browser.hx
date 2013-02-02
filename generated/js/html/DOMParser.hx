@@ -28,8 +28,8 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("DOMParser")
 extern class DOMParser
 {
-    function new () :Void;
+	function new() : Void;
 
-    function parseFromString (str :String, contentType :String) :Document;
+	function parseFromString( str : String, contentType : String ) : Document;
 
 }

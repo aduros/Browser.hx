@@ -33,13 +33,13 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("SVGAnimationElement")
 extern class AnimationElement extends Element
 {
-    /** The element which is being animated. */
-    var targetElement (default,null) :Element;
+	/** The element which is being animated. */
+	var targetElement (default,null) : Element;
 
-    function getCurrentTime () :Float;
+	function getCurrentTime() : Float;
 
-    function getSimpleDuration () :Float;
+	function getSimpleDuration() : Float;
 
-    function getStartTime () :Float;
+	function getStartTime() : Float;
 
 }

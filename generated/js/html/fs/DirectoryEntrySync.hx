@@ -30,12 +30,12 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("DirectoryEntrySync")
 extern class DirectoryEntrySync extends EntrySync
 {
-    function createReader () :DirectoryReaderSync;
+	function createReader() : DirectoryReaderSync;
 
-    function getDirectory (path :String, flags :Dynamic) :DirectoryEntrySync;
+	function getDirectory( path : String, flags : Dynamic ) : DirectoryEntrySync;
 
-    function getFile (path :String, flags :Dynamic) :FileEntrySync;
+	function getFile( path : String, flags : Dynamic ) : FileEntrySync;
 
-    function removeRecursively () :Void;
+	function removeRecursively() : Void;
 
 }

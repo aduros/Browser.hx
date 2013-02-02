@@ -28,7 +28,7 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("HTMLTableCaptionElement")
 extern class TableCaptionElement extends Element
 {
-    /** Enumerated attribute indicating alignment of the caption with respect to the table. */
-    var align :String;
+	/** Enumerated attribute indicating alignment of the caption with respect to the table. */
+	var align : String;
 
 }

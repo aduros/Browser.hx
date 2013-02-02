@@ -29,6 +29,6 @@ Documentation for this class was provided by <a href="https://developer.mozilla.
 @:native("XPathExpression")
 extern class XPathExpression
 {
-    function evaluate (contextNode :Node, type :Int, inResult :XPathResult) :XPathResult;
+	function evaluate( contextNode : Node, type : Int, inResult : XPathResult ) : XPathResult;
 
 }

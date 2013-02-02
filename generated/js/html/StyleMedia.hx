@@ -26,8 +26,8 @@ package js.html;
 @:native("StyleMedia")
 extern class StyleMedia
 {
-    var type (default,null) :String;
+	var type (default,null) : String;
 
-    function matchMedium (mediaquery :String) :Bool;
+	function matchMedium( mediaquery : String ) : Bool;
 
 }

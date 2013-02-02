@@ -26,14 +26,14 @@ package js.html.fs;
 @:native("FileWriterSync")
 extern class FileWriterSync
 {
-    var length (default,null) :Int;
+	var length (default,null) : Int;
 
-    var position (default,null) :Int;
+	var position (default,null) : Int;
 
-    function seek (position :Int) :Void;
+	function seek( position : Int ) : Void;
 
-    function truncate (size :Int) :Void;
+	function truncate( size : Int ) : Void;
 
-    function write (data :js.html.Blob) :Void;
+	function write( data : js.html.Blob ) : Void;
 
 }

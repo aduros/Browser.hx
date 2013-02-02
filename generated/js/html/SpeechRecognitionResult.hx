@@ -26,12 +26,12 @@ package js.html;
 @:native("SpeechRecognitionResult")
 extern class SpeechRecognitionResult implements ArrayAccess<SpeechRecognitionAlternative>
 {
-    var emma (default,null) :Document;
+	var emma (default,null) : Document;
 
-    var final (default,null) :Bool;
+	var final (default,null) : Bool;
 
-    var length (default,null) :Int;
+	var length (default,null) : Int;
 
-    function item (index :Int) :SpeechRecognitionAlternative;
+	function item( index : Int ) : SpeechRecognitionAlternative;
 
 }

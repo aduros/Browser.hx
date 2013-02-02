@@ -26,8 +26,8 @@ package js.html.fs;
 @:native("EntryArray")
 extern class EntryArray implements ArrayAccess<Entry>
 {
-    var length (default,null) :Int;
+	var length (default,null) : Int;
 
-    function item (index :Int) :Entry;
+	function item( index : Int ) : Entry;
 
 }
