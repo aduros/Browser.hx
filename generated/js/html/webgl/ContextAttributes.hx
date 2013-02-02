@@ -23,19 +23,18 @@
 // This file is generated, do not edit!
 package js.html.webgl;
 
-@:native("WebGLContextAttributes")
-extern class ContextAttributes
+typedef ContextAttributes =
 {
-    var alpha :Bool;
+    @:optional var alpha :Bool;
 
-    var antialias :Bool;
+    @:optional var antialias :Bool;
 
-    var depth :Bool;
+    @:optional var depth :Bool;
 
-    var premultipliedAlpha :Bool;
+    @:optional var premultipliedAlpha :Bool;
 
-    var preserveDrawingBuffer :Bool;
+    @:optional var preserveDrawingBuffer :Bool;
 
-    var stencil :Bool;
+    @:optional var stencil :Bool;
 
 }

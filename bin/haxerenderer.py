@@ -523,9 +523,13 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                 w("typedef %s = %s -> %s;" % (to_haxe_class(node.id), arguments, to_haxe_local(callback.type.id)))
                 return
 
-            interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
-            wln("@:native(\"%s\")" % strip_vendor(interface_name))
-            w("extern class %s" % to_haxe_class(node.id))
+            if "HaxeTypedef" in node.ext_attrs:
+                w("typedef %s =" % to_haxe_class(node.id))
+            else:
+                interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
+                wln("@:native(\"%s\")" % strip_vendor(interface_name))
+                w("extern class %s" % to_haxe_class(node.id))
+
             strip_vendor_fields(constants)
             strip_vendor_fields(attributes)
             strip_vendor_fields(operations, False)
@@ -617,7 +621,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             elif node.id == "HTMLCanvasElement":
                 w_typed_shortcut("getContext2d", "CanvasRenderingContext2D", "getContext(\"2d\")")
                 wln()
-                wln("public inline function getContextWebGL (?attribs :Dynamic) :js.html.webgl.RenderingContext {")
+                wln("public inline function getContextWebGL (?attribs :js.html.webgl.ContextAttributes) :js.html.webgl.RenderingContext {")
                 begin_indent()
                 wln("return CanvasUtil.getContextWebGL(this, attribs);")
                 end_indent()
@@ -648,6 +652,8 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             stripped = strip_vendor(node.id)
             escaped = escape_keyword(stripped)
             attr_type = to_haxe_local(node.type.id)
+            if "HaxeOptional" in node.ext_attrs:
+                w("@:optional ")
             w("var %s " % escaped)
             if escaped != stripped:
                 wln("(get,%s) :%s;" % ("null" if node.is_read_only else "set", attr_type))
