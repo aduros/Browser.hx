@@ -668,6 +668,9 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             else:
                 w("function %s (" % escaped)
                 w(node.arguments, ", ")
+                if "CallWith" in node.ext_attrs and "ScriptArguments" in node.ext_attrs["CallWith"].split("|"):
+                    if node.arguments: w(", ")
+                    w(["?p1 :Dynamic", "?p2 :Dynamic", "?p3 :Dynamic", "?p4 :Dynamic", "?p5 :Dynamic"], ", ")
                 wln(") :%s;" % return_type)
 
         elif isinstance(node, IDLArgument):

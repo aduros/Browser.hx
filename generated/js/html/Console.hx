@@ -35,31 +35,31 @@ extern class Console
 
     var profiles (default,null) :Array<js.html.ScriptProfile>;
 
-    function assert (condition :Bool) :Void;
+    function assert (condition :Bool, ?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function clear () :Void;
+    function clear (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function count () :Void;
+    function count (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function debug () :Void;
+    function debug (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function dir () :Void;
+    function dir (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function dirxml () :Void;
+    function dirxml (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function error () :Void;
+    function error (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function group () :Void;
+    function group (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function groupCollapsed () :Void;
+    function groupCollapsed (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
     function groupEnd () :Void;
 
-    function info () :Void;
+    function info (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function log () :Void;
+    function log (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function markTimeline () :Void;
+    function markTimeline (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
     function profile (title :String) :Void;
 
@@ -67,12 +67,12 @@ extern class Console
 
     function time (title :String) :Void;
 
-    function timeEnd (title :String) :Void;
+    function timeEnd (title :String, ?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function timeStamp () :Void;
+    function timeStamp (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function trace () :Void;
+    function trace (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
-    function warn () :Void;
+    function warn (?p1 :Dynamic, ?p2 :Dynamic, ?p3 :Dynamic, ?p4 :Dynamic, ?p5 :Dynamic) :Void;
 
 }
