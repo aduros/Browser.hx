@@ -666,9 +666,9 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             attr_type = to_haxe_local(node.type.id)
             if "HaxeOptional" in node.ext_attrs:
                 w("@:optional ")
-            w("var %s " % escaped)
+            w("var %s" % escaped)
             if escaped != stripped:
-                wln("(get,%s) :%s;" % ("null" if node.is_read_only else "set", attr_type))
+                wln("(get,%s) : %s;" % ("null" if node.is_read_only else "set", attr_type))
                 wln("private inline function get_%s() : %s {" % (escaped, attr_type))
                 begin_indent()
                 wln("return untyped this[\"%s\"];" % stripped)
@@ -682,8 +682,8 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     wln("}")
             else:
                 if node.is_read_only:
-                    w("(default,null) ")
-                wln(": %s;" % to_haxe_local(node.type.id))
+                    w("(default,null)")
+                wln(" : %s;" % to_haxe_local(node.type.id))
 
         elif isinstance(node, IDLConstant):
             wln("static inline var %s : %s = %s;" % (escape_keyword(strip_vendor(node.id)),

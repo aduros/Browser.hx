@@ -48,10 +48,10 @@ extern class SelectElement extends Element, implements ArrayAccess<Node>
 	/** The form that this element is associated with. If this element is a descendant of a form element, then this attribute is the ID of that form element. If the element is not a descendant of a form element, then: <ul> <li>
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML/HTML5">HTML5</a></span> The attribute can be the ID of any form element in the same document.</li> <li>
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML">HTML 4</a></span> The attribute is null.</li> </ul> <strong>Read only.</strong> */
-	var form (default,null) : FormElement;
+	var form(default,null) : FormElement;
 
 	/** A list of label elements associated with this select element. */
-	var labels (default,null) : NodeList;
+	var labels(default,null) : NodeList;
 
 	/** The number of <code><a rel="custom" href="https://developer.mozilla.org/en/HTML/Element/option">&lt;option&gt;</a></code>
  elements in this <code>select</code> element. Setter throws DOMException. */
@@ -71,7 +71,7 @@ extern class SelectElement extends Element, implements ArrayAccess<Node>
 
 	/** The set of <code><a rel="custom" href="https://developer.mozilla.org/en/HTML/Element/option">&lt;option&gt;</a></code>
  elements contained by this element. <strong>Read only.</strong> */
-	var options (default,null) : HTMLOptionsCollection;
+	var options(default,null) : HTMLOptionsCollection;
 
 	/** Reflects the 
 
@@ -88,7 +88,7 @@ extern class SelectElement extends Element, implements ArrayAccess<Node>
 
 	/** The set of options that are selected. 
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML/HTML5">HTML5</a></span> */
-	var selectedOptions (default,null) : HTMLCollection;
+	var selectedOptions(default,null) : HTMLCollection;
 
 	/** Reflects the 
 
@@ -98,19 +98,19 @@ extern class SelectElement extends Element, implements ArrayAccess<Node>
 	var size : Int;
 
 	/** The form control's type. When <strong>multiple</strong> is true, it returns <code>select-multiple</code>; otherwise, it returns <code>select-one</code>.<strong>Read only.</strong> */
-	var type (default,null) : String;
+	var type(default,null) : String;
 
 	/** A localized message that describes the validation constraints that the control does not satisfy (if any). This attribute is the empty string if the control is not a candidate for constraint validation (<strong>willValidate</strong> is false), or it satisfies its constraints.<strong>Read only.</strong> 
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML/HTML5">HTML5</a></span> 
 <span title="(Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1)
 ">Requires Gecko 2.0</span> */
-	var validationMessage (default,null) : String;
+	var validationMessage(default,null) : String;
 
 	/** The validity states that this control is in. <strong>Read only.</strong> 
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML/HTML5">HTML5</a></span> 
 <span title="(Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1)
 ">Requires Gecko 2.0</span> */
-	var validity (default,null) : ValidityState;
+	var validity(default,null) : ValidityState;
 
 	/** The value of this form control, that is, of the first selected option. */
 	var value : String;
@@ -119,7 +119,7 @@ extern class SelectElement extends Element, implements ArrayAccess<Node>
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML/HTML5">HTML5</a></span> 
 <span title="(Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1)
 ">Requires Gecko 2.0</span> */
-	var willValidate (default,null) : Bool;
+	var willValidate(default,null) : Bool;
 
 	function add( element : Element, before : Element ) : Void;
 
