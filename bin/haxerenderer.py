@@ -546,17 +546,14 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             strip_vendor_fields(attributes)
             strip_vendor_fields(operations, False)
 
-            inherits = []
             parent = get_parent(node)
             if parent:
-                inherits.append("extends %s" % to_haxe_local(parent.id))
+                w(" extends %s" % to_haxe_local(parent.id))
             if len(node.parents) > 1:
                 print("Omitting excess superclasses from %s" % node.id)
             array_type = array_access(node)
             if array_type:
-                inherits.append("implements ArrayAccess<%s>" % to_haxe_local(array_type))
-            if inherits:
-                w(" " + ", ".join(inherits))
+                w(" implements ArrayAccess<%s>" % to_haxe_local(array_type))
 
             wln()
             wln("{")

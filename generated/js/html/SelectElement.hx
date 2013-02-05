@@ -28,7 +28,7 @@ package js.html;
 <span><a rel="custom" href="https://developer.mozilla.org/en/HTML">HTML 4</a></span> <a class="external" title="http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-94282980" rel="external" href="http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-94282980" target="_blank">HTMLSelectElement</a>).<br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/DOM/HTMLSelectElement">MDN</a>. */
 @:native("HTMLSelectElement")
-extern class SelectElement extends Element, implements ArrayAccess<Node>
+extern class SelectElement extends Element implements ArrayAccess<Node>
 {
 	/** Reflects the 
 

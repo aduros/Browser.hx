@@ -27,7 +27,7 @@ package js.html;
 <p>Once established, you can reference elements in the array using the object's methods, or using standard array index syntax (that is, using bracket notation).</p><br><br>
 Documentation for this class was provided by <a href="https://developer.mozilla.org/en/JavaScript_typed_arrays/Int16Array">MDN</a>. */
 @:native("Int16Array")
-extern class Int16Array extends ArrayBufferView, implements ArrayAccess<Int>
+extern class Int16Array extends ArrayBufferView implements ArrayAccess<Int>
 {
 	/** The size, in bytes, of each array element. */
 	static inline var BYTES_PER_ELEMENT : Int = 2;
