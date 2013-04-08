@@ -524,7 +524,11 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                 # Generate a function typedef if this is a callback
                 callback = operations[0]
                 if callback.arguments:
-                    arguments = " -> ".join([to_haxe_local(x.type.id) for x in callback.arguments])
+                    # Use Dynamic->Void for EventListener for a lot more expressiveness at the cost
+                    # of a little type safety
+                    arguments = " -> ".join([
+                        "Dynamic" if x.type.id == "Event" else to_haxe_local(x.type.id)
+                        for x in callback.arguments])
                 else:
                     arguments = "Void"
                 w("typedef %s = %s -> %s;" % (to_haxe_class(node.id), arguments, to_haxe_local(callback.type.id)))
