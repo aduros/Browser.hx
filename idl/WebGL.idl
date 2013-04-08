@@ -1,0 +1,24 @@
+[HaxeTypedef]
+interface WebGLContextAttributes {
+  [HaxeOptional] attribute boolean alpha;
+  [HaxeOptional] attribute boolean antialias;
+  [HaxeOptional] attribute boolean depth;
+  [HaxeOptional] attribute boolean premultipliedAlpha;
+  [HaxeOptional] attribute boolean preserveDrawingBuffer;
+  [HaxeOptional] attribute boolean stencil;
+};
+
+interface WebGLRenderingContext {
+    // Methods incorrectly defined in WebCore
+    sequence<WebGLShader> getAttachedShaders(WebGLProgram program);
+    any getBufferParameter(unsigned long target, unsigned long pname);
+    any getFramebufferAttachmentParameter(unsigned long target, unsigned long attachment, 
+                                          unsigned long pname);
+    any getParameter(unsigned long pname);
+    any getProgramParameter(WebGLProgram program, unsigned long pname);
+    any getRenderbufferParameter(unsigned long target, unsigned long pname);
+    any getShaderParameter(WebGLShader shader, unsigned long pname);
+    any getTexParameter(unsigned long target, unsigned long pname);
+    any getUniform(WebGLProgram program, WebGLUniformLocation location);
+    any getVertexAttrib(unsigned long index, unsigned long pname);
+}

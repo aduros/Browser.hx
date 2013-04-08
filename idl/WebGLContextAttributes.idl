@@ -1,9 +1,0 @@
-[HaxeTypedef]
-interface WebGLContextAttributes {
-  [HaxeOptional] attribute boolean alpha;
-  [HaxeOptional] attribute boolean antialias;
-  [HaxeOptional] attribute boolean depth;
-  [HaxeOptional] attribute boolean premultipliedAlpha;
-  [HaxeOptional] attribute boolean preserveDrawingBuffer;
-  [HaxeOptional] attribute boolean stencil;
-};
