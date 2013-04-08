@@ -358,6 +358,13 @@ def is_callback(node):
         or node.id == "EventListener" \
         or node.id == "MediaQueryListListener"
 
+def is_optional(node):
+    if "HaxeOptional" in node.ext_attrs: return True
+    if "Optional" in node.ext_attrs:
+        return node.ext_attrs["Optional"] is None or \
+            node.ext_attrs.get("TreatNullAs") == "NullString"
+    return False
+
 def render(db, idl_node, mdn_js, mdn_css, header=None):
     output = []
     indent_stack = []
@@ -665,7 +672,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
             stripped = strip_vendor(node.id)
             escaped = escape_keyword(stripped)
             attr_type = to_haxe_local(node.type.id)
-            if "HaxeOptional" in node.ext_attrs:
+            if is_optional(node):
                 w("@:optional ")
             w("var %s" % escaped)
             if escaped != stripped:
@@ -716,7 +723,7 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                 wln(") : %s;" % return_type)
 
         elif isinstance(node, IDLArgument):
-            if "Optional" in node.ext_attrs and node.ext_attrs["Optional"] is None:
+            if is_optional(node):
                 w("?")
             w("%s : %s" % (escape_keyword(strip_vendor(node.id)), to_haxe_local(node.type.id)))
 
