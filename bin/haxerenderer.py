@@ -9,6 +9,8 @@ from idlnode import *
 haxe_idl_types = {
     "boolean": "Bool",
     "byte": "Int",
+    "signed byte": "Int",
+    "unsigned byte": "Int",
     "char": "Int",
     "signed char": "Int",
     "unsigned char": "Int",

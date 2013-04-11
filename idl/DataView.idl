@@ -1,0 +1,8 @@
+interface DataView {
+    // Missing from WebCore??
+    byte getInt8(in unsigned long byteOffset) raises (DOMException);
+    void setInt8(in unsigned long byteOffset, in byte value) raises (DOMException);
+
+    unsigned byte getUint8(in unsigned long byteOffset) raises (DOMException);
+    void setUint8(in unsigned long byteOffset, in unsigned byte value) raises (DOMException);
+};
