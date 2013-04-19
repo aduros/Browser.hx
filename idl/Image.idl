@@ -1,0 +1,3 @@
+[Constructor]
+interface Image : HTMLImageElement {
+};
