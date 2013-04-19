@@ -7,4 +7,4 @@ if [ ! -d "$HAXE_LIBRARY_PATH" ]; then
     exit 1
 fi
 
-rsync -avz --delete generated/js/html/ "$HAXE_LIBRARY_PATH/js/html/"
+rsync -avz --delete generated/js/html/ "$HAXE_STD_PATH/js/html/"
