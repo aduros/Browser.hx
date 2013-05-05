@@ -548,12 +548,13 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                 wln("typedef GL = RenderingContext;")
                 wln()
 
+            class_name = to_haxe_class(node.id)
             if "HaxeTypedef" in node.ext_attrs:
-                w("typedef %s =" % to_haxe_class(node.id))
+                w("typedef %s =" % class_name)
             else:
                 interface_name = node.ext_attrs["InterfaceName"] if "InterfaceName" in node.ext_attrs else node.id
                 wln("@:native(\"%s\")" % strip_vendor(interface_name))
-                w("extern class %s" % to_haxe_class(node.id))
+                w("extern class %s" % class_name)
 
             strip_vendor_fields(constants)
             strip_vendor_fields(attributes)
@@ -599,10 +600,10 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     elif template == "TypedArray":
                         array_type = to_haxe_local(node.ext_attrs["TypedArray"])
                         constructors += [
-                            ["array : ArrayBufferView"],
-                            ["array : Array<"+array_type+">"],
-                            ["buffer : Array<"+array_type+">", "?byteOffset : Int", "?length : Int"],
                             ["length : Int"],
+                            ["array : Array<%s>" % array_type],
+                            ["array : %s" % class_name],
+                            ["buffer : ArrayBuffer", "?byteOffset : Int", "?length : Int"],
                         ]
                     else:
                         raise TypeError("Unrecognized ConstructorTemplate for " + node.id)
