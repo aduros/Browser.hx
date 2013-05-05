@@ -1,3 +1,3 @@
 #!/bin/sh
 
-haxe -js out.js --no-output -cp generated --macro  'include("js.html", true)'
+haxe -js out.js --no-output -cp generated -cp haxe --macro  'include("js.html", true)'

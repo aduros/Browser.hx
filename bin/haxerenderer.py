@@ -543,11 +543,6 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                 w("typedef %s = %s -> %s;" % (to_haxe_class(node.id), arguments, to_haxe_local(callback.type.id)))
                 return
 
-            if node.id == "WebGLRenderingContext":
-                w_doc("An alias for accessing GL constants more easily.")
-                wln("typedef GL = RenderingContext;")
-                wln()
-
             class_name = to_haxe_class(node.id)
             if "HaxeTypedef" in node.ext_attrs:
                 w("typedef %s =" % class_name)
