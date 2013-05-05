@@ -5,6 +5,7 @@ import json
 import logging
 import logging.config
 import os
+import re
 import shutil
 
 import database
@@ -49,6 +50,26 @@ shutil.rmtree(os.path.join(root_dir, generated_dir), ignore_errors=True)
 
 with open("mdn-js.json") as f:
     mdn_js = json.load(f)
+
+    classes_by_src = {}
+    for name in mdn_js:
+        doc = mdn_js[name]
+        classes_by_src[doc["srcUrl"]] = "/".join(haxerenderer.to_haxe(name))
+
+    # Replace internal links so they point to the Haxe API doc, if available
+    def replace_href (m):
+        href = m.group(1)
+        if href in classes_by_src:
+            return "href=\"/api/%s\"" % classes_by_src[href]
+        return m.group(0)
+    for name in mdn_js:
+        doc = mdn_js[name]
+        if "summary" in doc:
+            doc["summary"] = re.sub("href=\"(.*?)\"", replace_href, doc["summary"])
+        if "member" in doc:
+            for member in doc:
+                member["help"] = re.sub("href=\"(.*?)\"", replace_href, member["help"])
+
 with open("mdn-css.json") as f:
     mdn_css = json.load(f)
 
