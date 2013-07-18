@@ -607,15 +607,20 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                     for ii in range(int(node.ext_attrs["ConstructorParameters"])):
                         c += ["?arg%s : Dynamic" % ii]
                     constructors += [c]
+                elif "Constructor" in node.ext_attrs and node.ext_attrs["Constructor"] is not None:
+                    constructors += [node.ext_attrs["Constructor"].arguments]
                 else:
                     constructors += [[]]
                 w_constructor_doc()
                 for ii, c in enumerate(constructors):
-                    args = ", ".join(c)
                     if ii < len(constructors)-1:
-                        wln("@:overload( function(%s) : Void {} )" % args)
+                        w("@:overload( function(")
+                        w(c, ", ")
+                        wln(") : Void {} )")
                     else:
-                        wln("function new(%s) : Void;" % args)
+                        w("function new(")
+                        w(c, ", ")
+                        wln(") : Void;")
                 wln()
             if operations:
                 operations = sort([x for x in operations if not defined_in_parent(node, x.id)])
