@@ -32,6 +32,6 @@ extern class IceCandidate
 
 	var sdpMid(default,null) : String;
 
-	function new(dictionary : Dynamic) : Void;
+	function new( dictionary : Dynamic ) : Void;
 
 }

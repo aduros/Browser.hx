@@ -40,6 +40,6 @@ extern class MediaStream extends js.html.EventTarget
 
 	var videoTracks(default,null) : MediaStreamTrackList;
 
-	function new(audioTracks : MediaStreamTrackList, videoTracks : MediaStreamTrackList) : Void;
+	function new( audioTracks : MediaStreamTrackList, videoTracks : MediaStreamTrackList ) : Void;
 
 }

@@ -30,6 +30,6 @@ extern class SharedWorker extends AbstractWorker
 {
 	var port(default,null) : MessagePort;
 
-	function new(scriptURL : String, name : String) : Void;
+	function new( scriptURL : String, name : String ) : Void;
 
 }

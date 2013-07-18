@@ -35,7 +35,7 @@ extern class ShadowRoot extends DocumentFragment
 
 	var resetStyleInheritance : Bool;
 
-	function new(host : Element) : Void;
+	function new( host : Element ) : Void;
 
 	function getElementById( elementId : String ) : Element;
 

@@ -615,11 +615,11 @@ def render(db, idl_node, mdn_js, mdn_css, header=None):
                 for ii, c in enumerate(constructors):
                     if ii < len(constructors)-1:
                         w("@:overload( function(")
-                        w(c, ", ")
+                        w_arguments(c)
                         wln(") : Void {} )")
                     else:
                         w("function new(")
-                        w(c, ", ")
+                        w_arguments(c)
                         wln(") : Void;")
                 wln()
             if operations:

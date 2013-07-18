@@ -53,7 +53,7 @@ extern class Notification extends EventTarget
 
 	var tag : String;
 
-	function new(title : String, options : Dynamic) : Void;
+	function new( title : String, options : Dynamic ) : Void;
 
 	function cancel() : Void;
 
