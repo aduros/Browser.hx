@@ -33,6 +33,7 @@ haxe_idl_types = {
     "DOMObject": "Dynamic",
     "DOMString": "String",
     "DOMTimeStamp": "Int", # Float?
+    "DOMStringMap": "Dynamic<String>",
     "Dictionary": "Dynamic",
     "object": "Dynamic",
     "String": "String",

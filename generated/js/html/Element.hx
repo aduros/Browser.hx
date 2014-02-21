@@ -120,7 +120,7 @@ extern class Element extends Node
 	var contentEditable : String;
 
 	/** Allows access to read and write custom data attributes on the element. */
-	var dataset(default,null) : DOMStringMap;
+	var dataset(default,null) : Dynamic<String>;
 
 	/** Gets/sets the directionality of the element. */
 	var dir : String;

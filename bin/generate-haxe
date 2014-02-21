@@ -77,6 +77,9 @@ def generate_interface(interface):
     if interface.id in haxerenderer.merged_targets:
         return # Skip merged classes
 
+    if interface.id in haxerenderer.haxe_idl_types:
+        return # Skip built-in types
+
     path = haxerenderer.to_haxe(interface.id)
     name = path[-1]
     package = path[0:-1]
