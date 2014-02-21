@@ -2,8 +2,8 @@
 #
 # Copies the generated externs to the standard library
 
-if [ ! -d "$HAXE_LIBRARY_PATH" ]; then
-    echo "No valid \$HAXE_LIBRARY_PATH defined"
+if [ ! -d "$HAXE_STD_PATH" ]; then
+    echo "No valid \$HAXE_STD_PATH defined"
     exit 1
 fi
 
